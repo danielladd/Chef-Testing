@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "build-essential": ">= 0.0.0",
-    "git": ">= 0.0.0"
+    "git": ">= 0.0.0",
+	"runit": ">= 0.0.0"
   },
   "recommendations": {
   },
