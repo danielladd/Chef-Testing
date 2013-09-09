@@ -1,10 +1,8 @@
 #
-# Cookbook Name::       statsd
-# Description::         Base configuration for statsd
-# Recipe::              default
-# Author::              Nathaniel Eliot - Infochimps, Inc
+# Cookbook Name:: yum
+# Resource:: key
 #
-# Copyright 2011, Infochimps, Inc.
+# Copyright 2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,4 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe "nodejs"
+actions :add, :remove
+default_action :add
+
+attribute :key, :kind_of => String, :name_attribute => true
+attribute :url, :kind_of => String, :default => nil
+
+def initialize(*args)
+  super
+  @action = :add
+end

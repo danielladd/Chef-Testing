@@ -1,10 +1,10 @@
 #
-# Cookbook Name::       statsd
-# Description::         Base configuration for statsd
+# Cookbook Name::       metachef
+# Description::         Base configuration for metachef
 # Recipe::              default
-# Author::              Nathaniel Eliot - Infochimps, Inc
+# Author::              Philip (flip) Kromer
 #
-# Copyright 2011, Infochimps, Inc.
+# Copyright 2011, Philip (flip) Kromer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,4 +19,4 @@
 # limitations under the License.
 #
 
-include_recipe "nodejs"
+

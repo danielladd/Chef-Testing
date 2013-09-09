@@ -1,10 +1,8 @@
 #
-# Cookbook Name::       statsd
-# Description::         Base configuration for statsd
-# Recipe::              default
-# Author::              Nathaniel Eliot - Infochimps, Inc
+# Cookbook Name:: yum
+# Recipe:: default
 #
-# Copyright 2011, Infochimps, Inc.
+# Copyright 2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,4 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe "nodejs"
+require File.expand_path('../support/helpers', __FILE__)
+
+describe "yum::default" do
+  include Helpers::YumTest
+
+  it "Default recipe does nothing, so default_test does nothing" do
+    skip "Default recipe does nothing so default test does nothing"
+  end
+end

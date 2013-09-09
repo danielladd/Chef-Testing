@@ -1,0 +1,11 @@
+{
+  graphitePort: 	<%= @statsd[:graphite][:port] %>,
+  graphiteHost: 	"<%= @statsd[:graphite][:addr] %>",
+  port: 			<%= @statsd[:port] %>,
+  flushInterval: 	<%= @statsd[:flush_interval] %>,
+  debug: 			<%= @statsd[:debug] %>,
+  graphite: {
+  	//legacyNamespace: false
+  }
+}
+
