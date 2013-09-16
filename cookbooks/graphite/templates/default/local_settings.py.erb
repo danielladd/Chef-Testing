@@ -116,6 +116,18 @@ WHISPER_DIR = '<%= @whisper_dir %>'
 # Override the URL for the login link (e.g. for django_openid_auth)
 #LOGIN_URL = '/account/login'
 
+USE_LDAP_AUTH = True
+LDAP_SERVER = "nexus.commercehub.com"
+#LDAP_SERVER = "nexusdc02.nexus.commercehub.com"
+LDAP_PORT = 389
+#LDAP_PORT = 636
+#LDAP_URI = "ldaps://nexus.commercehub.com:636"
+LDAP_SEARCH_BASE = "OU=staff,DC=nexus,DC=commercehub,DC=com"
+LDAP_BASE_USER = "CN=service-graphite,OU=graphite,OU=applications,DC=nexus,DC=commercehub,DC=com"
+LDAP_BASE_PASS = 'CH$rvGr@p'
+LDAP_USER_QUERY = "(sAMAccountName=%s)"
+
+
 
 ##########################
 # Database Configuration #

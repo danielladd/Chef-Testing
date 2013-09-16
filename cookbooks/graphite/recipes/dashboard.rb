@@ -2,7 +2,7 @@ include_recipe "apache2"
 include_recipe "apache2::mod_python"
 
 if platform_family?("debian")
-  packages = [ "python-cairo-dev", "python-django", "python-django-tagging", "python-memcache", "python-rrdtool" ]
+  packages = [ "python-cairo-dev", "python-django", "python-django-tagging", "python-memcache", "python-rrdtool", "python-ldap" ]
 elsif platform_family?("fedora", "rhel")
   include_recipe "build-essential"
 
