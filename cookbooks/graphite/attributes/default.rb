@@ -28,18 +28,18 @@ default["graphite"]["templates"]["default"]["fontItalic"]   = "False"
 
 #Storage Schemas
 default["graphite"]["storage_schemas"] = [
-  {
-    :stats => {
-      :priority   => "100",
-      :pattern    => "^stats\\..*",
-      :retentions => "10s:7d,1m:31d,10m:5y"
-    }
-  },
+  #{
+  #  :stats => {
+  #    :priority   => "100",
+  #    :pattern    => "^sys\.*",
+  #    :retentions => "1m:31d,15m:1y,1h:5y"
+  #  }
+  #},
   {
     :catchall => {
-      :priority   => "0",
-      :pattern    => "^.*",
-      :retentions => "60s:5y"
+      :priority   => "100",
+      :pattern    => "^\.*",
+      :retentions => "1m:31d,15m:1y,1h:5y"
     }
   }
 ]
