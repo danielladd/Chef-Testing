@@ -25,6 +25,7 @@ package_list = %w{
 	build-essential
 	zsh
 	vim
+	nmap
 	curl
 	wget
 	netcat
