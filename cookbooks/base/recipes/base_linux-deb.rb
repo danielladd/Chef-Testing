@@ -40,3 +40,4 @@ package_list.each do |pkg|
 	end
 end
 
+include_recipe "git"
