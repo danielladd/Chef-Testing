@@ -10,6 +10,7 @@ depends          "runit"
 depends          "nodejs"
 #depends          "graphite"
 depends          "metachef"
+depends          "git"
 
 recipe           "statsd::default",                    "Base configuration for statsd"
 recipe           "statsd::server",                     "Server"
