@@ -1,7 +1,10 @@
 base CHANGELOG
 ==============
 
-This file is used to list changes made in each version of the base cookbook.
+0.1.1
+-----
+- Waldo - Adding git and chef-client cookbooks as dependencies
+
 
 0.1.0
 -----

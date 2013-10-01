@@ -41,3 +41,4 @@ package_list.each do |pkg|
 end
 
 include_recipe "git"
+include_recipe "chef-client"
