@@ -1,0 +1,5 @@
+chdir /opt/klerk
+exec java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -jar klerk-app.jar server /etc/klerk.yml
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
