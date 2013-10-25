@@ -12,8 +12,7 @@ end
 template "/etc/klerk.yml" do
     source "klerk.yml.erb"
     variables({
-        "mongo_host" => node["chub-klerk"]["mongo_host"],
-        "mongo_port" => node["chub-klerk"]["mongo_port"],
+        "mongo_addresses" => node["chub-klerk"]["mongo_addresses"],
         "klerk_database_name" => node["chub-klerk"]["klerk_database_name"],
         "blobstore_database_name" => node["chub-klerk"]["blobstore_database_name"],
         "quartz_database_url" => node["chub-klerk"]["quartz_database_url"]

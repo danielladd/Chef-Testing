@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.1.0"
+version "0.2.0"
 supports "ubuntu"
 depends "java"
 
@@ -16,14 +16,10 @@ attribute "chub-klerk/app_url",
     "description" => "URL from which to download the application JAR",
     "default" => "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar"
 
-attribute "chub-klerk/mongo_host",
-    "display_name" => "Klerk MongoDB host",
-    "description" => "The MongoDB host to connect to"
-
-attribute "chub-klerk/mongo_port",
-    "display_name" => "Klerk MongoDB port",
-    "description" => "The MongoDB port to connect to",
-    "default" => "27017"
+attribute "chub-klerk/mongo_addresses",
+    "display_name" => "Klerk MongoDB addresses",
+    "description" => "The MongoDB addresses to connect to",
+    "type" => "array"
 
 attribute "chub-klerk/klerk_database_name",
     "display_name" => "Klerk database name",
