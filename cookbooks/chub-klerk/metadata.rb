@@ -1,8 +1,10 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.2.0"
+version "0.3.0"
 supports "ubuntu"
+
 depends "java"
+depends "sudo"
 
 recipe "chub-klerk", "Main Klerk recipe"
 
@@ -13,8 +15,8 @@ attribute "chub-klerk",
 
 attribute "chub-klerk/app_url",
     "display_name" => "Klerk application URL",
-    "description" => "URL from which to download the application JAR",
-    "default" => "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar"
+    "description" => "URL from which to obtain the application JAR; can use a remote URL such as http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar to pull a jar from CI",
+    "default" => "file:///var/opt/klerk/staged-klerk-app.jar"
 
 attribute "chub-klerk/mongo_addresses",
     "display_name" => "Klerk MongoDB addresses",
