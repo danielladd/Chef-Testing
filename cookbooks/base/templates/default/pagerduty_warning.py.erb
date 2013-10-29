@@ -1,0 +1,91 @@
+#! /usr/bin/env python
+# This file is managed by Chef in the base::pagerduty_handoff recipe
+# This script originated at https://github.com/ryanhoskin/pagerduty_notifications
+
+from email.mime.text import MIMEText
+import datetime
+import requests
+import smtplib
+
+## Tailor the below constants to suit your environment
+AUTH_TOKEN = '<%= @auth_token %>'
+"""Authorization token for the PagerDuty API."""
+BASE_URL = '<%= @base_url %>'
+"""Location of the PagerDuty API."""
+SCHEDULES = <%= @schedules %>
+
+"""A list of schedules to send notifications for.
+
+Can be the entire name of the schedule or a string that should appear at the
+beginning of any applicable schedule's name.
+
+"""
+SMTP_HOST = '<%= @smtp_server %>'
+"""The host to connect to send mail."""
+FROM_ADDRESS = '<%= @smtp_from_address %>'
+"""The address mail will be sent from."""
+
+
+HEADERS = {
+    'Authorization': 'Token token={0}'.format(AUTH_TOKEN),
+    'Content-type': 'application/json',
+}
+
+
+def is_schedule_relevant(schedule):
+    """Tests whether a notification should be sent for `schedule`."""
+    for applicable_schedule in SCHEDULES:
+        if schedule['name'].startswith(applicable_schedule):
+            return True
+    return False
+
+
+def schedules():
+    """An iterable of applicable schedules."""
+    all_schedules = requests.get(
+        '{0}/schedules'.format(BASE_URL),
+        headers=HEADERS,
+    )
+    for schedule in all_schedules.json()['schedules']:
+        if is_schedule_relevant(schedule):
+            yield schedule
+
+
+def get_on_call(schedule_id, since):
+    """Returns user oncall for `schedule_id` on day specified by `since`."""
+    payload = {
+        'since': since,
+        'until': since + datetime.timedelta(days=1),
+    }
+    response = requests.get(
+        '{0}/schedules/{1}/entries'.format(BASE_URL, schedule_id),
+        headers=HEADERS,
+        params=payload,
+    )
+
+    return response.json()['entries'][0]['user']
+
+
+s = smtplib.SMTP(SMTP_HOST)
+today = datetime.date.today()
+offset = 8 - datetime.date.weekday(today)
+since = today + datetime.timedelta(days=offset)
+for schedule in schedules():
+    user = get_on_call(schedule['id'], since)
+    #print user
+    text = """Greetings {name},
+
+This is a friendly reminder that you will be on call for {schedule} for the
+week beginning {date}.
+
+Enjoy!
+""".format(name=user['name'], schedule=schedule['name'], date=since)
+    msg = MIMEText(text)
+    msg['Subject'] = "You're on call next week"
+    me = FROM_ADDRESS
+    you = user['email']
+    msg['From'] = me
+    msg['To'] = you
+    s.sendmail(me, [you], msg.as_string())
+
+s.quit()
