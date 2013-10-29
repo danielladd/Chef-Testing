@@ -32,6 +32,7 @@ package_list = %w{
 	htop
 	strace
 	sysstat
+	ruby1.9.3
 }
 
 package_list.each do |pkg|
