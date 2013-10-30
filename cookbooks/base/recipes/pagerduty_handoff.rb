@@ -87,7 +87,7 @@ unless output.include?("requests")
 		command "pip install requests"
 	end
 # else
-# 	puts "pip already installed"
+# 	Chef::Log.info "pip already installed"
 end
 
 cron_d "pagerduty_handoff" do
