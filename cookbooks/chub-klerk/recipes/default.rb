@@ -69,7 +69,9 @@ template "/etc/opt/klerk/klerk.yml" do
         "mongo_addresses" => node["chub-klerk"]["mongo_addresses"],
         "klerk_database_name" => node["chub-klerk"]["klerk_database_name"],
         "blobstore_database_name" => node["chub-klerk"]["blobstore_database_name"],
-        "quartz_database_url" => node["chub-klerk"]["quartz_database_url"]
+        "quartz_database_url" => node["chub-klerk"]["quartz_database_url"],
+        "hazelcast_group_name" => node["chub-klerk"]["hazelcast_group_name"],
+        "hazelcast_group_password" => node["chub-klerk"]["hazelcast_group_password"]
     })
     owner "root"
     group "klerk"
