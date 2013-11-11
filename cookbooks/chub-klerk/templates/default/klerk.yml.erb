@@ -18,6 +18,13 @@ hazelcast:
   groupName: <%= @hazelcast_group_name %>
   groupPassword: <%= @hazelcast_group_password %>
 
+<% if @event_notification_endpoints %>
+eventNotificationEndpoints:
+<% @event_notification_endpoints.each_pair do |applicationid, endpoint| %>
+<%= "  #{applicationid}: #{endpoint}" %>
+<% end %>
+<% end %>
+
 # HTTP-specific options.
 http:
 

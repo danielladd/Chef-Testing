@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.4.0"
+version "0.5.0"
 supports "ubuntu"
 
 depends "java"
@@ -47,3 +47,7 @@ attribute "chub-klerk/hazelcast_group_name",
 
 attribute "chub-klerk/hazelcast_group_password",
     "display_name" => "Hazelcast Group Password"
+
+attribute "chub-klerk/event_notification_endpoints",
+    "display_name" => "Event Notification Endpoints",
+    "type" => "hash"
