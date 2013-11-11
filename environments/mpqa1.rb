@@ -6,6 +6,6 @@ default_attributes "chub-klerk" => {
     "hazelcast_group_name" => "mpqa1_klerk",
     "hazelcast_group_password" => "mpqa1_klerk",
     "event_notification_endpoints" => {
-        "productstream" => "https://qa-vip7.commercehub.com/klerk/productDataEvents"
+        "productstream" => "https://qa-vip7.buyspace.com/klerk/productDataEvents"
     }
 }
