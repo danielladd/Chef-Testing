@@ -72,6 +72,7 @@ template "/etc/opt/klerk/klerk.yml" do
         "quartz_database_url" => node["chub-klerk"]["quartz_database_url"],
         "hazelcast_group_name" => node["chub-klerk"]["hazelcast_group_name"],
         "hazelcast_group_password" => node["chub-klerk"]["hazelcast_group_password"],
+        "antivirus_hosts" => node["chub-klerk"]["antivirus_hosts"],
         "event_notification_endpoints" => node["chub-klerk"]["event_notification_endpoints"]
     })
     owner "root"
