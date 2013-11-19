@@ -11,5 +11,6 @@ default_attributes "mongodb" => {
     "mongo_addresses" => [ "mpdev1mongo1", "mpdev1mongo2", "mpdev1mongo3" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpdev1_klerk_quartz;user=devusr01;password=usrdev",
     "hazelcast_group_name" => "mpdev1_klerk",
-    "hazelcast_group_password" => "mpdev1_klerk"
+    "hazelcast_group_password" => "mpdev1_klerk",
+    "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ]
 }
