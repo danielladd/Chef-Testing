@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.6.0"
+version "0.7.0"
 supports "ubuntu"
 
 depends "java"
@@ -31,7 +31,7 @@ attribute "chub-klerk/klerk_database_name",
 attribute "chub-klerk/blobstore_database_name",
     "display_name" => "Klerk blob store database name",
     "description" => "The name of the Klerk blob store database",
-    "default" => "blobStore"
+    "default" => "klerk_blobStore"
 
 attribute "chub-klerk/quartz_database_url",
     "display_name" => "Klerk Quartz database URL",
