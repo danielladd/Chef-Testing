@@ -8,5 +8,6 @@ default_attributes "chub-klerk" => {
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "event_notification_endpoints" => {
         "productstream" => "http://mpqa01.nexus.commercehub.com:17070/klerk/productDataEvents"
-    }
+    },
+    "sprite_url" => "http://mpqa1sprite1.nexus.commercehub.com:8060/sprite-conductor"
 }

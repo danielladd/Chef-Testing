@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.7.0"
+version "0.8.0"
 supports "ubuntu"
 
 depends "java"
@@ -55,3 +55,6 @@ attribute "chub-klerk/event_notification_endpoints",
 attribute "chub-klerk/antivirus_hosts",
     "display_name" => "Antivirus Hosts",
     "type" => "array"
+
+attribute "chub-klerk/sprite_url",
+    "display_name" => "Sprite URL"

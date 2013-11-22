@@ -12,5 +12,6 @@ default_attributes "mongodb" => {
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpdev1_klerk_quartz;user=devusr01;password=usrdev",
     "hazelcast_group_name" => "mpdev1_klerk",
     "hazelcast_group_password" => "mpdev1_klerk",
-    "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ]
+    "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
+    "sprite_url" => "http://mpdev1sprite1.nexus.commercehub.com:8060/sprite-conductor"
 }
