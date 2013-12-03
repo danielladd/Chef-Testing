@@ -13,5 +13,6 @@ default_attributes "mongodb" => {
     "hazelcast_group_name" => "mpdev1_klerk",
     "hazelcast_group_password" => "mpdev1_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
-    "sprite_url" => "http://mpdev1sprite1.nexus.commercehub.com:8060/sprite-conductor"
+    "sprite_conductor_url" => "http://mpdev1sprite1.nexus.commercehub.com:8060/sprite-conductor",
+    "sprite_output_container_prefix" => "mpdev1-"
 }

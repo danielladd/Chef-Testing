@@ -9,5 +9,6 @@ default_attributes "chub-klerk" => {
     "event_notification_endpoints" => {
         "productstream" => "http://mpqa2app1.nexus.commercehub.com/klerk/productDataEvents"
     },
-    "sprite_url" => "http://mpqa2sprite1.nexus.commercehub.com:8060/sprite-conductor"
+    "sprite_conductor_url" => "http://mpqa2sprite1.nexus.commercehub.com:8060/sprite-conductor",
+    "sprite_output_container_prefix" => "mpqa2-"
 }
