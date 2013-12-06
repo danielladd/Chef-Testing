@@ -56,5 +56,8 @@ attribute "chub-klerk/antivirus_hosts",
     "display_name" => "Antivirus Hosts",
     "type" => "array"
 
-attribute "chub-klerk/sprite_url",
-    "display_name" => "Sprite URL"
+attribute "chub-klerk/sprite_conductor_url",
+    "display_name" => "Sprite Conductor URL"
+
+attribute "chub-klerk/sprite_output_container_prefix",
+    "display_name" => "Sprite Output Container Prefix"

@@ -9,5 +9,6 @@ default_attributes "chub-klerk" => {
     "event_notification_endpoints" => {
         "productstream" => "http://api.buyspace.com/klerk/productDataEvents"
     },
-    "sprite_url" => "http://sprite.buyspace.com/sprite-conductor"
+    "sprite_conductor_url" => "http://sprite.buyspace.com/sprite-conductor",
+    "sprite_output_container_prefix" => "mpprod1-"
 }
