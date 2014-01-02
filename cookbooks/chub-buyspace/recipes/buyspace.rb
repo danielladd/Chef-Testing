@@ -68,10 +68,7 @@ template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspa
 	mode 0554
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	variables({
-
-		})
-	# notifies
+	notifies :restart "service[tomcat7]", :delayed
 end
 
 
@@ -80,10 +77,7 @@ template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['loggin
 	mode 0554
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	variables({
-
-		})
-	# notifies
+	notifies :restart "service[tomcat7]", :delayed
 end
 
 execute 'clear_tomcat_app_directory' do
@@ -96,10 +90,7 @@ remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
 	source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM/latestSuccessful/artifact/shared/buyspace.war/buyspace.war"
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	action :create
-	# notifies
-	### ZOMG NEXT LINE
-	#notifies :delete, "directory[#{node['chub-buyspace']['app_dir']}/ROOT]", "immediately", recursive true
+	action :create_if_missing
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	#notifies :restart "service[tomcat7]", :delayed
 end
@@ -108,11 +99,10 @@ end
 
 =begin
 TODO:
-- Attributes
 - buyspace_app
 	-notifies tomcat restart
 	-deployed file changes?
-		-need checksumming?
+		-does it need checksumming?
 - config
 	-notifies tomcat restart
 	-integrating config options 

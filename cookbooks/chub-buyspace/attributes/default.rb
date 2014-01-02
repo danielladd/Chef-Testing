@@ -16,6 +16,10 @@ default['chub-buyspace']['temp_dir']		= '/tmp/buyspace'
 default['chub-buyspace']['buyspace_conf']	= 'buyspace-config.groovy'
 default['chub-buyspace']['logging_conf']	= 'logging.properties'
 
+# Use this only to revert to a specific Bamboo build, by specifying the Bamboo
+# Build Number
+default['chub-buyspace']['install_specific_build']	= 1
+
 # These should be overridden
 default['chub-buyspace']['grails_env']		= 'local'
 
