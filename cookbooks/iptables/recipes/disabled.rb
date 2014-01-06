@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: base
+# Cookbook Name:: iptables
 # Recipe:: default
 #
-# Copyright 2013, CommerceHub
+# Copyright 2008-2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,16 +17,8 @@
 # limitations under the License.
 #
 
-node.set['ntp']['servers'] = [ 
-	'time.commercehub.com',
-	'0.pool.ntp.org',
-	'1.pool.ntp.org',
-	'2.pool.ntp.org',
-	'3.pool.ntp.org'
-]
-
-if platform_family?("debian", "ubuntu") 
-	include_recipe "base::base_linux-deb"
+package "iptables" 
+service "iptables" do
+      action [ :disable, :stop ]
+      supports :status => true, :start => true, :stop => true, :restart => true
 end
-
-include_recipe 'ntp'

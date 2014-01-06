@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: base
+# Cookbook Name:: nscd
 # Recipe:: default
 #
-# Copyright 2013, CommerceHub
+# Copyright 2009-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,16 +17,20 @@
 # limitations under the License.
 #
 
-node.set['ntp']['servers'] = [ 
-	'time.commercehub.com',
-	'0.pool.ntp.org',
-	'1.pool.ntp.org',
-	'2.pool.ntp.org',
-	'3.pool.ntp.org'
-]
-
-if platform_family?("debian", "ubuntu") 
-	include_recipe "base::base_linux-deb"
+package 'nscd' do
+  package_name node['nscd']['package']
+  not_if { platform?('smartos') }
 end
 
-include_recipe 'ntp'
+service 'nscd' do
+  service_name 'name-service-cache:default' if platform?('smartos')
+  supports :restart => true, :status => true
+  action   [:enable, :start]
+end
+
+%w[passwd group].each do |cmd|
+  execute "nscd-clear-#{cmd}" do
+    command "/usr/sbin/nscd -i #{cmd}"
+    action  :nothing
+  end
+end

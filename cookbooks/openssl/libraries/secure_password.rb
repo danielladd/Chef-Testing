@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: base
-# Recipe:: default
+# Cookbook Name:: openssl
+# Library:: secure_password
+# Author:: Joshua Timberman <joshua@opscode.com>
 #
-# Copyright 2013, CommerceHub
+# Copyright 2009, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,16 +18,20 @@
 # limitations under the License.
 #
 
-node.set['ntp']['servers'] = [ 
-	'time.commercehub.com',
-	'0.pool.ntp.org',
-	'1.pool.ntp.org',
-	'2.pool.ntp.org',
-	'3.pool.ntp.org'
-]
+require 'openssl'
 
-if platform_family?("debian", "ubuntu") 
-	include_recipe "base::base_linux-deb"
+module Opscode
+  module OpenSSL
+    module Password
+      def secure_password(length = 20)
+        pw = String.new
+
+        while pw.length < length
+          pw << ::OpenSSL::Random.random_bytes(1).gsub(/\W/, '')
+        end
+
+        pw
+      end
+    end
+  end
 end
-
-include_recipe 'ntp'
