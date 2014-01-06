@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.6
+-------
+- fix mirror configuration logic
+
 v1.12.5
 -------
 - first chub version (earlier versions are opscode versions)

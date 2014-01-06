@@ -19,14 +19,14 @@
 
 node.default['openldap']['slapd_type'] = 'mirror'
 
-if Chef::Config[:solo]
-  Chef::Log.warn("To use #{cookbook_name}::#{recipe_name} with solo, set attributes node['openldap']['slapd_replpw'] and node['openldap']['slapd_master'].")
-else
-  # TODO: search for the one that isn't the current node
-  ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
-  node.default['openldap']['slapd_replpw'] = secure_password
-  node.default['openldap']['slapd_master'] = search(:nodes, 'openldap_slapd_type:master').map {|n| n['openldap']['server']}.first
-  node.save
-end
+#if Chef::Config[:solo]
+#  Chef::Log.warn("To use #{cookbook_name}::#{recipe_name} with solo, set attributes node['openldap']['slapd_replpw'] and node['openldap']['slapd_master'].")
+#else
+#  # TODO: search for the one that isn't the current node
+#  ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+#  node.default['openldap']['slapd_replpw'] = secure_password
+#  node.default['openldap']['slapd_master'] = search(:nodes, 'openldap_slapd_type:master').map {|n| n['openldap']['server']}.first
+#  node.save
+#end
 
 include_recipe "openldap::server"
