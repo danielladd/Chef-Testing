@@ -2,8 +2,9 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
-v1.12.5-chub1
+v1.12.5
 -------
+- first chub version (earlier versions are opscode versions)
 - add self-signed certs for ldap(01,02).vagrant.dev, ssodev1ldap(1,2).nexus.commercehub.com
 - add support for "mirror" recipe
 - use db5.1-util rather than db4.8-util (this is the version of BerkleyDB that appears to actually be used these days)
