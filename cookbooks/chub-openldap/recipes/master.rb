@@ -19,5 +19,5 @@
 
 node.default['openldap']['slapd_type'] = 'master'
 
-include_recipe "openldap::server"
+include_recipe "chub-openldap::server"
 

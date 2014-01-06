@@ -28,5 +28,5 @@ else
   node.save
 end
 
-include_recipe "openldap::server"
+include_recipe "chub-openldap::server"
 

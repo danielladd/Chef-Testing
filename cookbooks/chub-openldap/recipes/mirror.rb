@@ -29,4 +29,4 @@ node.default['openldap']['slapd_type'] = 'mirror'
 #  node.save
 #end
 
-include_recipe "openldap::server"
+include_recipe "chub-openldap::server"
