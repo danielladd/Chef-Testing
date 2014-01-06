@@ -32,6 +32,16 @@ group "castle" do
     members ["castle", "chadmin"]
 end
 
+apt_package "authbind" do
+    action :install
+end
+
+file "/etc/authbind/byport/443" do
+    action :touch
+    owner "castle"
+    mode 0755
+end
+
 directory "/opt/castle" do
     owner "castle"
     group "castle"
