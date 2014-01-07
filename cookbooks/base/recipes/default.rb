@@ -17,6 +17,16 @@
 # limitations under the License.
 #
 
+node.set['ntp']['servers'] = [ 
+	'time.commercehub.com',
+	'0.pool.ntp.org',
+	'1.pool.ntp.org',
+	'2.pool.ntp.org',
+	'3.pool.ntp.org'
+]
+
 if platform_family?("debian", "ubuntu") 
 	include_recipe "base::base_linux-deb"
 end
+
+include_recipe 'ntp'

@@ -94,8 +94,17 @@ template "/etc/init/klerk.conf" do
     notifies "restart", "service[klerk]"
 end
 
+# remote_file "/var/opt/klerk/staged-klerk-app.jar" do
+#     source "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar"
+#     action :create_if_missing
+#     owner "klerk"
+#     group "klerk"
+#     mode 0440
+# end
+
 remote_file "/opt/klerk/klerk-app.jar" do
     source node["chub-klerk"]["app_url"]
+    #action :create_if_missing
     owner "klerk"
     group "klerk"
     mode 0440

@@ -1,0 +1,7 @@
+setuid castle
+setgid castle
+chdir /var/castle
+exec authbind java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Djavax.net.ssl.keyStore=/etc/castle/keystore.jks -Djavax.net.ssl.keyStorePassword="<%= @keystore_password %>" -Djavax.net.ssl.trustStore=/etc/castle/truststore.jks -Djavax.net.ssl.trustStorePassword="<%= @truststore_password %>" -Djava.net.preferIPv4Stack=true -jar /opt/castle/castle.war
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
