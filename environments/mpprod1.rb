@@ -30,8 +30,8 @@ default_attributes "chub-klerk" => {
 	'klerk' => {
 		'url' => 'http://klerk.commercehub.com:8090'
 	},
-	'useGoogleAnalytics' => true,
-	'useHubSpot' => true,
+	'useGoogleAnalytics' => 'true',
+	'useHubSpot' => 'true',
 	'marketplace' => {
 		'gitRevision' => 'System.currentTimeMillis()'
 	},
@@ -46,15 +46,15 @@ default_attributes "chub-klerk" => {
 	'antivirus' => {
 		'host' => 'vs01',
 		'hosts' => ['vs01', 'vs02'],
-		'enabled' => true,
-		'port' => 1344
+		'enabled' => 'true',
+		'port' => '1344'
 	},
 	'grails' => {
 		'serverURL' => "https://www.buyspace.com",
 		'serverURLbyHostname' => "http://wapp02.commercehub.com:8080",
 		'apiServerURL' => "http://api.commercehub.com",
 		'plugin' => {
-			'excludes' => null
+			'excludes' => 'null'
 		}
 	},
 	'msExchangeApi' => {
@@ -66,9 +66,9 @@ default_attributes "chub-klerk" => {
 	},
 	'hornetq' => {
 		'host' => 'mq01.commercehub.com',
-		'port' => 5445
+		'port' => '5445'
 	},
-	'taskScheduler' => {'enabled' => true},
+	'taskScheduler' => {'enabled' => 'true'},
 	'bestBuyMarketplace.retailerId' => '51247477c519e3a71e639634',
 	'mongo' => {
 		'databaseName' => "marketplaceProd",
@@ -91,8 +91,8 @@ default_attributes "chub-klerk" => {
 		'clientId' => '3MVG99OxTyEMCQ3jLWU2aXrHra9IH.vcatnvgH6L4x4kiIDyvjLQuuBfIZVKPLPRA_qFWCRNaLkBB32KOnLzT',
 		'clientSecret' => '3939258714251867600',
 		'httpClient' => {
-			'connectionsPerRoute' => 10,
-			'totalConnections' => 100
+			'connectionsPerRoute' => '10',
+			'totalConnections' => '100'
 		},
 		'password' => 'hAhE4awR',
 		'tokenUrl' => 'https://login.salesforce.com/services/oauth2/token',
@@ -109,13 +109,13 @@ default_attributes "chub-klerk" => {
 	},
 	'beans' => {
 		'shiroSecurityManager' => {
-			'rememberMeManager' => null
+			'rememberMeManager' => 'null'
 		}
 	},
 	'vertx' => {
-		'enabled' => false,
+		'enabled' => 'false',
 		'hazelcastConfigFile' => '/marketplace/hazelcast/cluster.xml',
 		'hostname' => 'wapp02',
-		'port' => 25500
+		'port' => '25500'
 	}
 }
