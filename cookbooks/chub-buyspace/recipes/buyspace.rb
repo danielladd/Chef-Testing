@@ -68,7 +68,7 @@ template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspa
 	mode 0554
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	notifies :restart "service[tomcat7]", :delayed
+	notifies :restart, "service[tomcat]", :delayed
 end
 
 
@@ -77,7 +77,7 @@ template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['loggin
 	mode 0554
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	notifies :restart "service[tomcat7]", :delayed
+	notifies :restart, "service[tomcat]", :delayed
 end
 
 execute 'clear_tomcat_app_directory' do
@@ -92,7 +92,7 @@ remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
 	group "#{node['chub-buyspace']['group']}"
 	action :create_if_missing
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-	#notifies :restart "service[tomcat7]", :delayed
+	notifies :restart, "service[tomcat]", :delayed
 end
 
 
