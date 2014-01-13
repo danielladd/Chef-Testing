@@ -1,9 +1,14 @@
 base CHANGELOG
 ==============
 
+0.1.3
+-----
+- Waldo - Adding SmartShipping to the Warning notifications, and removed 
+unneeded variables that are passed to the template.
+
 0.1.2
 -----
--Waldo - Adding pagerduty_handoff recipe
+- Waldo - Adding pagerduty_handoff recipe
 
 0.1.1
 -----
