@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.8
+-------
+- add support for SHA-2
+
 v1.12.7
 -------
 - fix references to recipes due to cookbook rename

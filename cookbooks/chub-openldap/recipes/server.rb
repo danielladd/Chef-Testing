@@ -62,6 +62,20 @@ if node['openldap']['tls_enabled'] && node['openldap']['manage_ssl']
   end
 end
 
+# Add SHA2 support
+cookbook_file "#{node['openldap']['module_dir']}/slapd-sha2.so" do
+  source "slapd-sha2.so"
+  mode 00644
+  owner "root"
+  group "root"
+end
+cookbook_file "#{node['openldap']['module_dir']}/slapd-sha2.la" do
+  source "slapd-sha2.la"
+  mode 00644
+  owner "root"
+  group "root"
+end
+
 service "slapd" do
   action [:enable, :start]
 end
