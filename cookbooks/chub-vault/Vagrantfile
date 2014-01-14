@@ -21,6 +21,10 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {
+      "chub-vault" => {
+        "ldap_read_host" => "ssodev1ldap1.nexus.commercehub.com",
+        "search_password" => "search"
+      }
     }
 
     chef.run_list = [

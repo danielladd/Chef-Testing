@@ -56,9 +56,16 @@ directory "/var/log/vault" do
     mode 0770
 end
 
-template "/etc/vault/vault.yml" do
-    source "vault.yml.erb"
+# Clean up file used by previous version of cookbook
+file "/etc/vault/vault.yml" do
+    action :delete
+end
+
+template "/etc/vault/vault.yaml" do
+    source "vault.yaml.erb"
     variables({
+        "ldap_read_host" => node["chub-vault"]["ldap_read_host"],
+        "search_password" => node["chub-vault"]["search_password"]
     })
     owner "root"
     group "vault"
