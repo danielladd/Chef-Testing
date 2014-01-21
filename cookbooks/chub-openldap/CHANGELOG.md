@@ -2,6 +2,9 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.10
+- add certs for ssoqa1 environment
+
 v1.12.9
 -------
 - enable LDAPS

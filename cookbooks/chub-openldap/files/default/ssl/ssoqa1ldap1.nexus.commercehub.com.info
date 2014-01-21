@@ -1,0 +1,51 @@
+SHA1 Fingerprint=AD:3B:27:67:1D:19:05:B7:D6:28:35:78:3C:A5:B7:99:14:CB:E0:61
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            a8:04:d0:1e:6d:8b:b4:59
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, ST=NY, L=Albany, O=CommerceHub, OU=SSO, CN=ssoqa1ldap1.nexus.commercehub.com/emailAddress=sso@commercehub.com
+        Validity
+            Not Before: Jan 21 18:52:58 2014 GMT
+            Not After : Jan 19 18:52:58 2024 GMT
+        Subject: C=US, ST=NY, L=Albany, O=CommerceHub, OU=SSO, CN=ssoqa1ldap1.nexus.commercehub.com/emailAddress=sso@commercehub.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:c8:9b:6e:16:b2:0a:2f:56:9e:c3:33:c1:79:8d:
+                    65:c8:d0:b7:0c:0f:91:83:25:bc:f8:ae:45:7c:fe:
+                    76:2f:a5:d7:18:30:d8:0d:aa:75:40:36:50:c8:69:
+                    58:e6:2f:38:5f:05:7b:95:fc:3e:c5:dc:56:1d:03:
+                    3b:fe:ad:36:32:37:74:79:62:5d:d5:17:b4:fd:56:
+                    0b:26:e3:c9:74:39:66:49:d6:7a:fb:62:91:89:38:
+                    ec:ec:fa:ee:28:95:f5:61:c4:52:0a:c0:e4:17:95:
+                    48:6a:28:67:5a:7d:d2:5a:31:25:4c:63:26:f5:0b:
+                    a4:06:bb:50:71:47:48:e9:a4:6f:70:b7:90:5a:40:
+                    2d:04:35:11:66:d6:01:ce:e4:f4:bc:7b:9d:d9:4c:
+                    9b:b2:87:39:8f:13:6d:29:e6:ee:44:62:20:c8:bf:
+                    65:fc:39:11:69:56:2e:dc:db:a9:bc:dc:38:8b:98:
+                    b8:85:29:19:16:8e:0e:a7:d6:fb:c5:11:27:e5:53:
+                    47:b6:b3:ac:92:ee:42:9f:6b:75:b2:82:ba:f3:e2:
+                    9a:30:29:c5:03:67:92:98:af:03:3d:ee:c0:66:76:
+                    b0:bc:90:64:75:80:58:b6:fc:e0:66:4b:6a:3b:8a:
+                    3d:d6:18:cb:d9:cc:84:62:49:3c:6c:a2:9f:30:a8:
+                    8a:1b
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha1WithRSAEncryption
+        2f:59:58:45:fb:b6:0b:36:3e:16:80:57:f4:00:de:27:48:10:
+        58:9b:8f:93:03:c1:9d:4e:65:0e:72:52:5b:72:0d:7b:95:c3:
+        4a:cd:ec:16:8a:69:50:04:22:a9:58:79:cd:04:c2:0f:c5:40:
+        ed:b7:4b:56:25:a4:f8:80:c1:5b:98:4f:9d:ce:ae:21:e5:91:
+        8d:89:00:94:89:32:ab:e8:e0:71:8c:93:a6:25:57:62:d4:01:
+        f4:27:0b:aa:ac:05:c4:e5:be:eb:fa:20:71:63:96:7c:7b:b0:
+        4c:6d:4a:f8:9f:e4:ad:53:fa:f4:b3:12:3f:9b:f1:11:4b:8a:
+        66:a2:6f:4c:1b:41:80:1e:65:70:53:8b:8c:81:06:c4:7f:a0:
+        32:9d:49:77:8d:08:3d:c6:9f:e2:b6:12:2e:0f:62:22:40:dd:
+        4e:25:8e:ac:e6:df:45:0b:23:e5:32:de:5f:87:ca:ab:90:25:
+        6b:53:f2:5d:c1:b1:ef:f0:7f:ae:bf:c6:48:fb:49:7b:6e:8e:
+        63:ef:e8:05:be:3f:10:f2:22:a2:99:9e:12:8b:ec:7e:de:ae:
+        d1:39:a5:13:21:58:e2:ab:08:9f:d3:89:35:a9:21:5f:3f:27:
+        c8:65:9f:ff:ef:10:be:3c:90:f6:01:5a:de:4f:23:10:49:8b:
+        4d:de:a6:3d
