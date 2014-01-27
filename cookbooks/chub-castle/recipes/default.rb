@@ -92,7 +92,6 @@ template "/etc/init/castle.conf" do
         "java_heap_size" => node["chub-castle"]["java_heap_size"],
         "keystore_password" => node["chub-castle"]["keystore_password"],
         "truststore_password" => node["chub-castle"]["truststore_password"]
-        "vault_url" => node["chub-castle"]["vault_url"]
     })
     owner "root"
     group "root"

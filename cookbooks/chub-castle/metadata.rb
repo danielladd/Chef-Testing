@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.4'
+version          '0.1.5'
 
 supports "ubuntu"
 depends "apt"
@@ -39,13 +39,7 @@ attribute "chub-castle/truststore_password",
     "display_name" => "Castle truststore password",
     "description" => "The password to use with the truststore",
     "default" => "changeit"
-
+    
 attribute "chub-castle/vault_url",
     "display_name" => "Vault Server URL",
-    "description" => "Vault server for Castle to connect to",
-    "default" => "http://ssodev1vault1.nexus.commercehub.com:8080"
-
-attribute "chub-castle/vault_url",
-    "display_name" => "Vault Server URL",
-    "description" => "Vault server for Castle to connect to",
-    "default" => "http://ssodev1vault1.nexus.commercehub.com:8080"
+    "description" => "Vault server for Castle to connect to"
