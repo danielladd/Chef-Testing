@@ -2,6 +2,22 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.11
+-------
+- disable tls for the replication for now; it wasn't working for ssoqa1?
+
+v1.12.10
+-------
+- add certs for ssoqa1 environment
+
+v1.12.9
+-------
+- enable LDAPS
+
+v1.12.8
+-------
+- add support for SHA-2
+
 v1.12.7
 -------
 - fix references to recipes due to cookbook rename

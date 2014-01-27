@@ -43,6 +43,7 @@ moduleload	back_hdb
 <% if ['master', 'mirror'].include? node['openldap']['slapd_type'] -%>
 moduleload  syncprov
 <% end -%>
+moduleload  slapd-sha2
 <% end -%>
 
 # The maximum number of entries that is returned for a search operation
@@ -106,9 +107,10 @@ syncrepl rid=<%= node['openldap']['slapd_rid'] %>
   schemachecking=off
   bindmethod=simple
   binddn="cn=syncrole,<%= node['openldap']['basedn'] %>"
-  starttls=yes
+  starttls=no
   credentials="<%= node['openldap']['slapd_replpw'] %>"
   retry="30 +"
+# TODO re-enable TLS for this?
 # TODO tweak this config
 <% end -%>
 <% if node['openldap']['slapd_type'] == 'mirror' -%>

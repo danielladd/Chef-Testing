@@ -42,3 +42,12 @@ remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
 end
+
+if not Chef::Config[:solo] then
+	ruby_block "Remove Buyspace Rollback recipe from run-list" do
+		block do
+			node.run_list.remove("recipe[chub-buyspace::specific_build]")
+		end
+		only_if { node.run_list.include?("recipe[chub-buyspace::specific_build]") }
+	end
+end
