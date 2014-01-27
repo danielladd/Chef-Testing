@@ -4,6 +4,7 @@ default["chub-castle"]["keystore_file"] = "keystore.jks"
 default["chub-castle"]["truststore_file"] = "truststore.jks"
 default["chub-castle"]["keystore_password"] = "changeit"
 default["chub-castle"]["truststore_password"] = "changeit"
+default["chub-castle"]["vault_url"] = "http://ssodev1vault1.nexus.commercehub.com:8080"
 default["java"]["oracle"]["accept_oracle_download_terms"] = true
 default["java"]["install_flavor"] = "oracle"
 default["java"]["jdk_version"] = "7"
