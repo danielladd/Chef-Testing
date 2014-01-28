@@ -1,7 +1,7 @@
 setuid castle
 setgid castle
 chdir /var/castle
-exec authbind java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Dcontainer.ssl.keyStore=/etc/castle/keystore.jks -DDcontainer.ssl.keyStorePassword="<%= @keystore_password %>" -DDcontainer.ssl.trustStore=/etc/castle/truststore.jks -DDcontainer.ssl.trustStorePassword="<%= @truststore_password %>" -Djava.net.preferIPv4Stack=true -Dapplication.properties=/etc/castle/castle.properties -jar /opt/castle/castle.war
+exec java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Dcontainer.ssl.keyStore=/etc/castle/keystore.jks -DDcontainer.ssl.keyStorePassword="<%= @keystore_password %>" -DDcontainer.ssl.trustStore=/etc/castle/truststore.jks -DDcontainer.ssl.trustStorePassword="<%= @truststore_password %>" -Djava.net.preferIPv4Stack=true -Dapplication.properties=/etc/castle/castle.properties -jar /opt/castle/castle.war
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

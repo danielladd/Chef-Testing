@@ -1,3 +1,7 @@
+# 0.1.7
+
+* Remove the last trace of authbind
+
 # 0.1.6
 
 * Run on ports 8080/8443 rather than 80/443 (stop using authbind)
