@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.8'
+version          '0.1.9'
 
 supports "ubuntu"
 depends "apt"
@@ -43,3 +43,19 @@ attribute "chub-castle/truststore_password",
 attribute "chub-castle/vault_url",
     "display_name" => "Vault Server URL",
     "description" => "Vault server for Castle to connect to"
+
+attribute "chub-castle/db_server",
+    "display_name" => "Database Server Name",
+    "description" => "Database server for Castle to connect to"
+
+attribute "chub-castle/db_name",
+    "display_name" => "Database Name",
+    "description" => "Databse for Castle to connect to"
+
+attribute "chub-castle/db_user",
+    "display_name" => "Databse User Credential",
+    "description" => "User for Castle to connect to database with"
+
+attribute "chub-castle/db_pass",
+    "display_name" => "Database Password Credential",
+    "description" => "Password for Castle to connect to database with"

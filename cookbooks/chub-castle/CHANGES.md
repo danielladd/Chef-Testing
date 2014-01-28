@@ -1,3 +1,7 @@
+# 0.1.9
+
+* Added ticket registry support and properties for connecting to a database
+
 # 0.1.8
 
 * Fix upstart script

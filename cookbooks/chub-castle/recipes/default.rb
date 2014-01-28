@@ -87,6 +87,10 @@ template "/etc/castle/castle.properties" do
     source "castle.properties.erb"
     variables({
         "vault_url" => node["chub-castle"]["vault_url"],
+        "db_server" => node["chub-castle"]["db_server"],
+        "db_name" => node["chub-castle"]["db_name"],
+        "db_user" => node["chub-castle"]["db_user"],
+        "db_pass" => node["chub-castle"]["db_pass"]
     })
     owner "root"
     group "root"
