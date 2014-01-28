@@ -1,0 +1,19 @@
+security {
+    shiro {
+        cas {
+            serverUrl = "<%= node["chub-plaza"]["cas_server_url"] %>"
+            serviceUrl = "<%= node["chub-plaza"]["cas_service_url"] %>"
+        }
+    }
+}
+metrics {
+    <% if node["chub-plaza"]["graphite_host"] -%>
+    graphiteHost = "<%= node["chub-plaza"]["graphite_host"] %>"
+    <% end -%>
+    <% if node["chub-plaza"]["graphite_port"] -%>
+    graphitePort = <%= node["chub-plaza"]["graphite_port"] %>
+    <% end -%>
+    <% if node.chef_environment != "_default" -%>
+    environment = "<%= node.chef_environment %>"
+    <% end -%>
+}
