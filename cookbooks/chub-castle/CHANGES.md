@@ -1,3 +1,7 @@
+# 0.1.8
+
+* Fix upstart script
+
 # 0.1.7
 
 * Remove the last trace of authbind
