@@ -3,7 +3,7 @@ description "SSO development environment 1"
 default_attributes(
     "chub-vault" => {
       "app_url" => "file:///var/vault/staged-vault.jar",
-      "ldap_read_host" => "ssodev1ldap1.nexus.commercehub.com",
+      "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
       "search_password" => "search"
     },
     "chub-castle" => {
