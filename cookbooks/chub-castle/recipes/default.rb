@@ -32,22 +32,6 @@ group "castle" do
     members ["castle", "chadmin"]
 end
 
-apt_package "authbind" do
-    action :install
-end
-
-file "/etc/authbind/byport/80" do
-    action :touch
-    owner "castle"
-    mode 0755
-end
-
-file "/etc/authbind/byport/443" do
-    action :touch
-    owner "castle"
-    mode 0755
-end
-
 directory "/opt/castle" do
     owner "castle"
     group "castle"
@@ -99,8 +83,8 @@ template "/etc/init/castle.conf" do
     notifies "restart", "service[castle]"
 end
 
-template "/etc/castle/application.properties" do
-    source "application.properties.erb"
+template "/etc/castle/castle.properties" do
+    source "castle.properties.erb"
     variables({
         "vault_url" => node["chub-castle"]["vault_url"],
     })
@@ -121,4 +105,22 @@ end
 service "castle" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
+end
+
+# Clean up files used by previous versions of cookbook
+
+file "/etc/castle/application.properties" do
+    action :delete
+end
+
+file "/etc/authbind/byport/80" do
+    action :delete
+end
+
+file "/etc/authbind/byport/443" do
+    action :delete
+end
+
+apt_package "authbind" do
+    action :remove
 end

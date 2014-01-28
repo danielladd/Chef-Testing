@@ -1,3 +1,9 @@
+# 0.1.6
+
+* Run on ports 8080/8443 rather than 80/443 (stop using authbind)
+* Use container keystore/truststore separate from system keystore/truststore
+* Prefer name "castle.properties" over "application.properties"
+
 # 0.1.5
 
 * Cleanup of default properties for the vault connection
