@@ -11,5 +11,10 @@ default_attributes(
       "vault_url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
       "truststore_file" => "dev-truststore.jks",
       "keystore_file" => "dev-keystore.jks"
+    },
+    "chub-plaza" => {
+      "cas_server_url" => "https://ssoqa1castle1.nexus.commercehub.com:8443",
+      "cas_service_url" => "http://ssoqa1plaza1.nexus.commercehub.com:8080/shiro-cas",
+      "graphite_host" => "stat02.nexus.commercehub.com"
     }
 )
