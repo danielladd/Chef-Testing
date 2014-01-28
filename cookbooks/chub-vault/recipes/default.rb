@@ -63,10 +63,6 @@ end
 
 template "/etc/vault/vault.yaml" do
     source "vault.yaml.erb"
-    variables({
-        "ldap_read_host" => node["chub-vault"]["ldap_read_host"],
-        "search_password" => node["chub-vault"]["search_password"]
-    })
     owner "root"
     group "vault"
     mode 0640
@@ -75,9 +71,6 @@ end
 
 template "/etc/init/vault.conf" do
     source "vault.conf.erb"
-    variables({
-        "java_heap_size" => node["chub-vault"]["java_heap_size"]
-    })
     owner "root"
     group "root"
     mode 0644

@@ -1,3 +1,8 @@
+# 0.1.2
+
+* Inline all variables into the template
+* Always use LDAPS
+
 # 0.1.1
 
 * Add support for configuring ldap_read_host and search_password
