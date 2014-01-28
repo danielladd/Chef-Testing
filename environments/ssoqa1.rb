@@ -13,6 +13,7 @@ default_attributes(
       "keystore_file" => "dev-keystore.jks"
     },
     "chub-plaza" => {
+      "app_url" => "file:///var/plaza/staged-plaza.jar",
       "cas_server_url" => "https://ssoqa1castle1.nexus.commercehub.com:8443",
       "cas_service_url" => "http://ssoqa1plaza1.nexus.commercehub.com:8080/shiro-cas",
       "graphite_host" => "stat02.nexus.commercehub.com"
