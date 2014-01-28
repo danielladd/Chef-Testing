@@ -7,6 +7,7 @@ default_attributes(
       "search_password" => "search"
     },
     "chub-castle" => {
+      "app_url" => "file:///var/castle/staged-castle.war",
       "vault_url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
       "truststore_file" => "dev-truststore.jks",
       "keystore_file" => "dev-keystore.jks"
