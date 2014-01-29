@@ -25,8 +25,8 @@ default_attributes(
   },
   "chub-plaza" => {
     "app_url" => "file:///var/plaza/staged-plaza.war",
-    "cas_server_url" => "https://ssoqa1castle1.nexus.commercehub.com:8443",
-    "cas_service_url" => "http://ssoqa1plaza1.nexus.commercehub.com:8080/shiro-cas",
+    "cas_server_url" => "https://ssoqa1-castle.nexus.commercehub.com",
+    "cas_service_url" => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     "graphite_host" => "stat02.nexus.commercehub.com"
   }
 )
