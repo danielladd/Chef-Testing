@@ -21,6 +21,7 @@ include         <%= node['openldap']['dir'] %>/schema/core.schema
 include         <%= node['openldap']['dir'] %>/schema/cosine.schema
 include         <%= node['openldap']['dir'] %>/schema/nis.schema
 include         <%= node['openldap']['dir'] %>/schema/inetorgperson.schema
+include         <%= node['openldap']['dir'] %>/schema/ppolicy.schema
 
 # Where the pid file is put. The init.d script
 # will not stop the server if you change this.
@@ -45,6 +46,7 @@ moduleload  syncprov
 <% end -%>
 moduleload  slapd-sha2
 <% end -%>
+moduleload  ppolicy
 
 # The maximum number of entries that is returned for a search operation
 sizelimit 500
@@ -145,3 +147,13 @@ access to *
         by group.exact="cn=administrators,<%= node['openldap']['basedn'] %>" write
         by dn="cn=syncrole,<%= node['openldap']['basedn'] %>" read
         by * read
+
+#######################################################################
+#Password Management Overlay
+
+# Set OpenLDAP to use SHA512 Password Hash
+password-hash {sha512}
+
+# Set the Overlay
+overlay ppolicy
+ppolicy_hash_cleartext
