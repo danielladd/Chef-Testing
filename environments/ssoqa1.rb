@@ -14,7 +14,7 @@ default_attributes(
     "search_password" => "search"
   },
   "chub-castle" => {
-    "app_url" => "file:///var/castle/staged-castle.war",
+    "app_url" => "file:///var/castle/staged-castle.jar",
     "vault_url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
@@ -24,7 +24,7 @@ default_attributes(
     "db_pass"=> "usrdev"
   },
   "chub-plaza" => {
-    "app_url" => "file:///var/plaza/staged-plaza.war",
+    "app_url" => "file:///var/plaza/staged-plaza.jar",
     "cas_server_url" => "https://ssoqa1-castle.nexus.commercehub.com",
     "cas_service_url" => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     "graphite_host" => "stat02.nexus.commercehub.com"
