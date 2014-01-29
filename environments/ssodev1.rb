@@ -12,7 +12,7 @@ default_attributes(
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
     "db_server"=> "sqlvm81",
-    "db_name"=> "ssodev-castle",
+    "db_name"=> "ssodev1-castle",
     "db_user"=> "devusr01",
     "db_pass"=> "usrdev"
   },
