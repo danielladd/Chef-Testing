@@ -33,6 +33,7 @@ package_list = %w{
 	strace
 	sysstat
 	ruby1.9.3
+	mercurial
 }
 
 package_list.each do |pkg|
