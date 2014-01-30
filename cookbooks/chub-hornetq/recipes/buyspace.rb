@@ -18,28 +18,52 @@
 #
 
 
-# Ensure a /opt directory
-# Ensure a /etc directory
+execute 'Extract_HornetQ_Tarball' do
+	command "tar -zxvf #{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']}.tar.gz"
+	action :nothing
+end
 
-# # if local file cache is not available, download from internet
-# uri = URI(url)
-# request = Net::HTTP.new uri.host
-# response = request.request_head uri.path
-# if response.code.to_i == 200
-# 	# use local http
-# else
-# 	# use jboss.org site
-# 	# throw a chef warning
-# end
+execute 'Remove_HornetQ_Link' do
+	command "rm #{node['chub-hornetq']['app_dir']}"
+	action :nothing
+end
 
-# remote_file hornetq-$version
-# 	creates ...
+execute 'Create_HornetQ_Link' do
+	command 'ln -s #{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']} #node{['chub-hornetq']['app_dir']}'
+	action :nothing
+end
 
-# extract_archive
-# 	creates ...
-# 	notifies tomcat reload later
 
-# link node['chub-hornetq']['app_dir'] to node['chub-hornetq']['app_dir']-#{node['chub-hornetq']['version']}
+directory "#{node['chub-buyspace']['config_dir']}" do
+	action :create_if_missing
+end
+
+directory "#{node['chub-buyspace']['base_dir']}" do
+	action :create_if_missing
+end
+
+
+remote_file "#{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']}.tar.gz" do
+	action :create_if_missing
+
+	# if local file cache is not available, download from internet
+	uri = URI(node['chub-hornetq']['internal_http_uri'])
+	request = Net::HTTP.new uri.host
+	response = request.request_head uri.path
+	if response.code.to_i == 200
+		source node['chub-hornetq']['internal_http_uri']
+	else
+		source node['chub-hornetq']['origin_http_uri']
+		log "Downloading file from the internet. Check on the internal URI." do
+			level :warn
+		end
+	end
+	notifies :run, 'execute[Extract_HornetQ_Tarball]', :immediately
+	notifies :run, 'execute[Remove_HornetQ_Link', :immediately
+	notifies :run, 'execute[Create_HornetQ_Link', :immediately
+	notifies :restart, "service[tomcat]", :delayed
+end
+
 
 # download config archive
 # 	creates ...
