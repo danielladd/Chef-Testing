@@ -29,7 +29,7 @@ execute 'Remove_HornetQ_Link' do
 end
 
 execute 'Create_HornetQ_Link' do
-	command 'ln -s #{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']} #node{['chub-hornetq']['app_dir']}'
+	command "ln -s #{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']} #node{['chub-hornetq']['app_dir']}"
 	action :nothing
 end
 
