@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.13
+-------
+- change dos line endings to unix
+
 v1.12.12
 -------
 - added support to the vagrant slpad.conf file to automatically store plaintext passswords as sha512
