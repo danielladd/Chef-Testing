@@ -1,0 +1,4 @@
+* eol=lf
+
+*.so binary
+*.gz binary
