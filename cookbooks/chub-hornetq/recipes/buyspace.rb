@@ -17,4 +17,33 @@
 # limitations under the License.
 #
 
-# grab config archive from Bamboo build artifacts
+
+# Ensure a /opt directory
+# Ensure a /etc directory
+
+# # if local file cache is not available, download from internet
+# uri = URI(url)
+# request = Net::HTTP.new uri.host
+# response = request.request_head uri.path
+# if response.code.to_i == 200
+# 	# use local http
+# else
+# 	# use jboss.org site
+# 	# throw a chef warning
+# end
+
+# remote_file hornetq-$version
+# 	creates ...
+
+# extract_archive
+# 	creates ...
+# 	notifies tomcat reload later
+
+# link node['chub-hornetq']['app_dir'] to node['chub-hornetq']['app_dir']-#{node['chub-hornetq']['version']}
+
+# download config archive
+# 	creates ...
+
+# extract config archive
+# 	creates ...
+# 	notifies tomcat reload

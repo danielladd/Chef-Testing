@@ -44,14 +44,3 @@ include_recipe "tomcat"
 	end
 end
 
-# # if local file cache is not available, download from internet
-# uri = URI(url)
-# request = Net::HTTP.new uri.host
-# response = request.request_head uri.path
-# if response.code.to_i == 200
-# 	# use local http
-# else
-# 	# use jboss.org site
-# 	# consider throwing a warning
-# end
-
