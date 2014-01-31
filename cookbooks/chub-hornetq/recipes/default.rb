@@ -38,6 +38,7 @@ include_recipe "tomcat"
 # Packaged Prereqs
 %w{
 	libaio1
+	unzip
 }.each do |pkg|
 	package pkg do
 		action :install

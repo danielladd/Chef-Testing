@@ -23,6 +23,11 @@ execute 'Extract_HornetQ_Tarball' do
 	action :nothing
 end
 
+execute 'Extract_HornetQ_Config_Zip' do
+	command "unzip #{node['chub-hornetq']['base_dir']}/hornetq.zip -d #{node['chub-buyspace']['config_dir']}"
+	action :nothing
+end
+
 execute 'Remove_HornetQ_Link' do
 	command "rm #{node['chub-hornetq']['app_dir']}"
 	action :nothing
@@ -65,9 +70,18 @@ remote_file "#{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq'][
 end
 
 
-# download config archive
-# 	creates ...
-
+remote_file "#{node['chub-hornetq']['base_dir']}/hornetq.zip" do
+	source "http://mpbamboo.nexus.commercehub.com/artifact/BS-BSM/shared/build-latestSuccessful/hornetq.zip/hornetq.zip"
+	notifies 'execute[Extract_HornetQ_Config_Zip]', :immediately
+	# notifies :restart, "service[tomcat]", :delayed
+end
 # extract config archive
 # 	creates ...
 # 	notifies tomcat reload
+
+
+# service "hornetq" do
+# 	provider Chef::Provider::Service::Upstart
+# 	supports :restart => true
+# 	action [ :enable, :start ]
+# end
