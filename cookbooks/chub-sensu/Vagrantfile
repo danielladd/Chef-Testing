@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  config.omnibus.chef_version = :latest
+  config.berkshelf.enabled = true
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.include_offline = true
+
+  config.vm.define "server" do |server|
+    server.vm.hostname = "sensuserver.vagrant.dev"
+    server.vm.network :private_network, ip: "192.168.24.132"
+    server.vm.provider :virtualbox do |vb|
+      vb.name = server.vm.hostname
+    end
+    server.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "data_bags"
+      chef.json = {
+      }
+      chef.run_list = [
+        "recipe[chub-sensu::server]"
+      ]
+    end
+  end
+
+  config.vm.define "client" do |client|
+    client.vm.hostname = "sensuclient.vagrant.dev"
+    client.vm.network :private_network, ip: "192.168.24.133"
+    client.vm.provider :virtualbox do |vb|
+      vb.name = client.vm.hostname
+    end
+    client.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "data_bags"
+      chef.json = {
+        "sensu" => {
+          "rabbitmq" => {
+            "host" => "sensuserver.vagrant.dev"
+          }
+        }
+      }
+      chef.run_list = [
+        "recipe[chub-sensu::client]"
+      ]
+    end
+  end
+
+end
