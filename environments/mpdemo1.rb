@@ -9,6 +9,6 @@ default_attributes "chub-klerk" => {
     "event_notification_endpoints" => {
         "productstream" => "http://mpdemo1app1.commercehub.com/klerk/productDataEvents"
     },
-    "sprite_conductor_url" => "http://mpdemo1app1.commercehub.com/sprite-conductor",
+    "sprite_conductor_url" => "http://mpdemo1app1.commercehub.com:8060/sprite-conductor",
     "sprite_output_container_prefix" => "mpdemo1-"
 }
