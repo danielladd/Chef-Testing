@@ -1,6 +1,16 @@
 name "ssodev1"
 description "SSO development environment 1"
 default_attributes(
+  "sensu" => {
+    "rabbitmq" => {
+      "host" => "ssodev1sensu.nexus.commercehub.com"
+    }
+  },
+  "chub-sensu" => {
+    "email" => {
+      "recipient" => "sso-team@commercehub.com"
+    }
+  },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
@@ -11,7 +21,7 @@ default_attributes(
     "vault_url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "db_server"=> "sqlvm81",
+    "db_server"=> "sqlvm81.nexus.commercehub.com",
     "db_name"=> "ssodev1-castle",
     "db_user"=> "devusr01",
     "db_pass"=> "usrdev"
