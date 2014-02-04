@@ -23,8 +23,7 @@ node.set['java']['install_flavor'] = 'oracle'
 node.set['java']['oracle']['accept_oracle_download_terms'] = true
 node.set['java']['jdk_version'] = 7
 
-node.set['tomcat']['base_version'] = 7
-node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
+
 
 #if node[:instance_role] == 'vagrant'
 if Chef::Config[:solo]
@@ -33,7 +32,6 @@ if Chef::Config[:solo]
 end
 
 include_recipe "java"
-include_recipe "tomcat"
 
 # Packaged Prereqs
 %w{
@@ -45,3 +43,6 @@ include_recipe "tomcat"
 	end
 end
 
+
+# TODO:
+# - Test for internally-cached hornetq download in buyspace.rb
