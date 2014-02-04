@@ -14,9 +14,11 @@ sensu_client node.name do
     subscriptions node.roles + ["all"]
 end
 
-gem_package "sensu-plugin" do
-    action :install
-    options "--no-rdoc --no-ri"
+%w{sensu-plugin net-ldap}.each do |gem_name|
+    gem_package gem_name do
+        action :install
+        options "--no-rdoc --no-ri"
+    end
 end
 
 remote_file "/etc/sensu/plugins/check-http.rb" do
@@ -26,6 +28,11 @@ end
 
 remote_file "/etc/sensu/plugins/check-disk.rb" do
     source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
+    mode 0755
+end
+
+remote_file "/etc/sensu/plugins/check-syncrepl.rb" do
+    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/openldap/check-syncrepl.rb"
     mode 0755
 end
 

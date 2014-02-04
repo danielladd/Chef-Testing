@@ -20,9 +20,12 @@ Vagrant.configure("2") do |config|
     end
     server.vm.provision :chef_solo do |chef|
       chef.data_bags_path = "data_bags"
+      chef.roles_path = "roles"
       chef.json = {
       }
       chef.run_list = [
+        "role[monitor]",
+        "recipe[chub-sensu::client]",
         "recipe[chub-sensu::server]"
       ]
     end
@@ -36,6 +39,7 @@ Vagrant.configure("2") do |config|
     end
     client.vm.provision :chef_solo do |chef|
       chef.data_bags_path = "data_bags"
+      chef.roles_path = "roles"
       chef.json = {
         "sensu" => {
           "rabbitmq" => {

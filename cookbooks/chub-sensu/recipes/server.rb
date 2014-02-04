@@ -22,9 +22,6 @@ include_recipe "sensu::dashboard_service"
 # TODO: evaluate ChefNodesStatusChecker
 # https://github.com/sensu/sensu-community-plugins/blob/master/plugins/chef/check-chef-nodes.rb
 
-# TODO: evaluate openldap plugin
-# https://github.com/sensu/sensu-community-plugins/blob/master/plugins/openldap/check-syncrepl.rb
-
 # TODO: review intervals
 
 %w{sensu-plugin mail}.each do |gem_name|
@@ -69,5 +66,22 @@ sensu_check "check-castle-health" do
     command "check-http.rb -s -k --url https://localhost:8443/login --response-code 200"
     handlers ["default", "email"]
     subscribers ["castle"]
+    interval 60
+end
+
+# TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
+# http://docs.opscode.com/dsl_recipe_method_search.html
+
+sensu_check "check-openldap-syncrepl-ssodev1" do
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
+    handlers ["default", "email"]
+    subscribers ["monitor"]
+    interval 60
+end
+
+sensu_check "check-openldap-syncrepl-ssoqa1" do
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
+    handlers ["default", "email"]
+    subscribers ["monitor"]
     interval 60
 end
