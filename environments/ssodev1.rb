@@ -6,6 +6,11 @@ default_attributes(
       "host" => "ssodev1sensu.nexus.commercehub.com"
     }
   },
+  "chub-sensu" => {
+    "email" => {
+      "recipient" => "sso-team@commercehub.com"
+    }
+  },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
