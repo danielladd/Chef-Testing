@@ -1,3 +1,8 @@
+# 0.1.3
+
+* Use default handler for all checks
+* Allow 5 retries for openldap synch checks
+
 # 0.1.2
 
 * Add plaza monitoring
