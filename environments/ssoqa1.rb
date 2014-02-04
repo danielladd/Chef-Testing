@@ -1,6 +1,7 @@
 name "ssoqa1"
 description "SSO QA environment 1"
 cookbook_versions({
+  "chub-openldap" => "= 1.12.12",
   "chub-vault" => "= 0.1.1",
   "chub-castle" => "= 0.1.9",
   "chub-plaza" => "= 0.1.0",
