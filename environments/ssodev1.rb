@@ -11,6 +11,13 @@ default_attributes(
       "recipient" => "sso-team@commercehub.com"
     }
   },
+  "openldap" => {
+    "rootpw" => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
+    "tls_enabled" => true,
+    "slapd_replpw" => "replpw",
+    "manage_ssl" => true,
+    "basedn" => "dc=vault,dc=commercehub,dc=com"
+  },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
