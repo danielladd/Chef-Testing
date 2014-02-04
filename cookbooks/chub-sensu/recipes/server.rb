@@ -37,9 +37,8 @@ remote_file "/etc/sensu/handlers/mailer.rb" do
 end
 
 # TODO: use smtp authentication
-# TODO: different recipient?
-cookbook_file "mailer.json" do
-    path "/etc/sensu/conf.d/mailer.json"
+template "/etc/sensu/conf.d/mailer.json" do
+    source "mailer.json.erb"
     mode 0644
 end
 
@@ -48,10 +47,30 @@ sensu_handler "email" do
     command "mailer.rb"
 end
 
+sensu_handler "default" do
+    type "set"
+    handlers ["email"]
+end
+
 sensu_check "check-disk" do
     command "check-disk.rb"
     handlers ["default", "email"]
     subscribers ["all"]
+    interval 60
+end
+
+# TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
+# http://docs.opscode.com/dsl_recipe_method_search.html
+sensu_check "check-openldap-syncrepl-ssodev1" do
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
+    handlers ["default", "email"]
+    subscribers ["monitor"]
+    interval 60
+end
+sensu_check "check-openldap-syncrepl-ssoqa1" do
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
+    handlers ["default", "email"]
+    subscribers ["monitor"]
     interval 60
 end
 
@@ -69,19 +88,9 @@ sensu_check "check-castle-health" do
     interval 60
 end
 
-# TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
-# http://docs.opscode.com/dsl_recipe_method_search.html
-
-sensu_check "check-openldap-syncrepl-ssodev1" do
-    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
+sensu_check "check-plaza-health" do
+    command "check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
     handlers ["default", "email"]
-    subscribers ["monitor"]
-    interval 60
-end
-
-sensu_check "check-openldap-syncrepl-ssoqa1" do
-    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
-    handlers ["default", "email"]
-    subscribers ["monitor"]
+    subscribers ["plaza"]
     interval 60
 end
