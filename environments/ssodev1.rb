@@ -6,6 +6,9 @@ default_attributes(
       "host" => "ssodev1sensu.nexus.commercehub.com"
     }
   },
+  "graphite" => {
+    "host" => "stats02.nexus.commercehub.com"
+  },
   "chub-sensu" => {
     "email" => {
       "recipient" => "sso-team@commercehub.com"
@@ -22,6 +25,13 @@ default_attributes(
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
     "search_password" => "search"
+  },
+  "chub-census" => {
+    "database" => {
+      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev1-census",
+      "user" => "devusr01",
+      "password" => "usrdev"
+    }
   },
   "chub-castle" => {
     "app_url" => "file:///var/castle/staged-castle.war",
