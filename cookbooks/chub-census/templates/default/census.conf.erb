@@ -1,7 +1,7 @@
 setuid census
 setgid census
 chdir /var/census
-exec java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Djava.net.preferIPv4Stack=true -jar /opt/census/census.jar server /etc/census/census.yml
+exec java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Djava.net.preferIPv4Stack=true -jar /opt/census/census.jar server /etc/census/census.yaml
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

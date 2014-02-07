@@ -54,7 +54,7 @@ end
 
 sensu_check "check-disk" do
     command "check-disk.rb"
-    handlers ["default", "email"]
+    handlers ["default"]
     subscribers ["all"]
     interval 60
 end
@@ -62,35 +62,35 @@ end
 # TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
 # http://docs.opscode.com/dsl_recipe_method_search.html
 sensu_check "check-openldap-syncrepl-ssodev1" do
-    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
-    handlers ["default", "email"]
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
+    handlers ["default"]
     subscribers ["monitor"]
     interval 60
 end
 sensu_check "check-openldap-syncrepl-ssoqa1" do
-    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
-    handlers ["default", "email"]
+    command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
+    handlers ["default"]
     subscribers ["monitor"]
     interval 60
 end
 
 sensu_check "check-vault-health" do
     command "check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
-    handlers ["default", "email"]
+    handlers ["default"]
     subscribers ["vault"]
     interval 60
 end
 
 sensu_check "check-castle-health" do
     command "check-http.rb -s -k --url https://localhost:8443/login --response-code 200"
-    handlers ["default", "email"]
+    handlers ["default"]
     subscribers ["castle"]
     interval 60
 end
 
 sensu_check "check-plaza-health" do
     command "check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
-    handlers ["default", "email"]
+    handlers ["default"]
     subscribers ["plaza"]
     interval 60
 end

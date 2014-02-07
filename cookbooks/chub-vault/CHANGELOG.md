@@ -1,3 +1,7 @@
+# 0.1.3
+
+* Add non-app-specific graphite config
+
 # 0.1.2
 
 * Inline all variables into the template

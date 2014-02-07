@@ -1,3 +1,5 @@
 site :opscode
 
 metadata
+
+cookbook "chub-sensu", git: "git@mpgit03.nexus.commercehub.com:single-sign-on/chub-sensu-cookbook.git"

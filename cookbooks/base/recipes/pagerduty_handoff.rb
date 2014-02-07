@@ -67,17 +67,6 @@ template "/opt/pagerduty_notifications/pagerduty_warning.py" do
 	)
 end
 
-template "/opt/pagerduty_notifications/pagerduty_handoff.py" do
-	source "pagerduty_handoff.py.erb"
-	mode 554
-	owner "root"
-	group "adm"
-	variables(
-		:smtp_server => 	node[:base][:pagerduty][:smtp_server],
-		:smtp_from_address => 	node[:base][:pagerduty][:smtp_from_address]
-	)
-end
-
 output = `pip list`
 unless output.include?("requests") 
 	execute "pip install requests" do
@@ -85,13 +74,6 @@ unless output.include?("requests")
 	end
 # else
 # 	Chef::Log.info "pip already installed"
-end
-
-cron_d "pagerduty_handoff" do
-	minute 1
-	hour 9
-	weekday "Mon"
-	command '/opt/pagerduty_notifications/pagerduty_handoff.py'
 end
 
 cron_d "pagerduty_warning" do

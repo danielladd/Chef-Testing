@@ -1,9 +1,11 @@
 name "ssoqa1"
 description "SSO QA environment 1"
 cookbook_versions({
+  "chub-openldap" => "= 1.12.12",
   "chub-vault" => "= 0.1.1",
   "chub-castle" => "= 0.1.9",
   "chub-plaza" => "= 0.1.0",
+  "chub-census" => "= 0.1.0"
 })
 # TODO: switch to this when we next update vault
 # "ldap_read_host" => "ssoqa1-ldap-read.nexus.commercehub.com",
@@ -13,10 +15,27 @@ default_attributes(
       "host" => "ssodev1sensu.nexus.commercehub.com"
     }
   },
+  "graphite" => {
+    "host" => "stats02.nexus.commercehub.com"
+  },
+  "openldap" => {
+    "rootpw" => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
+    "tls_enabled" => true,
+    "slapd_replpw" => "replpw",
+    "manage_ssl" => true,
+    "basedn" => "dc=vault,dc=commercehub,dc=com"
+  },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssoqa1ldap1.nexus.commercehub.com",
     "search_password" => "search"
+  },
+  "chub-census" => {
+    "database" => {
+      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
+      "user" => "devusr01",
+      "password" => "usrdev"
+    }
   },
   "chub-castle" => {
     "app_url" => "file:///var/castle/staged-castle.war",
