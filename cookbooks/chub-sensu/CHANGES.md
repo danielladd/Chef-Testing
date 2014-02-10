@@ -1,3 +1,7 @@
+# 0.1.4
+
+* Make checks less sensitive
+
 # 0.1.3
 
 * Use default handler for all checks

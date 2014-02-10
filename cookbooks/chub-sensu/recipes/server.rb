@@ -66,12 +66,14 @@ sensu_check "check-openldap-syncrepl-ssodev1" do
     handlers ["default"]
     subscribers ["monitor"]
     interval 60
+    additional(:occurrences => 2)
 end
 sensu_check "check-openldap-syncrepl-ssoqa1" do
     command "check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
     handlers ["default"]
     subscribers ["monitor"]
     interval 60
+    additional(:occurrences => 2)
 end
 
 sensu_check "check-vault-health" do
@@ -79,6 +81,7 @@ sensu_check "check-vault-health" do
     handlers ["default"]
     subscribers ["vault"]
     interval 60
+    additional(:occurrences => 3)
 end
 
 sensu_check "check-castle-health" do
@@ -86,6 +89,7 @@ sensu_check "check-castle-health" do
     handlers ["default"]
     subscribers ["castle"]
     interval 60
+    additional(:occurrences => 3)
 end
 
 sensu_check "check-plaza-health" do
@@ -93,4 +97,5 @@ sensu_check "check-plaza-health" do
     handlers ["default"]
     subscribers ["plaza"]
     interval 60
+    additional(:occurrences => 3)
 end
