@@ -29,6 +29,7 @@ default_attributes(
     "search_password" => "search"
   },
   "chub-census" => {
+    "app_url" => "file:///var/census/staged-census.jar",
     "database" => {
       "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
       "user" => "devusr01",
