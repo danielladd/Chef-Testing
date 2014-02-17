@@ -4,4 +4,5 @@ default['chub-hornetq']['origin_http_uri'] = "http://downloads.jboss.org/hornetq
 default['chub-hornetq']['base_dir'] = '/opt'
 default['chub-hornetq']['app_dir'] = '/opt/hornetq'
 default['chub-hornetq']['config_dir'] = '/etc/hornetq'
+#default['chub-hornetq']['config_dir'] = node['chub-hornetq']['app_dir']/config/non-clustered/
 

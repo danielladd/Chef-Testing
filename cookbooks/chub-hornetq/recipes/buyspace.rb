@@ -52,7 +52,7 @@ end
 remote_file "#{node['chub-hornetq']['base_dir']}/hornetq.zip" do
 	action :create_if_missing
 	source "http://mpbamboo.nexus.commercehub.com/artifact/BS-BSM/shared/build-latestSuccessful/hornetq.zip/hornetq.zip"
-#	notifies :run, 'execute[Extract_HornetQ_Config_Zip]', :immediately
+	notifies :run, 'execute[Extract_HornetQ_Config_Zip]', :immediately
 	# notifies :restart, "service[tomcat]", :delayed
 end
 
@@ -114,15 +114,31 @@ remote_file "#{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq'][
 end
 
 
-
-
-# extract config archive
-# 	creates ...
-# 	notifies tomcat reload
+template "/etc/init.d/hornetq" do
+	source "init_hornetq.sh.erb"
+	action :create_if_missing
+	variables({
+		:appdir => node['chub-hornetq']['app_dir']
+		})
+	mode 0755
+	#notifies :restart, "service[hornetq]", :delayed
+end
 
 
 # service "hornetq" do
 # 	provider Chef::Provider::Service::Upstart
+# 	#pattern "/opt/hornetq/bin/run.sh /etc/hornetq"
+# 	pattern "#{node['chub-hornetq']['app_dir']}/bin/run.sh #{node['chub-hornetq']['config_dir']}"
 # 	supports :restart => true
-# 	action [ :enable, :start ]
+# 	action [ :enable, :nothing ]
 # end
+
+
+service "hornetq" do
+	#provider Chef::Provider::Service::Upstart
+	#pattern "/opt/hornetq/bin/run.sh /etc/hornetq"
+	pattern "#{node['chub-hornetq']['app_dir']}/bin/run.sh"
+	supports :restart => true
+	action [ :enable, :start ]
+end
+
