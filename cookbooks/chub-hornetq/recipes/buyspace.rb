@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+include_recipe "chub-hornetq"
+
 
 execute 'Extract_HornetQ_Tarball' do
 	command "tar -zxvf #{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq']['version']}.tar.gz -C #{node['chub-hornetq']['base_dir']}"
@@ -53,6 +55,7 @@ remote_file "#{node['chub-hornetq']['base_dir']}/hornetq.zip" do
 	action :create_if_missing
 	source "http://mpbamboo.nexus.commercehub.com/artifact/BS-BSM/shared/build-latestSuccessful/hornetq.zip/hornetq.zip"
 	notifies :run, 'execute[Extract_HornetQ_Config_Zip]', :immediately
+	mode 0755
 	# notifies :restart, "service[tomcat]", :delayed
 end
 
