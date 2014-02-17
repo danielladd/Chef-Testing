@@ -6,16 +6,19 @@ security {
         }
     }
 }
+census {
+    url = "<%= node["chub-plaza"]["census_url"] %>"
+}
 <% if node["graphite"] -%>
 metrics {
-  <% if node["graphite"]["host"] -%>
-  graphiteHost = "<%= node["graphite"]["host"] %>"
-  <% end -%>
-  <% if node["graphite"]["port"] -%>
-  graphitePort = <%= node["graphite"]["port"] %>
-  <% end -%>
-  <% if node.chef_environment != "_default" -%>
-  environment = "<%= node.chef_environment %>"
-  <% end -%>
+    <% if node["graphite"]["host"] -%>
+    graphiteHost = "<%= node["graphite"]["host"] %>"
+    <% end -%>
+    <% if node["graphite"]["port"] -%>
+    graphitePort = <%= node["graphite"]["port"] %>
+    <% end -%>
+    <% if node.chef_environment != "_default" -%>
+    environment = "<%= node.chef_environment %>"
+    <% end -%>
 }
 <% end -%>

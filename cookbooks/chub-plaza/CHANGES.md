@@ -1,3 +1,7 @@
+# 0.1.2
+
+* Add support for configuring Census URL
+
 # 0.1.1
 
 * Use non-app-specific graphite configuration

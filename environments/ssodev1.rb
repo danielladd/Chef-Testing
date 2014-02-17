@@ -47,6 +47,7 @@ default_attributes(
   "chub-plaza" => {
     "app_url" => "file:///var/plaza/staged-plaza.jar",
     "cas_server_url" => "https://ssodev1-castle.nexus.commercehub.com",
-    "cas_service_url" => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas"
+    "cas_service_url" => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
+    "census_url" => "https://ssodev1-census.nexus.commercehub.com:8443"
   }
 )
