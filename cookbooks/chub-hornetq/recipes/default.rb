@@ -24,14 +24,8 @@ node.set['java']['oracle']['accept_oracle_download_terms'] = true
 node.set['java']['jdk_version'] = 7
 
 
-
-#if node[:instance_role] == 'vagrant'
-if Chef::Config[:solo]
-	node.set["tomcat"]["keystore_password"] = 'throwawaypassword'
-	node.set["tomcat"]["truststore_password"] = 'throwawaypassword'
-end
-
 include_recipe "java"
+
 
 # Packaged Prereqs
 %w{
