@@ -42,7 +42,7 @@ default['chub-buyspace']['paymentFailureEmailAddress'] = 'testing@localhost.com'
 
 # The rest is alphabetical
 default['chub-buyspace']['antivirus']['host'] = 'localhost'
-default['chub-buyspace']['antivirus']['hosts'] = ['vs01']
+default['chub-buyspace']['antivirus']['hosts'] = ['vscan.commercehub.com']
 default['chub-buyspace']['antivirus']['enabled'] = false
 default['chub-buyspace']['antivirus']['port'] = 1344
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
