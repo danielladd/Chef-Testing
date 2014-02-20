@@ -57,7 +57,7 @@ default_attributes "chub-klerk" => {
 		}
 	},
 	'msExchangeApi' => {
-		url => "https://mymail.commercehub.com/ews/Exchange.asmx",
+		'url' => "https://mymail.commercehub.com/ews/Exchange.asmx",
 		'credentials' => {
 			'username' => 'buyspace',
 			'password' => '1buySp@ce'
