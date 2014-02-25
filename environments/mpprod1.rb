@@ -6,7 +6,7 @@ default_attributes "chub-klerk" => {
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlps/Klerk_Quartz;user=Klerk_Admin;password=KAdminuser01!",
     "hazelcast_group_name" => "mpprod1_klerk",
     "hazelcast_group_password" => "dbYsD3PVD9HEpGbQ",
-    "antivirus_hosts" => [ "vs01", "vs02" ],
+    "antivirus_hosts" => [ "vscan.commercehub.com" ],
     "event_notification_endpoints" => {
         "productstream" => "http://api.buyspace.com/klerk/productDataEvents"
     },
@@ -44,8 +44,7 @@ default_attributes "chub-klerk" => {
 		'cardTokenValidationUrl' => 'https://direct.cresecure.net/direct/services/validation'
 	},
 	'antivirus' => {
-		'host' => 'vs01',
-		'hosts' => ['vs01', 'vs02'],
+		'hosts' => ['vscan.commercehub.com'],
 		'enabled' => 'true',
 		'port' => '1344'
 	},
@@ -58,7 +57,7 @@ default_attributes "chub-klerk" => {
 		}
 	},
 	'msExchangeApi' => {
-		url => "https://mymail.commercehub.com/ews/Exchange.asmx",
+		'url' => "https://mymail.commercehub.com/ews/Exchange.asmx",
 		'credentials' => {
 			'username' => 'buyspace',
 			'password' => '1buySp@ce'

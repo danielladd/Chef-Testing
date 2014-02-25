@@ -3,6 +3,10 @@ chub-buyspace CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.2
+-----
+- Matt Hurne - Default value of ['chub-buyspace']['antivirus']['hosts'] attribute is now 'vscan.commercehub.com'
+
 0.1.1
 -----
 - H. "Waldo" Grunenwald - Adding the self-removal mechanism to the upgrade 

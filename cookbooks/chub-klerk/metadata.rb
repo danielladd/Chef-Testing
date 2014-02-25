@@ -3,7 +3,7 @@ description "Installs and configures the Klerk application"
 version "0.10.1"
 supports "ubuntu"
 
-depends "java"
+depends "java", "= 1.14.0"
 depends "sudo"
 
 recipe "chub-klerk", "Main Klerk recipe"
