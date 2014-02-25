@@ -26,6 +26,11 @@ default_attributes(
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssoqa1-ldap-read.nexus.commercehub.com",
+    "database" => {
+      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-vault",
+      "user" => "devusr01",
+      "password" => "usrdev"
+    },
     "search_password" => "search"
   },
   "chub-census" => {
