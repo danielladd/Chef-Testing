@@ -43,4 +43,6 @@ package_list.each do |pkg|
 end
 
 include_recipe "git"
-include_recipe "chef-client"
+unless node['instance_role'] == 'vagrant'
+	include_recipe "chef-client"
+end
