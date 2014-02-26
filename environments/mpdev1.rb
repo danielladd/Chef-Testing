@@ -1,7 +1,7 @@
 name "mpdev1"
 description "marketplace dev environment 1"
 default_attributes "mongodb" => {
-    "package_version" => "2.2.6",
+    "package_version" => "2.2.7",
     "enable_rest" => true,
     "replicaset_name" => "mpdev1",
     "auto_configure" => {
