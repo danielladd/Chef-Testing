@@ -1,0 +1,40 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+  config.vm.hostname = "klerk.vagrant.dev"
+  config.vm.network :private_network, ip: "192.168.33.60"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = config.vm.hostname
+  end
+
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+
+  config.vm.define "klerk.vagrant.dev" do |node|
+    node.vm.hostname = "klerk.vagrant.dev"
+    node.vm.network :private_network, ip: "192.168.33.60"
+  end
+
+  config.omnibus.chef_version = :latest
+
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "../../cookbooks"
+    chef.environments_path = "environments"
+    chef.environment = "mpdev"
+    chef.json = {
+      "instance_role" => "vagrant"
+    }
+    chef.run_list = [
+      "recipe[base]",
+      "recipe[chub-klerk]"
+    ]
+  end
+end
+
