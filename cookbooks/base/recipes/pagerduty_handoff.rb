@@ -26,7 +26,8 @@ include_recipe "python::pip"
 node.set["base"]["pagerduty"]["auth_token"]			= 'zCNqqraNGpQBGdxjqcMu'
 node.set["base"]["pagerduty"]["base_url"]			= 'https://commercehub.pagerduty.com/api/v1/'
 node.set["base"]["pagerduty"]["schedules"]			= [
-													'BuySpace_Engineers', 
+													'BuySpace_Engineers',
+													'Pipeline',
 													'Shipping_and_Logistics_Team'
 													]
 node.set["base"]["pagerduty"]["smtp_server"]		= 'mail.commercehub.com'
