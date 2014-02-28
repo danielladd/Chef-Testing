@@ -2,17 +2,29 @@
 # In some contexts, such as a Bamboo deployment plan, it is easiest if using sudo for this command doesn't require re-authenticating.
 # TODO: further discussion on making this part of the base configuration?
 include_recipe "sudo"
+
 sudo "chef-client" do
     group "sudo"
     runas "root"
     nopasswd true
     commands ["/usr/bin/chef-client"]
 end
+
 sudo "admin" do
     group "admin"
     runas "ALL"
     nopasswd true
     commands ["ALL"]
+end
+
+hostsfile_entry '127.0.1.1' do
+  action    :remove
+end
+
+hostsfile_entry node['ipaddress'] do
+  hostname  node['fqdn']
+  aliases   [node['hostname']]
+  action    :create
 end
 
 include_recipe "java"
@@ -115,3 +127,4 @@ service "klerk" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
+
