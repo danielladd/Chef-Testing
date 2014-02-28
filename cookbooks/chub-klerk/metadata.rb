@@ -1,9 +1,9 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.10.1"
+version "0.10.2"
 supports "ubuntu"
 
-depends "java", "= 1.14.0"
+depends "java", "= 1.19.2"
 depends "sudo"
 
 recipe "chub-klerk", "Main Klerk recipe"
