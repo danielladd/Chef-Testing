@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+	config.vm.box = "precise64"
+	config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+#	config.vm.provider :virtualbox do |vb|
+#		vb.customize ["modifyvm", :id, "--memory", 512]
+#	end
+
+
+	config.vm.define "box1" do |box1|
+		box1.vm.hostname = "solr1"
+		box1.vm.network :private_network, ip: "192.168.12.11"
+#		box1.vm.network :forwarded_port, guest: 8125, host: 8125
+		box1.vm.network :forwarded_port, guest: 8080, host: 8080
+#		box1.vm.network :forwarded_port, guest: 2003, host: 2003
+#		#box1.vm.provision :shell, :inline => "cp /vagrant/.bashrc /home/vagrant/.bashrc"
+		box1.vm.provision :shell, :path => "install_chef.sh"
+		box1.vm.provision "chef_solo" do |chef|
+			chef.cookbooks_path = "cookbooks"
+# 			####################################################################
+#			# In chef you can check for Vagrantness with:
+#			#	 if node[:instance_role] == 'vagrant'
+#			#		# do something that should only be done inside
+#			#		# a Vagrant box
+#			#	 end
+# 			####################################################################
+			chef.json = {
+				'instance_role' => 'vagrant',
+					'java' => {
+					'install_flavor' => 'oracle',
+					'oracle' => { "accept_oracle_download_terms" => true },
+					'jdk_version' => 7
+				},
+				'tomcat' => {
+					'base_version' => 7,
+					'loglevel' => 'WARN',
+					'keystore_password' => 'throwawaypassword',
+					'truststore_password' => 'throwawaypassword'
+				}
+			}
+			chef.add_recipe "base"
+			chef.add_recipe 'git'
+			chef.add_recipe 'chub-buyspace'
+		end
+	end
+
+end

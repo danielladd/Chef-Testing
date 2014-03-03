@@ -8,3 +8,4 @@ version          '0.1.2'
 
 depends 'java'
 depends 'tomcat'
+depends 'openssl'
