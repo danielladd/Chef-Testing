@@ -21,18 +21,15 @@ Vagrant.configure("2") do |config|
   config.hostmanager.include_offline = true
 
   config.vm.provision :chef_solo do |chef|
+    chef.data_bags_path = "data_bags"
+    chef.roles_path = "roles"
+    chef.environments_path = "environments"
+    chef.environment = "dev"
     chef.json = {
-      "chub-castle" => {
-        "vault_url" => "http://ssodev1vault1.nexus.commercehub.com:8080",
-        "db_server"=> "sqlvm81",
-        "db_name"=> "ssodev-castle",
-        "db_user"=> "devusr01",
-        "db_pass"=> "usrdev"
-      }
     }
 
     chef.run_list = [
-        "recipe[chub-castle::default]"
+      "role[castle]"
     ]
   end
 

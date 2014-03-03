@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.9'
+version          '0.1.10'
 
 supports "ubuntu"
 depends "apt"
@@ -59,3 +59,6 @@ attribute "chub-castle/db_user",
 attribute "chub-castle/db_pass",
     "display_name" => "Database Password Credential",
     "description" => "Password for Castle to connect to database with"
+attribute "chub-castle/graphite_url",
+    "display_name" => "Graphite URL",
+    "description" => "Location of Graphite Server"
