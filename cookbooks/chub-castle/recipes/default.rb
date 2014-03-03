@@ -90,7 +90,8 @@ template "/etc/castle/castle.properties" do
         "db_server" => node["chub-castle"]["db_server"],
         "db_name" => node["chub-castle"]["db_name"],
         "db_user" => node["chub-castle"]["db_user"],
-        "db_pass" => node["chub-castle"]["db_pass"]
+        "db_pass" => node["chub-castle"]["db_pass"],
+        "graphite_url" => node["chub-castle"]["graphite_url"]
     })
     owner "root"
     group "root"

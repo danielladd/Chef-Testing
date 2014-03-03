@@ -1,3 +1,6 @@
+# 0.1.10
+* Added codahale metrics and support for outputting them to the graphite server.
+
 # 0.1.9
 
 * Added ticket registry support and properties for connecting to a database
