@@ -17,9 +17,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+unless node.recipe?('java::default')
+  Chef::Log.warn("Using java::default instead is recommended.")
+
+# Even if this recipe is included by itself, a safety check is nice...
+  if node['java']['java_home'].nil? or node['java']['java_home'].empty?
+    include_recipe "java::set_attributes_from_version"
+  end
+end
+
 java_home = node['java']["java_home"]
 
-case node['java']['jdk_version']
+case node['java']['jdk_version'].to_s
 when "6"
   tarball_url = node['java']['jdk']['6']['i586']['url']
   tarball_checksum = node['java']['jdk']['6']['i586']['checksum']

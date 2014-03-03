@@ -2,10 +2,89 @@ Java Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the Java cookbook.
 
+v1.19.2
+-------
+### Improvement
+- **[#129](https://github.com/socrata-cookbooks/java/pull/129)** - Upgrade to ChefSpec 3
+- Rewrite unit tests for better coverage and to work with ChefSpec 3 (various commits)
+- List Socrata as the maintainer (Socrata took over from Opscode in December 2013)
+
+### Bug
+- **[#133](https://github.com/socrata-cookbooks/java/pull/133)** - Allow jdk_version to be a string or number
+- **[#131](https://github.com/socrata-cookbooks/java/pull/131)** - Fix JDK install on Windows
+- **[Fix openjdk_packages on Arch Linux](https://github.com/socrata-cookbooks/java/commit/677bee7b9bf08988596d40ac65e75984a86bda99)**
+
+v1.19.0
+-------
+Refactor the cookbook to better support wrapper cookbooks and other cookbook authoring patterns.
+### Improvement
+- **[#123](https://github.com/socrata-cookbooks/java/pull/123)** - Update documentation & add warning for issue 122
+- **[#124](https://github.com/socrata-cookbooks/java/pull/124)** - Refactor default recipe to better enable wrapper cookbooks
+- **[#125](https://github.com/socrata-cookbooks/java/pull/125)** - Removes the attribute to purge deprecated packages
+- **[#127](https://github.com/socrata-cookbooks/java/pull/127)** - Add safety check if attributes are unset
+- **[Adds tests for directly using openjdk and oracle recipes](https://github.com/socrata-cookbooks/java/commit/794df596959d65a1a6d5f6c52688bffd8de6bff4)**
+- **[Adds recipes to README](https://github.com/socrata-cookbooks/java/commit/76d52114bb9df084174d43fed143123b1cdbae16)**
+- **[The Opscode CCLA is no longer required](https://github.com/socrata-cookbooks/java/commit/ce4ac25caa8383f185c25c4e32cafef8c0453376)**
+- **[Adds tests for openjdk-7 and oracle-7](https://github.com/socrata-cookbooks/java/commit/9c38af241f68b3198cde4ad6fe2b4cb752062009)**
+
+
+### Bug
+- **[#119](https://github.com/socrata-cookbooks/java/pull/119)** - Use java_home instead of java_location for update-alternatives
+- **[Fix java_home for rhel and fedora](https://github.com/socrata-cookbooks/java/commit/71dadbd1bfe2eab50ff21cdab4ded97877911cc4)**
+
+v1.18.0
+-------
+### Improvement
+- **[#118](https://github.com/socrata-cookbooks/java/pull/118)** - Upgrade to 7u51
+- **[#117](https://github.com/socrata-cookbooks/java/pull/117)** - Suggest windows and aws
+
+v1.17.6
+-------
+### Bug
+- Revert **[COOK-4165](https://tickets.opscode.com/browse/COOK-4165)** - The headers option was only added to remote_file in Chef 11.6.0, meaning this change breaks older clients.
+
+v1.17.4
+-------
+### Bug
+- **[#111](https://github.com/socrata-cookbooks/java/pull/111)** - Fix alternatives for centos
+
+### Improvement
+- **[COOK-4165](https://tickets.opscode.com/browse/COOK-4165)** - Replace curl with remote_file with cookie header
+- **[#110](https://github.com/socrata-cookbooks/java/pull/110)** - Update openjdk to use the alternatives resource
+
+v1.17.2
+-------
+### Bug
+- **[COOK-4136](https://tickets.opscode.com/browse/COOK-4136)** - Add md5 parameter to java_ark resource
+
+
+v1.17.0
+-------
+- **[COOK-4114](https://tickets.opscode.com/browse/COOK-4114)** - Test Kitchen no longer works after merging Pull Request #95 for openjdk tests on Debian/Ubuntu
+- **[COOK-4124](https://tickets.opscode.com/browse/COOK-4124)** - update-alternatives fails to run
+- **[#81](https://github.com/socrata/java/pull/81)** - Ensure local directory hierarchy
+- **[#97](https://github.com/socrata/java/pull/97)** - Expose LWRP state attributes
+- **[#99](https://github.com/socrata/java/pull/99)** - support for MD5 checksum
+- **[#106](https://github.com/socrata/java/pull/106)** - Fixed windows case to prevent bad java_home variable setting
+- **[Update checksums to the officially-published ones from Oracle](https://github.com/socrata/java/commit/b9e1df24caeb6e22346d2d415b3b4384f15d4ffd)**
+- **[Further test kitchen fixes to use the default recipe](https://github.com/socrata/java/commit/01c0b432705d9cfa6d2dfeaa380983e3f604069f)**
+
+v1.16.4
+-------
+### Bug
+- **[#103](https://github.com/socrata/java/pull/103)** - set alternatives when using ibm_tar recipe
+- **[#104](https://github.com/socrata/java/pull/104)** - Specify windows attributes in attribute files
+
 v1.16.2
 -------
-[COOK-3488] - set alternatives for ibm jdk
-[COOK-3764] - IBM Java installer needs 'rpm' package on Ubuntu
+### Improvement
+- **[COOK-3488](https://tickets.opscode.com/browse/COOK-3488)** - set alternatives for ibm jdk
+- **[COOK-3764](https://tickets.opscode.com/browse/COOK-3764)** - IBM Java installer needs 'rpm' package on Ubuntu
+
+### Bug
+- **[COOK-3857](https://tickets.opscode.com/browse/COOK-3857)** - do not unescape the java windows url before parsing it
+- **[#95](https://github.com/socrata/java/pull/95)** - fixes update-alternatives for openjdk installs
+- **[#100](https://github.com/socrata/java/pull/100)** - Use escaped quotes for Windows INSTALLDIR
 
 
 v1.16.0
