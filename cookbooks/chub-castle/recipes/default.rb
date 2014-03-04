@@ -72,11 +72,6 @@ end
 
 template "/etc/init/castle.conf" do
     source "castle.conf.erb"
-    variables({
-        "java_heap_size" => node["chub-castle"]["java_heap_size"],
-        "keystore_password" => node["chub-castle"]["keystore_password"],
-        "truststore_password" => node["chub-castle"]["truststore_password"]
-    })
     owner "root"
     group "root"
     mode 0644
@@ -85,14 +80,6 @@ end
 
 template "/etc/castle/castle.properties" do
     source "castle.properties.erb"
-    variables({
-        "vault_url" => node["chub-castle"]["vault_url"],
-        "db_server" => node["chub-castle"]["db_server"],
-        "db_name" => node["chub-castle"]["db_name"],
-        "db_user" => node["chub-castle"]["db_user"],
-        "db_pass" => node["chub-castle"]["db_pass"],
-        "graphite_url" => node["chub-castle"]["graphite_url"]
-    })
     owner "root"
     group "root"
     mode 0644
