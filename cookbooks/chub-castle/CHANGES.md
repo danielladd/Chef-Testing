@@ -1,3 +1,6 @@
+# 0.1.11
+* Property file changes to support the addition of a c3p0 connection pool
+
 # 0.1.10
 * Added codahale metrics and support for outputting them to the graphite server.
 
