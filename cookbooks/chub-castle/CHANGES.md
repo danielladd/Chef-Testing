@@ -1,3 +1,6 @@
+# 0.1.12
+* Typo in graphite environment property
+
 # 0.1.11
 * Property file changes to support the addition of a c3p0 connection pool
 

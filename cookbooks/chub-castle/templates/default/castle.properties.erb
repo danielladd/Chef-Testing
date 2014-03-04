@@ -4,7 +4,7 @@ vault.url=<%= node["chub-castle"]["vault.url"] %>
 graphite.host=<%= node["graphite"]["host"] %>
  <% end -%>
  <% if node.chef_environment != "_default" -%>
-grpahite.env=<%= node.chef_environment %>
+graphite.env=<%= node.chef_environment %>
  <% end -%>
 <% end -%>	
 <% if node["chub-castle"] && node["chub-castle"]["database"] -%>

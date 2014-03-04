@@ -41,13 +41,15 @@ default_attributes(
   },
   "chub-castle" => {
     "app_url" => "file:///var/castle/staged-castle.war",
-    "vault_url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
+    "vault.url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "db_server"=> "sqlvm81.nexus.commercehub.com",
-    "db_name"=> "ssodev1-castle",
-    "db_user"=> "devusr01",
-    "db_pass"=> "usrdev"
+    "database" => {
+        "server"=> "sqlvm81.nexus.commercehub.com",
+        "name"=> "ssodev1-castle",
+        "user"=> "devusr01",
+        "pass"=> "usrdev"
+    }
   },
   "chub-plaza" => {
     "app_url" => "file:///var/plaza/staged-plaza.jar",
