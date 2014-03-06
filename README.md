@@ -17,12 +17,6 @@ This repository contains several directories, and each directory contains a READ
 * `roles/` - Store roles in .rb or .json in the repository.
 * `environments/` - Store environments in .rb or .json in the repository.
 
-## Other Repositories
-
-We do not store all cookbooks in this repository.  Instead, some Commercehub-authored cookbooks are stored in their own Git repositories and managed via Berkshelf.  Below is a list of these repositories.
-
-* [chub-vault](http://mpgit03.nexus.commercehub.com/single-sign-on/chub-vault-cookbook)
-
 Rake Tasks
 ==========
 
