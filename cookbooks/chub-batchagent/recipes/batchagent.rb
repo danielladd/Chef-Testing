@@ -53,13 +53,16 @@ directory node["chub-batchagent"]["deployDir"] do
   mode 0550
 end
 
+# TODO: Is this needed?  Once it outputs log this directory will exist
 # have to create this otherwise the symlink fails. 
 #directory "#{node["chub-batchagent"]["deployDir"]}/log" do
 #  action :create
 #end
 
+propFile = "#{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["propertyFileName"]}"
 remote_file "#{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["jarName"]}" do
-  source node["chub-batchagent"]["deployJarUrl"]	
+  source node["chub-batchagent"]["deployJarUrl"]
+  notifies :run, "template[#{propFile}]"	
 end
 
 template "#{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["propertyFileName"]}" do
@@ -67,13 +70,15 @@ template "#{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["pr
   owner "root"
   group "root"
   mode 0644
+  #TODO: This does not properly notify or re-execute deploy after property file is updated
+  notifies :run, "execute[deploy]"
 end
 
 execute "deploy" do
   command "java -jar #{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["jarName"]} -d #{node["chub-batchagent"]["stagingDir"]}/#{node["chub-batchagent"]["propertyFileName"]}"
   creates "#{node["chub-batchagent"]["deployDir"]}/bin"
   action :run
-  notifies "restart", "service[batchagent]" :delayed
+  notifies "restart", "service[batchagent]", :delayed
 end
 
 template "/etc/init/batchagent.conf" do

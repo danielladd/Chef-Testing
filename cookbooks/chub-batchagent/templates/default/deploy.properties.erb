@@ -36,7 +36,7 @@ jvm.permgen.max=<%= node["chub-batchagent"]["permGenMax"] %>
 # -----------------------------------------------------------------------------
 # Graphite Metrics Configuration
 # -----------------------------------------------------------------------------
-graphite.port=<% node["chub-batchagent"]["graphite"]["port"] %>
-graphite.host=<% node["chub-batchagent"]["graphite"]["host"] %>
+graphite.port=<%= node["chub-batchagent"]["graphite"]["port"] %>
+graphite.host=<%= node["chub-batchagent"]["graphite"]["host"] %>
 #graphite.environment=
 <% end %>

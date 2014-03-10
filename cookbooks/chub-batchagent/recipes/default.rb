@@ -19,4 +19,6 @@
 
 
 include_recipe "java"
-include_recipe "chub-batchagent::batchagent"
+
+#Commented out until time to finalize
+#include_recipe "chub-batchagent::batchagent"
