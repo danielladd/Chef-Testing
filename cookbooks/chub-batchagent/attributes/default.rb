@@ -11,6 +11,7 @@ default["chub-batchagent"]["jmxPort"] = 8999
 default["chub-batchagent"]["batchAgentImpl"] = "ActorModelBatchManager"
 default["chub-batchagent"]["jmxHeapMax"] = 256
 default["chub-batchagent"]["permGenMax"] = 96
+default["chub-batchagent"]["debugString"] = "" 
 default["chub-batchagent"]["hornetqHost"] = "OVERRIDE_ME_PLZ"
 default["chub-batchagent"]["deployJarUrl"] = "OVERRIDE_ME_PLZ"
 

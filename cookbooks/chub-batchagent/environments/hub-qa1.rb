@@ -5,6 +5,7 @@ default_attributes(
     "port" => "8125"
   },
   "chub-batchagent" => {
+    "debugString" = "-Xdebug -Xrunjdwp:transport=dt_socket,address=9081,server=y,suspend=n",
     "database" => {
       "log" =>{
         "server" = "",
