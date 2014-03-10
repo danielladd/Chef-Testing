@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.2'
+version          '0.1.3'
 
 supports "ubuntu"
 depends "apt"
@@ -30,6 +30,11 @@ attribute "chub-plaza/cas_server_url",
 attribute "chub-plaza/cas_service_url",
     :display_name => "CAS Service URL",
     :description => "The service URL to pass to CAS (should end in /shiro-cas)",
+    :required => "required"
+
+attribute "chub-plaza/cas_failure_url",
+    :display_name => "CAS Failure URL",
+    :description => "Where to send users when service ticket validation fails",
     :required => "required"
 
 attribute "chub-plaza/census_url",

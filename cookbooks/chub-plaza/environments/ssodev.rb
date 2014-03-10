@@ -11,6 +11,7 @@ default_attributes(
     "chub-plaza" => {
       "cas_server_url" => "https://ssodev1-castle.nexus.commercehub.com",
       "cas_service_url" => "http://plaza.vagrant.dev:8080/shiro-cas",
+      "cas_failure_url" => "http://plaza.vagrant.dev:8080/",
       "census_url" => "https://ssodev1-census.nexus.commercehub.com:8443"
     }
 )
