@@ -1,0 +1,5 @@
+chdir <%= node["chub-batchagent"]["deployDir"] %>
+exec java <%= node["chub-batchagent"]["debugString"] %> -server -Xmx<%= node["chub-batchagent"]["jmxHeapMax"] %>M -Dlog4j.configuration=file:///<%= node["chub-batchagent"]["deployDir"] %>/config/log4j.properties -XX:MaxPermSize=<%= node["chub-batchagent"]["permGenMax"] %>m -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -cp config:lib/BatchAgent.jar -Dmaxheap=<%= node["chub-batchagent"]["jmxHeapMax"] %>M -DappId="bb" com.commercehub.app.batchagent.BatchAgent
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
