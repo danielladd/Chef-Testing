@@ -16,7 +16,7 @@ cookbook_versions({
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
   "chub-openldap" => "= 1.12.12",
-  "chub-plaza" => "= 0.1.2",
+  "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.6",
   "chub-vault" => "= 0.1.4",
   "cron" => "= 1.2.6",
@@ -105,6 +105,7 @@ default_attributes(
     "app_url" => "file:///var/plaza/staged-plaza.jar",
     "cas_server_url" => "https://ssoqa1-castle.nexus.commercehub.com",
     "cas_service_url" => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
+    "cas_failure_url" => "https://ssoqa1-plaza.nexus.commercehub.com/",
     "census_url" => "https://ssoqa1-census.nexus.commercehub.com:8443"
   }
 )
