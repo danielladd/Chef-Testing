@@ -1,0 +1,42 @@
+deploy.dir=<%= node["chub-batchagent"]["deployDir"] %>
+instance.name=<%= node["chub-batchagent"]["instanceName"] %>
+department.configuration=<%= node["chub-batchagent"]["departmentConfiguration"] %>
+jmx.remote.port=<%= node["chub-batchagent"]["jmxPort"] %>
+batchAgentImpl=<%= node["chub-batchagent"]["batchAgentImpl"] %>
+
+#The location of your BatchApp's hornetQ JNDI server 
+java.naming.provider.url=jnp://<%= node["chub-batchagent"]["hornetqHost"] %>:10002
+
+# OLTP Database configuration
+db.server=<%= node["chub-batchagent"]["database"]["default"]["server"] %>
+db.name=<%= node["chub-batchagent"]["database"]["default"]["name"] %>
+db.user=<%= node["chub-batchagent"]["database"]["default"]["user"] %>
+db.pass=<%= node["chub-batchagent"]["database"]["default"]["pass"] %>
+
+# -----------------------------------------------------------------------------
+# ADVANCED OPTIONS START HERE
+# -----------------------------------------------------------------------------
+
+# Logging Database Configuration
+log.server=<%= node["chub-batchagent"]["database"]["log"]["server"] %>
+log.name=<%= node["chub-batchagent"]["database"]["log"]["name"] %>
+log.user=<%= node["chub-batchagent"]["database"]["log"]["user"] %>
+log.pass=<%= node["chub-batchagent"]["database"]["log"]["pass"] %>
+
+# -----------------------------------------------------------------------------
+# System architecture and Memory
+# -----------------------------------------------------------------------------
+#Specifies JVM architecture (x86 or x64). Leave blank to auto-detect 
+#deployment.architecture=x64
+jvm.heap.max=<%= node["chub-batchagent"]["jmxHeapMax"] %>
+jvm.permgen.max=<%= node["chub-batchagent"]["permGenMax"] %>
+
+
+<% if node["chub-batchagent"]["graphite"] %>
+# -----------------------------------------------------------------------------
+# Graphite Metrics Configuration
+# -----------------------------------------------------------------------------
+graphite.port=<%= node["chub-batchagent"]["graphite"]["port"] %>
+graphite.host=<%= node["chub-batchagent"]["graphite"]["host"] %>
+#graphite.environment=
+<% end %>
