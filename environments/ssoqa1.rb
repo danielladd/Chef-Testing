@@ -59,6 +59,11 @@ default_attributes(
   "graphite" => {
     "host" => "stats02.nexus.commercehub.com"
   },
+  "chub-sensu" => {
+    "email" => {
+      "recipient" => "sso-team@commercehub.com"
+    }
+  },
   "openldap" => {
     "rootpw" => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
     "tls_enabled" => true,
@@ -86,13 +91,15 @@ default_attributes(
   },
   "chub-castle" => {
     "app_url" => "file:///var/castle/staged-castle.war",
-    "vault_url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
+    "vault.url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "db_server"=> "sqlvm81.nexus.commercehub.com",
-    "db_name"=> "ssoqa1-castle",
-    "db_user"=> "devusr01",
-    "db_pass"=> "usrdev"
+    "database" => {
+        "server"=> "sqlvm81.nexus.commercehub.com",
+        "name"=> "ssoqa1-castle",
+        "user"=> "devusr01",
+        "pass"=> "usrdev"
+    }
   },
   "chub-plaza" => {
     "app_url" => "file:///var/plaza/staged-plaza.jar",
