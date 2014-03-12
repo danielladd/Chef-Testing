@@ -1,3 +1,15 @@
+# 0.1.7
+
+* Add checks for SSO load balancer endpoints
+
+# 0.1.6
+
+* Fix check-ram path
+
+# 0.1.5
+
+* Add check-cpu and check-ram
+
 # 0.1.4
 
 * Make checks less sensitive
