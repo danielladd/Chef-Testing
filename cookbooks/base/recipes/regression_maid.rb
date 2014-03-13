@@ -21,9 +21,15 @@
 
 include_recipe "cron"
 
+user "maid" do
+    comment "regression maid user"
+    gid "adm"
+    system true
+end
+
 directory "/opt/regression_maid" do
 	mode 554
-	owner "root"
+	owner "maid"
 	group "adm"
 	action :create
 	recursive true
@@ -31,7 +37,7 @@ end
 
 directory "/var/log/regression_maid" do
 	mode 554
-	owner "root"
+	owner "maid"
 	group "adm"
 	action :create
 end
@@ -45,7 +51,7 @@ end
 
 cron_d "regression_maid_run" do
 	minute 00
-	hour '08-19'
+	hour '06-19'
 	weekday '1-5'
 	command "ruby /opt/regression_maid/HungJobs.rb > /var/log/regression_maid/lastRun.log"
 end
