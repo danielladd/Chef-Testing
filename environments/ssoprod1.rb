@@ -1,5 +1,5 @@
-name "ssoqa1"
-description "SSO QA environment 1"
+name "ssoprod1"
+description "SSO Prod environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
@@ -11,7 +11,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.14",
+  "chub-castle" => "= 0.1.13",
   "chub-census" => "= 0.1.1",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
@@ -53,11 +53,11 @@ cookbook_versions({
 default_attributes(
   "sensu" => {
     "rabbitmq" => {
-      "host" => "ssodev1sensu.nexus.commercehub.com"
+      "host" => "ssoprod1sensu.commercehub.com"
     }
   },
   "graphite" => {
-    "host" => "stats02.nexus.commercehub.com"
+    "host" => "stats03.commercehub.com"
   },
   "chub-sensu" => {
     "email" => {
@@ -73,39 +73,39 @@ default_attributes(
   },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
-    "ldap_read_host" => "ssoqa1-ldap-read.nexus.commercehub.com",
+    "ldap_read_host" => "ssoprod1-ldap-read.commercehub.com",
     "database" => {
-      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-vault",
-      "user" => "devusr01",
-      "password" => "usrdev"
+      "url" => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-vault",
+      "user" => "sso_user",
+      "password" => "VBqgPyf6"
     },
     "search_password" => "search"
   },
   "chub-census" => {
     "app_url" => "file:///var/census/staged-census.jar",
     "database" => {
-      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
-      "user" => "devusr01",
-      "password" => "usrdev"
+      "url" => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
+      "user" => "sso_user",
+      "password" => "VBqgPyf6"
     }
   },
   "chub-castle" => {
     "app_url" => "file:///var/castle/staged-castle.war",
-    "vault.url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
+    "vault.url" => "https://ssoprod1-vault.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
     "database" => {
-        "server"=> "sqlvm81.nexus.commercehub.com",
-        "name"=> "ssoqa1-castle",
-        "user"=> "devusr01",
-        "pass"=> "usrdev"
+        "server"=> "sqlsso.commercehub.com",
+        "name"=> "sso-castle",
+        "user"=> "sso_user",
+        "pass"=> "VBqgPyf6"
     }
   },
   "chub-plaza" => {
     "app_url" => "file:///var/plaza/staged-plaza.jar",
-    "cas_server_url" => "https://ssoqa1-castle.nexus.commercehub.com",
-    "cas_service_url" => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
-    "cas_failure_url" => "https://ssoqa1-plaza.nexus.commercehub.com/",
-    "census_url" => "https://ssoqa1-census.nexus.commercehub.com:8443"
+    "cas_server_url" => "https://ssoprod1-castle.commercehub.com",
+    "cas_service_url" => "https://ssoprod1-plaza.commercehub.com/shiro-cas",
+    "cas_failure_url" => "https://ssoprod1-plaza.commercehub.com/",
+    "census_url" => "https://ssoprod1-census.commercehub.com:8443"
   }
 )

@@ -6,6 +6,7 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
+require 'digest/sha1'
 
 include_recipe "apt"
 include_recipe "java"
@@ -80,6 +81,9 @@ end
 
 template "/etc/castle/castle.properties" do
     source "castle.properties.erb"
+    variables({
+        "castle_host_name" => "#{Digest::SHA1.hexdigest node[:hostname]}",
+     })
     owner "root"
     group "root"
     mode 0644

@@ -17,6 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "server" do |server|
     server.vm.hostname = "sensuserver.vagrant.dev"
     server.vm.network :private_network, ip: "192.168.24.132"
+	server.vm.network :forwarded_port, guest: 8080, host: 8080
+	server.vm.network :forwarded_port, guest: 4567, host: 4567
     server.vm.provider :virtualbox do |vb|
       vb.name = server.vm.hostname
     end
@@ -24,15 +26,11 @@ Vagrant.configure("2") do |config|
       chef.data_bags_path = "data_bags"
       chef.roles_path = "roles"
       chef.json = {
-        "chub-sensu" => {
-          "email" => {
-            "recipient" => "dcarr@commercehub.com"
-          }
-        }
       }
       chef.run_list = [
         "role[monitor]",
-        "recipe[chub-sensu::server]"
+        "recipe[chub-sensu::server]",
+        "recipe[chub-sensu::client]"
       ]
     end
   end
@@ -59,4 +57,28 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  config.vm.define "client2" do |client2|
+    client2.vm.hostname = "sensuclient2.vagrant.dev"
+    client2.vm.network :private_network, ip: "192.168.24.134"
+    client2.vm.provider :virtualbox do |vb|
+      vb.name = client2.vm.hostname
+    end
+    client2.vm.provision :chef_solo do |chef|
+      chef.data_bags_path = "data_bags"
+      chef.roles_path = "roles"
+      chef.json = {
+        "sensu" => {
+          "rabbitmq" => {
+            "host" => "sensuserver.vagrant.dev"
+          }
+        }
+      }
+      chef.run_list = [
+        "recipe[chub-sensu::client]"
+      ]
+    end
+  end
+  
+  config.vm.provision :hostmanager
+  
 end

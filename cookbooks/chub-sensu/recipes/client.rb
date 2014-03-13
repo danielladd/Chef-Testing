@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
+include_recipe "base"
 include_recipe "sensu"
 
 sensu_client node.name do
@@ -34,6 +35,21 @@ end
 remote_file "/etc/sensu/plugins/check-syncrepl.rb" do
     source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/openldap/check-syncrepl.rb"
     mode 0755
+end
+
+remote_file "/etc/sensu/plugins/check-cpu.rb" do
+   source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-cpu.rb"
+   mode 0755
+end
+
+remote_file "/etc/sensu/plugins/check-ram.rb" do
+    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-ram.rb"
+    mode 0755
+end
+
+# Clean up a mistaken location
+file "/etc/sensu/handlers/check-ram.rb" do
+    action :delete
 end
 
 include_recipe "sensu::client_service"

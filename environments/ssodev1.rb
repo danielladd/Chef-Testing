@@ -11,14 +11,14 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.13",
+  "chub-castle" => "= 0.1.14",
   "chub-census" => "= 0.1.1",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.3",
   "chub-openldap" => "= 1.12.12",
-  "chub-plaza" => "= 0.1.2",
-  "chub-sensu" => "= 0.1.6",
-  "chub-vault" => "= 0.1.4",
+  "chub-plaza" => "= 0.1.3",
+  "chub-sensu" => "= 0.1.7",
+  "chub-vault" => "= 0.1.5",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -105,6 +105,7 @@ default_attributes(
     "app_url" => "file:///var/plaza/staged-plaza.jar",
     "cas_server_url" => "https://ssodev1-castle.nexus.commercehub.com",
     "cas_service_url" => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
+    "cas_failure_url" => "https://ssodev1-plaza.nexus.commercehub.com/",
     "census_url" => "https://ssodev1-census.nexus.commercehub.com:8443"
   }
 )

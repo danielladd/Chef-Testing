@@ -1,9 +1,9 @@
 {
   "mailer": {
-    "mail_from": "sensu@commercehub.com",
+    "mail_from": "<%= node['chub-sensu']['email']['sender'] %>",
     "mail_to": "<%= node['chub-sensu']['email']['recipient'] %>",
-    "smtp_address": "mail.commercehub.com",
-    "smtp_port": "25",
-    "smtp_domain": "commercehub.com"
+    "smtp_address": "<%= node['chub-sensu']['email']['smtp_server'] %>",
+    "smtp_port": "<%= node['chub-sensu']['email']['smtp_port'] %>",
+    "smtp_domain": "<%= node['chub-sensu']['email']['smtp_domain'] %>"
   }
 }

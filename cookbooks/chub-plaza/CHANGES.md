@@ -1,3 +1,7 @@
+# 0.1.3
+
+* Configure CAS failure URL
+
 # 0.1.2
 
 * Add support for configuring Census URL

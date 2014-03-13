@@ -1,3 +1,7 @@
+# 0.1.5
+
+* Update metrics config to syntax for DropWizard 0.7.x
+
 # 0.1.4
 
 * Add database config
