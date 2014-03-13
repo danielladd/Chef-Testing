@@ -11,7 +11,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.13",
+  "chub-castle" => "= 0.1.14",
   "chub-census" => "= 0.1.1",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
