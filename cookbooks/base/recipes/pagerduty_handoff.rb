@@ -30,7 +30,7 @@ node.set["base"]["pagerduty"]["schedules"]			= [
 													'Pipeline',
 													'Shipping_and_Logistics_Team'
 													]
-node.set["base"]["pagerduty"]["smtp_server"]		= 'mail.commercehub.com'
+node.set["base"]["pagerduty"]["smtp_server"]		= 'prodmail.commercehub.com'
 node.set["base"]["pagerduty"]["smtp_from_address"]	= 'pagerduty@commercehub.com'
 node.set["base"]["pagerduty"]["warning_offset"]		= ''
 #node.set["base"]["pagerduty"][""]
