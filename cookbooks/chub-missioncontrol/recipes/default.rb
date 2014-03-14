@@ -17,5 +17,13 @@
 # limitations under the License.
 #
 
+# node.set['java']['install_flavor'] = 'oracle'
+# node.set['java']['oracle']['accept_oracle_download_terms'] = true
+# node.set['java']['jdk_version'] = 7
+
+
+# node.set['tomcat']['base_version'] = 7
+# node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
+
 include_recipe "java"
 include_recipe "tomcat"
