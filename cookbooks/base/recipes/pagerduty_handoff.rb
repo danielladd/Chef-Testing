@@ -28,9 +28,11 @@ node.set["base"]["pagerduty"]["base_url"]			= 'https://commercehub.pagerduty.com
 node.set["base"]["pagerduty"]["schedules"]			= [
 													'BuySpace_Engineers',
 													'Pipeline',
-													'Shipping_and_Logistics_Team'
+													'Shipping_and_Logistics_Team',
+													'DBADirect_Primary',
+													'DBADirect_Secondary'
 													]
-node.set["base"]["pagerduty"]["smtp_server"]		= 'mail.commercehub.com'
+node.set["base"]["pagerduty"]["smtp_server"]		= 'prodmail.commercehub.com'
 node.set["base"]["pagerduty"]["smtp_from_address"]	= 'pagerduty@commercehub.com'
 node.set["base"]["pagerduty"]["warning_offset"]		= ''
 #node.set["base"]["pagerduty"][""]

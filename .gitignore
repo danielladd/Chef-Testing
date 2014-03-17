@@ -1,1 +1,4 @@
 .DS_Store
+
+# Vagrant Stuff
+/cookbooks/*/.vagrant
