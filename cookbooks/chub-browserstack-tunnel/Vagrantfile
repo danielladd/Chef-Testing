@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.hostname = "browserstack-tunnel.vagrant.dev"
+  config.vm.box = "precise64"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.network :private_network, ip: "192.168.24.128"
+
+  config.vm.provider :virtualbox do |vb|
+    # Use VBoxManage to customize the VM. For example to change memory:
+    # vb.customize ["modifyvm", :id, "--memory", "1024"]
+    vb.name = config.vm.hostname
+  end
+
+  config.omnibus.chef_version = :latest
+  config.berkshelf.enabled = true
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.include_offline = true
+
+  config.vm.provision :chef_solo do |chef|
+    chef.data_bags_path = "data_bags"
+    chef.roles_path = "roles"
+    chef.environments_path = "environments"
+    chef.environment = "browserstack-tunnel"
+    chef.json = {
+    }
+
+    chef.run_list = [
+      "role[browserstack-tunnel]"
+    ]
+  end
+
+end
