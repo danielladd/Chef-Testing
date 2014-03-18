@@ -29,7 +29,6 @@ case node['platform_family']
 when "debian", "ubuntu"
   include_recipe "base::base_linux-deb"
   include_recipe "ntp"
-end
 when "windows"
   include_recipe "base::base_windows"
 end
