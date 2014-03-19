@@ -51,4 +51,9 @@ cookbook_versions({
   "yum-erlang_solutions" => "= 0.2.0"
 })
 default_attributes(
+  "java" => {
+    "windows" => {
+      "url" => "http://artifactory01/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-windows-x64.exe"
+    }
+  }
 )
