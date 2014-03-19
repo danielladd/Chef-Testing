@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
 					'loglevel' => 'WARN',
 					'keystore_password' => 'throwawaypassword',
 					'truststore_password' => 'throwawaypassword',
-					'catalina_options' => "-Dsolr.solr.home=/var/solr/cores"
+					'catalina_options' => "-Dsolr.solr.home=/var/solr"
 				}
 			}
 			chef.add_recipe "base"
