@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  All (relative) paths are relative to the installation path
+  persistent: Save changes made via the API to this file
+  sharedLib: path to a lib directory that will be shared across all cores
+-->
+
+<solr persistent="false">
+	<cores adminPath="/admin/cores">
+		<% @cores.each_with_index do |core| %>
+		<%= <core name="#{core}" instanceDir="#{core}" dataDir="#{node['chub-solr']['data_dir']}/#{core}"/> %>
+		<% end %>
+	</cores>
+</solr>

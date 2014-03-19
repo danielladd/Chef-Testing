@@ -24,6 +24,15 @@ node.set['java']['jdk_version']								= 7
 node.set['tomcat']['base_version']	= 7
 node.set['tomcat']['loglevel']		= 'WARN'	# default is 'INFO'
 
+# override_attributes(
+#   'tomcat' => {
+#     'java_options' => "${JAVA_OPTS} -Xmx128M -Djava.awt.headless=true -Dsolr.solr.home=#{node['chub-solr']['home']}/solr/cores"
+#   }
+# )
+node.set['tomcat']['catalina_options'] = "-Dsolr.solr.home=#{node['chub-solr']['cores_dir']}"
+#node.set['tomcat']['catalina_options'] = " -Dsolr.solr.home=#{node['chub-solr']['base']}"
+node.set['tomcat']['port'] = "8983"
+
 if node[:instance_role] == 'vagrant'
 #if Chef::Config[:solo]
 	node.set["tomcat"]["keystore_password"]		= 'throwawaypassword'
