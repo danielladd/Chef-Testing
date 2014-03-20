@@ -1,0 +1,83 @@
+hornetq.version=2.3.0.Final
+
+#--------------
+#FILES AND SUCH
+#--------------
+#Directory for deployment; defaults to D:/hornetq/hornetq-<version> if left empty
+deploy.dir=<%= node["chub-hornetq"]["app_dir"] %>
+
+#data.dir is the root of persistent message and file storage. It has the potential to grow very large and is a likely bottleneck for
+#durable messaging. Consider putting this on a fast, local drive for performance, unless using a shared-store backup, which in 
+#production belongs on a SAN. Make sure that a shared-store backup node points to the same physical location as a live node!
+
+#Defaults to ${deploy.dir}\data if left empty
+data.dir=<%= node["chub-hornetq"]["hornetq_data_dir"] %>
+
+#----------
+#Networking
+#----------
+
+# Specifying localhost will bind your server to local connections only!
+# Use the machine's network name.  Required.
+server.name=<%= node["hostname"] %>
+# Change the ports to run multiple instances on the same machine.
+jmx.port=10001
+jndi.port=10002
+jndi.rmi.port=10003
+msg.port=10004
+msg.throughput.port=10005
+
+#----------
+#Security: values for roles are comma-separated lists of allowed Windows users or groups (can use names or SID's).
+#----------
+roles.consume=Everyone
+roles.produce=Everyone
+#Default values here are purposely the HornetQ defaults so that we'll still get warned on startup if they are not changed.
+cluster.admin.username=HORNETQ.CLUSTER.ADMIN.USER
+cluster.admin.password=CHANGE ME!!
+
+#--------------------
+#INSTALLATION DETAILS
+#--------------------
+
+#Required. Allowable values: active, passive
+#
+#An active node will be "live" (servicing clients) as long as no other node using the same data directory is live.
+#Given three active nodes sharing a data directory, the first one to lock the data directory becomes live and the
+#other two become active "backups", waiting for a crash or a clean shutdown of the live node, upon which one of the
+#active backups will take over the lock and become live. If the first node comes back online, it will become an 
+#active backup.
+#
+#A passive node will not service clients until a "failover" occurs.
+#It will not become live at startup even if it is the only running node using the data directory,
+#and by default, it will not become live due to a clean shutdown of the last active node.
+#Only upon failover from the last active node using the data directory does a passive node become live.
+server.mode=active
+#If any active nodes sharing the data directory come online while a passive node is live, the passive node can
+#"fail back", i.e. allow an active node to take over as the live node. Otherwise, an active node would not 
+#become live until the live passive node is shut down or crashes.
+#Irrelevant when server.mode=active.
+passive.failback=false
+
+#Optionally configure some cluster peers (host:port) for initial connection to the cluster.
+#Note that dynamic discovery for the initial connection is disabled.
+#Ignored when server.mode=stand-alone.
+#Other nodes in the cluster will be downloaded over the connection,
+#so you should not need to enumerate every node on every other node.
+#However our clusters are small, so it makes sense to do so, and it helps avoid clustering bugs.
+#
+#Format: cluster.peer.<nickname>=<host>:<port>
+#Each nickname must be unique in order to form a unique property name in this file.
+#The nickname can consist of 1 or more of the characters a-z, A-Z, 0-9, _ or -
+#
+#Examples:
+# cluster.peer.0=hq01:10004
+# cluster.peer.1=hq02:10004
+# cluster.peer.1b=hq02:10104
+# cluster.peer.hq03=hq03:10004
+# cluster.peer.VM-DEV-YOU=VM-DEV-YOU:10004
+
+#Since we don't have paging enabled yet, we have some big buffers.
+#We assume that they won't all fill up simultaneously.
+jvm.heap.max=<%= node["chub-hornetq"]["jvm_heap_max"] %>
+jvm.permgen.max=<%= node["chub-hornetq"]["jvm_perm_max"] %>
