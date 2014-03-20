@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 
-prop_file = "#{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:destinations_deploy_prop]}"
-remote_file "#{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:destinations_jar_name]}" do
-  source node[:'chub-hornetq'][:destinations_deploy_jar_url]
+prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
+remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']}" do
+  source node['chub-hornetq']['destinations_deploy_jar_url']
   notifies :create, "template[#{prop_file}]"	
 end
 
-template "#{prop_file}" do
+template prop_file do
   source "destinations.deploy.properties.erb"
   owner "root"
   group "root"
@@ -34,8 +34,8 @@ template "#{prop_file}" do
 end
 
 execute "deployDestinations" do
-  command "java -jar #{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:destinations_jar_name]} -d #{prop_file}"
-  cwd "#{node[:'chub-hornetq'][:staging_dir]}"
+  command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']} -d #{prop_file}"
+  cwd node['chub-hornetq']['staging_dir']
   action :run
   notifies :restart, "service[hornetq]", :delayed
 end

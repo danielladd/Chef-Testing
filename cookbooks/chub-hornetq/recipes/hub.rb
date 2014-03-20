@@ -39,27 +39,27 @@ group "hornetq" do
     members ["hornetq", "chadmin"]
 end
 
-directory node[:'chub-hornetq'][:staging_dir] do
+directory node['chub-hornetq']['staging_dir'] do
   action :create
   owner "hornetq"
   group "hornetq"
   mode 0550
 end
 
-directory node[:'chub-hornetq'][:app_dir] do
+directory node['chub-hornetq']['app_dir'] do
   action :create
   owner "hornetq"
   group "hornetq"
   mode 0550
 end
 
-prop_file = "#{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:deploy_prop]}"
-remote_file "#{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:jar_name]}" do
-  source node[:'chub-hornetq'][:deploy_jar_url]
+prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
+remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']}" do
+  source node['chub-hornetq']['deploy_jar_url']
   notifies :create, "template[#{prop_file}]"	
 end
 
-template "#{prop_file}" do
+template prop_file do
   source "deploy.properties.erb"
   owner "root"
   group "root"
@@ -70,36 +70,37 @@ template "#{prop_file}" do
 end
 
 execute "deploy" do
-  command "java -jar #{node[:'chub-hornetq'][:staging_dir]}/#{node[:'chub-hornetq'][:jar_name]} -d #{prop_file}"
-  creates "#{node[:'chub-hornetq'][:app_dir]}/config/jndi.properties"
-  cwd "#{node[:'chub-hornetq'][:staging_dir]}"
+  command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']} -d #{prop_file}"
+  creates "#{node['chub-hornetq']['app_dir']}/config/jndi.properties"
+  cwd node['chub-hornetq']['staging_dir']
   action :run
   notifies :restart, "service[hornetq]", :delayed
 end
 
-file "#{node[:'chub-hornetq'][:app_dir]}/bin/hornetq" do
+# Update file permissions to allow execute access
+file "#{node['chub-hornetq']['app_dir']}/bin/hornetq" do
   mode "0755"
   action :touch
 end
 
-file "#{node[:'chub-hornetq'][:app_dir]}/bin/wrapper" do
+file "#{node['chub-hornetq']['app_dir']}/bin/wrapper" do
   mode "0755"
   action :touch
 end
 
 execute "installService" do
   command "./hornetq install"
-  cwd "#{node[:'chub-hornetq'][:app_dir]}/bin"
+  cwd "#{node['chub-hornetq']['app_dir']}/bin"
   creates "/etc/rc0.d/K20hornetq"
   action :run
 end
 
 link "/etc/hornetq" do
-  to "#{node[:'chub-hornetq'][:deployDir]}/config"
+  to "#{node['chub-hornetq']['deployDir']}/config"
 end
 
 link "/var/log/hornetq" do
-  to "#{node[:'chub-hornetq'][:deployDir]}/log"
+  to "#{node['chub-hornetq']['deployDir']}/log"
 end
 
 service "hornetq" do

@@ -42,11 +42,11 @@ execute 'Create_HornetQ_Link' do
 end
 
 
-directory "#{node['chub-hornetq']['config_dir']}" do
+directory node['chub-hornetq']['config_dir'] do
 	action :create
 end
 
-directory "#{node['chub-hornetq']['base_dir']}" do
+directory node['chub-hornetq']['base_dir'] do
 	action :create
 end
 
@@ -109,7 +109,7 @@ remote_file "#{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq'][
 	source source_url
 
 	notifies :run, 'execute[Extract_HornetQ_Tarball]', :immediately
-	if File.exists?("#{node['chub-hornetq']['app_dir']}")
+	if File.exists?(node['chub-hornetq']['app_dir'])
 		notifies :run, 'execute[Remove_HornetQ_Link]', :immediately
 	end
 	notifies :run, 'execute[Create_HornetQ_Link]', :immediately
