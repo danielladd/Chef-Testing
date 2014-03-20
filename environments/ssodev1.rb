@@ -51,6 +51,15 @@ cookbook_versions({
   "yum-erlang_solutions" => "= 0.2.0"
 })
 default_attributes(
+  "java" => {
+    "jdk" => {
+      "7" => {
+        "x86_64" => {
+          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
+        }
+      }
+    }
+  },
   "sensu" => {
     "rabbitmq" => {
       "host" => "ssodev1sensu.nexus.commercehub.com"
