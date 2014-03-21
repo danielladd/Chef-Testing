@@ -27,3 +27,4 @@
 
 include_recipe "java"
 include_recipe "tomcat"
+#include_recipe "mongodb"

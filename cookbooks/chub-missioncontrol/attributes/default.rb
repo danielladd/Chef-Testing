@@ -6,3 +6,6 @@ default['tomcat']['base_version']							= 7
 default['chub-missioncontrol']['config_dir']	= '/etc/missioncontrol'
 default['chub-missioncontrol']['app_dir']		= '/opt/missioncontrol'
 default['chub-missioncontrol']['log_dir']		= '/var/log/missioncontrol'
+default['chub-missioncontrol']['missioncontrol_conf']	= 'missioncontrol-config.groovy'
+default['chub-missioncontrol']['log4j']['root_loglevel'] = 'info'
+
