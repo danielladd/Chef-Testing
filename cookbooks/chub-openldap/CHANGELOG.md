@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.14
+-------
+- add prod ssl certs
+
 v1.12.13
 -------
 - change dos line endings to unix

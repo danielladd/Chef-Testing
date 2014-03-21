@@ -15,7 +15,7 @@ cookbook_versions({
   "chub-census" => "= 0.1.1",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
-  "chub-openldap" => "= 1.12.13",
+  "chub-openldap" => "= 1.12.14",
   "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.6",
   "chub-vault" => "= 0.1.5",
@@ -26,7 +26,7 @@ cookbook_versions({
   "graphite" => "= 0.1.4",
   "hostsfile" => "= 2.4.4",
   "iptables" => "= 0.12.0",
-  "java" => "= 1.19.2",
+  "java" => "= 1.21.2",
   "logrotate" => "= 1.3.0",
   "metachef" => "= 3.0.4",
   "mongodb" => "= 0.13.4",
@@ -51,6 +51,15 @@ cookbook_versions({
   "yum-erlang_solutions" => "= 0.2.0"
 })
 default_attributes(
+  "java" => {
+    "jdk" => {
+      "7" => {
+        "x86_64" => {
+          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
+        }
+      }
+    }
+  },
   "sensu" => {
     "rabbitmq" => {
       "host" => "ssodev1sensu.nexus.commercehub.com"
