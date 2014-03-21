@@ -42,11 +42,11 @@ execute 'Create_HornetQ_Link' do
 end
 
 
-directory "#{node['chub-hornetq']['config_dir']}" do
+directory node['chub-hornetq']['config_dir'] do
 	action :create
 end
 
-directory "#{node['chub-hornetq']['base_dir']}" do
+directory node['chub-hornetq']['base_dir'] do
 	action :create
 end
 
@@ -63,7 +63,9 @@ end
 source_url = ''
 if node['instance_role'] == 'vagrant'
 	unless File.exists?("/vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz")
-		`wget #{node['chub-hornetq']['origin_http_uri']} -P /vagrant`
+		remote_file "/vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz" do
+			source "#{node['chub-hornetq']['origin_http_uri']}"
+		end
 	end
 	source_url = "file:///vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz"
 else
@@ -109,7 +111,7 @@ remote_file "#{node['chub-hornetq']['base_dir']}/hornetq-#{node['chub-hornetq'][
 	source source_url
 
 	notifies :run, 'execute[Extract_HornetQ_Tarball]', :immediately
-	if File.exists?("#{node['chub-hornetq']['app_dir']}")
+	if File.exists?(node['chub-hornetq']['app_dir'])
 		notifies :run, 'execute[Remove_HornetQ_Link]', :immediately
 	end
 	notifies :run, 'execute[Create_HornetQ_Link]', :immediately

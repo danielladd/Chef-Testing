@@ -19,21 +19,34 @@
 
 include_recipe "chub-solr"
 
-#TODO: check the filenames & path on this
 execute 'Extract_SOLR_Tarball' do
-	command "tar -zxvf #{node['chub-solr']['archive_dir']}/solr-#{node['chub-solr']['version']}.tgz -C #{node['chub-solr']['app_dir']}"
+	command "tar -zxvf #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}.tgz -C #{node['chub-solr']['base']}"
 	action :nothing
 end
 
-#TODO: check the filenames & paths
 execute 'Extract_SOLR_Config_Zip' do
-	command "unzip #{node['chub-solr']['base_dir']}/solr.zip -d #{node['chub-solr']['config_dir']}"
-	# command "echo 'I'm totally extracting that thing you wanted now...'"
+	command "unzip /var/solr.zip -d #{node['chub-solr']['base']}"
+	action :nothing
+end
+
+execute 'Fix_SOLR_Cores_Perms' do
+	command "chown -R tomcat7:tomcat7 #{node['chub-solr']['cores_dir']}"
 	action :nothing
 end
 
 execute 'clear_tomcat_app_directory' do
 	command "rm -fr #{node['chub-solr']['app_dir']}/solr"
+	action :nothing
+end
+
+execute 'Copy_SOLR_WAR' do
+	command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/webapps/solr.war #{node['chub-solr']['app_dir']}"
+	action :nothing
+end
+
+execute 'Copy_SLF4J_stuff' do
+	command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar"
+	#command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar && cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/resources/log4j.properties /usr/share/tomcat7/lib"
 	action :nothing
 end
 
@@ -51,51 +64,80 @@ end
 directory "#{node['chub-solr']['config_dir']}" do
 	owner "root"
 	group "#{node['chub-solr']['group']}"
-	mode 0755
+	recursive true
+	mode 0754
 end
+
+# This flat-out doesn't work. Ruby doesn't interpolate the attributes when
+# creating the array. It makes me sad.
+# %w{	
+# 	"#{node['chub-solr']['app_dir']}"
+# 	"#{node['chub-solr']['home']}"
+# 	"#{node['chub-solr']['cores_dir']}"
+# 	"#{node['chub-solr']['data_dir']}"
+# 	"#{node['chub-solr']['log_dir']}"
+# }.each do |dir|
+# 	directory "#{dir}" do
+# 		owner "#{node['chub-solr']['user']}"
+# 		group "#{node['chub-solr']['group']}"
+# 		recursive true
+# 		mode 0774
+# 	end
+# end
+
 
 directory "#{node['chub-solr']['app_dir']}" do
 	owner "#{node['chub-solr']['user']}"
 	group "#{node['chub-solr']['group']}"
+	recursive true
 	mode 0774
 end
 
 directory "#{node['chub-solr']['log_dir']}" do
 	owner "#{node['chub-solr']['user']}"
 	group "#{node['chub-solr']['group']}"
+	recursive true
 	mode 0774
 end
 
 directory "#{node['chub-solr']['data_dir']}" do
 	owner "#{node['chub-solr']['user']}"
 	group "#{node['chub-solr']['group']}"
+	recursive true
 	mode 0774
 end
 
-directory "#{node['chub-solr']['temp_dir']}" do
-	owner "tomcat#{node['tomcat']['base_version']}"
+directory "#{node['chub-solr']['cores_dir']}" do
+	owner "#{node['chub-solr']['user']}"
 	group "#{node['chub-solr']['group']}"
-	mode 0775
+	recursive true
+	mode 0774
 end
 
+directory "#{node['chub-solr']['home']}" do
+	owner "#{node['chub-solr']['user']}"
+	group "#{node['chub-solr']['group']}"
+	recursive true
+	mode 0774
+end
 
+# From where should we acquire the SOLR tarball?
 source_url = ''
 if node['instance_role'] == 'vagrant'
 	unless File.exists?("/vagrant/solr-#{node['chub-solr']['version']}.tgz")
-		`wget #{node['chub-hornetq']['origin_http_uri']} -P /vagrant`
+		`wget #{node['chub-solr']['origin_http_uri']} -P /vagrant`
 		#`wget http://archive.apache.org/dist/lucene/solr/#{node['chub-solr']['version']}/solr-#{node['chub-solr']['version']}.tgz -P /vagrant`
 	end
 	source_url = "file:///vagrant/solr-#{node['chub-solr']['version']}.tgz"
 else
-	source_url = node['chub-hornetq']['origin_http_uri']
+	source_url = node['chub-solr']['origin_http_uri']
 	log "Downloading file from the internet. Check on the internal URI." do
 		level :warn
 	end
 end
 
-#TODO: look at the chub-hornetq::solr.rb:~54 and chub-solr
 # App File
-remote_file "#{node['chub-solr']['archive_dir']}/solr-#{node['chub-solr']['version']}.tgz" do
+remote_file "#{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}.tgz" do
 	# source "http://archive.apache.org/dist/lucene/solr/#{node['chub-solr']['version']}/solr-#{node['chub-solr']['version']}.tgz"
 	source source_url
 	owner "#{node['chub-solr']['user']}"
@@ -103,20 +145,36 @@ remote_file "#{node['chub-solr']['archive_dir']}/solr-#{node['chub-solr']['versi
 	action :create_if_missing
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :run, 'execute[Extract_SOLR_Tarball]', :immediately
+	notifies :run, 'execute[Copy_SOLR_WAR]', :immediately
+	notifies :run, 'execute[Copy_SLF4J_stuff]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
+	#notifies :restart, "service[tomcat7]", :delayed
 end
 
-# Config File
-remote_file "#{node['chub-solr']['base_dir']}/solr.zip" do
+# Bamboo-generated configs
+remote_file "/var/solr.zip" do
 	action :create_if_missing
 	source "http://mpbamboo.nexus.commercehub.com/artifact/BS-BSM/shared/build-latestSuccessful/solr.zip/solr.zip"
 	notifies :run, 'execute[Extract_SOLR_Config_Zip]', :immediately
+	#notifies :run, 'execute[Create_SOLR_Link]', :immediately
+	notifies :restart, "service[tomcat]", :delayed
+	#notifies :restart, "service[tomcat7]", :delayed
 	mode 0755
 	# notifies :restart, "service[tomcat]", :delayed
 end
 
+cookbook_file "solr.xml" do
+	path "#{node['chub-solr']['cores_dir']}/solr.xml"
+	action :create_if_missing
+	owner "#{node['chub-solr']['user']}"
+	group "#{node['chub-solr']['group']}"
+	mode 0755
+	notifies :restart, "service[tomcat]", :delayed
+end
 
-
-
-
-#TODO: ? link /var/lib/tomcat7/webapps/SOLR to "#{node['chub-solr']['base_dir']}"-"#{node['chub-solr']['version']}""
+template "/usr/share/tomcat7/lib/log4j.properties" do
+	action :create_if_missing
+	source "log4j.properties.erb"
+	mode 0755
+	notifies :restart, "service[tomcat]", :delayed
+end

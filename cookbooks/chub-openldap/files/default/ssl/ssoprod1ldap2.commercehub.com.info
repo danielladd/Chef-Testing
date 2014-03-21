@@ -1,0 +1,51 @@
+SHA1 Fingerprint=B2:78:B6:A0:A2:9D:50:CA:A3:BD:96:27:47:F0:46:73:84:D8:42:C4
+Certificate:
+    Data:
+        Version: 1 (0x0)
+        Serial Number:
+            e7:d2:2c:cc:e3:3a:a7:fb
+        Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=US, ST=NY, L=Albany, O=CommerceHub, OU=SSO, CN=ssoprod1ldap2.commercehub.com/emailAddress=sso@commercehub.com
+        Validity
+            Not Before: Mar 20 15:10:39 2014 GMT
+            Not After : Mar 17 15:10:39 2024 GMT
+        Subject: C=US, ST=NY, L=Albany, O=CommerceHub, OU=SSO, CN=ssoprod1ldap2.commercehub.com/emailAddress=sso@commercehub.com
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+            RSA Public Key: (2048 bit)
+                Modulus (2048 bit):
+                    00:b7:5b:c3:40:61:fe:36:8e:b4:dd:be:b0:41:42:
+                    ee:e0:74:ee:b6:d7:9e:e8:01:9e:26:94:69:00:ad:
+                    2c:b9:89:3e:b0:13:ac:39:78:a9:3f:0b:3e:bc:20:
+                    ac:b5:dc:e9:bc:f9:c4:49:c0:78:97:a4:89:04:9e:
+                    b7:23:59:3f:ca:b1:7d:f9:c6:f7:e1:9b:ee:66:98:
+                    fe:60:e0:6f:9d:a8:15:2b:41:59:c9:e6:45:cf:bf:
+                    de:3b:5f:f7:0d:a9:08:cc:b1:80:b8:15:fd:ac:d3:
+                    85:2c:61:71:07:8f:46:fd:ae:a9:c4:0d:2e:4d:a7:
+                    b0:7e:3b:85:80:11:66:d1:26:0f:95:b6:2b:9f:fc:
+                    96:2c:38:25:c7:ac:d2:2e:ee:13:d1:24:d2:00:39:
+                    c3:3e:d4:13:be:24:49:fe:f4:8e:1f:62:bd:fb:4d:
+                    2d:b4:a1:de:f4:98:d2:af:be:d0:03:42:2c:ab:56:
+                    21:38:93:28:5d:f8:7c:7b:14:bd:ef:71:6d:67:75:
+                    5a:f4:9c:c3:bf:25:e3:56:0d:fe:d6:6a:f6:3d:78:
+                    f6:23:c8:73:7a:4e:67:eb:b5:60:9d:e8:ef:48:6c:
+                    96:d7:ab:e0:0c:4a:52:04:11:57:64:75:7e:14:e1:
+                    fa:f0:2a:35:44:6e:e5:65:cc:5c:cf:c0:fd:4b:22:
+                    46:71
+                Exponent: 65537 (0x10001)
+    Signature Algorithm: sha1WithRSAEncryption
+        63:d5:83:26:e6:91:79:be:40:72:f5:92:60:2c:54:f7:98:5c:
+        4e:8d:f4:98:6e:24:1b:78:9a:f2:45:3f:94:a6:c7:8e:cd:59:
+        8a:01:92:6a:a3:72:94:74:f4:bc:69:4b:0c:d6:64:65:e7:e0:
+        27:f6:0a:77:ec:bd:24:58:8e:74:84:bf:9d:b4:b2:dd:58:94:
+        5c:ab:83:d7:99:c1:3e:b0:97:05:89:6d:38:db:f8:ae:cb:ba:
+        89:b1:f7:f5:7b:6b:09:66:6c:21:2a:6f:39:ca:b3:a9:69:bb:
+        5f:4e:06:6b:fd:6f:ab:7e:58:af:59:f8:bf:e1:d7:d0:21:e4:
+        ce:cc:28:6e:c5:57:c5:92:33:c8:b3:06:a9:b9:98:a8:b2:71:
+        ab:42:90:1b:d7:da:9b:a1:7f:28:ab:7b:ab:0e:33:5b:c1:cf:
+        43:6f:71:b6:c8:62:9a:3a:90:cd:63:5d:7c:e1:1f:d4:2a:78:
+        97:29:7b:42:33:98:0b:1c:74:72:39:9d:27:4f:c5:33:94:23:
+        11:26:b5:2c:94:0e:80:1d:44:83:95:2f:40:23:05:b6:7a:e7:
+        1c:b9:19:20:95:78:d0:9f:0e:fa:d9:6b:a5:8c:43:c0:1a:49:
+        34:11:85:ad:fc:ee:b6:21:88:67:dc:42:df:9c:d1:f2:ec:b0:
+        c8:17:f0:27
