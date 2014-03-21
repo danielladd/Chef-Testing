@@ -12,6 +12,8 @@ default['chub-hornetq']['hornetq_data_dir'] = ""
 default['chub-hornetq']['jvm_heap_max'] = 512
 default['chub-hornetq']['jvm_perm_max'] = 64
 default['chub-hornetq']['hornetq_data_dir'] = "#{node['chub-hornetq']['app_dir']}/data"
+
+# MQ Destinations Props
 default['chub-hornetq']['destinations_to_deploy'] = "ALL"
 default['chub-hornetq']['destinations_deploy_prop'] = "mqdestinations-deploy.properties"
 default['chub-hornetq']['destinations_jar_name'] = "mq-destinations-deploy.jar"

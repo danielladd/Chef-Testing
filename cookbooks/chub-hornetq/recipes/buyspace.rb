@@ -63,7 +63,9 @@ end
 source_url = ''
 if node['instance_role'] == 'vagrant'
 	unless File.exists?("/vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz")
-		`wget #{node['chub-hornetq']['origin_http_uri']} -P /vagrant`
+		remote_file "/vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz" do
+			source "#{node['chub-hornetq']['origin_http_uri']}"
+		end
 	end
 	source_url = "file:///vagrant/hornetq-#{node['chub-hornetq']['version']}.tar.gz"
 else

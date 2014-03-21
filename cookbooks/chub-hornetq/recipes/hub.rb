@@ -100,7 +100,7 @@ link "/etc/hornetq" do
 end
 
 link "/var/log/hornetq" do
-  to "#{node['chub-hornetq']['deployDir']}/log"
+  to "#{node['chub-hornetq']['deployDir']}/logs"
 end
 
 service "hornetq" do
