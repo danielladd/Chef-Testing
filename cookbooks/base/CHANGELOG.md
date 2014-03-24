@@ -1,6 +1,10 @@
 base CHANGELOG
 ==============
 
+0.1.8
+-----
+- dcross - Added windows platform type to base::default to route to windows-specific setup
+
 0.1.3
 -----
 - Waldo - Adding SmartShipping to the Warning notifications, and removed 
