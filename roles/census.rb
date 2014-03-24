@@ -1,3 +1,3 @@
 name "census"
 description "A node for the Census service"
-run_list "recipe[base]", "recipe[chub-sensu::client]", "recipe[chef-kick]", "recipe[chub-census]"
+run_list "recipe[base]", "recipe[chub_sensu_sso::client]", "recipe[chub-census]"
