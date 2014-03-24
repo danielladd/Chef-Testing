@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub-sensu
-# Recipe:: default
+# Recipe:: server
 #
 # Copyright (C) 2014 CommerceHub
 # 
@@ -25,13 +25,14 @@ include_recipe "sensu::dashboard_service"
 
 # TODO: review intervals
 
-%w{sensu-plugin mail}.each do |gem_name|
+%w{sensu-plugin mail redphone}.each do |gem_name|
     gem_package gem_name do
         action :install
         options "--no-rdoc --no-ri"
     end
 end
 
+## Email Handler
 remote_file "/etc/sensu/handlers/mailer.rb" do
     source "https://raw.github.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb"
     mode 0755
@@ -49,19 +50,56 @@ sensu_handler "email" do
 	not_if do node['chub-sensu']['email']['recipient'].nil? end
 end
 
+## PagerDuty Handler
+remote_file "/etc/sensu/handlers/pagerduty.rb" do
+    source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
+    mode 0755
+end
+
+template "/etc/sensu/conf.d/pagerduty.json" do
+    source "pagerduty.json.erb"
+    mode 0644
+end
+
+sensu_handler "pagerduty" do
+    type "pipe"
+    command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/pagerduty.rb"
+end
+
+## Default Handler
 sensu_handler "default" do
 	type "set"
 	handlers ["email"]
 	not_if do node['chub-sensu']['email']['recipient'].nil? end
 end
 
+## Standard Checks
 sensu_check "check-disk" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-disk.rb"
-    handlers ["default"]
+    handlers ["default", "pagerduty"]
     subscribers ["all"]
     interval 60
 end
 
+sensu_check "check-cpu" do
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-cpu.rb -c 90 -w 70"
+    handlers ["default", "pagerduty"]
+    subscribers ["all"]
+    interval 60
+    additional(:occurrences => 2)
+end
+
+sensu_check "check-ram" do
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-ram.rb -c 5 -w 10"
+    handlers ["default", "pagerduty"]
+    subscribers ["all"]
+    interval 60
+    additional(:occurrences => 2)
+end
+
+
+
+## SSO Checks
 # TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
 # http://docs.opscode.com/dsl_recipe_method_search.html
 sensu_check "check-openldap-syncrepl-ssodev1" do
@@ -143,21 +181,6 @@ sensu_check "check-plaza-lb-ssoqa1" do
     additional(:occurrences => 3)
 end
 
-sensu_check "check-cpu" do
-	command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-cpu.rb -c 90 -w 70"
-	handlers ["default"]
-	subscribers ["all"]
-	interval 60
-	additional(:occurrences => 2)
-end
-
-sensu_check "check-ram" do
-	command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-ram.rb -c 5 -w 10"
-	handlers ["default"]
-	subscribers ["all"]
-	interval 60
-	additional(:occurrences => 2)
-end
 
 sensu_check "check-vault-health" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
