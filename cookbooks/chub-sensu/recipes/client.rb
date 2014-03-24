@@ -47,6 +47,11 @@ remote_file "/etc/sensu/plugins/check-ram.rb" do
     mode 0755
 end
 
+remote_file "/etc/sensu/plugins/check-procs.rb" do
+    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb"
+    mode 0755
+end
+
 # Clean up a mistaken location
 file "/etc/sensu/handlers/check-ram.rb" do
     action :delete
