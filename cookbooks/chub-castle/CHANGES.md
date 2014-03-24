@@ -1,3 +1,6 @@
+# 0.1.15
+* Ripped out all of the database stuff, added in hazelcast
+
 # 0.1.14
 * Add host name property for proper node identification.
 

@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.14'
+version          '0.1.15'
 
 supports "ubuntu"
 depends "apt"
@@ -44,22 +44,48 @@ attribute "chub-castle/vault.url",
     "display_name" => "Vault Server URL",
     "description" => "Vault server for Castle to connect to"
 
-attribute "chub-castle/database/server",
-    "display_name" => "Database Server Name",
-    "description" => "Database server for Castle to connect to"
-
-attribute "chub-castle/database/name",
-    "display_name" => "Database Name",
-    "description" => "Databse for Castle to connect to"
-
-attribute "chub-castle/database/user",
-    "display_name" => "Databse User Credential",
-    "description" => "User for Castle to connect to database with"
-
-attribute "chub-castle/database/pass",
-    "display_name" => "Database Password Credential",
-    "description" => "Password for Castle to connect to database with"
-
 attribute "graphite/host",
     "display_name" => "Graphite Host",
     "description" => "Location of Graphite Server"
+
+attribute "hazelcast/group",
+    "display_name" => "Hazelcast Group",
+    "description" => "Name of Hazelcast Cluster",
+    :required => "required"
+
+attribute "hazelcast/password",
+    "display_name" => "Hazelcast Password",
+    "description" => "Password for Hazelcast Cluster",
+    :required => "required"
+
+attribute "hazelcast/network-port",
+    "display_name" => "Hazelcast Network Port",
+    "description" => "Port for Hazelcast Cluster",
+    :required => "optional"
+
+attribute "hazelcast/multicast-group",
+    "display_name" => "Hazelcast Multicast Group",
+    "description" => "Address of hazelcast cluster multicast group",
+    :required => "optional"
+
+attribute "hazelcast/multicast-port",
+    "display_name" => "Hazelcast Multicast Port",
+    "description" => "Port for hazelcast cluster multicast group",
+    :required => "optional"
+
+attribute "hazelcast/backup-count",
+    "display_name" => "Hazelcast Backup Count",
+    "description" => "Number of backups for hazelcast cluster",
+    :required => "optional"
+
+attribute "hazelcast/stTimeout",
+    "display_name" => "Service Ticket Timeout",
+    "description" => "Length in seconds of service ticket timeout",
+    :required => "required"
+
+attribute "hazelcast/tgtTimeout",
+    "display_name" => "Ticket Granting Ticket Timeout",
+    "description" => "Length in seconds of ticket granting ticket timeout",
+    :required => "required"                
+
+attribute "graphite/port", :required => "optional"
