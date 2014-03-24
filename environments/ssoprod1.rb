@@ -70,7 +70,7 @@ default_attributes(
   "graphite" => {
     "host" => "stats03.commercehub.com"
   },
-  "chub-sensu" => {
+  "chub_sensu_sso" => {
     "email" => {
       "recipient" => "sso-team@commercehub.com"
     }
