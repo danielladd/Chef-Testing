@@ -103,11 +103,11 @@ default_attributes(
     "vault.url" => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "database" => {
-        "server"=> "sqlvm81.nexus.commercehub.com",
-        "name"=> "ssoqa1-castle",
-        "user"=> "devusr01",
-        "pass"=> "usrdev"
+    "hazelcast" => {
+        "group"=> "ssoqa-castle",
+        "password"=> "ssoqa-pass",
+        "stTimeout" => "300",
+        "tgtTimeout" => "7200"
     }
   },
   "chub-plaza" => {

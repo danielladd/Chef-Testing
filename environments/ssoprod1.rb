@@ -103,11 +103,11 @@ default_attributes(
     "vault.url" => "https://ssoprod1-vault.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "database" => {
-        "server"=> "sqlsso.commercehub.com",
-        "name"=> "sso-castle",
-        "user"=> "sso_user",
-        "pass"=> "VBqgPyf6"
+    "hazelcast" => {
+        "group"=> "ssoprod-castle",
+        "password"=> "ssoprod-pass",
+        "stTimeout" => "300",
+        "tgtTimeout" => "7200"
     }
   },
   "chub-plaza" => {
