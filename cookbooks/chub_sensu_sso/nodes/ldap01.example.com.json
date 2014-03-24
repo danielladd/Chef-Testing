@@ -1,0 +1,21 @@
+{
+  "name": "ldap01",
+  "chef_environment": "ssodev",
+  "normal": {
+    "tags": [
+
+    ],
+    "openldap": {
+      "slapd_rid": "002",
+      "slapd_master": "ldap02.vagrant.dev",
+      "server_id": "001",
+      "server": "ldap01.vagrant.dev"
+    }
+  },
+  "automatic": {
+    "fqdn": "ldap01.example.com"
+  },
+  "run_list": [
+    "role[ldap]"
+  ]
+}

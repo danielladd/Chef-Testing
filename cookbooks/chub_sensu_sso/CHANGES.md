@@ -1,6 +1,8 @@
 # 0.1.7
 
+* Add pagerduty integration
 * Add checks for SSO load balancer endpoints
+* Rename cookbook to chub_sensu_sso
 
 # 0.1.6
 

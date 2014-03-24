@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: chub-sensu
-# Recipe:: default
+# Cookbook Name:: chub_sensu_sso
+# Recipe:: client
 #
 # Copyright (C) 2014 CommerceHub
 # 
