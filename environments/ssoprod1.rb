@@ -11,7 +11,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.13",
+  "chub-castle" => "= 0.1.15",
   "chub-census" => "= 0.1.1",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
@@ -105,11 +105,11 @@ default_attributes(
     "vault.url" => "https://ssoprod1-vault.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "database" => {
-        "server"=> "sqlsso.commercehub.com",
-        "name"=> "sso-castle",
-        "user"=> "sso_user",
-        "pass"=> "VBqgPyf6"
+    "hazelcast" => {
+        "group"=> "ssoprod-castle",
+        "password"=> "ssoprod-pass",
+        "stTimeout" => "300",
+        "tgtTimeout" => "7200"
     }
   },
   "chub-plaza" => {

@@ -11,7 +11,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.14",
+  "chub-castle" => "= 0.1.15",
   "chub-census" => "= 0.1.2",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.3",
@@ -105,11 +105,11 @@ default_attributes(
     "vault.url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
     "truststore_file" => "dev-truststore.jks",
     "keystore_file" => "dev-keystore.jks",
-    "database" => {
-        "server"=> "sqlvm81.nexus.commercehub.com",
-        "name"=> "ssodev1-castle",
-        "user"=> "devusr01",
-        "pass"=> "usrdev"
+    "hazelcast" => {
+        "group"=> "ssodev-castle",
+        "password"=> "ssodev-pass",
+        "stTimeout" => "300",
+        "tgtTimeout" => "7200"
     }
   },
   "chub-plaza" => {

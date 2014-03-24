@@ -8,20 +8,21 @@ graphite.host=<%= node["graphite"]["host"] %>
 graphite.env=<%= node.chef_environment %>
  <% end -%>
 <% end -%>	
-<% if node["chub-castle"] && node["chub-castle"]["database"] -%>
-database.server=<%= node["chub-castle"]["database"]["server"] %>
-database.name=<%= node["chub-castle"]["database"]["name"] %>
-database.user=<%= node["chub-castle"]["database"]["user"] %>
-database.pass=<%= node["chub-castle"]["database"]["pass"] %>
+<% if node["chub-castle"] && node["chub-castle"]["hazelcast"] -%>
+hazelcast.group=<%= node["chub-castle"]["hazelcast"]["group"] %>
+hazelcast.password=<%= node["chub-castle"]["hazelcast"]["password"] %>
+ <% if node["chub-castle"]["hazelcast"]["network-port"] -%>
+hazelcast.network-port=<%= node["chub-castle"]["hazelcast"]["network-port"] %>
+ <% end -%>
+ <% if node["chub-castle"]["hazelcast"]["multicast-group"] -%>
+hazelcast.multicast-group=<%= node["chub-castle"]["hazelcast"]["multicast-group"] %>
+ <% end -%>
+ <% if node["chub-castle"]["hazelcast"]["multicast-port"] -%>
+hazelcast.multicast-port=<%= node["chub-castle"]["hazelcast"]["multicast-port"] %>
+ <% end -%>
+ <% if node["chub-castle"]["hazelcast"]["backup-count"] -%>
+hazelcast.backup-count=<%= node["chub-castle"]["hazelcast"]["backup-count"] %>
+ <% end -%>
+hazelcast.stTimeout=<%= node["chub-castle"]["hazelcast"]["stTimeout"] %>
+hazelcast.tgtTimeout=<%= node["chub-castle"]["hazelcast"]["tgtTimeout"] %>
 <% end -%>
-database.dialect=org.hibernate.dialect.SQLServer2008Dialect
-database.driverClass=com.microsoft.sqlserver.jdbc.SQLServerDriver
-database.pool.minSize=6
-database.pool.maxSize=18
-database.pool.maxWait=10000
-database.pool.maxIdleTime=120
-database.pool.acquireIncrement=6
-database.pool.idleConnectionTestPeriod=30
-database.pool.connectionHealthQuery=select 1
-database.pool.acquireRetryAttempts=5
-database.pool.acquireRetryDelay=2000
