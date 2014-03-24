@@ -1,3 +1,7 @@
+# 0.1.8
+
+* Add missing template file
+
 # 0.1.7
 
 * Add pagerduty integration
