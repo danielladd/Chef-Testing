@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-sensu
+# Cookbook Name:: chub_sensu_sso
 # Recipe:: server
 #
 # Copyright (C) 2014 CommerceHub
@@ -18,8 +18,6 @@ include_recipe "sensu::dashboard_service"
 # TODO: investigate chef_node plugin
 # https://github.com/sensu/sensu-community-plugins/blob/master/handlers/other/chef_node.rb
 
-# TODO: investigate specialized handlers (mailer, irc, pagerduty)
-
 # TODO: evaluate ChefNodesStatusChecker
 # https://github.com/sensu/sensu-community-plugins/blob/master/plugins/chef/check-chef-nodes.rb
 
@@ -32,56 +30,53 @@ include_recipe "sensu::dashboard_service"
     end
 end
 
+handlerList = Array.new
+
 ## Email Handler
-if node['chub-sensu'].attribute?('email') and node['chub-sensu']['email'].attribute?('recipient') 
-  remote_file "/etc/sensu/handlers/mailer.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb"
-    mode 0755
-  end
+if node[:chub_sensu_sso].attribute?(:email) and node[:chub_sensu_sso][:email].attribute?(:recipient) 
+    remote_file "/etc/sensu/handlers/mailer.rb" do
+        source "https://raw.github.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb"
+        mode 0755
+    end
 
-  # TODO: use smtp authentication
-  template "/etc/sensu/conf.d/mailer.json" do
-    source "mailer.json.erb"
-    mode 0644
-  end
+    # TODO: use smtp authentication
+    template "/etc/sensu/conf.d/mailer.json" do
+        source "mailer.json.erb"
+        mode 0644
+    end
 
-  sensu_handler "email" do
-	type "pipe"
-	command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/mailer.rb"
-  end
+    sensu_handler "email" do
+        type "pipe"
+        command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/mailer.rb"
+    end
+
+    handlerList << ["email"]
 end
 
 ## PagerDuty Handler
-if node['chub-sensu'].attribute?('pagerduty') and node['chub-sensu']['pagerduty'].attribute?('api_key')
-  remote_file "/etc/sensu/handlers/pagerduty.rb" do
-    source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
-    mode 0755
-  end
+if node[:chub_sensu_sso].attribute?(:pagerduty) and node[:chub_sensu_sso][:pagerduty].attribute?(:api_key)
+    remote_file "/etc/sensu/handlers/pagerduty.rb" do
+        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
+        mode 0755
+    end
 
-  template "/etc/sensu/conf.d/pagerduty.json" do
-    source "pagerduty.json.erb"
-    mode 0644
-  end
+    template "/etc/sensu/conf.d/pagerduty.json" do
+        source "pagerduty.json.erb"
+        mode 0644
+    end
 
-  sensu_handler "pagerduty" do
-    type "pipe"
-    command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/pagerduty.rb"
-  end
+    sensu_handler "pagerduty" do
+        type "pipe"
+        command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/pagerduty.rb"
+    end
+
+    handlerList << ["pagerduty"]
 end
 
-handler = Array.new
-if node['chub-sensu'].attribute?('email') and node['chub-sensu']['email'].attribute?('recipient') 
-  handler << ["email"]
-elsif node['chub-sensu'].attribute?('pagerduty') and node['chub-sensu']['pagerduty'].attribute?('api_key')
-  handler << ["pagerduty"]
-end
-
-puts "Handler #{handler}"
 ## Default Handler
 sensu_handler "default" do
-	type "set"
-	handlers handler
-    not_if do handler.nil? end
+    type "set"
+    handlers handlerList
 end
 
 ## Standard Checks
@@ -110,21 +105,17 @@ end
 
 
 ## SSO Checks
-# TODO: consider using chef search to eliminate the need for node names here; figure out how we handle chef-solo
-# http://docs.opscode.com/dsl_recipe_method_search.html
-sensu_check "check-openldap-syncrepl-ssodev1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssodev1ldap1.nexus.commercehub.com,ssodev1ldap2.nexus.commercehub.com"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 2)
-end
-sensu_check "check-openldap-syncrepl-ssoqa1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts ssoqa1ldap1.nexus.commercehub.com,ssoqa1ldap2.nexus.commercehub.com"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 2)
+ldap_nodes = partial_search(:node, "role:ldap AND chef_environment:#{node.chef_environment}", :keys => {'name' => ['name'], 'fqdn' => ['fqdn']} )
+if ldap_nodes.empty?
+    Chef::Log.warn("No nodes with role ldap found in environment #{node.chef_environment}, skipping LDAP replication check")
+else
+    sensu_check "check-openldap-syncrepl" do
+        command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts #{ldap_nodes.collect { |it| it['fqdn'] }.join(',')}"
+        handlers ["default"]
+        subscribers ["monitor"]
+        interval 60
+        additional(:occurrences => 2)
+    end
 end
 
 sensu_check "check-vault-lb-ssodev1" do
@@ -190,7 +181,6 @@ sensu_check "check-plaza-lb-ssoqa1" do
     interval 60
     additional(:occurrences => 3)
 end
-
 
 sensu_check "check-vault-health" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"

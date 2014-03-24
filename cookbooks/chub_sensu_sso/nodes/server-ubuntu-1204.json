@@ -1,0 +1,12 @@
+{
+  "name": "server-ubuntu-1204",
+  "chef_environment": "ssodev",
+  "normal": {
+    "tags": [
+
+    ]
+  },
+  "run_list": [
+    "role[monitor]"
+  ]
+}
