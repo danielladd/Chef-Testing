@@ -1,3 +1,7 @@
+# 0.1.9
+
+* Fix syntax for adding handlers
+
 # 0.1.8
 
 * Add missing template file

@@ -50,7 +50,7 @@ if node[:chub_sensu_sso].attribute?(:email) and node[:chub_sensu_sso][:email].at
         command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/mailer.rb"
     end
 
-    handlerList << ["email"]
+    handlerList << "email"
 end
 
 ## PagerDuty Handler
@@ -70,7 +70,7 @@ if node[:chub_sensu_sso].attribute?(:pagerduty) and node[:chub_sensu_sso][:pager
         command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/pagerduty.rb"
     end
 
-    handlerList << ["pagerduty"]
+    handlerList << "pagerduty"
 end
 
 ## Default Handler
@@ -105,16 +105,18 @@ end
 
 
 ## SSO Checks
-ldap_nodes = partial_search(:node, "role:ldap AND chef_environment:#{node.chef_environment}", :keys => {'name' => ['name'], 'fqdn' => ['fqdn']} )
-if ldap_nodes.empty?
-    Chef::Log.warn("No nodes with role ldap found in environment #{node.chef_environment}, skipping LDAP replication check")
-else
-    sensu_check "check-openldap-syncrepl" do
-        command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts #{ldap_nodes.collect { |it| it['fqdn'] }.join(',')}"
-        handlers ["default"]
-        subscribers ["monitor"]
-        interval 60
-        additional(:occurrences => 2)
+unless Chef::Config[:solo]
+    ldap_nodes = partial_search(:node, "role:ldap AND chef_environment:#{node.chef_environment}", :keys => {'name' => ['name'], 'fqdn' => ['fqdn']} )
+    if ldap_nodes.empty?
+        Chef::Log.warn("No nodes with role ldap found in environment #{node.chef_environment}, skipping LDAP replication check")
+    else
+        sensu_check "check-openldap-syncrepl" do
+            command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-syncrepl.rb --port 636 --base dc=vault,dc=commercehub,dc=com --retries 5 --user cn=searchrole,dc=vault,dc=commercehub,dc=com --password search --hosts #{ldap_nodes.collect { |it| it['fqdn'] }.join(',')}"
+            handlers ["default"]
+            subscribers ["monitor"]
+            interval 60
+            additional(:occurrences => 2)
+        end
     end
 end
 
