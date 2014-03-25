@@ -17,8 +17,8 @@ Vagrant.configure("2") do |config|
   config.vm.define "server" do |server|
     server.vm.hostname = "sensuserver.vagrant.dev"
     server.vm.network :private_network, ip: "192.168.24.132"
-	server.vm.network :forwarded_port, guest: 8080, host: 8080
-	server.vm.network :forwarded_port, guest: 4567, host: 4567
+    server.vm.network :forwarded_port, guest: 8080, host: 8080
+    server.vm.network :forwarded_port, guest: 4567, host: 4567
     server.vm.provider :virtualbox do |vb|
       vb.name = server.vm.hostname
     end
@@ -26,6 +26,14 @@ Vagrant.configure("2") do |config|
       chef.data_bags_path = "data_bags"
       chef.roles_path = "roles"
       chef.json = {
+        "chub_sensu_sso" => {
+          "loadbalancer_urls" => {
+            "vault" => "https://vault.vagrant.dev:8443/info",
+            "census" => "https://census.vagrant.dev:8443/info",
+            "castle" => "https://castle.vagrant.dev/login",
+            "plaza" => "https://plaza.vagrant.dev/buildInfo"
+          }
+        }
       }
       chef.run_list = [
         "role[monitor]",

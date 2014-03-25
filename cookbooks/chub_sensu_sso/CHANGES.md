@@ -1,3 +1,8 @@
+# 0.1.10
+
+* Add health check for census
+* Condense load balancer URL checks to be based on an attribute
+
 # 0.1.9
 
 * Fix syntax for adding handlers
