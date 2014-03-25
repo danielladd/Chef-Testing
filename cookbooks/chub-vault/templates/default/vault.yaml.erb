@@ -10,10 +10,10 @@ ldapRead:
   tls: false
   ssl: true
 
-  ldapWrite:
-   host: <%= node["chub-vault"] && node["chub-vault"]["ldap_write_host"] %>
-   tls: false
-   ssl: true
+ldapWrite:
+  host: <%= node["chub-vault"] && node["chub-vault"]["ldap_write_host"] %>
+  tls: false
+  ssl: true
   
 <% if node["chub-vault"] && node["chub-vault"]["database"] -%>
 database:
