@@ -46,8 +46,13 @@ directory node["chub-missioncontrol"]["config_dir"] do
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/ROOT}" do
-  action :create
+directory "#{node['tomcat']['webapp_dir']}/bootstrap" do
+  owner "chub-missioncontrol"
+  group "chub-missioncontrol"
+  mode 0777
+end
+
+directory "#{node['tomcat']['webapp_dir']}" do
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
@@ -81,7 +86,7 @@ execute 'clear_tomcat_app_directory' do
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/bootstrap.war" do
-	source "http://bamboom1:8085/browse/MC-MCDEM/latestSuccessful/artifact/shared/Bootstrap-demo/bootstrap.war"
+	source "http://bamboom1:8085/browse/MC-MCDEM/latest/artifact/shared/Bootstrap-demo/bootstrap.war"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
 	action :create_if_missing
