@@ -1,0 +1,12 @@
+{
+  "handlers": {
+    "graphite_tcp": {
+      "type": "tcp",
+      "socket": {
+        "host": "<%= node[:graphite][:host] %>",
+        "port": <%= node[:graphite][:port] %>
+      },
+      "mutator": "only_check_output"
+    }
+  }
+}
