@@ -22,3 +22,42 @@ load test_helper
 }
 OUT
 }
+
+@test "loadbalancer urls are checked" {
+  run cat /etc/sensu/conf.d/checks/check-lb-app1.json
+  assert_output <<OUT
+{
+  "checks": {
+    "check-lb-app1": {
+      "command": "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://app1.example.com/ping --response-code 200",
+      "handlers": [
+        "default"
+      ],
+      "subscribers": [
+        "monitor"
+      ],
+      "interval": 60,
+      "occurrences": 3
+    }
+  }
+}
+OUT
+  run cat /etc/sensu/conf.d/checks/check-lb-app2.json
+  assert_output <<OUT
+{
+  "checks": {
+    "check-lb-app2": {
+      "command": "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://app2.example.com/ --response-code 200",
+      "handlers": [
+        "default"
+      ],
+      "subscribers": [
+        "monitor"
+      ],
+      "interval": 60,
+      "occurrences": 3
+    }
+  }
+}
+OUT
+}

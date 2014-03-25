@@ -17,14 +17,36 @@
 # limitations under the License.
 #
 
-# node.set['java']['install_flavor'] = 'oracle'
-# node.set['java']['oracle']['accept_oracle_download_terms'] = true
-# node.set['java']['jdk_version'] = 7
+node.set['java']['install_flavor'] = 'oracle'
+node.set['java']['oracle']['accept_oracle_download_terms'] = true
+node.set['java']['jdk_version'] = 7
 
 
-# node.set['tomcat']['base_version'] = 7
-# node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
+node.set['tomcat']['base_version'] = 7
+node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
 
 include_recipe "java"
 include_recipe "tomcat"
 #include_recipe "mongodb"
+
+group "chub-missioncontrol" do
+    action :create
+    system true
+end
+
+user "chub-missioncontrol" do
+    comment "Application user for chub-missioncontrol"
+    gid "chub-missioncontrol"
+    system true
+end
+
+user "chadmin" do
+    # Placeholder user; in "real" VMs, this user is expected to already exist.
+    # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
+end
+
+group "chub-missioncontrol" do
+    action :modify
+    append true
+    members ["chub-missioncontrol", "chadmin"]
+end

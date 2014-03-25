@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub-missioncontrol
-# Recipe:: chub-missioncontrol
+# Recipe:: appserver
 #
 # Copyright 2014, CommerceHub Inc.
 #
@@ -17,28 +17,6 @@
 # limitations under the License .
 #
 
-group "chub-missioncontrol" do
-    action :create
-    system true
-end
-
-user "chub-missioncontrol" do
-    comment "Application user for chub-missioncontrol"
-    gid "chub-missioncontrol"
-    system true
-end
-
-user "chadmin" do
-    # Placeholder user; in "real" VMs, this user is expected to already exist.
-    # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
-end
-
-group "chub-missioncontrol" do
-    action :modify
-    append true
-    members ["chub-missioncontrol", "chadmin"]
-end
-
 directory node["chub-missioncontrol"]["config_dir"] do
   action :create
   owner "chub-missioncontrol"
@@ -46,8 +24,13 @@ directory node["chub-missioncontrol"]["config_dir"] do
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/ROOT}" do
-  action :create
+directory "#{node['tomcat']['webapp_dir']}/bootstrap" do
+  owner "chub-missioncontrol"
+  group "chub-missioncontrol"
+  mode 0777
+end
+
+directory "#{node['tomcat']['webapp_dir']}" do
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
@@ -81,7 +64,7 @@ execute 'clear_tomcat_app_directory' do
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/bootstrap.war" do
-	source "http://bamboom1:8085/browse/MC-MCDEM/latestSuccessful/artifact/shared/Bootstrap-demo/bootstrap.war"
+	source "http://bamboom1:8085/browse/MC-MCDEM/latest/artifact/shared/Bootstrap-demo/bootstrap.war"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
 	action :create_if_missing

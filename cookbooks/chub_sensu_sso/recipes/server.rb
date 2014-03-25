@@ -103,7 +103,6 @@ sensu_check "check-ram" do
     additional(:occurrences => 2)
 end
 
-
 ## SSO Checks
 unless Chef::Config[:solo]
     ldap_nodes = partial_search(:node, "role:ldap AND chef_environment:#{node.chef_environment}", :keys => {'name' => ['name'], 'fqdn' => ['fqdn']} )
@@ -120,74 +119,30 @@ unless Chef::Config[:solo]
     end
 end
 
-sensu_check "check-vault-lb-ssodev1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-vault.nexus.commercehub.com:8443/info --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-vault-lb-ssoqa1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssoqa1-vault.nexus.commercehub.com:8443/info --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-census-lb-ssodev1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-census.nexus.commercehub.com:8443/info --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-census-lb-ssoqa1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssoqa1-census.nexus.commercehub.com:8443/info --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-castle-lb-ssodev1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-castle.nexus.commercehub.com/login --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-castle-lb-ssoqa1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-castle.nexus.commercehub.com/login --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-plaza-lb-ssodev1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-plaza.nexus.commercehub.com/buildInfo --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
-end
-
-sensu_check "check-plaza-lb-ssoqa1" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url https://ssodev1-plaza.nexus.commercehub.com/buildInfo --response-code 200"
-    handlers ["default"]
-    subscribers ["monitor"]
-    interval 60
-    additional(:occurrences => 3)
+if node[:chub_sensu_sso].attribute?(:loadbalancer_urls)
+    node[:chub_sensu_sso][:loadbalancer_urls].each do |name, url|
+        sensu_check "check-lb-#{name}" do
+            command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url #{url} --response-code 200"
+            handlers ["default"]
+            subscribers ["monitor"]
+            interval 60
+            additional(:occurrences => 3)
+        end
+    end
 end
 
 sensu_check "check-vault-health" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
     handlers ["default"]
     subscribers ["vault"]
+    interval 60
+    additional(:occurrences => 3)
+end
+
+sensu_check "check-census-health" do
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
+    handlers ["default"]
+    subscribers ["census"]
     interval 60
     additional(:occurrences => 3)
 end

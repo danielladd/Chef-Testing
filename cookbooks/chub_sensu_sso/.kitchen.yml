@@ -20,3 +20,7 @@ suites:
     run_list:
       - recipe[chub_sensu_sso::server]
     attributes:
+      chub_sensu_sso:
+        loadbalancer_urls:
+          app1: http://app1.example.com/ping
+          app2: https://app2.example.com/

@@ -10,11 +10,13 @@ default_attributes(
   },
   "chub-vault" => {
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
+	"ldap_write_host" => "ssodev1-ldap-write.nexus.commercehub.com",
     "database" => {
       "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev-vault",
       "user" => "devusr01",
       "password" => "usrdev"
     },
-    "search_password" => "search"
+    "search_password" => "search",
+	"write_password" => "rootpw"
   }
 )
