@@ -17,28 +17,6 @@
 # limitations under the License .
 #
 
-group "chub-missioncontrol" do
-    action :create
-    system true
-end
-
-user "chub-missioncontrol" do
-    comment "Application user for chub-missioncontrol"
-    gid "chub-missioncontrol"
-    system true
-end
-
-user "chadmin" do
-    # Placeholder user; in "real" VMs, this user is expected to already exist.
-    # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
-end
-
-group "chub-missioncontrol" do
-    action :modify
-    append true
-    members ["chub-missioncontrol", "chadmin"]
-end
-
 directory node["chub-missioncontrol"]["config_dir"] do
   action :create
   owner "chub-missioncontrol"
