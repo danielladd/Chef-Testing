@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub-missioncontrol
-# Recipe:: chub-missioncontrol
+# Recipe:: appserver
 #
 # Copyright 2014, CommerceHub Inc.
 #
