@@ -19,7 +19,7 @@ cookbook_versions({
   "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.1.5",
-  "chub_sensu_sso" => "= 0.1.9",
+  "chub_sensu_sso" => "= 0.1.10",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -73,6 +73,12 @@ default_attributes(
   "chub_sensu_sso" => {
     "pagerduty" => {
       "api_key" => "3f602c6a12c6479abdfca394c9ce1ddc"
+    },
+    "loadbalancer_urls" => {
+      "vault" => "https://ssodev1-vault.nexus.commercehub.com:8443/info",
+      "census" => "https://ssodev1-census.nexus.commercehub.com:8443/info",
+      "castle" => "https://ssodev1-castle.nexus.commercehub.com/login",
+      "plaza" => "https://ssodev1-plaza.nexus.commercehub.com/buildInfo"
     }
   },
   "openldap" => {
