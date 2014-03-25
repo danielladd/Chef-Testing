@@ -67,7 +67,7 @@ if node[:chub_sensu_pipeline].attribute?(:pagerduty) and node[:chub_sensu_pipeli
 
     sensu_handler "pagerduty" do
         type "pipe"
-        command "/usr/bin/ruby1.9.3 /etc/sensu/handlers/pagerduty.rb"
+        command "/usr/bin/rub1.y9.3 /etc/sensu/handlers/pagerduty.rb"
     end
 
     handlerList << "pagerduty"
