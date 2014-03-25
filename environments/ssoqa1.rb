@@ -64,7 +64,7 @@ default_attributes(
   },
   "sensu" => {
     "rabbitmq" => {
-      "host" => "ssodev1sensu.nexus.commercehub.com"
+      "host" => "ssoqa1sensu.nexus.commercehub.com"
     }
   },
   "graphite" => {
