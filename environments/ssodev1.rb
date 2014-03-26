@@ -18,8 +18,8 @@ cookbook_versions({
   "chub-openldap" => "= 1.12.14",
   "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.7",
-  "chub-vault" => "= 0.1.6",
-  "chub_sensu_sso" => "= 0.1.10",
+  "chub-vault" => "= 0.1.8",
+  "chub_sensu_sso" => "= 0.1.11",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -27,7 +27,7 @@ cookbook_versions({
   "graphite" => "= 0.1.4",
   "hostsfile" => "= 2.4.4",
   "iptables" => "= 0.12.0",
-  "java" => "= 1.21.2",
+  "java" => "= 1.22.0",
   "logrotate" => "= 1.3.0",
   "metachef" => "= 3.0.4",
   "mongodb" => "= 0.13.4",
@@ -54,10 +54,15 @@ cookbook_versions({
 })
 default_attributes(
   "java" => {
+    "oracle" => {
+      "accept_oracle_download_terms" => true
+    },
+    "install_flavor" => "oracle",
+    "jdk_version" => "8",
     "jdk" => {
-      "7" => {
+      "8" => {
         "x86_64" => {
-          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
+          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
         }
       }
     }

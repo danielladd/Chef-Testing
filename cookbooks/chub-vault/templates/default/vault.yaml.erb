@@ -4,10 +4,6 @@
 
 searchPassword: <%= node["chub-vault"] && node["chub-vault"]["search_password"] %>
 writePassword: <%= node["chub-vault"] && node["chub-vault"]["write_password"] %>
-testDn: <%= node["chub-vault"] && node["chub-vault"]["healthcheckcn"] %>,<%= node["chub-vault"] && node["chub-vault"]["basedn"] %>
-testValidPassword: <%= node["chub-vault"] && node["chub-vault"]["healthcheckvalidpw"] %>
-testInvalidPassword: <%= node["chub-vault"] && node["chub-vault"]["healthcheckinvalidpw"] %>
-testGUID: <%= node["chub-vault"] && node["chub-vault"]["healthcheckguid"] %>
 
 ldapRead:
   host: <%= node["chub-vault"] && node["chub-vault"]["ldap_read_host"] %>
@@ -18,7 +14,7 @@ ldapWrite:
   host: <%= node["chub-vault"] && node["chub-vault"]["ldap_write_host"] %>
   tls: false
   ssl: true
-  
+
 <% if node["chub-vault"] && node["chub-vault"]["database"] -%>
 database:
   url: <%= node["chub-vault"]["database"]["url"] %>

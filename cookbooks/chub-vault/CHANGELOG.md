@@ -1,6 +1,10 @@
-# 0.1.6
+* 0.1.8
 
-* Added credentials for write access to ldap
+* Correct spacing in config file
+
+# 0.1.7
+
+* Try to recover from whatever craziness happened and reset back to the desired code
 
 # 0.1.5
 

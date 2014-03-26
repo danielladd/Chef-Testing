@@ -84,22 +84,22 @@ sensu_check "check-disk" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-disk.rb"
     handlers ["default"]
     subscribers ["all"]
-    interval 60
+    interval 300
 end
 
 sensu_check "check-cpu" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-cpu.rb -c 90 -w 70"
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-cpu.rb -c 90 -w 80"
     handlers ["default"]
     subscribers ["all"]
-    interval 60
-    additional(:occurrences => 2)
+    interval 120
+    additional(:occurrences => 5)
 end
 
 sensu_check "check-ram" do
     command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-ram.rb -c 5 -w 10"
     handlers ["default"]
     subscribers ["all"]
-    interval 60
+    interval 300
     additional(:occurrences => 2)
 end
 

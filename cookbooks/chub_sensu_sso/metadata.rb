@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Sensu in the CommerceHub way for SSO'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.10'
+version          '0.1.11'
 
 depends "sensu"
 depends "base"
@@ -19,6 +19,12 @@ attribute "chub_sensu_sso/pagerduty/api_key",
     :display_name => "Pager Duty Service API Key",
     :description => "If planning to integrate with Pager Duty the API key to be used",
     :type => "string",
+    :required => "optional"
+
+attribute "chub_sensu_sso/loadbalancer_urls",
+    :display_name => "Load Balancer URLS",
+    :description => "A hash of application names to HTTP(S) URLs to check",
+    :type => "hash",
     :required => "optional"
 
 attribute "graphite/host",

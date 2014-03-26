@@ -1,5 +1,6 @@
 chef_api :config
-site :opscode
+# Most of the time, don't resolve against the community site, as we want to be intentional about when we pull new external cookbooks
+# site :opscode
 metadata
 
 cookbook "chub-sensu"
