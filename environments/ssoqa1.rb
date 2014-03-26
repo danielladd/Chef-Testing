@@ -54,6 +54,11 @@ cookbook_versions({
 })
 default_attributes(
   "java" => {
+    "oracle" => {
+      "accept_oracle_download_terms" => true
+    },
+    "install_flavor" => "oracle",
+    "jdk_version" => "7",
     "jdk" => {
       "7" => {
         "x86_64" => {
