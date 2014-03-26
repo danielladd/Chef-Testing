@@ -1,4 +1,10 @@
-* 0.1.8
+# 0.1.9
+
+* Remove extra stuff from old java install approach
+* Misc. cleanup
+* Enforce minimum java cookbook version in cookbook metadata
+
+# 0.1.8
 
 * Correct spacing in config file
 

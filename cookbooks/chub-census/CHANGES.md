@@ -1,3 +1,9 @@
+# 0.1.3
+
+* Remove extra stuff from old java install approach
+* Misc. cleanup
+* Enforce minimum java cookbook version in cookbook metadata
+
 # 0.1.2
 
 * Update config to syntax for DropWizard 0.7.x

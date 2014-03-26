@@ -56,11 +56,6 @@ directory "/var/log/census" do
     mode 0770
 end
 
-# Clean up file used by previous version of cookbook
-file "/etc/census/census.yml" do
-    action :delete
-end
-
 template "/etc/census/census.yaml" do
     source "census.yaml.erb"
     variables({

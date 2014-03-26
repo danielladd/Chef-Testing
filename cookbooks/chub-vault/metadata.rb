@@ -4,11 +4,11 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.8'
+version          '0.1.9'
 
 supports "ubuntu"
 depends "apt"
-depends "java"
+depends "java", "~> 1.22.0"
 
 attribute "chub-vault/app_url",
     :display_name => "Vault application URL",
@@ -27,9 +27,19 @@ attribute "chub-vault/ldap_read_host",
     :description => "LDAP host for read access",
     :required => "required"
 
+attribute "chub-vault/ldap_write_host",
+    :display_name => "LDAP write host",
+    :description => "LDAP host for write access",
+    :required => "required"
+
 attribute "chub-vault/search_password",
     :display_name => "Search password",
     :description => "The password to use for LDAP search access",
+    :required => "required"
+
+attribute "chub-vault/write_password",
+    :display_name => "Write password",
+    :description => "The password to use for LDAP write access",
     :required => "required"
 
 attribute "chub-vault/database/url", :required => "required"
