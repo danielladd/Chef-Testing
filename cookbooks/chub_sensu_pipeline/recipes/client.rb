@@ -10,6 +10,8 @@
 include_recipe "base"
 include_recipe "sensu"
 
+node.default[:sensu][:rabbitmq][:host] = "sensu01"
+
 sensu_client node.name do
     address node[:ipaddress]
     subscriptions node[:roles] + ["all"]
