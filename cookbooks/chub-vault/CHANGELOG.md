@@ -1,3 +1,7 @@
+* 0.1.8
+
+* Correct spacing in config file
+
 # 0.1.7
 
 * Try to recover from whatever craziness happened and reset back to the desired code
