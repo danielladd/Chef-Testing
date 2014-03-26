@@ -16,7 +16,7 @@ cookbook_versions({
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.3",
   "chub-openldap" => "= 1.12.14",
-  "chub-plaza" => "= 0.1.3",
+  "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.1.9",
   "chub_sensu_sso" => "= 0.1.11",

@@ -4,11 +4,11 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.3'
+version          '0.1.4'
 
 supports "ubuntu"
 depends "apt"
-depends "java"
+depends "java", "~> 1.22.0"
 
 attribute "chub-plaza/app_url",
     :display_name => "Plaza application URL",
