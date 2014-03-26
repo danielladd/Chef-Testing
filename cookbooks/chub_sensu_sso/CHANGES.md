@@ -1,3 +1,7 @@
+# 0.1.11
+
+* Tweak the checks for system resources (disk, cpu, memory)
+
 # 0.1.10
 
 * Add health check for census
