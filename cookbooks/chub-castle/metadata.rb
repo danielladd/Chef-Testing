@@ -4,11 +4,11 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.15'
+version          '0.1.16'
 
 supports "ubuntu"
 depends "apt"
-depends "java"
+depends "java", "~> 1.22.0"
 
 attribute "chub-castle/app_url",
     "display_name" => "Castle application URL",

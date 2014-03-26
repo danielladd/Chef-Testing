@@ -102,21 +102,3 @@ service "castle" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
-
-# Clean up files used by previous versions of cookbook
-
-file "/etc/castle/application.properties" do
-    action :delete
-end
-
-file "/etc/authbind/byport/80" do
-    action :delete
-end
-
-file "/etc/authbind/byport/443" do
-    action :delete
-end
-
-apt_package "authbind" do
-    action :remove
-end

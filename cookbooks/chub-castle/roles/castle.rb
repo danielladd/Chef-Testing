@@ -1,2 +1,2 @@
 name "castle"
-run_list "recipe[chub-sensu::client]", "recipe[chub-castle::default]"
+run_list "recipe[chub_sensu_sso::client]", "recipe[chub-castle::default]"
