@@ -14,7 +14,7 @@ cookbook_versions({
   "chub-castle" => "= 0.1.16",
   "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
-  "chub-klerk" => "= 0.10.3",
+  "chub-klerk" => "= 0.10.4",
   "chub-openldap" => "= 1.12.14",
   "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
@@ -96,14 +96,14 @@ default_attributes(
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssodev1-ldap-read.nexus.commercehub.com",
-	"ldap_write_host" => "ssodev1-ldap-write.nexus.commercehub.com",
+    "ldap_write_host" => "ssodev1-ldap-write.nexus.commercehub.com",
     "database" => {
       "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev1-vault",
       "user" => "devusr01",
       "password" => "usrdev"
     },
     "search_password" => "search",
-	"write_password" => "rootpw"
+    "write_password" => "rootpw"
   },
   "chub-census" => {
     "app_url" => "file:///var/census/staged-census.jar",

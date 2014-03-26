@@ -11,14 +11,14 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.15",
-  "chub-census" => "= 0.1.1",
+  "chub-castle" => "= 0.1.16",
+  "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
   "chub-openldap" => "= 1.12.14",
-  "chub-plaza" => "= 0.1.3",
-  "chub-sensu" => "= 0.1.6",
-  "chub-vault" => "= 0.1.5",
+  "chub-plaza" => "= 0.1.4",
+  "chub-sensu" => "= 0.1.7",
+  "chub-vault" => "= 0.1.9",
   "chub_sensu_sso" => "= 0.1.11",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
@@ -27,7 +27,7 @@ cookbook_versions({
   "graphite" => "= 0.1.4",
   "hostsfile" => "= 2.4.4",
   "iptables" => "= 0.12.0",
-  "java" => "= 1.21.2",
+  "java" => "= 1.22.0",
   "logrotate" => "= 1.3.0",
   "metachef" => "= 3.0.4",
   "mongodb" => "= 0.13.4",
@@ -58,11 +58,11 @@ default_attributes(
       "accept_oracle_download_terms" => true
     },
     "install_flavor" => "oracle",
-    "jdk_version" => "7",
+    "jdk_version" => "8",
     "jdk" => {
-      "7" => {
+      "8" => {
         "x86_64" => {
-          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-linux-x64.tar.gz"
+          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
         }
       }
     }
@@ -96,12 +96,14 @@ default_attributes(
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
     "ldap_read_host" => "ssoqa1-ldap-read.nexus.commercehub.com",
+    "ldap_write_host" => "ssoqa1-ldap-write.nexus.commercehub.com",
     "database" => {
       "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-vault",
       "user" => "devusr01",
       "password" => "usrdev"
     },
-    "search_password" => "search"
+    "search_password" => "search",
+    "write_password" => "rootpw"
   },
   "chub-census" => {
     "app_url" => "file:///var/census/staged-census.jar",
