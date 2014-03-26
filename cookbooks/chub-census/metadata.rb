@@ -4,11 +4,11 @@ maintainer_email 'ktitus@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-census-cookbook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.2'
+version          '0.1.3'
 
 supports "ubuntu"
 depends "apt"
-depends "java"
+depends "java", "~> 1.22.0"
 
 attribute "chub-census/app_url",
     :display_name => "census application URL",

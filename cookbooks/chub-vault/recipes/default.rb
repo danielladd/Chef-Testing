@@ -56,11 +56,6 @@ directory "/var/log/vault" do
     mode 0770
 end
 
-# Clean up file used by previous version of cookbook
-file "/etc/vault/vault.yml" do
-    action :delete
-end
-
 template "/etc/vault/vault.yaml" do
     source "vault.yaml.erb"
     owner "root"
