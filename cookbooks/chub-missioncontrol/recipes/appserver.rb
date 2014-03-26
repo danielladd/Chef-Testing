@@ -17,7 +17,11 @@
 # limitations under the License .
 #
 
-directory node["chub-missioncontrol"]["config_dir"] do
+include_recipe "tomcat"
+node.set['tomcat']['base_version'] = 7
+node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
+
+directory node["chub-missioncontrol"]['app']["config_dir"] do
   action :create
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
@@ -36,21 +40,21 @@ directory "#{node['tomcat']['webapp_dir']}" do
   mode 0777
 end
 
-directory node["chub-missioncontrol"]["app_dir"] do
+directory node["chub-missioncontrol"]['app']["app_dir"] do
   action :create
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
 end
 
-directory node["chub-missioncontrol"]["log_dir"] do
+directory node["chub-missioncontrol"]['app']["log_dir"] do
   action :create
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
 end
 
-template "#{node['chub-missioncontrol']['app_dir']}/#{node['chub-missioncontrol']['missioncontrol_conf']}" do
+template "#{node['chub-missioncontrol']['app']['app_dir']}/#{node['chub-missioncontrol']['app']['config_file_name']}" do
 	source "missioncontrol-config.groovy.erb"
 	mode 0777
 	owner "chub-missioncontrol"
@@ -64,7 +68,7 @@ execute 'clear_tomcat_app_directory' do
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/bootstrap.war" do
-	source "http://bamboom1:8085/browse/MC-MCDEM/latest/artifact/shared/Bootstrap-demo/bootstrap.war"
+	source "http://#{node['chub-missioncontrol']['app']['bamboo_server_name']}:#{node['chub-missioncontrol']['app']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['app']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['app']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_name']}"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
 	action :create_if_missing
