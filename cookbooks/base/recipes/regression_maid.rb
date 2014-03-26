@@ -45,7 +45,7 @@ end
 git "regression_maid" do
   repository 'http://mpgit03.nexus.commercehub.com/lzarou/regression_maid.git'
   reference 'master'
-  action :checkout
+  action :sync
   destination '/opt/regression_maid'
 end
 
@@ -53,5 +53,5 @@ cron_d "regression_maid_run" do
 	minute 00
 	hour '06-19'
 	weekday '1-5'
-	command "ruby /opt/regression_maid/HungJobs.rb > /var/log/regression_maid/lastRun.log"
+	command "ruby /opt/regression_maid/HungJobs.rb -e 'Webdriver' > /var/log/regression_maid/lastRun.log"
 end
