@@ -96,11 +96,11 @@ execute "installService" do
 end
 
 link "/etc/hornetq" do
-  to "#{node['chub-hornetq']['deployDir']}/config"
+  to "#{node['chub-hornetq']['app_dir']}/config"
 end
 
 link "/var/log/hornetq" do
-  to "#{node['chub-hornetq']['deployDir']}/logs"
+  to "#{node['chub-hornetq']['app_dir']}/logs"
 end
 
 service "hornetq" do

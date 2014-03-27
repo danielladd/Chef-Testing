@@ -1,7 +1,15 @@
 chub-hornetq CHANGELOG
 ======================
 
-This file is used to list changes made in each version of the chub-hornetq cookbook.
+0.1.2
+-----
+
+* Fixing issue with sym linked log directory
+
+0.1.1
+-----
+
+* Updates to add hornetq hub deployments
 
 0.1.0
 -----
