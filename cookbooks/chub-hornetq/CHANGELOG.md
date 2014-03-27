@@ -1,6 +1,11 @@
 chub-hornetq CHANGELOG
 ======================
 
+0.1.2
+-----
+
+* Fixing issue with sym linked log directory
+
 0.1.1
 -----
 
