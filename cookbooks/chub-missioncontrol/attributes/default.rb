@@ -27,8 +27,8 @@ default['chub-missioncontrol']['webservice']['deploy_dir']	= '/opt/missioncontro
 default["chub-missioncontrol"]['webservice']['jar_name'] = 'inventory-web-service-demo-standalone.jar'
 default["chub-missioncontrol"]['webservice']['property_file_name'] = 'inventory-web-service-demo-standalone-deploy.properties'
 default["chub-missioncontrol"]['webservice']['service_name'] = 'webservice'
-default["chub-missioncontrol"]['webservice']["jmxHeapMax"] = '256'
-default["chub-missioncontrol"]['webservice']["permGenMax"] = '256'
+default["chub-missioncontrol"]['webservice']['jmxHeapMax'] = '256'
+default["chub-missioncontrol"]['webservice']['permGenMax'] = '256'
 
 default['chub-missioncontrol']['webservice']['bamboo_server_name'] = 'bamboom1'
 default['chub-missioncontrol']['webservice']['bamboo_server_port'] = '8085'
