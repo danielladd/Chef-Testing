@@ -15,7 +15,7 @@ cookbook_versions({
   "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
-  "chub-openldap" => "= 1.12.14",
+  "chub-openldap" => "= 1.12.15",
   "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.2.1",
