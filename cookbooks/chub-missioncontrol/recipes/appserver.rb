@@ -28,13 +28,19 @@ directory node["chub-missioncontrol"]['app']["config_dir"] do
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/bootstrap" do
+directory "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}" do
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
 end
 
 directory "#{node['tomcat']['webapp_dir']}" do
+  owner "chub-missioncontrol"
+  group "chub-missioncontrol"
+  mode 0777
+end
+
+directory "#{node['tomcat']['base']}" do
   owner "chub-missioncontrol"
   group "chub-missioncontrol"
   mode 0777
@@ -63,12 +69,12 @@ template "#{node['chub-missioncontrol']['app']['app_dir']}/#{node['chub-missionc
 end
 
 execute 'clear_tomcat_app_directory' do
-	command "rm -fr #{node['tomcat']['webapp_dir']}/bootstrap"
+	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}"
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/bootstrap.war" do
-	source "http://#{node['chub-missioncontrol']['app']['bamboo_server_name']}:#{node['chub-missioncontrol']['app']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['app']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['app']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_name']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_file_name']}" do
+	source "http://#{node['chub-missioncontrol']['app']['bamboo_server_name']}:#{node['chub-missioncontrol']['app']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['app']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['app']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_file_name']}"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
 	action :create_if_missing

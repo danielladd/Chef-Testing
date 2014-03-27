@@ -54,7 +54,7 @@ template "#{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node["ch
   notifies :run, "execute[deploy]"
 end
 
-remote_file "#{node['chub-missioncontrol']['webservice']['app_dir']}/standalone.jar" do
+remote_file "#{node['chub-missioncontrol']['webservice']['app_dir']}/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact_file_name']}" do
 	source "http://#{node['chub-missioncontrol']['webservice']['bamboo_server_name']}:#{node['chub-missioncontrol']['webservice']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['webservice']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['webservice']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact_name']}"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
