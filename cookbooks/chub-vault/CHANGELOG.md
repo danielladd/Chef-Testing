@@ -1,3 +1,7 @@
+# 0.2.1
+
+* Increase the maximum number of open file descriptors
+
 # 0.2.0
 
 * Make base DN and test information configurable

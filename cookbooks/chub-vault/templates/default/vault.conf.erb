@@ -1,5 +1,6 @@
 setuid vault
 setgid vault
+limit nofile 65536 65536
 chdir /var/vault
 exec java -server -d64 -Xms<%= node["chub-vault"]["java_heap_size"] %> -Xmx<%= node["chub-vault"]["java_heap_size"] %> -Djava.net.preferIPv4Stack=true -jar /opt/vault/vault.jar server /etc/vault/vault.yaml
 respawn
