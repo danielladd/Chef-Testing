@@ -61,10 +61,10 @@ attribute "chub-vault/ldap/write/password",
     :description => "Password to use for LDAP write access",
     :required => "required"
 
-attribute "chub-vault/ldap/healthcheck/cn"
-attribute "chub-vault/ldap/healthcheck/valid_password"
-attribute "chub-vault/ldap/healthcheck/invalid_password"
-attribute "chub-vault/ldap/healthcheck/guid"
+attribute "chub-vault/ldap/healthcheck/cn", :required => "optional"
+attribute "chub-vault/ldap/healthcheck/valid_password", :required => "optional"
+attribute "chub-vault/ldap/healthcheck/invalid_password", :required => "optional"
+attribute "chub-vault/ldap/healthcheck/guid", :required => "optional"
 
 attribute "chub-vault/database/url",
     :display_name => "Database URL",
