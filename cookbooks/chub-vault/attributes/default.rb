@@ -7,4 +7,4 @@ default["chub-vault"]["ldap"]["healthcheck"]["cn"] = "cn=healthcheck,ou=testuser
 default["chub-vault"]["ldap"]["healthcheck"]["valid_password"] = "1337Pass"
 default["chub-vault"]["ldap"]["healthcheck"]["invalid_password"] = "lamePass"
 default["chub-vault"]["ldap"]["healthcheck"]["guid"] = "123-345-456"
-default["chub-vault"]["java_heap_size"] = "512M"
+default["chub-vault"]["java_heap_size"] = "1G"

@@ -1,3 +1,8 @@
+# 0.2.2
+
+* Enable remote JMX
+* Increase default heap size to 1G
+
 # 0.2.1
 
 * Increase the maximum number of open file descriptors

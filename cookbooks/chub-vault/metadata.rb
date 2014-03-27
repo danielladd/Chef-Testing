@@ -4,11 +4,12 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.1'
+version          '0.2.2'
 
 supports "ubuntu"
 depends "apt"
 depends "java", "~> 1.22.0"
+depends "hostsfile"
 
 attribute "chub-vault/app_url",
     :display_name => "Vault application URL",
@@ -60,6 +61,11 @@ attribute "chub-vault/ldap/write/password",
     :description => "Password to use for LDAP write access",
     :required => "required"
 
+attribute "chub-vault/ldap/healthcheck/cn"
+attribute "chub-vault/ldap/healthcheck/valid_password"
+attribute "chub-vault/ldap/healthcheck/invalid_password"
+attribute "chub-vault/ldap/healthcheck/guid"
+
 attribute "chub-vault/database/url",
     :display_name => "Database URL",
     :description => "JDBC URL to use for database access",
@@ -79,7 +85,7 @@ attribute "chub-vault/java_heap_size",
     :display_name => "Vault Java heap size",
     :description => "Heap size with which to run the Vault JVM",
     :required => "optional",
-    :default => "512M"
+    :default => "1G"
 
 attribute "graphite/host", :required => "recommended"
 attribute "graphite/port", :required => "optional"
