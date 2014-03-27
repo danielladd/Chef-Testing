@@ -1,3 +1,8 @@
+# 0.2.0
+
+* Make base DN and test information configurable
+* Restructure attributes used
+
 # 0.1.9
 
 * Remove extra stuff from old java install approach

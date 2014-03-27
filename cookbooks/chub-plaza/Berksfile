@@ -1,5 +1,6 @@
-site :opscode
-
+chef_api :config
+# Most of the time, don't resolve against the community site, as we want to be intentional about when we pull new external cookbooks
+# site :opscode
 metadata
 
-cookbook "chub-sensu", git: "git@mpgit03.nexus.commercehub.com:single-sign-on/chub-sensu-cookbook.git"
+cookbook "chub_sensu_sso"

@@ -3,4 +3,4 @@ chef_api :config
 # site :opscode
 metadata
 
-cookbook "chub-sensu"
+cookbook "chub_sensu_sso"

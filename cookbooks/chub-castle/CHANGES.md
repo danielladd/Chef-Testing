@@ -1,3 +1,7 @@
+# 0.1.16
+* Clean up cookbook
+* Specify minimum java cookbook version
+
 # 0.1.15
 * Ripped out all of the database stuff, added in hazelcast
 

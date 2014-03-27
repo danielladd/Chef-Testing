@@ -1,7 +1,7 @@
 log4j = {
 	appenders {
-      rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-missioncontrol']['log_dir'] %>/missioncontrol-app.log", maxBackupIndex: 75
-      //rollingFile name: 'permissionsFile', maxFileSize: '2MB', file: "<%= node['chub-missioncontrol']['log_dir'] %>", maxBackupIndex: 75
+      rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-missioncontrol']['app']['log_dir'] %>/missioncontrol-app.log", maxBackupIndex: 75
+      //rollingFile name: 'permissionsFile', maxFileSize: '2MB', file: "<%= node['chub-missioncontrol']['app']['log_dir'] %>", maxBackupIndex: 75
       'null' name: 'stacktrace'
 	}
 
@@ -33,7 +33,7 @@ log4j = {
 				'marketplace.salesforce.http.SalesforceRequest'
 				
 	root {
-		<%= node['chub-missioncontrol']['log4j']['root_loglevel'] %> 'file'
+		<%= node['chub-missioncontrol']['app']['log4j']['root_loglevel'] %> 'file'
 		additivity = true
 	}
 }
