@@ -19,16 +19,18 @@ default['chub-missioncontrol']['app']['bamboo_server_build_project'] = 'MC'
 default['chub-missioncontrol']['app']['bamboo_server_build_key'] = 'YOU FORGOT TO OVERRIDE ME'
 default['chub-missioncontrol']['app']['bamboo_server_artifact'] = 'Bootstrap-demo'
 default['chub-missioncontrol']['app']['bamboo_server_artifact_file_name'] = 'bootstrap.war'
+#default['chub-missioncontrol']['app']['mongodb'] = 'localhost'
+#default['chub-missioncontrol']['app']['mongodb_port'] = '27017'
 
 ###############################WEB-SERVICE-DEFAULTS########################################
 
 default['chub-missioncontrol']['webservice']['staging_dir']	= '/opt/missioncontrol/webservice-staging'
 default['chub-missioncontrol']['webservice']['deploy_dir']	= '/opt/missioncontrol/webservice'
-default["chub-missioncontrol"]['webservice']['jar_name'] = 'inventory-web-service-demo-standalone.jar'
-default["chub-missioncontrol"]['webservice']['property_file_name'] = 'inventory-web-service-demo-standalone-deploy.properties'
-default["chub-missioncontrol"]['webservice']['service_name'] = 'webservice'
-default["chub-missioncontrol"]['webservice']['jmxHeapMax'] = '256'
-default["chub-missioncontrol"]['webservice']['permGenMax'] = '256'
+default['chub-missioncontrol']['webservice']['jar_name'] = 'inventory-web-service-demo-standalone.jar'
+default['chub-missioncontrol']['webservice']['property_file_name'] = 'inventory-web-service-demo-standalone-deploy.properties'
+default['chub-missioncontrol']['webservice']['service_name'] = 'webservice'
+default['chub-missioncontrol']['webservice']['jmxHeapMax'] = '256'
+default['chub-missioncontrol']['webservice']['permGenMax'] = '256'
 
 default['chub-missioncontrol']['webservice']['bamboo_server_name'] = 'bamboom1'
 default['chub-missioncontrol']['webservice']['bamboo_server_port'] = '8085'
