@@ -20,6 +20,10 @@ user "envdash" do
     system true
 end
 
+file "/etc/chef/client.pem" do
+    mode 0644
+end
+
 directory "/opt/envdash" do
     owner "envdash"
     group "envdash"

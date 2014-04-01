@@ -1,7 +1,10 @@
 setuid envdash
 setgid envdash
 chdir /var/envdash
-exec java -server -d64 -Xms<%= node[:chub_envdash][:java_heap_size] %> -Xmx<%= node[:chub_envdash][:java_heap_size] %> -Dratpack.other.title="<%= node[:chub_envdash][:title] %>" -Dratpack.other.prefix="<%= node[:chub_envdash][:prefix] %>" -Dratpack.other.environmentNames="<%= node[:chub_envdash][:environment_names].join(' ') %>" -Dratpack.other.chefPem=/etc/chef/client.pem -jar /opt/envdash/envdash.jar
+script
+  HOSTNAME=$(hostname -s)
+  exec java -server -d64 -Xms<%= node[:chub_envdash][:java_heap_size] %> -Xmx<%= node[:chub_envdash][:java_heap_size] %> -Dratpack.other.title="<%= node[:chub_envdash][:title] %>" -Dratpack.other.prefix="<%= node[:chub_envdash][:prefix] %>" -Dratpack.other.environmentNames="<%= node[:chub_envdash][:environment_names].join(' ') %>" -Dratpack.other.chefClient=$HOSTNAME -Dratpack.other.chefPem=/etc/chef/client.pem -Dratpack.port=8080 -jar /opt/envdash/envdash.jar
+end script
 respawn
 start on runlevel [2345]
 stop on runlevel [016]
