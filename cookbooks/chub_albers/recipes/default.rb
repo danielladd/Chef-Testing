@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: chub-hornetq
-# Recipe:: buyspace
+# Cookbook Name:: chub_albers
+# Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
 #
@@ -16,5 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-# grab config archive from Bamboo build artifacts

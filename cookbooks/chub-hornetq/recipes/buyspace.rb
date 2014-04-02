@@ -41,6 +41,11 @@ execute 'Create_HornetQ_Link' do
 	action :nothing
 end
 
+execute 'Remove_HornetQ_Config_XML' do
+	command "rm #{node['chub-hornetq']['config_dir']}/hornetq-configuration.xml"
+	action :nothing
+end
+
 
 directory node['chub-hornetq']['config_dir'] do
 	action :create
@@ -54,9 +59,20 @@ end
 remote_file "#{node['chub-hornetq']['base_dir']}/hornetq.zip" do
 	action :create_if_missing
 	source "http://mpbamboo.nexus.commercehub.com/artifact/BS-BSM/shared/build-latestSuccessful/hornetq.zip/hornetq.zip"
-	notifies :run, 'execute[Extract_HornetQ_Config_Zip]', :immediately
 	mode 0755
-	# notifies :restart, "service[tomcat]", :delayed
+	notifies :run, 'execute[Extract_HornetQ_Config_Zip]', :immediately
+	notifies :run, 'execute[Remove_HornetQ_Config_XML]', :immediately
+	#notifies :run, "template['#{node['chub-hornetq']['config_dir']}/hornetq-configuration.xml']"
+end
+
+template "#{node['chub-hornetq']['config_dir']}/hornetq-configuration.xml" do
+	source "hornetq-configuration.xml.erb"
+	action :create_if_missing
+	variables({
+		:ip => node['fqdn']
+		})
+	mode 0644
+	notifies :restart, "service[hornetq]", :delayed
 end
 
 
