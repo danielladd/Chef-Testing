@@ -41,7 +41,7 @@ end
 execute "deployDestinations" do
   command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']} -d #{prop_file}"
   cwd node['chub-hornetq']['staging_dir']
-  action :run
+  action :nothing
   notifies :restart, "service[hornetq]", :delayed
 end
 
