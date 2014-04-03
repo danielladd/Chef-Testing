@@ -46,10 +46,6 @@ group "chub-csdashboard" do
     members ["chub-csdashboard", "chadmin"]
 end
 
-nclude_recipe "tomcat"
-node.set['tomcat']['base_version'] = 7
-node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
-
 directory node["chub-csdashboard"]['app']["config_dir"] do
   action :create
   owner "chub-csdashboard"
@@ -87,14 +83,6 @@ directory node["chub-csdashboard"]['app']["log_dir"] do
   owner "chub-csdashboard"
   group "chub-csdashboard"
   mode 0777
-end
-
-template "#{node['chub-csdashboard']['app']['app_dir']}/#{node['chub-csdashboard']['app']['config_file_name']}" do
-	source "csdashboard-config.groovy.erb"
-	mode 0777
-	owner "chub-csdashboard"
-	group "chub-csdashboard"
-	notifies :restart, "service[tomcat]", :delayed
 end
 
 execute 'clear_tomcat_app_directory' do
