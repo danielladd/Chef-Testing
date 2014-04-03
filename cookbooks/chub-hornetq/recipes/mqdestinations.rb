@@ -17,10 +17,15 @@
 # limitations under the License.
 #
 
+execute "delete mq property file" do
+  command "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
+  action :nothing
+end
+
 prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
 remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']}" do
   source node['chub-hornetq']['destinations_deploy_jar_url']
-  notifies :create, "template[#{prop_file}]"	
+  notifies :run, "execute[delete mq property file]"
 end
 
 template prop_file do
@@ -28,7 +33,7 @@ template prop_file do
   owner "root"
   group "root"
   mode 0644
-  action :create
+  action :create_if_missing
   #TODO: This does not properly notify or re-execute deploy after property file is updated
   notifies :run, "execute[deployDestinations]"
 end
@@ -36,7 +41,7 @@ end
 execute "deployDestinations" do
   command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']} -d #{prop_file}"
   cwd node['chub-hornetq']['staging_dir']
-  action :run
+  action :nothing
   notifies :restart, "service[hornetq]", :delayed
 end
 

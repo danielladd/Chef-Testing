@@ -1,24 +1,11 @@
-chub-hornetq CHANGELOG
-======================
+chub_albers CHANGELOG
+=====================
 
-0.1.3
------
-
-* Fixing issue preventing idempotency with hub.rb deploy block
-
-0.1.2
------
-
-* Fixing issue with sym linked log directory
-
-0.1.1
------
-
-* Updates to add hornetq hub deployments
+This file is used to list changes made in each version of the chub_albers cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of chub-hornetq
+- [your_name] - Initial release of chub_albers
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

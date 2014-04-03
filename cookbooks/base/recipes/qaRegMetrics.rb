@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: base
-# Recipe:: regression_maid
+# Recipe:: qaRegMetrics
 #
 # Copyright 2013, CommerceHub
 #
@@ -15,42 +15,40 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
-# This recipe sends a message to Pagerduty each Monday at 9am in order to
-# notify the recipient that they are on-call.
 
 include_recipe "cron"
 
-user "maid" do
-    comment "regression maid user"
+user "qaregmetrics" do
+    comment "regression metrics user"
     gid "adm"
     system true
 end
 
-directory "/opt/regression_maid" do
-	mode 554
-	owner "maid"
-	group "adm"
-	action :create
-	recursive true
+directory "/opt/daily_reg_stats" do
+        mode 554
+        owner "qaregmetrics"
+        group "adm"
+        action :create
+        recursive true
 end
 
-directory "/var/log/regression_maid" do
-	mode 554
-	owner "maid"
-	group "adm"
-	action :create
+directory "/var/log/qaRegMetrics" do
+        mode 554
+        owner "qaregmetrics"
+        group "adm"
+        action :create
 end
 
-mercurial "/opt/qatools" do
-  repository "http://hg03:5000/QA/qatools"
-  reference "tip"
+git "qaRegMetrics" do
+  repository 'git@mpgit03.nexus.commercehub.com:pipeline/qaregmetrics.git'
+  reference 'master'
   action :sync
+  destination '/opt/daily_reg_stats'
 end
 
-cron_d "regression_maid_run" do
-	minute 00
-	hour '06-19'
-	weekday '1-5'
-	command "ruby /opt/qatools/ruby/regression_maid/HungJobs.rb -e 'Webdriver' > /var/log/regression_maid/lastRun.log"
+cron_d "qaRegMetrics_run" do
+        minute '02'
+        hour '06'
+        command "cd /opt/daily_reg_stats/ChartFactory/ ; ./update.sh > /var/log/qaRegMetrics/lastRun.log"
 end
+
