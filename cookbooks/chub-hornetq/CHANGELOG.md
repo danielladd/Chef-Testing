@@ -1,6 +1,11 @@
 chub-hornetq CHANGELOG
 ======================
 
+0.1.3
+-----
+
+* Fixing issue preventing idempotency with hub.rb deploy block
+
 0.1.2
 -----
 

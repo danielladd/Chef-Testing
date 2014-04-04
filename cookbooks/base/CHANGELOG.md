@@ -1,6 +1,10 @@
 base CHANGELOG
 ==============
 
+0.1.11
+-----
+- Larry - Added mercurial cookbook as requirement in metadata to support changes to regression_maid.rb recipe 
+
 0.1.8
 -----
 - dcross - Added windows platform type to base::default to route to windows-specific setup
