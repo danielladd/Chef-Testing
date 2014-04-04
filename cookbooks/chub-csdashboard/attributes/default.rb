@@ -2,7 +2,7 @@ default['java']['install_flavor']							= 'oracle'
 default['java']['oracle']['accept_oracle_download_terms']	= true
 default['java']['jdk_version']								= 7
 default['tomcat']['base_version']							= 7
-
+default['tomcat']['port'] = "9200"
 default['chub-csdashboard']['app']['config_dir']	= '/etc/csdashboard'
 default['chub-csdashboard']['app']['app_dir'] = '/opt/csdashboard'
 default['chub-csdashboard']['app']['log_dir'] = '/var/log/csdashboard'

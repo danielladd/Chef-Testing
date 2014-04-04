@@ -1,3 +1,7 @@
+# 0.3.0
+
+* Change configuration of LDAP pools
+
 # 0.2.2
 
 * Enable remote JMX
