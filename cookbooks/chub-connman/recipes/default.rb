@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-csdashboard
+# Cookbook Name:: chub-connman
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -24,14 +24,14 @@ node.set['java']['jdk_version'] = 7
 include_recipe "java"
 include_recipe "tomcat"
 
-group "chub-csdashboard" do
+group "chub-connman" do
     action :create
     system true
 end
 
-user "chub-csdashboard" do
-    comment "Application user for chub-csdashboard"
-    gid "chub-csdashboard"
+user "chub-connman" do
+    comment "Application user for chub-connman"
+    gid "chub-connman"
     system true
 end
 
@@ -40,60 +40,60 @@ user "chadmin" do
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
 end
 
-group "chub-csdashboard" do
+group "chub-connman" do
     action :modify
     append true
-    members ["chub-csdashboard", "chadmin"]
+    members ["chub-connman", "chadmin"]
 end
 
-directory node["chub-csdashboard"]['app']["config_dir"] do
+directory node["chub-connman"]['app']["config_dir"] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}" do
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+directory "#{node['tomcat']['webapp_dir']}/#{node['chub-connman']['app']['app_name']}" do
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
 directory "#{node['tomcat']['webapp_dir']}" do
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
 directory "#{node['tomcat']['base']}" do
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
-directory node["chub-csdashboard"]['app']["app_dir"] do
+directory node["chub-connman"]['app']["app_dir"] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
-directory node["chub-csdashboard"]['app']["log_dir"] do
+directory node["chub-connman"]['app']["log_dir"] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner "chub-connman"
+  group "chub-connman"
   mode 0777
 end
 
 execute 'clear_tomcat_app_directory' do
-	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}"
+	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-connman']['app']['app_name']}"
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-csdashboard']['app']['bamboo_server_name']}:#{node['chub-csdashboard']['app']['bamboo_server_port']}/browse/#{node['chub-csdashboard']['app']['bamboo_server_build_project']}-#{node['chub-csdashboard']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-csdashboard']['app']['bamboo_server_artifact']}/#{node['chub-csdashboard']['app']['bamboo_server_artifact_file_name']}"
-	owner "chub-csdashboard"
-	group "chub-csdashboard"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-connman']['app']['bamboo_server_artifact_file_name']}" do
+	source "http://#{node['chub-connman']['app']['bamboo_server_name']}:#{node['chub-connman']['app']['bamboo_server_port']}/browse/#{node['chub-connman']['app']['bamboo_server_build_project']}-#{node['chub-connman']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-connman']['app']['bamboo_server_artifact']}/#{node['chub-connman']['app']['bamboo_server_artifact_file_name']}"
+	owner "chub-connman"
+	group "chub-connman"
 	action :create_if_missing
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
