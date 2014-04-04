@@ -1,7 +1,7 @@
 setuid klerk
 setgid klerk
 chdir /var/opt/klerk
-exec java -server -d64 -XX:PermSize=<%= @java_perm_gen_size %> -XX:MaxPermSize=<%= @java_perm_gen_size %> -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /opt/klerk/klerk-app.jar server /etc/opt/klerk/klerk.yml
+exec java -server -d64 -Xms<%= @java_heap_size %> -Xmx<%= @java_heap_size %> -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /opt/klerk/klerk-app.jar server /etc/opt/klerk/klerk.yml
 respawn
 start on runlevel [2345]
 stop on runlevel [016]
