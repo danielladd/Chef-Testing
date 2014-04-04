@@ -1,8 +1,9 @@
-name "ptboxes"
-description "Environment for PT Boxes"
+name "esdev1"
+description "ElasticSearch Dev 1 Cluster"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
+  "ark" => "= 0.7.2",
   "aws" => "= 1.0.0",
   "base" => "= 0.1.6",
   "bluepill" => "= 2.3.1",
@@ -11,23 +12,24 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.14",
-  "chub-census" => "= 0.1.2",
+  "chub-castle" => "= 0.1.16",
+  "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
-  "chub-klerk" => "= 0.10.3",
-  "chub-openldap" => "= 1.12.12",
-  "chub-plaza" => "= 0.1.3",
+  "chub-klerk" => "= 0.10.4",
+  "chub-openldap" => "= 1.12.14",
+  "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
-  "chub-vault" => "= 0.1.5",
-  "chub_windows" => "= 0.1.0",
+  "chub-vault" => "= 0.2.0",
+  "chub_sensu_sso" => "= 0.1.11",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
+  "elasticsearch" => "= 0.3.8",
   "erlang" => "= 1.5.0",
   "git" => "= 2.9.0",
   "graphite" => "= 0.1.4",
   "hostsfile" => "= 2.4.4",
   "iptables" => "= 0.12.0",
-  "java" => "= 1.21.2",
+  "java" => "= 1.22.0",
   "logrotate" => "= 1.3.0",
   "metachef" => "= 3.0.4",
   "mongodb" => "= 0.13.4",
@@ -36,6 +38,7 @@ cookbook_versions({
   "ntp" => "= 1.5.4",
   "openssh" => "= 1.3.2",
   "openssl" => "= 1.1.0",
+  "partial_search" => "= 1.0.8",
   "python" => "= 1.3.6",
   "rabbitmq" => "= 2.4.0",
   "redisio" => "= 1.7.1",
@@ -53,9 +56,20 @@ cookbook_versions({
 })
 default_attributes(
   "java" => {
-    "windows" => {
-      "url" => "http://artifactory01/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-windows-x64.exe",
-      "home" => 'C:\Program Files\Java\jdk1.7.0_51'
+    "install_flavor" => "oracle",
+    "jdk_version" => "8",
+    "jdk" => {
+      "8" => {
+        "x86_64" => {
+          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
+        }
+      }
+    }
+  },
+  "elasticsearch" => {
+    "version" => "1.1.0",
+    "cluster" => {
+      "name" => "esdev1"
     }
   }
 )
