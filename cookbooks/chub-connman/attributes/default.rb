@@ -2,7 +2,7 @@ default['java']['install_flavor']							= 'oracle'
 default['java']['oracle']['accept_oracle_download_terms']	= true
 default['java']['jdk_version']								= 7
 default['tomcat']['base_version']							= 7
-
+default['tomcat']['port'] = "9400"
 default['chub-connman']['app']['config_dir']	= '/etc/connman'
 default['chub-connman']['app']['app_dir'] = '/opt/connman'
 default['chub-connman']['app']['log_dir'] = '/var/log/connman'

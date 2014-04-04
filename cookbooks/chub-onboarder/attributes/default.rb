@@ -2,7 +2,7 @@ default['java']['install_flavor']							= 'oracle'
 default['java']['oracle']['accept_oracle_download_terms']	= true
 default['java']['jdk_version']								= 7
 default['tomcat']['base_version']							= 7
-
+default['tomcat']['port'] = "9300"
 default['chub-onboarder']['app']['config_dir']	= '/etc/onboarder'
 default['chub-onboarder']['app']['app_dir'] = '/opt/onboarder'
 default['chub-onboarder']['app']['log_dir'] = '/var/log/onboarder'
