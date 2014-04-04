@@ -31,7 +31,7 @@ Vagrant.configure("2") do |config|
 					'keystore_password' => 'throwawaypassword',
 					'truststore_password' => 'throwawaypassword'
 				},
-				'chub-csdashboard' => {
+				'chub-connman' => {
 					'app' =>  { 'bamboo_server_build_key'  => 'CNM',
 								'bamboo_server_artifact'  => 'Connection-Manager-App',
 								'bamboo_server_artifact_file_name'  => 'connman.war',
