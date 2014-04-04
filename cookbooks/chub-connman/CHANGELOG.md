@@ -1,24 +1,11 @@
-chub-hornetq CHANGELOG
-======================
+chub-missioncontrol CHANGELOG
+=============================
 
-0.1.3
------
-
-* Fixing issue preventing idempotency with hub.rb deploy block
-
-0.1.2
------
-
-* Fixing issue with sym linked log directory
-
-0.1.1
------
-
-* Updates to add hornetq hub deployments
+This file is used to list changes made in each version of the chub-missioncontrol cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of chub-hornetq
+- [ Erik Stegmann ] - Initial release of chub-csdashboard; boilerplate only.
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

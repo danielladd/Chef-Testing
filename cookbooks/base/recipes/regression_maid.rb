@@ -42,16 +42,15 @@ directory "/var/log/regression_maid" do
 	action :create
 end
 
-git "regression_maid" do
-  repository 'http://mpgit03.nexus.commercehub.com/lzarou/regression_maid.git'
-  reference 'master'
+mercurial "/opt/qatools" do
+  repository "http://hg03:5000/QA/qatools"
+  reference "tip"
   action :sync
-  destination '/opt/regression_maid'
 end
 
 cron_d "regression_maid_run" do
 	minute 00
 	hour '06-19'
 	weekday '1-5'
-	command "ruby /opt/regression_maid/HungJobs.rb -e 'Webdriver' > /var/log/regression_maid/lastRun.log"
+	command "ruby /opt/qatools/ruby/regression_maid/HungJobs.rb -e 'Webdriver' > /var/log/regression_maid/lastRun.log"
 end

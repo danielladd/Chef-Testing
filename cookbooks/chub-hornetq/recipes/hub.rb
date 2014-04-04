@@ -53,10 +53,17 @@ directory node['chub-hornetq']['app_dir'] do
   mode 0550
 end
 
+execute "delete property file" do
+  command "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
+  action :nothing
+end
+
 prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
+
 remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']}" do
   source node['chub-hornetq']['deploy_jar_url']
-  notifies :create, "template[#{prop_file}]"	
+  #notifies :create, "template[#{prop_file}]"	
+  notifies :run, "execute[delete property file]"
 end
 
 template prop_file do
@@ -64,7 +71,7 @@ template prop_file do
   owner "root"
   group "root"
   mode 0644
-  action :create
+  action :create_if_missing
   #TODO: This does not properly notify or re-execute deploy after property file is updated
   notifies :run, "execute[deploy]"
 end
@@ -73,7 +80,7 @@ execute "deploy" do
   command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']} -d #{prop_file}"
   creates "#{node['chub-hornetq']['app_dir']}/config/jndi.properties"
   cwd node['chub-hornetq']['staging_dir']
-  action :run
+  action :nothing
   notifies :restart, "service[hornetq]", :delayed
 end
 
