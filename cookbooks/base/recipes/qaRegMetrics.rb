@@ -17,6 +17,7 @@
 # limitations under the License.
 
 include_recipe "cron"
+include_recipe "git"
 
 user "qaregmetrics" do
     comment "regression metrics user"
@@ -40,7 +41,7 @@ directory "/var/log/qaRegMetrics" do
 end
 
 git "qaRegMetrics" do
-  repository 'git@mpgit03.nexus.commercehub.com:pipeline/qaregmetrics.git'
+  repository 'http://mpgit03.nexus.commercehub.com/pipeline/qaregmetrics.git'
   reference 'master'
   action :sync
   destination '/opt/daily_reg_stats'
