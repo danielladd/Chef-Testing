@@ -4,7 +4,7 @@ cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
   "aws" => "= 1.0.0",
-  "base" => "= 0.1.6",
+  "base" => "= 0.1.12",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
