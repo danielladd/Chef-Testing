@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-execute "apt-get update"
+include_recipe "apt"
 
 package_list = %w{
 	build-essential

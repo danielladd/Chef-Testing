@@ -21,8 +21,6 @@ include_recipe "sensu::dashboard_service"
 # TODO: evaluate ChefNodesStatusChecker
 # https://github.com/sensu/sensu-community-plugins/blob/master/plugins/chef/check-chef-nodes.rb
 
-# TODO: review intervals
-
 %w{sensu-plugin mail redphone}.each do |gem_name|
     gem_package gem_name do
         action :install
@@ -35,7 +33,7 @@ handlerList = Array.new
 ## Email Handler
 if node[:chub_sensu_sso].attribute?(:email) and node[:chub_sensu_sso][:email].attribute?(:recipient) 
     remote_file "/etc/sensu/handlers/mailer.rb" do
-        source "https://raw.github.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb"
+        source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/handlers/notification/mailer.rb"
         mode 0755
     end
 
@@ -56,7 +54,7 @@ end
 ## PagerDuty Handler
 if node[:chub_sensu_sso].attribute?(:pagerduty) and node[:chub_sensu_sso][:pagerduty].attribute?(:api_key)
     remote_file "/etc/sensu/handlers/pagerduty.rb" do
-        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
+        source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/handlers/notification/pagerduty.rb"
         mode 0755
     end
 

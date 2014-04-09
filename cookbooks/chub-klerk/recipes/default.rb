@@ -98,7 +98,6 @@ end
 template "/etc/init/klerk.conf" do
     source "klerk.conf.erb"
     variables({
-        "java_perm_gen_size" => node["chub-klerk"]["java_perm_gen_size"],
         "java_heap_size" => node["chub-klerk"]["java_heap_size"]
     })
     owner "root"
