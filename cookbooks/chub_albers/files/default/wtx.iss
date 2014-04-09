@@ -1,0 +1,45 @@
+[InstallShield Silent]
+Version=v7.00
+File=Response File
+[File Transfer]
+OverwrittenReadOnly=NoToAll
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-DlgOrder]
+Dlg0={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdWelcome-0
+Count=9
+Dlg1={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdLicense-0
+Dlg2={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdRegisterUser-0
+Dlg3={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdAskDestPath-0
+Dlg4={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SprintfBox-0
+Dlg5={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdSelectFolder-0
+Dlg6={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SetupType-0
+Dlg7={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdStartCopy-0
+Dlg8={772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdFinish-0
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdWelcome-0]
+Result=1
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdLicense-0]
+Result=1
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdRegisterUser-0]
+szName=CommerceHub
+szCompany=Commerce Technologies, Inc.
+Result=1
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdAskDestPath-0]
+szDir=C:\IBM\WebSphere Transformation Extender 8.4
+Result=1
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SprintfBox-0]
+Result=6
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdSelectFolder-0]
+szFolder=IBM WebSphere Transformation Extender 8.4 64 bit variation
+Result=1
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SetupType-0]
+Result=301
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdStartCopy-0]
+Result=1
+[Application]
+Name=IBM WebSphere Transformation Extender
+Version=8.4.0
+Company=IBM Corporation
+Lang=0409
+[{772480D8-6C67-4975-A6DB-9F67514A5BF3}-SdFinish-0]
+Result=1
+bOpt1=0
+bOpt2=0

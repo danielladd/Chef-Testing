@@ -19,6 +19,7 @@ cookbook_versions({
   "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.1.5",
+  "chub_windows" => "= 0.1.0",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -53,7 +54,8 @@ cookbook_versions({
 default_attributes(
   "java" => {
     "windows" => {
-      "url" => "http://artifactory01/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-windows-x64.exe"
+      "url" => "http://artifactory01/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-windows-x64.exe",
+      "home" => 'C:\Program Files\Java\jdk1.7.0_51'
     }
   }
 )
