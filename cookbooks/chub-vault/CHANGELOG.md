@@ -1,3 +1,7 @@
+# 0.3.2
+
+* Fix a typo in the template
+
 # 0.3.1
 
 * Update configuration for healthcheck (cn -> username)
