@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub-vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.0'
+version          '0.3.1'
 
 supports "ubuntu"
 depends "apt"
@@ -61,7 +61,7 @@ attribute "chub-vault/ldap/write/password",
     :description => "Password to use for LDAP write access",
     :required => "required"
 
-attribute "chub-vault/ldap/healthcheck/cn", :required => "optional"
+attribute "chub-vault/ldap/healthcheck/username", :required => "optional"
 attribute "chub-vault/ldap/healthcheck/valid_password", :required => "optional"
 attribute "chub-vault/ldap/healthcheck/invalid_password", :required => "optional"
 attribute "chub-vault/ldap/healthcheck/guid", :required => "optional"

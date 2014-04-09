@@ -1,3 +1,8 @@
+# 0.3.1
+
+* Update configuration for healthcheck (cn -> username)
+* Update default healtcheck UID to be a valid UUID
+
 # 0.3.0
 
 * Change configuration of LDAP pools
