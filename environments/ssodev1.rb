@@ -91,7 +91,7 @@ default_attributes(
   },
   :chub_vault => {
     :app_url => "file:///var/vault/staged-vault.jar",
-    :ldap: => {
+    :ldap => {
       :read => {
         :host => "ssodev1-ldap-read.nexus.commercehub.com",
         :password => "search"
