@@ -11,13 +11,13 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
   "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.3.2",
   "chub_castle" => "= 0.1.16",
+  "chub_census" => "= 0.1.3",
   "chub_openldap" => "= 1.12.15",
   "chub_sensu_sso" => "= 0.1.12",
   "cron" => "= 1.2.6",
@@ -111,12 +111,12 @@ default_attributes(
       "password" => "usrdev"
     }
   },
-  "chub-census" => {
-    "app_url" => "file:///var/census/staged-census.jar",
-    "database" => {
-      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
-      "user" => "devusr01",
-      "password" => "usrdev"
+  :chub_census => {
+    :app_url => "file:///var/census/staged-census.jar",
+    :database => {
+      :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
+      :user => "devusr01",
+      :password => "usrdev"
     }
   },
   :chub_castle => {

@@ -1,4 +1,4 @@
-# chub-census-cookbook cookbook
+# chub_census cookbook
 
 # Requirements
 

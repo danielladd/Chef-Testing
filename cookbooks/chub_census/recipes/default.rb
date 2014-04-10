@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-census
+# Cookbook Name:: chub_census
 # Recipe:: default
 #
 # Copyright (C) 2014 CommerceHub
@@ -58,8 +58,6 @@ end
 
 template "/etc/census/census.yaml" do
     source "census.yaml.erb"
-    variables({
-    })
     owner "root"
     group "census"
     mode 0640
@@ -68,9 +66,6 @@ end
 
 template "/etc/init/census.conf" do
     source "census.conf.erb"
-    variables({
-        "java_heap_size" => node["chub-census"]["java_heap_size"]
-    })
     owner "root"
     group "root"
     mode 0644
@@ -78,7 +73,7 @@ template "/etc/init/census.conf" do
 end
 
 remote_file "/opt/census/census.jar" do
-    source node["chub-census"]["app_url"]
+    source node[:chub_census][:app_url]
     owner "census"
     group "census"
     mode 0440
