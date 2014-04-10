@@ -3,9 +3,7 @@ openldap Cookbook
 Configures a server to be an OpenLDAP master, OpenLDAP replication slave, or OpenLDAP client.
 
 NOTE: this is a commercehub-modified version of the cookbook.
-For the source, see http://mpgit03.nexus.commercehub.com/single-sign-on/openldap-cookbook (specifically, the commercehub-hacks branch)
-All versions published from here should have a -chub# suffix.  See the changelog for versions published.
-
+For the source, see https://git.nexus.commercehub.com/chef/chub_openldap/commits/commercehub-hacks.
 
 Requirements
 ------------

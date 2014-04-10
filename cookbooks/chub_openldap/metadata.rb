@@ -1,4 +1,4 @@
-name              "chub-openldap"
+name              "chub_openldap"
 conflicts         "openldap"
 maintainer        "Opscode, Inc."
 maintainer_email  "cookbooks@opscode.com"
@@ -12,6 +12,8 @@ recipe            "openldap::client", "Install openldap client packages"
 recipe            "openldap::server", "Set up openldap to be a slapd server"
 recipe            "openldap::slave", "uses search to set replication slave attributes"
 recipe            "openldap::master", "use on nodes that should be a slapd master"
+
+conflicts "openldap"
 
 %w{ ubuntu debian redhat centos amazon scientific}.each do |os|
   supports os

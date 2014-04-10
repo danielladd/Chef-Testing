@@ -14,11 +14,11 @@ cookbook_versions({
   "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
-  "chub-openldap" => "= 1.12.15",
   "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.3.2",
   "chub_castle" => "= 0.1.16",
+  "chub_openldap" => "= 1.12.15",
   "chub_sensu_sso" => "= 0.1.12",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
@@ -86,12 +86,12 @@ default_attributes(
       :plaza => "https://ssodev1-plaza.nexus.commercehub.com/buildInfo"
     }
   },
-  "openldap" => {
-    "rootpw" => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
-    "tls_enabled" => true,
-    "slapd_replpw" => "replpw",
-    "manage_ssl" => true,
-    "basedn" => "dc=vault,dc=commercehub,dc=com"
+  :openldap => {
+    :rootpw => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
+    :tls_enabled => true,
+    :slapd_replpw => "replpw",
+    :manage_ssl => true,
+    :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   "chub-vault" => {
     "app_url" => "file:///var/vault/staged-vault.jar",
