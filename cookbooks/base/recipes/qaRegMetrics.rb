@@ -17,6 +17,7 @@
 # limitations under the License.
 
 include_recipe "cron"
+include_recipe "mercurial"
 
 user "qaregmetrics" do
     comment "regression metrics user"
@@ -39,12 +40,18 @@ directory "/var/log/qaRegMetrics" do
         action :create
 end
 
-git "qaRegMetrics" do
-  repository 'git@mpgit03.nexus.commercehub.com:pipeline/qaregmetrics.git'
-  reference 'master'
+mercurial "/opt/qatools" do
+  repository "http://hg03:5000/QA/qatools"
+  reference "tip"
   action :sync
-  destination '/opt/daily_reg_stats'
 end
+
+#git "qaRegMetrics" do
+#  repository 'http://mpgit03.nexus.commercehub.com/pipeline/qaregmetrics.git'
+#  reference 'master'
+#  action :sync
+#  destination '/opt/daily_reg_stats'
+#end
 
 cron_d "qaRegMetrics_run" do
         minute '02'

@@ -23,38 +23,33 @@ end
 end
 
 remote_file "/etc/sensu/plugins/check-http.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/http/check-http.rb"
+    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/http/check-http.rb"
     mode 0755
 end
 
 remote_file "/etc/sensu/plugins/check-disk.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
+    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-disk.rb"
     mode 0755
 end
 
 remote_file "/etc/sensu/plugins/check-syncrepl.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/openldap/check-syncrepl.rb"
+    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/openldap/check-syncrepl.rb"
     mode 0755
 end
 
 remote_file "/etc/sensu/plugins/check-cpu.rb" do
-   source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-cpu.rb"
+   source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-cpu.rb"
    mode 0755
 end
 
 remote_file "/etc/sensu/plugins/check-ram.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-ram.rb"
+    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-ram.rb"
     mode 0755
 end
 
 remote_file "/etc/sensu/plugins/check-procs.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb"
+    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/processes/check-procs.rb"
     mode 0755
-end
-
-# Clean up a mistaken location
-file "/etc/sensu/handlers/check-ram.rb" do
-    action :delete
 end
 
 include_recipe "sensu::client_service"

@@ -1,3 +1,7 @@
+# 0.1.12
+
+* Use community plugins from the mirror on git.nexus.commercehub.com
+
 # 0.1.11
 
 * Tweak the checks for system resources (disk, cpu, memory)

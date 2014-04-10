@@ -1,6 +1,0 @@
-default["chub-castle"]["app_url"] = "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war"
-default["chub-castle"]["java_heap_size"] = "512M"
-default["chub-castle"]["keystore_file"] = "keystore.jks"
-default["chub-castle"]["truststore_file"] = "truststore.jks"
-default["chub-castle"]["keystore_password"] = "changeit"
-default["chub-castle"]["truststore_password"] = "changeit"
