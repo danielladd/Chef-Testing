@@ -13,12 +13,12 @@ cookbook_versions({
   "chub-buyspace" => "= 0.1.2",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
-  "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.3.2",
   "chub_castle" => "= 0.1.16",
   "chub_census" => "= 0.1.3",
   "chub_openldap" => "= 1.12.15",
+  "chub_plaza" => "= 0.1.4",
   "chub_sensu_sso" => "= 0.1.12",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
@@ -131,11 +131,11 @@ default_attributes(
       :ticket_granting_ticket_timeout => "7200"
     }
   },
-  "chub-plaza" => {
-    "app_url" => "file:///var/plaza/staged-plaza.jar",
-    "cas_server_url" => "https://ssoqa1-castle.nexus.commercehub.com",
-    "cas_service_url" => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
-    "cas_failure_url" => "https://ssoqa1-plaza.nexus.commercehub.com/",
-    "census_url" => "https://ssoqa1-census.nexus.commercehub.com:8443"
+  :chub_plaza => {
+    :app_url => "file:///var/plaza/staged-plaza.jar",
+    :cas_server_url => "https://ssoqa1-castle.nexus.commercehub.com",
+    :cas_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
+    :cas_failure_url => "https://ssoqa1-plaza.nexus.commercehub.com/",
+    :census_url => "https://ssoqa1-census.nexus.commercehub.com:8443"
   }
 )

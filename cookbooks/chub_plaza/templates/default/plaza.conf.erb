@@ -1,0 +1,7 @@
+setuid plaza
+setgid plaza
+chdir /var/plaza
+exec java -server -d64 -Xms<%= node[:chub_plaza][:java_heap_size] %> -Xmx<%= node[:chub_plaza][:java_heap_size] %> -Djava.net.preferIPv4Stack=true -jar /opt/plaza/plaza.jar /etc/plaza/plaza.yaml
+respawn
+start on runlevel [2345]
+stop on runlevel [016]

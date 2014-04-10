@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-plaza
+# Cookbook Name:: chub_plaza
 # Recipe:: default
 #
 # Copyright (C) 2014 CommerceHub
@@ -81,7 +81,7 @@ template "/etc/init/plaza.conf" do
 end
 
 remote_file "/opt/plaza/plaza.jar" do
-    source node["chub-plaza"]["app_url"]
+    source node[:chub_plaza][:app_url]
     owner "plaza"
     group "plaza"
     mode 0440

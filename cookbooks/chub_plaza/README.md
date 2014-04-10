@@ -1,4 +1,4 @@
-# chub-plaza cookbook
+# chub_plaza cookbook
 
 # Requirements
 
