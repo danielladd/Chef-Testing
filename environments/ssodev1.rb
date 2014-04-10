@@ -11,7 +11,6 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.16",
   "chub-census" => "= 0.1.3",
   "chub-hornetq" => "= 0.1.0",
   "chub-klerk" => "= 0.10.4",
@@ -19,6 +18,7 @@ cookbook_versions({
   "chub-plaza" => "= 0.1.4",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.3.2",
+  "chub_castle" => "= 0.1.16",
   "chub_sensu_sso" => "= 0.1.12",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
@@ -53,37 +53,37 @@ cookbook_versions({
   "yum-erlang_solutions" => "= 0.2.0"
 })
 default_attributes(
-  "java" => {
-    "oracle" => {
-      "accept_oracle_download_terms" => true
+  :java => {
+    :oracle => {
+      :accept_oracle_download_terms => true
     },
-    "install_flavor" => "oracle",
-    "jdk_version" => "8",
-    "jdk" => {
+    :install_flavor => "oracle",
+    :jdk_version => "8",
+    :jdk => {
       "8" => {
-        "x86_64" => {
-          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
+        :x86_64 => {
+          :url => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
         }
       }
     }
   },
-  "sensu" => {
-    "rabbitmq" => {
-      "host" => "ssodev1sensu.nexus.commercehub.com"
+  :sensu => {
+    :rabbitmq => {
+      :host => "ssodev1sensu.nexus.commercehub.com"
     }
   },
-  "graphite" => {
-    "host" => "stats02.nexus.commercehub.com"
+  :graphite => {
+    :host => "stats02.nexus.commercehub.com"
   },
-  "chub_sensu_sso" => {
-    "pagerduty" => {
-      "api_key" => "3f602c6a12c6479abdfca394c9ce1ddc"
+  :chub_sensu_sso => {
+    :pagerduty => {
+      :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
-    "loadbalancer_urls" => {
-      "vault" => "https://ssodev1-vault.nexus.commercehub.com:8443/info",
-      "census" => "https://ssodev1-census.nexus.commercehub.com:8443/info",
-      "castle" => "https://ssodev1-castle.nexus.commercehub.com/login",
-      "plaza" => "https://ssodev1-plaza.nexus.commercehub.com/buildInfo"
+    :loadbalancer_urls => {
+      :vault => "https://ssodev1-vault.nexus.commercehub.com:8443/info",
+      :census => "https://ssodev1-census.nexus.commercehub.com:8443/info",
+      :castle => "https://ssodev1-castle.nexus.commercehub.com/login",
+      :plaza => "https://ssodev1-plaza.nexus.commercehub.com/buildInfo"
     }
   },
   "openldap" => {
@@ -119,16 +119,16 @@ default_attributes(
       "password" => "usrdev"
     }
   },
-  "chub-castle" => {
-    "app_url" => "file:///var/castle/staged-castle.war",
-    "vault.url" => "https://ssodev1-vault.nexus.commercehub.com:8443",
-    "truststore_file" => "dev-truststore.jks",
-    "keystore_file" => "dev-keystore.jks",
-    "hazelcast" => {
-        "group"=> "ssodev-castle",
-        "password"=> "ssodev-pass",
-        "stTimeout" => "300",
-        "tgtTimeout" => "7200"
+  :chub_castle => {
+    :app_url => "file:///var/castle/staged-castle.war",
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
+    :truststore_file => "dev-truststore.jks",
+    :keystore_file => "dev-keystore.jks",
+    :hazelcast => {
+      :group => "ssodev-castle",
+      :password => "ssodev-pass",
+      :service_ticket_timeout => "300",
+      :ticket_granting_ticket_timeout => "7200"
     }
   },
   "chub-plaza" => {

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-castle
+# Cookbook Name:: chub_castle
 # Recipe:: default
 #
 # Copyright (C) 2013 CommerceHub
@@ -46,14 +46,14 @@ directory "/etc/castle" do
 end
 
 cookbook_file "/etc/castle/keystore.jks" do
-    source node["chub-castle"]["keystore_file"]
+    source node[:chub_castle][:keystore_file]
     owner "root"
     group "castle"
     mode 0644
 end
 
 cookbook_file "/etc/castle/truststore.jks" do
-    source node["chub-castle"]["truststore_file"]
+    source node[:chub_castle][:truststore_file]
     owner "root"
     group "castle"
     mode 0644
@@ -91,7 +91,7 @@ template "/etc/castle/castle.properties" do
 end
 
 remote_file "/opt/castle/castle.war" do
-    source node["chub-castle"]["app_url"]
+    source node[:chub_castle][:app_url]
     owner "castle"
     group "castle"
     mode 0440

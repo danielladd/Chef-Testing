@@ -1,4 +1,4 @@
-# chub-castle cookbook
+# chub_castle cookbook
 
 # Requirements
 
