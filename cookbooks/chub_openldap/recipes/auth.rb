@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe "chub-openldap::client"
+include_recipe "chub_openldap::client"
 include_recipe "openssh"
 include_recipe "nscd"
 
