@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-browserstack-tunnel
+# Cookbook Name:: chub_browserstack_tunnel
 # Recipe:: default
 #
 # Copyright (C) 2014 CommerceHub
@@ -52,7 +52,7 @@ end
 
 remote_file "BrowserStackLocal" do
     source "http://www.browserstack.com/BrowserStackTunnel.jar"
-    path "/opt/browserstack-tunnel/BrowserStackTunnel.jar"    
+    path "/opt/browserstack-tunnel/BrowserStackTunnel.jar"
     owner "root"
     group "root"
     mode 0755

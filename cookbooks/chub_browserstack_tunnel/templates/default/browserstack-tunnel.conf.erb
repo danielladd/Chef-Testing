@@ -1,0 +1,7 @@
+setuid browserstack
+setgid browserstack
+chdir /var/browserstack-tunnel
+exec java -jar /opt/browserstack-tunnel/BrowserStackTunnel.jar <%= node[:chub_browserstack_tunnel][:api_key] %> <% node[:chub_browserstack_tunnel][:services].each do |service| %><%= service.host %>,<%= service.port %>,<%= service.ssl ? 1 : 0 %>,<% end %> -skipCheck
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
