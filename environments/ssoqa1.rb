@@ -10,16 +10,12 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
-  "chub-buyspace" => "= 0.1.2",
-  "chub-hornetq" => "= 0.1.0",
-  "chub-klerk" => "= 0.10.4",
-  "chub-sensu" => "= 0.1.7",
-  "chub-vault" => "= 0.3.2",
   "chub_castle" => "= 0.1.16",
   "chub_census" => "= 0.1.3",
   "chub_openldap" => "= 1.12.15",
   "chub_plaza" => "= 0.1.4",
   "chub_sensu_sso" => "= 0.1.12",
+  "chub_vault" => "= 0.3.2",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -93,22 +89,22 @@ default_attributes(
     :manage_ssl => true,
     :basedn => "dc=vault,dc=commercehub,dc=com"
   },
-  "chub-vault" => {
-    "app_url" => "file:///var/vault/staged-vault.jar",
-    "ldap" => {
-      "read" => {
-        "host" => "ssoqa1-ldap-read.nexus.commercehub.com",
-        "password" => "search"
+  :chub_vault => {
+    :app_url => "file:///var/vault/staged-vault.jar",
+    :ldap => {
+      :read => {
+        :host => "ssoqa1-ldap-read.nexus.commercehub.com",
+        :password => "search"
       },
-      "write" => {
-        "host" => "ssoqa1-ldap-write.nexus.commercehub.com",
-        "password" => "rootpw"
+      :write => {
+        :host => "ssoqa1-ldap-write.nexus.commercehub.com",
+        :password => "rootpw"
       }
     },
-    "database" => {
-      "url" => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-vault",
-      "user" => "devusr01",
-      "password" => "usrdev"
+    :database => {
+      :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-vault",
+      :user => "devusr01",
+      :password => "usrdev"
     }
   },
   :chub_census => {

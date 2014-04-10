@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-vault
+# Cookbook Name:: chub_vault
 # Recipe:: default
 #
 # Copyright (C) 2014 CommerceHub
@@ -14,9 +14,9 @@ include_recipe "java"
 hostsfile_entry '127.0.1.1' do
   action    :remove
 end
-hostsfile_entry node['ipaddress'] do
-  hostname  node['fqdn']
-  aliases   [node['hostname']]
+hostsfile_entry node[:ipaddress] do
+  hostname  node[:fqdn]
+  aliases   [node[:hostname]]
   action    :create
 end
 
@@ -83,7 +83,7 @@ template "/etc/init/vault.conf" do
 end
 
 remote_file "/opt/vault/vault.jar" do
-    source node["chub-vault"]["app_url"]
+    source node[:chub_vault][:app_url]
     owner "vault"
     group "vault"
     mode 0440

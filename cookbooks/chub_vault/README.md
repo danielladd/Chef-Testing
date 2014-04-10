@@ -1,4 +1,4 @@
-# chub-vault cookbook
+# chub_vault cookbook
 
 # Requirements
 
