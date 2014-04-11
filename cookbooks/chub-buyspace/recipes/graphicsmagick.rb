@@ -20,6 +20,8 @@
 # Installs our custom-compiled GraphicsMagick package.
 # GraphicsMagick is a dependency of BuySpace
 
+include_recipe 'chub-buyspace::default'
+
 %w{
 	libpng++-dev
 	libjpeg-dev
