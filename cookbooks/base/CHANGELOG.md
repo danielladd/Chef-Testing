@@ -1,6 +1,10 @@
 base CHANGELOG
 ==============
 
+0.1.12
+----
+- dcarr - Use `apt::default` recipe rather than direct execution of `apt-get update`
+
 0.1.11
 -----
 - Larry - Added mercurial cookbook as requirement in metadata to support changes to regression_maid.rb recipe 

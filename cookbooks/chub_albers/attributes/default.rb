@@ -1,3 +1,1 @@
-default['java']['install_flavor'] = 'oracle'
-default['java']['oracle']['accept_oracle_download_terms'] = true
-default['java']['jdk_version'] = 7
+default['chub']['albers']['packagefile'] = 'wsdtxapi_8411_windows_64.exe'
