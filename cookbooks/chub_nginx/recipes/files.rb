@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-nginx
+# Cookbook Name:: chub_nginx
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -17,32 +17,32 @@
 # limitations under the License.
 #
 
-include_recipe "chub-nginx"
+include_recipe "chub_nginx"
 
-default[:chub-nginx][:site_name]	= 'files'
-default[:chub-nginx][:www_home]		= "/var/www/#{node[:chub-nginx][:site_name]}"
-default[:chub-nginx][:log_dir]		= "#{node['nginx']['log_dir']}/#{node[:chub-nginx][:site_name]}"
+default[:chub_nginx][:site_name]	= 'files'
+default[:chub_nginx][:www_home]		= "/var/www/#{node[:chub_nginx][:site_name]}"
+default[:chub_nginx][:log_dir]		= "#{node['nginx']['log_dir']}/#{node[:chub_nginx][:site_name]}"
 
-directory node[:chub-nginx][:www_home] do
+directory node[:chub_nginx][:www_home] do
 	owner node['nginx']['user']
 	mode 0755
 	recursive true
 end
 
-directory node[:chub-nginx][:log_dir] do
+directory node[:chub_nginx][:log_dir] do
 	owner node['nginx']['user']
 	mode 0755
 	recursive true
 end
 
-template "#{node['nginx']['dir']}/sites-available/#{node[:chub-nginx][:site_name]}.conf" do
-	source "#{node[:chub-nginx][:site_name]}.conf.erb"
+template "#{node['nginx']['dir']}/sites-available/#{node[:chub_nginx][:site_name]}.conf" do
+	source "#{node[:chub_nginx][:site_name]}.conf.erb"
 	mode 0644
 end
 
-nginx_site "#{node[:chub-nginx][:site_name]}.conf"
+nginx_site "#{node[:chub_nginx][:site_name]}.conf"
 
-cookbook_file "#{node[:chub-nginx][:www_home]}/index.html" do
+cookbook_file "#{node[:chub_nginx][:www_home]}/index.html" do
 	source index.html
 	mode 0755
 	owner node['nginx']['user']

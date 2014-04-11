@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-nginx
+# Cookbook Name:: chub_nginx
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
