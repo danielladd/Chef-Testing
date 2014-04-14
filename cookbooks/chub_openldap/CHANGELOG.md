@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.16
+-------
+- changed the password-hash method from SHA-512 to SSHA-512 (salted sha 512)
+
 v1.12.15
 -------
 - add ulimit to /etc/default/slapd based on [632314](https://bugs.launchpad.net/ubuntu/+source/openldap2.3/+bug/632314)

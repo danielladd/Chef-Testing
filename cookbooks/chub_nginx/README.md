@@ -1,4 +1,4 @@
-chub-nginx Cookbook
+chub_nginx Cookbook
 ===================
 CommerceHub overrides / implementations of sites hosted on NGINX
 
@@ -15,7 +15,7 @@ Attributes
 TODO: List you cookbook attributes here.
 
 e.g.
-#### chub-nginx::default
+#### chub_nginx::default
 <table>
   <tr>
     <th>Key</th>
@@ -24,7 +24,7 @@ e.g.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['chub-nginx']['bacon']</tt></td>
+    <td><tt>['chub_nginx']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -33,25 +33,25 @@ e.g.
 
 Usage
 -----
-#### chub-nginx::default
+#### chub_nginx::default
 Includes some defaults and will install nginx, but not run your site.
 
-What you should really do is create a recipe for your site, and `depends 'chub-nginx'` at the beginning.
+What you should really do is create a recipe for your site, and `depends 'chub_nginx'` at the beginning.
 
-Just include `chub-nginx` in your node's `run_list`:
+Just include `chub_nginx` in your node's `run_list`:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[chub-nginx]"
+    "recipe[chub_nginx]"
   ]
 }
 ```
 
-#### chub-nginx::styleguide
+#### chub_nginx::styleguide
 
-#### chub-nginx::files
+#### chub_nginx::files
 
 
 
