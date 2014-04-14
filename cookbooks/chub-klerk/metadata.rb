@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.10.5"
+version "0.10.6"
 supports "ubuntu"
 
 depends "sudo"
@@ -37,6 +37,11 @@ attribute "chub-klerk/blobstore_database_name",
 attribute "chub-klerk/quartz_database_url",
     "display_name" => "Klerk Quartz database URL",
     "description" => "The JDBC URL for the Quartz database"
+
+attribute "chub-klerk/java_perm_gen_size",
+    "display_name" => "Klerk Java Permanent Generation size",
+    "description" => "The permanent generation size with which to run the Klerk JVM",
+    "default" => "128m"
 
 attribute "chub-klerk/java_heap_size",
     "display_name" => "Klerk Java heap size",

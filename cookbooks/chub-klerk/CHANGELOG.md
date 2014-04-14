@@ -2,6 +2,11 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v0.10.6
+-------
+- Revert jdk_version to 7
+- Reintroduce support for specification of JVM permanent generation size
+
 v0.10.5
 -------
 - Update java cookbook version constraint to 1.22.0

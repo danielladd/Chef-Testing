@@ -10,16 +10,12 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
-  "chub-buyspace" => "= 0.1.2",
-  "chub-castle" => "= 0.1.16",
-  "chub-census" => "= 0.1.3",
-  "chub-hornetq" => "= 0.1.0",
-  "chub-klerk" => "= 0.10.4",
-  "chub-openldap" => "= 1.12.14",
-  "chub-plaza" => "= 0.1.4",
-  "chub-sensu" => "= 0.1.7",
-  "chub-vault" => "= 0.2.0",
+  "chub_castle" => "= 0.1.16",
+  "chub_census" => "= 0.1.3",
+  "chub_openldap" => "= 1.12.16",
+  "chub_plaza" => "= 0.1.4",
   "chub_sensu_sso" => "= 0.1.11",
+  "chub_vault" => "= 0.3.2",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -53,92 +49,92 @@ cookbook_versions({
   "yum-erlang_solutions" => "= 0.2.0"
 })
 default_attributes(
-  "java" => {
-    "oracle" => {
-      "accept_oracle_download_terms" => true
+  :java => {
+    :oracle => {
+      :accept_oracle_download_terms => true
     },
-    "install_flavor" => "oracle",
-    "jdk_version" => "8",
-    "jdk" => {
+    :install_flavor => "oracle",
+    :jdk_version => "8",
+    :jdk => {
       "8" => {
-        "x86_64" => {
-          "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
+        :x86_64 => {
+          :url => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
         }
       }
     }
   },
-  "sensu" => {
-    "rabbitmq" => {
-      "host" => "ssoprod1sensu.commercehub.com"
+  :sensu => {
+    :rabbitmq => {
+      :host => "ssoprod1sensu.commercehub.com"
     }
   },
-  "graphite" => {
-    "host" => "stats03.commercehub.com"
+  :graphite => {
+    :host => "stats03.commercehub.com"
   },
-  "chub_sensu_sso" => {
-    "pagerduty" => {
-      "api_key" => "3f602c6a12c6479abdfca394c9ce1ddc"
+  :chub_sensu_sso => {
+    :pagerduty => {
+      :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
-    "loadbalancer_urls" => {
-      "vault" => "https://ssoprod1-vault.commercehub.com:8443/info",
-      "census" => "https://ssoprod1-census.commercehub.com:8443/info",
-      "castle" => "https://castle.commercehub.com/login",
-      "plaza" => "https://plaza.commercehub.com/buildInfo"
+    :loadbalancer_urls => {
+      :vault => "https://ssoprod1-vault.commercehub.com:8443/info",
+      :census => "https://ssoprod1-census.commercehub.com:8443/info",
+      :castle => "https://castle.commercehub.com/login",
+      :plaza => "https://plaza.commercehub.com/buildInfo"
     }
   },
-  "openldap" => {
-    "rootpw" => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
-    "tls_enabled" => true,
-    "slapd_replpw" => "replpw",
-    "manage_ssl" => true,
-    "basedn" => "dc=vault,dc=commercehub,dc=com"
+  :openldap => {
+    :rootpw => "{SSHA}5KCtUCN05db79SevGkBTeb4F76SnRiJy",
+    :tls_enabled => true,
+    :slapd_replpw => "replpw",
+    :manage_ssl => true,
+    :basedn => "dc=vault,dc=commercehub,dc=com"
   },
-  "chub-vault" => {
-    "app_url" => "file:///var/vault/staged-vault.jar",
-    "ldap" => {
-      "read" => {
-        "host" => "ssoprod1-ldap-read.commercehub.com",
-        "password" => "search"
+  :chub_vault => {
+    :app_url => "file:///var/vault/staged-vault.jar",
+    :ldap => {
+      :read => {
+        :host => "ssoprod1-ldap-read.commercehub.com",
+        :password => "search"
       },
-      "write" => {
-        "host" => "ssoprod1-ldap-write.commercehub.com",
-        "password" => "rootpw"
+      :write => {
+        :host => "ssoprod1-ldap-write.commercehub.com",
+        :password => "rootpw"
       },
-      "healthcheck" => {
-        "guid" => "fd9a39e4-b36c-11e3-92cf-080027c2a6f5"
+      :healthcheck => {
+        :guid => "fd9a39e4-b36c-11e3-92cf-080027c2a6f5"
       }
     },
-    "database" => {
-      "url" => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-vault",
-      "user" => "sso_user",
-      "password" => "VBqgPyf6"
+    :database => {
+      :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-vault",
+      :user => "sso_user",
+      :password => "VBqgPyf6"
     },
   },
-  "chub-census" => {
-    "app_url" => "file:///var/census/staged-census.jar",
-    "database" => {
-      "url" => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
-      "user" => "sso_user",
-      "password" => "VBqgPyf6"
+  :chub_census => {
+    :app_url => "file:///var/census/staged-census.jar",
+    :database => {
+      :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
+      :user => "sso_user",
+      :password => "VBqgPyf6"
     }
   },
-  "chub-castle" => {
-    "app_url" => "file:///var/castle/staged-castle.war",
-    "vault.url" => "https://ssoprod1-vault.commercehub.com:8443",
-    "truststore_file" => "dev-truststore.jks",
-    "keystore_file" => "dev-keystore.jks",
-    "hazelcast" => {
-        "group"=> "ssoprod-castle",
-        "password"=> "ssoprod-pass",
-        "stTimeout" => "300",
-        "tgtTimeout" => "7200"
+  :chub_castle => {
+    :app_url => "file:///var/castle/staged-castle.war",
+    :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
+    :truststore_file => "dev-truststore.jks",
+    :keystore_file => "dev-keystore.jks",
+    :hazelcast => {
+      :group => "ssoprod-castle",
+      :password => "ssoprod-pass",
+      :service_ticket_timeout => "300",
+      :ticket_granting_ticket_timeout => "7200"
     }
   },
-  "chub-plaza" => {
-    "app_url" => "file:///var/plaza/staged-plaza.jar",
-    "cas_server_url" => "https://ssoprod1-castle.commercehub.com",
-    "cas_service_url" => "https://ssoprod1-plaza.commercehub.com/shiro-cas",
-    "cas_failure_url" => "https://ssoprod1-plaza.commercehub.com/",
-    "census_url" => "https://ssoprod1-census.commercehub.com:8443"
+  :chub_plaza => {
+    :app_url => "file:///var/plaza/staged-plaza.jar",
+    :cas_server_url => "https://ssoprod1-castle.commercehub.com",
+    :cas_service_url => "https://ssoprod1-plaza.commercehub.com/shiro-cas",
+    :cas_failure_url => "https://ssoprod1-plaza.commercehub.com/",
+    :census_url => "https://ssoprod1-census.commercehub.com:8443"
   }
 )

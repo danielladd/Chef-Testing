@@ -1,6 +1,6 @@
 name "mpdemo1"
 description "marketplace demo environment 1"
-cookbook "chub-klerk", "= 0.10.4"
+cookbook "chub-klerk", "= 0.10.6"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpdemo1db1.commercehub.com:27017" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlps/MPDemo1_Klerk_Quartz;user=Mpdemo1_Klerk_Admin;password=Adminuser01_MPDemo!",

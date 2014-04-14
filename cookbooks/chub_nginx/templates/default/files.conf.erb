@@ -1,0 +1,10 @@
+server {
+	listen 80;
+
+	access_log <%= node[:chub_nginx][:log_dir] %>/files_access.log;
+	error_log <%= node[:chub_nginx][:log_dir] %>/files_error.log;
+
+	keepalive_timeout 10;
+	root [:chub_nginx][:www_home];
+
+}

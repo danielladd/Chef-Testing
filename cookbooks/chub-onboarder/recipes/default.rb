@@ -90,8 +90,8 @@ execute 'clear_tomcat_app_directory' do
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-onboarder']['app']['bamboo_server_name']}:#{node['chub-onboarder']['app']['bamboo_server_port']}/browse/#{node['chub-onboarder']['app']['bamboo_server_build_project']}-#{node['chub-onboarder']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-onboarder']['app']['bamboo_server_artifact']}/#{node['chub-onboarder']['app']['bamboo_server_artifact_file_name']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name']}.war" do
+	source "#{node['chub-onboarder']['app']['war_file_url']}"
 	owner "chub-onboarder"
 	group "chub-onboarder"
 	action :create_if_missing

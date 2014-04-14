@@ -60,21 +60,15 @@ directory node["chub-missioncontrol"]['app']["log_dir"] do
   mode 0777
 end
 
-template "#{node['chub-missioncontrol']['app']['app_dir']}/#{node['chub-missioncontrol']['app']['config_file_name']}" do
-	source "missioncontrol-config.groovy.erb"
-	mode 0777
-	owner "chub-missioncontrol"
-	group "chub-missioncontrol"
-	notifies :restart, "service[tomcat]", :delayed
-end
+
 
 execute 'clear_tomcat_app_directory' do
 	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}"
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-missioncontrol']['app']['bamboo_server_name']}:#{node['chub-missioncontrol']['app']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['app']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['app']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['app']['bamboo_server_artifact_file_name']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}.war" do
+	source "#{node['chub-missioncontrol']['app']['war_file_url']}"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
 	action :create_if_missing

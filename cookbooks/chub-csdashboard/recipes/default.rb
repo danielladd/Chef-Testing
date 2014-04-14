@@ -90,8 +90,8 @@ execute 'clear_tomcat_app_directory' do
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-csdashboard']['app']['bamboo_server_name']}:#{node['chub-csdashboard']['app']['bamboo_server_port']}/browse/#{node['chub-csdashboard']['app']['bamboo_server_build_project']}-#{node['chub-csdashboard']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-csdashboard']['app']['bamboo_server_artifact']}/#{node['chub-csdashboard']['app']['bamboo_server_artifact_file_name']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}.war" do
+	source "#{node['chub-csdashboard']['app']['war_file_url']}"
 	owner "chub-csdashboard"
 	group "chub-csdashboard"
 	action :create_if_missing
