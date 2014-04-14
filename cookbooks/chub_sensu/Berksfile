@@ -1,0 +1,10 @@
+chef_api :config
+
+metadata
+
+# Most of the time, don't resolve against the community site, as we want to be intentional about when we pull new external cookbooks
+#site :opscode
+
+cookbook "sensu"
+#cookbook 'sensu_admin', path: '../sensu_admin'
+cookbook 'chub_sensu_pipeline', path: '../chub_sensu_pipeline'
