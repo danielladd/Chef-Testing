@@ -8,7 +8,7 @@
 #
 
 include_recipe "apt"
-include_recipe "java"
+include_recipe "ark"
 
 group "browserstack" do
     action :create
@@ -50,12 +50,11 @@ directory "/etc/browserstack" do
     mode 0755
 end
 
-remote_file "BrowserStackLocal" do
-    source "http://www.browserstack.com/BrowserStackTunnel.jar"
-    path "/opt/browserstack-tunnel/BrowserStackTunnel.jar"
-    owner "root"
-    group "root"
-    mode 0755
+ark "BrowserStackLocal" do
+    path "/opt/browserstack-tunnel"
+    url "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+    action :dump
+    notifies "restart", "service[browserstack-tunnel]"
 end
 
 template "/etc/init/browserstack-tunnel.conf" do
