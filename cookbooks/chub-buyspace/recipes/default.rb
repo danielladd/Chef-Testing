@@ -30,13 +30,10 @@
 
 
 # Enforcing needed settings, but these should be applied at the Role level
-node.set['java']['install_flavor'] = 'oracle'
-node.set['java']['oracle']['accept_oracle_download_terms'] = true
-node.set['java']['jdk_version'] = 7
 
 
-node.set['tomcat']['base_version'] = 7
-node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
+node.default['tomcat']['base_version'] = 7
+node.default['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
 
 tempdir		= node['chub-buyspace']['temp_dir']			#puts "tempdir is #{tempdir}"
 configdir	= node['chub-buyspace']['config_dir']
@@ -54,7 +51,7 @@ if Chef::Config[:solo]
 end
 
 
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 include_recipe "chub-buyspace::graphicsmagick"
 include_recipe "chub-buyspace::buyspace"
