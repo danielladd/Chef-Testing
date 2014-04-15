@@ -19,7 +19,7 @@ cookbook_versions({
   "chub-plaza" => "= 0.1.3",
   "chub-sensu" => "= 0.1.7",
   "chub-vault" => "= 0.1.5",
-  "chub_albers" => "= 0.2.4",
+  "chub_albers" => "= 0.2.5",
   "chub_windows" => "= 0.1.0",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
