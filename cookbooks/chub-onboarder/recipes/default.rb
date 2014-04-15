@@ -16,12 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-node.set['java']['install_flavor'] = 'oracle'
-node.set['java']['oracle']['accept_oracle_download_terms'] = true
-node.set['java']['jdk_version'] = 7
-
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 
 group "chub-onboarder" do
@@ -90,8 +85,8 @@ execute 'clear_tomcat_app_directory' do
 	action :nothing
 end
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-onboarder']['app']['bamboo_server_name']}:#{node['chub-onboarder']['app']['bamboo_server_port']}/browse/#{node['chub-onboarder']['app']['bamboo_server_build_project']}-#{node['chub-onboarder']['app']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-onboarder']['app']['bamboo_server_artifact']}/#{node['chub-onboarder']['app']['bamboo_server_artifact_file_name']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name']}.war" do
+	source "#{node['chub-onboarder']['app']['war_file_url']}/?os_username=#{node['chub-onboarder']['app']['bamboo_user']}&os_password=#{node['chub-onboarder']['app']['bamboo_password']}"
 	owner "chub-onboarder"
 	group "chub-onboarder"
 	action :create_if_missing

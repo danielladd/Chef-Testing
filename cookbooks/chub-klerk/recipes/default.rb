@@ -27,7 +27,7 @@ hostsfile_entry node['ipaddress'] do
   action    :create
 end
 
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 
 group "klerk" do
     action :create
@@ -98,6 +98,7 @@ end
 template "/etc/init/klerk.conf" do
     source "klerk.conf.erb"
     variables({
+        "java_perm_gen_size" => node["chub-klerk"]["java_perm_gen_size"],
         "java_heap_size" => node["chub-klerk"]["java_heap_size"]
     })
     owner "root"
