@@ -2,6 +2,10 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v0.10.7
+-------
+- Replace use of java::default recipe with chub_java::oracle7 recipe
+
 v0.10.6
 -------
 - Revert jdk_version to 7

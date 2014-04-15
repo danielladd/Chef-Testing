@@ -1,6 +1,11 @@
 chub-hornetq CHANGELOG
 ======================
 
+0.2.0
+_____
+
+* Changing dependency from 'java' cookbook to 'chub_java'
+
 0.1.3
 -----
 

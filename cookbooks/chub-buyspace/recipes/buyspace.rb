@@ -71,7 +71,6 @@ template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspa
 	notifies :restart, "service[tomcat]", :delayed
 end
 
-
 template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['logging_conf']}" do
 	source "logging.properties.erb"
 	mode 0554
@@ -84,7 +83,6 @@ execute 'clear_tomcat_app_directory' do
 	command "rm -fr #{node['chub-buyspace']['app_dir']}/ROOT"
 	action :nothing
 end
-
 
 remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
 	source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM/latestSuccessful/artifact/shared/buyspace.war/buyspace.war"
@@ -100,11 +98,6 @@ end
 =begin
 TODO:
 - buyspace_app
-	-notifies tomcat restart
 	-deployed file changes?
 		-does it need checksumming?
-- config
-	-notifies tomcat restart
-	-integrating config options 
-		-see Tomcat recipe README
 =end
