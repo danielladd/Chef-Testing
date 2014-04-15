@@ -16,7 +16,7 @@ include_recipe "sensu"
 
 sensu_client node.name do
     address node[:ipaddress]
-    subscriptions node[:roles] + ["all"]
+    subscriptions node[:roles]
 end
 
 %w{sensu-plugin redphone json}.each do |gem_name|

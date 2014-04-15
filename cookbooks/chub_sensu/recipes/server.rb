@@ -33,7 +33,7 @@ end
 end
 
 ## Email Handler
-if node[:chub_sensu].attribute?(:email) and node[:chub_sensu][:email].attribute?(:recipient)
+if node[:chub_sensu].attribute?(:email)
     remote_file "#{node[:chub_sensu][:root_handler_path]}/mailer.rb" do
         source "https://raw.githubusercontent.com/zarry/sensu-community-plugins/mailer_by_subscription/handlers/notification/mailer.rb"
         #source "https://raw.github.com/sensu/sensu-community-plugins/master/handlers/notification/mailer.rb"
@@ -52,28 +52,6 @@ if node[:chub_sensu].attribute?(:email) and node[:chub_sensu][:email].attribute?
     end
 end
 
-
-if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
-    ## Graphite Handler
-    template "#{node[:chub_sensu][:root_handler_config_path]}/graphite_tcp.json" do
-        source "graphite_tcp.json.erb"
-        #only_if { node.attribute?(:graphite) and node[:graphite].attribute?(:host) }
-        mode 0644
-        variables(
-            :graphite_host => node[:graphite][:host],
-            :graphite_port => node[:graphite][:port]
-        )
-    end
-
-    ## Metrics to Graphite
-    sensu_check "vmstat_metrics" do
-        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb --scheme hosts.:::name:::"
-        handlers ["graphite_tcp"]
-        subscribers ["all"]
-        type "metric"
-        interval 60
-    end
-end
 
 
 
