@@ -27,32 +27,32 @@ end
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-http.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/http/check-http.rb"
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/http/check-http.rb"
     mode 0755
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-disk.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-disk.rb"
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/system/check-disk.rb"
     mode 0755
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-cpu.rb" do
-   source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-cpu.rb"
+   source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/system/check-cpu.rb"
    mode 0755
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-ram.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/system/check-ram.rb"
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/system/check-ram.rb"
     mode 0755
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-procs.rb" do
-    source "https://raw.github.com/sensu/sensu-community-plugins/master/plugins/processes/check-procs.rb"
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/processes/check-procs.rb"
     mode 0755
 end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb" do
-    source "https://raw.githubusercontent.com/sensu/sensu-community-plugins/master/plugins/system/vmstat-metrics.rb"
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/system/vmstat-metrics.rb"
     mode 0755
 end
 

@@ -1,7 +1,7 @@
 # 0.1.1
 
-* Defaulting the client recipie to point at sensu01
+* Updated to use mirrored git repo for sensu plugins
 
 # 0.1.0
 
-* Initial version created off of chub-sensu and chub_sensu_sso
+* Initial version 
