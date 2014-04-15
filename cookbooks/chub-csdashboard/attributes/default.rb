@@ -10,3 +10,5 @@ default['chub-csdashboard']['app']['config_file_name'] = 'csdashboard-config.gro
 default['chub-csdashboard']['app']['log4j']['root_loglevel'] = 'info'
 default['chub-csdashboard']['app']['app_name'] = 'csdashboard'
 default['chub-csdashboard']['app']['war_file_url'] = 'OVERRIDE ME'
+default['chub-csdashboard']['app']['bamboo_user'] = 'mess'
+default['chub-csdashboard']['app']['bamboo_password'] = 'messuser'

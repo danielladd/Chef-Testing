@@ -16,12 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-node.set['java']['install_flavor'] = 'oracle'
-node.set['java']['oracle']['accept_oracle_download_terms'] = true
-node.set['java']['jdk_version'] = 7
-
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 include_recipe "mongodb"
 
 group "chub-missioncontrol" do

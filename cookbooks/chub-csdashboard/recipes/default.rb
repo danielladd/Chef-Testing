@@ -16,12 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-node.set['java']['install_flavor'] = 'oracle'
-node.set['java']['oracle']['accept_oracle_download_terms'] = true
-node.set['java']['jdk_version'] = 7
-
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 
 group "chub-csdashboard" do
@@ -91,7 +86,7 @@ execute 'clear_tomcat_app_directory' do
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}.war" do
-	source "#{node['chub-csdashboard']['app']['war_file_url']}"
+	source "#{node['chub-csdashboard']['app']['war_file_url']}/?os_username=#{node['chub-csdashboard']['app']['bamboo_user']}&os_password=#{node['chub-csdashboard']['app']['bamboo_password']}"
 	owner "chub-csdashboard"
 	group "chub-csdashboard"
 	action :create_if_missing
