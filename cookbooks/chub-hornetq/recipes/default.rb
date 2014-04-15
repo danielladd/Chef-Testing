@@ -37,6 +37,6 @@ include_recipe "java"
 	end
 end
 
-
 # TODO:
 # - Test for internally-cached hornetq download in buyspace.rb
+
