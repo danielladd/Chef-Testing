@@ -27,7 +27,7 @@ hostsfile_entry node['ipaddress'] do
   action    :create
 end
 
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 
 group "klerk" do
     action :create
