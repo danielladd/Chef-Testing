@@ -1,3 +1,6 @@
+# 0.1.5
+* Use chub_java
+
 # 0.1.4
 
 * Remove extra stuff from old java install approach
