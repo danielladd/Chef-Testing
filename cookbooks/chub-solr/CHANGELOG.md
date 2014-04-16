@@ -3,9 +3,13 @@ chub-solr CHANGELOG
 
 This file is used to list changes made in each version of the chub-solr cookbook.
 
+0.2.0
+-----
+- H. "Waldo" Grunenwald - Changing dependency from 'java' cookbook to 'chub_java'
+
 0.1.0
 -----
-- [your_name] - Initial release of chub-solr
+- H. "Waldo" Grunenwald - Initial release of chub-solr
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
