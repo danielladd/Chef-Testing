@@ -40,7 +40,19 @@ end
 ```
 
 ### Define a handler
-A handler is used to take action when a check is triggered.  There is a shared handler for email.  The handler name is 'email'.  This handler will email the appropriate party based on the clients subscription.  To leverage this handler, you just need to add the 'email' handler to your checks.  Defining your email group by description can be done using attributes. An example of a team definition is listed below.  The example defines the 'pipeline_team' subscriptions email address.  This means any clients which subscribe to pipeline_Team, when a check is triggered that uses the email handler the emails will be directed to the address listed for pipeline_team. 
+A handler is used to take action when a check is triggered.  There is a shared handler for email.  More information about this email can be found below.  
+
+Due to using a shared sensu server we have developed a practice of namespacing our handlers.  The example below defines the 'pagerduty_pipeline' handler.  
+
+```ruby
+sensu_handler "pagerduty_pipeline" do
+    type "pipe"
+    command "/usr/bin/rub1.y9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
+end
+```
+
+### Email Handler
+The handler name is 'email'.  This handler will email the appropriate party based on the clients subscription.  To leverage this handler, you just need to add the 'email' handler to your checks.  Defining your email group by description can be done using attributes.  We have a handy role to define this that gets applied to the sensu server. An example of a team definition is listed below.  The example defines the 'pipeline_team' subscriptions email address.  This means any clients which subscribe to pipeline_Team, when a check is triggered that uses the email handler the emails will be directed to the address listed for pipeline_team.  This definition lives in the sensu_mailing.rb role.  Add a new key => value pair for your product or teams based emails.  The key should match the subscription name.  The value can be a comma seperated list of email addresses.
 
 ```ruby
 "chub_sensu" => {
@@ -50,15 +62,6 @@ A handler is used to take action when a check is triggered.  There is a shared h
         }
     }
 }
-```
-
-Due to using a shared sensu server we have developed a practice of namespacing our handlers.  The example below defines the 'pagerduty_pipeline' handler.  
-
-```ruby
-sensu_handler "pagerduty_pipeline" do
-    type "pipe"
-    command "/usr/bin/rub1.y9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-end
 ```
 
 ### Define a check
