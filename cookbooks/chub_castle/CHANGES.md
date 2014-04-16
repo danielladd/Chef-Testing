@@ -1,3 +1,9 @@
+# 0.1.17
+* Add default for chub_castle/hazelcast/group based on environment
+* Add default hazelcast service_ticket_timeout and ticket_granting_ticket_timeout
+* Use chub_java cookbook
+* Add initial chefspec tests
+
 # 0.1.16
 * Clean up cookbook
 * Specify minimum java cookbook version
