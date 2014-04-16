@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-# Forcefully install the latest landingstrip .war file from Bamboo, delete the landingstrip folder 
+# Forcefully install the latest onboarder .war file from Bamboo, delete the onboarder folder 
 # directory, and then remove this recipe from the runlist
 
 execute 'clear_tomcat_app_directory' do
@@ -39,10 +39,10 @@ remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['ap
 end
 
 if not Chef::Config[:solo] then
-	ruby_block "Remove Landingstrip Upgrade recipe from run-list" do
+	ruby_block "Remove Onboarder Upgrade recipe from run-list" do
 		block do
-			node.run_list.remove("recipe[chub-onboarder::upgrade_landingstrip]")
+			node.run_list.remove("recipe[chub-onboarder::upgrade_onboarder]")
 		end
-		only_if { node.run_list.include?("recipe[chub-onboarder::upgrade_landingstrip]") }
+		only_if { node.run_list.include?("recipe[chub-onboarder::upgrade_onboarder]") }
 	end
 end

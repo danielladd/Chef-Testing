@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-# Forcefully install the latest landingstrip .war file from Bamboo, delete the landingstrip folder 
+# Forcefully install the latest connman .war file from Bamboo, delete the connman folder 
 # directory, and then remove this recipe from the runlist
 
 execute 'clear_tomcat_app_directory' do
@@ -39,10 +39,10 @@ remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-connman']['app']['app_
 end
 
 if not Chef::Config[:solo] then
-	ruby_block "Remove Landingstrip Upgrade recipe from run-list" do
+	ruby_block "Remove Connection Manager Upgrade recipe from run-list" do
 		block do
-			node.run_list.remove("recipe[chub-connman::upgrade_landingstrip]")
+			node.run_list.remove("recipe[chub-connman::upgrade_connman]")
 		end
-		only_if { node.run_list.include?("recipe[chub-connman::upgrade_landingstrip]") }
+		only_if { node.run_list.include?("recipe[chub-connman::upgrade_connman]") }
 	end
 end

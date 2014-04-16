@@ -85,11 +85,15 @@ execute 'clear_tomcat_app_directory' do
 	action :nothing
 end
 
+file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name']}.war" do
+	action :delete
+end
+
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name']}.war" do
 	source "#{node['chub-onboarder']['app']['war_file_url']}/?os_username=#{node['chub-onboarder']['app']['bamboo_user']}&os_password=#{node['chub-onboarder']['app']['bamboo_password']}"
 	owner "chub-onboarder"
 	group "chub-onboarder"
-	action :create_if_missing
+	action :create	# This should pull the file down forcefully
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
 end
