@@ -17,31 +17,19 @@
 # limitations under the License.
 #
 
-node.set['java']['install_flavor']							= 'oracle'
-node.set['java']['oracle']['accept_oracle_download_terms']	= true
-node.set['java']['jdk_version']								= 7
-
-node.set['tomcat']['base_version']	= 7
-node.set['tomcat']['loglevel']		= 'WARN'	# default is 'INFO'
-
-# override_attributes(
-#   'tomcat' => {
-#     'java_options' => "${JAVA_OPTS} -Xmx128M -Djava.awt.headless=true -Dsolr.solr.home=#{node['chub-solr']['home']}/solr/cores"
-#   }
-# )
-node.set['tomcat']['catalina_options'] = "-Dsolr.solr.home=#{node['chub-solr']['cores_dir']}"
-#node.set['tomcat']['catalina_options'] = " -Dsolr.solr.home=#{node['chub-solr']['base']}"
-node.set['tomcat']['port'] = "8983"
+node.default['tomcat']['base_version']		= 7
+node.default["tomcat"]["config_dir"]		= "/etc/tomcat#{node["tomcat"]["base_version"]}"
+node.default['tomcat']['loglevel']			= 'WARN'	# default is 'INFO'
+node.default['tomcat']['port']				= node['chub-solr']['port']
+node.default['tomcat']['catalina_options']	= "-Dsolr.solr.home=#{node['chub-solr']['base']}"
 
 if node[:instance_role] == 'vagrant'
-#if Chef::Config[:solo]
 	node.set["tomcat"]["keystore_password"]		= 'throwawaypassword'
 	node.set["tomcat"]["truststore_password"]	= 'throwawaypassword'
 end
 
-include_recipe "java"
+include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
-
 
 # Packaged Prereqs
 %w{
