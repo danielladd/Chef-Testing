@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "java"
+include_recipe "chub_java::oracle8"
 
 group "envdash" do
     action :create
