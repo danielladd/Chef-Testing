@@ -4,7 +4,7 @@ maintainer_email 'lzarou@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Sensu in the CommerceHub way for Pipeline'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.1'
+version          '0.1.2'
 
 depends "sensu"
 depends "base"
