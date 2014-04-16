@@ -1,3 +1,6 @@
+# 0.3.3
+* Use chub_java cookbook
+
 # 0.3.2
 
 * Fix a typo in the template

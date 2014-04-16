@@ -44,7 +44,7 @@ execute 'Copy_SOLR_WAR' do
 	action :nothing
 end
 
-execute 'Copy_SLF4J_stuff' do
+execute 'Copy_SLF4J_Stuff' do
 	command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar"
 	#command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar && cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/resources/log4j.properties /usr/share/tomcat7/lib"
 	action :nothing
@@ -146,7 +146,7 @@ remote_file "#{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}.t
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :run, 'execute[Extract_SOLR_Tarball]', :immediately
 	notifies :run, 'execute[Copy_SOLR_WAR]', :immediately
-	notifies :run, 'execute[Copy_SLF4J_stuff]', :immediately
+	notifies :run, 'execute[Copy_SLF4J_Stuff]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
 	#notifies :restart, "service[tomcat7]", :delayed
 end

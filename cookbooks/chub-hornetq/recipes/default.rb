@@ -33,6 +33,6 @@ include_recipe "chub_java::oracle7"
 	end
 end
 
-
 # TODO:
 # - Test for internally-cached hornetq download in buyspace.rb
+

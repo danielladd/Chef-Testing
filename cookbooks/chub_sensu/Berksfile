@@ -6,5 +6,4 @@ metadata
 #site :opscode
 
 cookbook "sensu"
-#cookbook 'sensu_admin', path: '../sensu_admin'
-cookbook 'chub_sensu_pipeline', path: '../chub_sensu_pipeline'
+cookbook 'chub_pipeline', path: '../chub_pipeline'

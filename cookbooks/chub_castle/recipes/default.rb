@@ -9,7 +9,7 @@
 require 'digest/sha1'
 
 include_recipe "apt"
-include_recipe "java"
+include_recipe "chub_java::oracle8"
 
 group "castle" do
     action :create
