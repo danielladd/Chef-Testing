@@ -4,50 +4,57 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.16'
+version          '0.1.17'
 
 supports "ubuntu"
 depends "apt"
-depends "java", "~> 1.22.0"
+depends "chub_java"
 
 attribute "chub_castle/app_url",
     :display_name => "Castle application URL",
     :description => "URL from which to obtain the application WAR; can use a remote URL",
-    :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war"
+    :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war",
+    :required => "optional"
 
 attribute "chub_castle/java_heap_size",
     :display_name => "Castle Java heap size",
     :description => "The heap size with which to run the Castle JVM",
-    :default => "512M"
+    :default => "512M",
+    :required => "optional"
 
 attribute "chub_castle/keystore_file",
     :display_name => "Castle keystore file",
     :description => "The cookbook file to use as the keystore",
-    :default => "keystore.jks"
+    :default => "keystore.jks",
+    :required => "optional"
 
 attribute "chub_castle/truststore_file",
     :display_name => "Castle truststore file",
     :description => "The cookbook file to use as the truststore",
-    :default => "truststore.jks"
+    :default => "truststore.jks",
+    :required => "optional"
 
 attribute "chub_castle/keystore_password",
     :display_name => "Castle keystore password",
     :description => "The password to use with the keystore",
-    :default => "changeit"
+    :default => "changeit",
+    :required => "optional"
 
 attribute "chub_castle/truststore_password",
     :display_name => "Castle truststore password",
     :description => "The password to use with the truststore",
-    :default => "changeit"
+    :default => "changeit",
+    :required => "optional"
     
 attribute "chub_castle/vault_url",
     :display_name => "Vault Server URL",
-    :description => "Vault server for Castle to connect to"
+    :description => "Vault server for Castle to connect to",
+    :required => "required"
 
 attribute "chub_castle/hazelcast/group",
     :display_name => "Hazelcast Group",
     :description => "Name of Hazelcast Cluster",
-    :required => "required"
+    :required => "optional"
 
 attribute "chub_castle/hazelcast/password",
     :display_name => "Hazelcast Password",
@@ -77,15 +84,17 @@ attribute "chub_castle/hazelcast/backup_count",
 attribute "chub_castle/hazelcast/service_ticket_timeout",
     :display_name => "Service Ticket Timeout",
     :description => "Length in seconds of service ticket timeout",
-    :required => "required"
+    :required => "optional"
 
 attribute "chub_castle/hazelcast/ticket_granting_ticket_timeout",
     :display_name => "Ticket Granting Ticket Timeout",
     :description => "Length in seconds of ticket granting ticket timeout",
-    :required => "required"
+    :required => "optional"
 
 attribute "graphite/host",
     :display_name => "Graphite Host",
-    :description => "Location of Graphite Server"
+    :description => "Location of Graphite Server",
+    :required => "optional"
 
-attribute "graphite/port", :required => "optional"
+attribute "graphite/port",
+    :required => "optional"
