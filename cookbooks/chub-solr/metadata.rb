@@ -6,6 +6,6 @@ description      'Installs/Configures chub-solr'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
-depends "java", "= 1.16.2"
+depends "chub_java"
 depends "tomcat"
 depends "openssl"
