@@ -46,7 +46,7 @@ if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
     end
 
     ## Metrics to Graphite
-    sensu_check "vmstat_metrics" do
+    sensu_check "pipeline_vmstat_metrics" do
         command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb --scheme hosts.:::name:::"
         handlers ["graphite_tcp_pipeline"]
         subscribers ["pipeline_team"]

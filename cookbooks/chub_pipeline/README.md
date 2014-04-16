@@ -10,6 +10,7 @@ But think about doing this because I haven't written any tests
 # Requirements
 
 # Usage
+This cookbook is the Pipeline team cookbook.  Currently it wraps the chub_sensu cookbook and deploys both client and server nodes monitored in sensu by the pipeline team.  This cookbook contains examples of wrapping both server and client recipes.  
 
 # Attributes
 
@@ -18,3 +19,4 @@ But think about doing this because I haven't written any tests
 # Author
 
 Author:: Larry Zarou (lzarou@commercehub.com)
+

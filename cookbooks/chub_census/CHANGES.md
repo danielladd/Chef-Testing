@@ -1,3 +1,7 @@
+# 0.1.4
+* Use chub_java cookbook
+* Update default app_url
+
 # 0.1.3
 
 * Remove extra stuff from old java install approach
