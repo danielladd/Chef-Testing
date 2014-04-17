@@ -101,6 +101,8 @@ default_attributes(
     :keystore_file => "dev-keystore.jks",
     :hazelcast => {
       :password => "ssoqa-pass",
+      :multicast_group => "224.2.2.5",
+      :multicast_port => 54329,
       :service_ticket_timeout => 300,
       :ticket_granting_ticket_timeout => 7200
     }

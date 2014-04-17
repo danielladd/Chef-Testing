@@ -101,6 +101,8 @@ default_attributes(
     :keystore_file => "dev-keystore.jks",
     :hazelcast => {
       :password => "ssodev-pass",
+      :multicast_group => "224.2.2.4",
+      :multicast_port => 54328,
       :service_ticket_timeout => 300,
       :ticket_granting_ticket_timeout => 7200
     }
