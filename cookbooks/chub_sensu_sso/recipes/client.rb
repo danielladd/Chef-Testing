@@ -22,34 +22,10 @@ end
     end
 end
 
-remote_file "/etc/sensu/plugins/check-http.rb" do
-    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/http/check-http.rb"
-    mode 0755
-end
-
-remote_file "/etc/sensu/plugins/check-disk.rb" do
-    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-disk.rb"
-    mode 0755
-end
-
-remote_file "/etc/sensu/plugins/check-syncrepl.rb" do
-    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/openldap/check-syncrepl.rb"
-    mode 0755
-end
-
-remote_file "/etc/sensu/plugins/check-cpu.rb" do
-   source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-cpu.rb"
-   mode 0755
-end
-
-remote_file "/etc/sensu/plugins/check-ram.rb" do
-    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/system/check-ram.rb"
-    mode 0755
-end
-
-remote_file "/etc/sensu/plugins/check-procs.rb" do
-    source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/plugins/processes/check-procs.rb"
-    mode 0755
+%w{check-http check-disk check-syncrepl check-cpu check-ram check-procs}.each do |plugin|
+    cookbook_file "/etc/sensu/plugins/#{plugin}.rb" do
+        mode 0755
+    end
 end
 
 include_recipe "sensu::client_service"

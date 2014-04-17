@@ -1,3 +1,6 @@
+# 0.1.13
+* Load sensu checks from chef cookbook rather than git repo
+
 # 0.1.12
 
 * Use community plugins from the mirror on git.nexus.commercehub.com
