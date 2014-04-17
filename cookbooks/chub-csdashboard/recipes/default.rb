@@ -90,7 +90,7 @@ file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_nam
 end
 
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}.war" do
-	source "#{node['chub-csdashboard']['app']['war_file_url']}/?os_username=#{node['chub-csdashboard']['app']['bamboo_user']}&os_password=#{node['chub-csdashboard']['app']['bamboo_password']}"
+	source "#{node['chub-csdashboard']['app']['war_file_url']}"
 	owner "chub-csdashboard"
 	group "chub-csdashboard"
 	action :create	# This should pull the file down forcefully
