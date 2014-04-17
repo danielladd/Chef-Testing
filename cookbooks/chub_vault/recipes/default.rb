@@ -8,7 +8,7 @@
 #
 
 include_recipe "apt"
-include_recipe "java"
+include_recipe "chub_java::oracle8"
 
 # Host file tweaks needed for remote JMX to work
 hostsfile_entry '127.0.1.1' do

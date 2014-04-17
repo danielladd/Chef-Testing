@@ -4,11 +4,11 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.2'
+version          '0.3.3'
 
 supports "ubuntu"
 depends "apt"
-depends "java", "~> 1.22.0"
+depends "chub_java"
 depends "hostsfile"
 
 attribute "chub_vault/app_url",

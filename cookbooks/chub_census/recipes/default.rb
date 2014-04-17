@@ -8,7 +8,7 @@
 #
 
 include_recipe "apt"
-include_recipe "java"
+include_recipe "chub_java::oracle8"
 
 group "census" do
     action :create

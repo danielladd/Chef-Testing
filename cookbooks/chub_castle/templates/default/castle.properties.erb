@@ -7,7 +7,7 @@ graphite.host=<%= node[:graphite][:host] %>
  <% if node.chef_environment != "_default" -%>
 graphite.env=<%= node.chef_environment %>
  <% end -%>
-<% end -%>	
+<% end -%>
 <% if node[:chub_castle] && node[:chub_castle][:hazelcast] -%>
 hazelcast.group=<%= node[:chub_castle][:hazelcast][:group] %>
 hazelcast.password=<%= node[:chub_castle][:hazelcast][:password] %>

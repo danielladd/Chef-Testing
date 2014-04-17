@@ -3,19 +3,19 @@ description "SSO Prod environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "aws" => "= 1.0.0",
   "base" => "= 0.1.12",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.16",
-  "chub_census" => "= 0.1.3",
+  "chub_castle" => "= 0.1.17",
+  "chub_census" => "= 0.1.4",
+  "chub_java" => "= 0.1.0",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.1.4",
-  "chub_sensu_sso" => "= 0.1.11",
-  "chub_vault" => "= 0.3.2",
+  "chub_plaza" => "= 0.1.5",
+  "chub_sensu_sso" => "= 0.1.13",
+  "chub_vault" => "= 0.3.3",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -23,10 +23,8 @@ cookbook_versions({
   "graphite" => "= 0.1.4",
   "hostsfile" => "= 2.4.4",
   "iptables" => "= 0.12.0",
-  "java" => "= 1.22.0",
   "logrotate" => "= 1.3.0",
   "metachef" => "= 3.0.4",
-  "mongodb" => "= 0.13.4",
   "nodejs" => "= 1.3.0",
   "nscd" => "= 0.11.0",
   "ntp" => "= 1.5.4",
@@ -41,28 +39,9 @@ cookbook_versions({
   "sensu" => "= 0.8.0",
   "statsd" => "= 3.0.4",
   "sudo" => "= 2.2.2",
-  "tomcat" => "= 0.15.2",
-  "ulimit" => "= 0.3.2",
-  "windows" => "= 1.30.0",
-  "yum" => "= 3.1.2",
-  "yum-epel" => "= 0.3.4",
-  "yum-erlang_solutions" => "= 0.2.0"
+  "ulimit" => "= 0.3.2"
 })
 default_attributes(
-  :java => {
-    :oracle => {
-      :accept_oracle_download_terms => true
-    },
-    :install_flavor => "oracle",
-    :jdk_version => "8",
-    :jdk => {
-      "8" => {
-        :x86_64 => {
-          :url => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/8-b132/jdk-8-linux-x64.tar.gz"
-        }
-      }
-    }
-  },
   :sensu => {
     :rabbitmq => {
       :host => "ssoprod1sensu.commercehub.com"
@@ -124,10 +103,11 @@ default_attributes(
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
     :hazelcast => {
-      :group => "ssoprod-castle",
       :password => "ssoprod-pass",
-      :service_ticket_timeout => "300",
-      :ticket_granting_ticket_timeout => "7200"
+      :multicast_group => "224.2.2.6",
+      :multicast_port => 54330,
+      :service_ticket_timeout => 300,
+      :ticket_granting_ticket_timeout => 7200
     }
   },
   :chub_plaza => {

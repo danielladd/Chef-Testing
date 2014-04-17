@@ -34,7 +34,6 @@ remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
 	action :create	# This should pull the file down forcefully
-	#notifies :delete, "directory[#{node['chub-buyspace']['app_dir']}/ROOT]", "immediately", recursive true
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
 end

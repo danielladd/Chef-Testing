@@ -1,2 +1,2 @@
 name "envdash"
-run_list "recipe[base]", "recipe[chub_envdash]"
+run_list "role[base]", "recipe[chub_envdash]"
