@@ -89,11 +89,16 @@ file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_nam
 	action :delete
 end
 
+touchfile = node['chub-csdashboard']['app']['touchfile']
+
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-csdashboard']['app']['app_name']}.war" do
-	source "#{node['chub-csdashboard']['app']['war_file_url']}"
-	owner "chub-csdashboard"
-	group "chub-csdashboard"
-	action :create	# This should pull the file down forcefully
-	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-	notifies :restart, "service[tomcat]", :delayed
+  source "#{node['chub-csdashboard']['app']['war_file_url']}"
+  not_if do
+    File.exists?(touchfile)
+  end
+  owner "chub-csdashboard"
+  group "chub-csdashboard"
+  action :create	# This should pull the file down forcefully
+  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+  notifies :restart, "service[tomcat]", :delayed
 end

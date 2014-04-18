@@ -10,3 +10,4 @@ default['chub-connman']['app']['config_file_name'] = 'connman-config.groovy'
 default['chub-connman']['app']['log4j']['root_loglevel'] = 'info'
 default['chub-connman']['app']['app_name'] = 'connman'
 default['chub-connman']['app']['war_file_url'] = 'OVERRIDE ME'
+default['chub-connman']['app']['touchfile'] = "node['chub-connman']['app']['app_dir']/deployed"
