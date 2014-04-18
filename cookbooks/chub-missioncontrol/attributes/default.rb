@@ -14,6 +14,7 @@ default['chub-missioncontrol']['app']['config_file_name'] = 'missioncontrol-conf
 default['chub-missioncontrol']['app']['log4j']['root_loglevel'] = 'info'
 default['chub-missioncontrol']['app']['app_name'] = 'landingstrip'
 default['chub-missioncontrol']['app']['war_file_url'] = 'OVERRIDE ME'
+default['chub-missioncontrol']['app']['touchfile'] = "node['chub-missioncontrol']['app']['app_dir']/deployed"
 #default['chub-missioncontrol']['app']['mongodb'] = 'localhost'
 #default['chub-missioncontrol']['app']['mongodb_port'] = '27017'
 

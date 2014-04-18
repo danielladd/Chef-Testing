@@ -60,6 +60,8 @@ directory node["chub-missioncontrol"]['app']["log_dir"] do
   mode 0777
 end
 
+
+
 execute 'clear_tomcat_app_directory' do
 	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}"
 	action :nothing
@@ -69,11 +71,14 @@ file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_
 	action :delete
 end
 
+unless touchfile.exist?
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}.war" do
 	source "#{node['chub-missioncontrol']['app']['war_file_url']}"
 	owner "chub-missioncontrol"
 	group "chub-missioncontrol"
+	touchfile = node['chub-missioncontrol']['app']['touchfile']
 	action :create	# This should pull the file down forcefully
 	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
 	notifies :restart, "service[tomcat]", :delayed
+end
 end
