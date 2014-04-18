@@ -71,13 +71,14 @@ end
 
 touchfile = node['chub-missioncontrol']['app']['touchfile']
 
-unless touchfile.exist?
-  remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}.war" do
-    source "#{node['chub-missioncontrol']['app']['war_file_url']}"
-    owner "chub-missioncontrol"
-    group "chub-missioncontrol"
-    action :create	# This should pull the file down forcefully
-    notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-    notifies :restart, "service[tomcat]", :delayed
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-missioncontrol']['app']['app_name']}.war" do
+  source "#{node['chub-missioncontrol']['app']['war_file_url']}"
+  not_if do
+    File.exists?(touchfile)
   end
+  owner "chub-missioncontrol"
+  group "chub-missioncontrol"
+  action :create	# This should pull the file down forcefully
+  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+  notifies :restart, "service[tomcat]", :delayed
 end
