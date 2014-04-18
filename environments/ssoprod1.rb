@@ -14,7 +14,7 @@ cookbook_versions({
   "chub_java" => "= 0.1.0",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.5",
-  "chub_sensu_sso" => "= 0.1.12",
+  "chub_sensu_sso" => "= 0.1.13",
   "chub_vault" => "= 0.3.3",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
@@ -104,6 +104,8 @@ default_attributes(
     :keystore_file => "dev-keystore.jks",
     :hazelcast => {
       :password => "ssoprod-pass",
+      :multicast_group => "224.2.2.6",
+      :multicast_port => 54330,
       :service_ticket_timeout => 300,
       :ticket_granting_ticket_timeout => 7200
     }

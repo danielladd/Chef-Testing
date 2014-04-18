@@ -32,8 +32,7 @@ handlerList = Array.new
 
 ## Email Handler
 if node[:chub_sensu_sso].attribute?(:email) and node[:chub_sensu_sso][:email].attribute?(:recipient) 
-    remote_file "/etc/sensu/handlers/mailer.rb" do
-        source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/handlers/notification/mailer.rb"
+    cookbook_file "/etc/sensu/handlers/mailer.rb" do
         mode 0755
     end
 
@@ -53,8 +52,7 @@ end
 
 ## PagerDuty Handler
 if node[:chub_sensu_sso].attribute?(:pagerduty) and node[:chub_sensu_sso][:pagerduty].attribute?(:api_key)
-    remote_file "/etc/sensu/handlers/pagerduty.rb" do
-        source "https://git.nexus.commercehub.com/mirrors/sensu-community-plugins/raw/master/handlers/notification/pagerduty.rb"
+    cookbook_file "/etc/sensu/handlers/pagerduty.rb" do
         mode 0755
     end
 
