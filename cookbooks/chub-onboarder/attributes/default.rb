@@ -10,3 +10,4 @@ default['chub-onboarder']['app']['config_file_name'] = 'onboarder-config.groovy'
 default['chub-onboarder']['app']['log4j']['root_loglevel'] = 'info'
 default['chub-onboarder']['app']['app_name'] = 'onboarder'
 default['chub-onboarder']['app']['war_file_url'] = 'OVERRIDE ME'
+default['chub-onboarder']['app']['touchfile'] = "node['chub-onboarder']['app']['app_dir']/deployed"
