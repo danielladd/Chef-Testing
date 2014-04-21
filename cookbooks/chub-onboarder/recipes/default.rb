@@ -89,11 +89,16 @@ file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name'
 	action :delete
 end
 
+touchfile = node['chub-onboarder']['app']['touchfile']
+
 remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-onboarder']['app']['app_name']}.war" do
-	source "#{node['chub-onboarder']['app']['war_file_url']}/?os_username=#{node['chub-onboarder']['app']['bamboo_user']}&os_password=#{node['chub-onboarder']['app']['bamboo_password']}"
-	owner "chub-onboarder"
-	group "chub-onboarder"
-	action :create	# This should pull the file down forcefully
-	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-	notifies :restart, "service[tomcat]", :delayed
+  source "#{node['chub-onboarder']['app']['war_file_url']}"
+  not_if do
+    File.exists?(touchfile)
+  end
+  owner "chub-onboarder"
+  group "chub-onboarder"
+  action :create	# This should pull the file down forcefully
+  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+  notifies :restart, "service[tomcat]", :delayed
 end

@@ -17,8 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe "nginx"
+include_recipe "chub_nginx"
 
-package "nginx" do
-	action :install
+%w{
+	php5
+	php5-fpm
+}.each do |pkg|
+	package pkg do
+		action :install
+	end
 end
