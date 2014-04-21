@@ -33,6 +33,12 @@ execute "copy_site" do
 	cwd repo_path
 	command "git checkout-index -f -a --prefix=#{site_path}/"
 	action :nothing
+	notifies :run, 'execute[fix_ownership]', "immediately"
+end
+
+execute "fix_ownership" do
+	command "chown -R www-data:www-data #{site_path}"
+	action :nothing
 end
 
 # %w{
