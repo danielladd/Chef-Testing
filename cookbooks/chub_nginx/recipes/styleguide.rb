@@ -27,6 +27,13 @@ site		= "styleguide"
 site_path	= "/var/www/#{site}"
 site_log	= "/var/log/nginx/#{site}"
 repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
+repo_path	= "/var/repo/#{site}"
+
+execute "copy_site" do
+	cwd repo_path
+	command "git checkout-index -f -a --prefix=#{site_path}/"
+	action :nothing
+end
 
 # %w{
 # 	php5
@@ -60,20 +67,19 @@ directory site_path do
 	recursive true
 end
 
-cookbook_file "#{site_path}/index.html" do
-	source "#{site}_index.html"
-	#path "#{site_path}/index.html"
-	action :create_if_missing
+directory repo_path do
 	owner "www-data"
 	group "www-data"
-	mode "0744"
+	mode "0755"
+	recursive true
+end
 
-# git site_path do
-# 	repository repo
-# 	action :export
-# 	checkout_branch "master"
-# 	reference "master"
-# 	#notifies :run, "bash[complete]"
-# end
+git repo_path do
+	repository repo
+	action :sync
+	reference "master"
+	notifies :run, 'execute[copy_site]', "immediately"
+	notifies :reload, "service[nginx]", :delayed
+end
 
 nginx_site "#{site}"

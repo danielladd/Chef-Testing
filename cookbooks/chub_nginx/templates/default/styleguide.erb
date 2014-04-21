@@ -1,9 +1,5 @@
-server {
-	listen		80;
-	server_name	<%= @site %> <%= @site %>.nexus.commercehub.com;
-	root		<%= @site_path %>;
-}
-
+# CREATED BY CHEF
+# Changes made locally will be overridden
 
 server {
 	listen		80;
@@ -16,11 +12,11 @@ server {
 	listen		80;
 	server_name	<%= @site %> <%= @site %>.nexus.commercehub.com;
 
-	access_log	/var/log/nginx/styleguide.access.log;
-	error_log	/var/log/nginx/styleguide.error.log;
+	access_log	/var/log/nginx/<%= @site %>.access.log;
+	error_log	/var/log/nginx/<%= @site %>.error.log;
 
 	location / {
-		root	/var/www/styleguide;
+		root	/var/www/<%= @site %>;
 		index	index.html;
 
 	}
