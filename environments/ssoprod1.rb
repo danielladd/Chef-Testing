@@ -55,8 +55,8 @@ default_attributes(
       :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
     :loadbalancer_urls => {
-      :vault => "https://ssoprod1-vault.commercehub.com:8443/info",
-      :census => "https://ssoprod1-census.commercehub.com:8443/info",
+      :vault => "https://ssoprod1-vault.commercehub.com:8443/api-docs",
+      :census => "https://ssoprod1-census.commercehub.com:8443/api-docs",
       :castle => "https://castle.commercehub.com/login",
       :plaza => "https://plaza.commercehub.com/buildInfo"
     }
