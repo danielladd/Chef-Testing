@@ -1,0 +1,9 @@
+{
+  "mailer": {
+    "mail_from": "<%= node[:chub_sensu_albers][:email][:sender] %>",
+    "mail_to": "<%= node[:chub_sensu_albers][:email][:recipient] %>",
+    "smtp_address": "<%= node[:chub_sensu_albers][:email][:smtp_server] %>",
+    "smtp_port": "<%= node[:chub_sensu_albers][:email][:smtp_port] %>",
+    "smtp_domain": "<%= node[:chub_sensu_albers][:email][:smtp_domain] %>"
+  }
+}

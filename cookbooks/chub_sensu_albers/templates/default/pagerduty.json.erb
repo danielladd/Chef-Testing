@@ -1,0 +1,11 @@
+{
+  "pagerduty": {
+    "api_key": "<%= node[:chub_sensu_albers][:pagerduty][:api_key] %>"
+  },
+  "handlers": {
+    "pagerduty": {
+      "command": "/etc/sensu/handlers/pagerduty.rb",
+      "type": "pipe"
+    }
+  }
+}
