@@ -44,10 +44,6 @@ end
 # 	end
 # end
 
-file "/var/www/index.html" do
-	action :delete
-end
-
 template "/etc/nginx/sites-available/#{site}" do
 	source "#{site}.erb"
 	mode "0744"
