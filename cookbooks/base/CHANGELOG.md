@@ -1,5 +1,8 @@
 base CHANGELOG
 ==============
+0.1.13
+----
+- Larry - Adding users.rb recipe
 
 0.1.12
 ----
