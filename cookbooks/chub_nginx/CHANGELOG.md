@@ -3,7 +3,10 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.2
+-----
 
+* 'H. "Waldo" Grunenwald' - Refactor to a single simple_static_site template.
 
 0.1.1
 -----
