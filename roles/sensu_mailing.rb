@@ -5,6 +5,7 @@ default_attributes "chub_sensu" => {
     "email" => {
         "subscriptions_mail_to" => {
             "pipeline_team" => "pipeline@commercehub.com",
+            "scm_team" => "auribe@commercehub.com",
         }
     }
 }
