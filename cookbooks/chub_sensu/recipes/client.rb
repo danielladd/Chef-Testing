@@ -7,7 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if !node[:sensu].attribute?(:rabbitmq) or !node[:sensu][:rabbitmq].attribute?(:host)
+unless Chef::Config[:solo]
+    node.default[:sensu][:rabbitmq][:host] = "sensu01.nexus.commercehub.com"
+end
+
+if !node.attribute?(:sensu) or !node[:sensu].attribute?(:rabbitmq) or !node[:sensu][:rabbitmq].attribute?(:host)
     Chef::Application.fatal!("RabbitMQ Host not provided, service will error out on start.  Please provide a node[:rabbitmq][:host] or you will feel pain")
 end
 

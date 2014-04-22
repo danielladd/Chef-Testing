@@ -1,3 +1,7 @@
+# 0.1.4
+
+* Defaulting to sensu01 server unless chef-solo run
+
 # 0.1.3
 
 * Cleaning up client recipe slightly and updating readme.
