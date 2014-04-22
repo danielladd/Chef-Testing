@@ -67,7 +67,7 @@ sensu_check "scm_check_ram" do
 end
 
 sensu_check "scm_check_proc" do
-    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-proc.rb -p rhodecode -C 1"
+    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-procs.rb -p rhodecode -C 1"
     handlers ["scm_team"]
     subscribers ["scm_team"]
     interval 60
