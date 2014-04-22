@@ -3,6 +3,11 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.3
+-----
+
+* David M. Carr - Add defaultsite recipe.
+
 0.1.2
 -----
 

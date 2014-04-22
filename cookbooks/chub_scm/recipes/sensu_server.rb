@@ -11,27 +11,6 @@ include_recipe "chub_sensu::server"
 
 handlerList = ["email"]
 
-## PagerDuty Handler
-if node[:chub_scm].attribute?(:pagerduty) and node[:chub_scm][:pagerduty].attribute?(:api_key)
-    remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
-        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
-        mode 0755
-    end
-
-    template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
-        source "pagerduty.json.erb"
-        mode 0644
-        variables(:api_key => node[:chub_scm][:pagerduty_scm][:api_key])
-    end
-
-    sensu_handler "pagerduty_scm" do
-        type "pipe"
-        command "/usr/bin/rub1.y9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-    end
-
-    handlerList << "pagerduty_scm"
-end
-
 
 #TODO: Does this need to key off of other properties, more team specific properties
 if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
@@ -79,10 +58,17 @@ sensu_check "scm_check_cpu" do
     additional(:occurrences => 2)
 end
 
-sensu_check "scme_check_ram" do
+sensu_check "scm_check_ram" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-ram.rb -c 5 -w 10"
     handlers ["scm_team"]
     subscribers ["scm_team"]
     interval 60
     additional(:occurrences => 2)
+end
+
+sensu_check "scm_check_proc" do
+    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-procs.rb -p rhodecode -C 1"
+    handlers ["scm_team"]
+    subscribers ["scm_team"]
+    interval 60
 end
