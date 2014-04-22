@@ -1,0 +1,1 @@
+default[:chub_scm]

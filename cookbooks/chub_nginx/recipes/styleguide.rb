@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub_nginx
-# Recipe:: default
+# Recipe:: styleguide
 #
 # Copyright 2014, CommerceHub Inc.
 #
@@ -17,4 +17,79 @@
 # limitations under the License.
 #
 
+node.normal[:nginx][:default_site_enabled]	= false
+node.normal[:nginx][:keepalive_timeout]	= 3
+
 include_recipe "chub_nginx"
+
+# # Site-specific Variables
+# # Change These
+site		= "styleguide"
+http_index	= "index.html"
+repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
+
+# # Derivitive Variables
+# # Don't Change These
+site_path	= "/var/www/#{site}"
+site_log	= "/var/log/nginx/#{site}"
+repo_path	= "/var/repo/#{site}"
+
+execute "copy_site" do
+	cwd repo_path
+	command "git checkout-index -f -a --prefix=#{site_path}/"
+	action :nothing
+	notifies :run, 'execute[fix_ownership]', "immediately"
+end
+
+execute "fix_ownership" do
+	command "chown -R www-data:www-data #{site_path}"
+	action :nothing
+end
+
+# %w{
+# 	php5
+# 	php5-fpm
+# }.each do |pkg|
+# 	package pkg do
+# 		action :install
+# 	end
+# end
+
+template "/etc/nginx/sites-available/#{site}" do
+	source "simple_static_site.erb"
+	mode "0744"
+	owner "www-data"
+	group "www-data"
+	variables({
+		:site => site,
+		:site_path => site_path,
+		:site_log => site_log,
+		:http_index => http_index
+	})
+end
+
+directory site_path do
+	owner "www-data"
+	group "www-data"
+	mode "0755"
+	recursive true
+end
+
+directory repo_path do
+	owner "www-data"
+	group "www-data"
+	mode "0755"
+	recursive true
+end
+
+git repo_path do
+	repository repo
+	action :sync
+	reference "master"
+	user "www-data"
+	group "www-data"
+	notifies :run, 'execute[copy_site]', "immediately"
+	notifies :reload, "service[nginx]", :delayed
+end
+
+nginx_site "#{site}"

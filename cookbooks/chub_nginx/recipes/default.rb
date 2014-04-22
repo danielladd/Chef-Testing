@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe "nginx::repo"
+include_recipe "nginx"
 
-package "nginx"
+package "nginx" do
+	action :install
+end
