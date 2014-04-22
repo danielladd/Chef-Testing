@@ -21,12 +21,17 @@ node.normal[:nginx][:default_site_enabled]	= false
 node.normal[:nginx][:keepalive_timeout]	= 3
 
 include_recipe "chub_nginx"
-#include_recipe "nginx"
 
+# # Site-specific Variables
+# # Change These
 site		= "corpsite"
+http_index	= "homepage.html"
+repo		= "http://mpgit03.nexus.commercehub.com/marketing/commercehub-corporate-website.git"
+
+# # Derivitive Variables
+# # Don't Change These
 site_path	= "/var/www/#{site}"
 site_log	= "/var/log/nginx/#{site}"
-repo		= "http://mpgit03.nexus.commercehub.com/marketing/commercehub-corporate-website.git"
 repo_path	= "/var/repo/#{site}"
 
 execute "copy_site" do
@@ -51,14 +56,15 @@ end
 # end
 
 template "/etc/nginx/sites-available/#{site}" do
-	source "#{site}.erb"
+	source "simple_static_site.erb"
 	mode "0644"
 	owner "www-data"
 	group "www-data"
 	variables({
 		:site => site,
 		:site_path => site_path,
-		:site_log => site_log
+		:site_log => site_log,
+		:http_index => http_index
 	})
 end
 
