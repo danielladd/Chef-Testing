@@ -11,6 +11,16 @@ require 'digest/sha1'
 include_recipe "apt"
 include_recipe "chub_java::oracle8"
 
+# Host file tweaks needed for remote JMX to work
+hostsfile_entry '127.0.1.1' do
+  action    :remove
+end
+hostsfile_entry node[:ipaddress] do
+  hostname  node[:fqdn]
+  aliases   [node[:hostname]]
+  action    :create
+end
+
 group "castle" do
     action :create
     system true
