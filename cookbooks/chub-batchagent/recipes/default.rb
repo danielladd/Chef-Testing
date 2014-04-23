@@ -19,6 +19,9 @@
 
 
 include_recipe "java"
+include_recipe "tomcat"
+node.set['tomcat']['base_version'] = 7
+node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
 
 #Commented out until time to finalize
 #include_recipe "chub-batchagent::batchagent"

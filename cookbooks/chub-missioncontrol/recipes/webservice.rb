@@ -33,46 +33,46 @@ directory node['chub-missioncontrol']['webservice']['deploy_dir']do
   mode 0550
 end
 
-# TODO: Is this needed?  Once it outputs log this directory will exist
-# have to create this otherwise the symlink fails. 
-#directory "#{node["chub-missioncontrol"]["webServiceDeployDir"]}/log" do
-#  action :create
-#end
 
-propFile = "#{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node["chub-missioncontrol"]['webservice']['property_file_name']}"
-remote_file "#{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node["chub-missioncontrol"]['webservice']['jar_name']}" do
-  source node["chub-missioncontrol"]["deployJarUrl"]
+propFile = "#{node['chub-missioncontrol']['webservice']['stagingDir']}/#{node['chub-missioncontrol']['webservice']['config_file_name']}"
+remote_file "#{node['chub-missioncontrol']['webservice']['stagingDir']}/#{node['chub-missioncontrol']['webservice']['jar_file_name']}" do
+  source node['chub-missioncontrol']['webservice']["jar_file_url"]
   notifies :run, "template[#{propFile}]"	
 end
 
-template "#{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node["chub-missioncontrol"]['webservice']['property_file_name']}" do
-  source "deploy.properties.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  #TODO: This does not properly notify or re-execute deploy after property file is updated
-  notifies :run, "execute[deploy]"
+#template "#{node['chub-missioncontrol']['webservice']['stagingDir']}/#{node['chub-missioncontrol']['webservice']['config_file_name']}" do
+#  source "config.yml"
+#  owner "root"
+#  group "root"
+#  mode 0644
+#  #TODO: This does not properly notify or re-execute deploy after property file is updated
+#  notifies :run, "execute[deploy]"
+#end
+
+#execute "deploy" do
+#  command "java -jar #{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node['chub-missioncontrol']['webservice']['jar_file_name']} -d #{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node['chub-missioncontrol']['webservice']['config_file_name']}"
+#  creates "#{node['chub-missioncontrol']['webservice']['deployDir']}/bin"
+#  action :run
+#  notifies "restart", "service[onbwebservice]", :delayed
+#end
+
+template "/etc/init/onbwebservice.conf" do
+    source "missioncontrol-config.groovy.erb"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies "restart", "service[onbwebservice]", :delayed
 end
 
-remote_file "#{node['chub-missioncontrol']['webservice']['app_dir']}/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact_file_name']}" do
-	source "http://#{node['chub-missioncontrol']['webservice']['bamboo_server_name']}:#{node['chub-missioncontrol']['webservice']['bamboo_server_port']}/browse/#{node['chub-missioncontrol']['webservice']['bamboo_server_build_project']}-#{node['chub-missioncontrol']['webservice']['bamboo_server_build_key']}/latest/artifact/shared/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact']}/#{node['chub-missioncontrol']['webservice']['bamboo_server_artifact_name']}"
-	owner "chub-missioncontrol"
-	group "chub-missioncontrol"
-	action :create_if_missing
-	notifies :run, 'deploy_web_service_jar', :immediately
-end
-w
-execute "deploy_web_service_jar" do
-  command "java -jar #{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node['chub-missioncontrol']['webservice']['jar_name']} -d #{node['chub-missioncontrol']['webservice']['staging_dir']}/#{node["chub-missioncontrol"]['webservice']['property_file_name']}"
-  creates "#{node['chub-missioncontrol']['webservice']['deploy_dir']}/bin"
-  action :run
-  notifies "restart", "service[#{node['chub-missioncontrol']['webservice']['service_name']}]", :delayed
+link "/etc/webservice" do
+  to "#{node['chub-missioncontrol']['webservice']['deployDir']}/config"
 end
 
-link "/etc/missioncontrol" do
-  to "#{node['chub-missioncontrol']['webservice']['deploy_dir']}/config"
+link "/var/log/webservice" do
+  to "#{node['chub-missioncontrol']['webservice']}/log"
 end
 
-link "/var/log/missioncontrol" do
-  to "#{node['chub-missioncontrol']['webservice']['deploy_dir']}/log"
+service "onbwebservice" do
+    provider Chef::Provider::Service::Upstart
+    action [ "enable", "start" ]
 end

@@ -1,4 +1,4 @@
-name             'chub-csdashboard'
+name             'chub-landingstrip'
 maintainer       'CommerceHub Inc.'
 maintainer_email 'estegmann@commercehub.com'
 license          'Apache 2.0'
