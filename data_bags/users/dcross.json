@@ -1,0 +1,9 @@
+{
+  "id": "dcross",
+  "user": "dcross",
+  "password": "$6$pPaldCr9zrOBnIt5$XiqNDdIWqxndfOk0rmPZZr7Oj7ZftZ4oP/Tw5BWP1U/ZhVHssOVDgJMuz2pbwO.2hwGvsG4.fxQqknq5O0suT/",
+  "group":["adm","sudo","sambashare"],
+  "system":false,
+  "shell": "/bin/bash",
+  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCy8zJTqr6LDdJ2NafPxHsOs96jjPtrmm8dmdmbb53xgQgCfAPLKf+l9jfY+4T4cUWKmVdHyRwRJPEzjBml4EUi1E0wwJ+zbvKc0oQTDwCtQC7tA5xJww/LOVyy7IQo4fWwrBzFf8OxfKeHBKiuusAN/O1hm3s7W0HDApF9GvMZtO5qLvPlyyfO494NDeM3GbKZ4zOwU2UU6ACJm+R0LnloZfY4QaeDdpuNG8HT+c9/+X3pstWxyX7O0XIkC2Q5+sCexfvAgIDZniwbqVWNPZ+iXD6HNiyKda3GF960fwSKVQbLMI3+B4A+pfGXMzaJGefc5tMfuQKBnH+MklYCK8n7 dcross@dcross.laptop.commercehub.com"
+}

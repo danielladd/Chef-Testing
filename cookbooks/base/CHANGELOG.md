@@ -1,5 +1,12 @@
 base CHANGELOG
 ==============
+0.1.14
+----
+- Larry - Tweaking users recipe to only add users to machine if they are found in ssh_keys has on the node. 
+
+0.1.13
+----
+- Larry - Adding users.rb recipe
 
 0.1.12
 ----

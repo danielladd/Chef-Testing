@@ -1,0 +1,9 @@
+{
+  "id": "wgrunenwald",
+  "user": "wgrunenwald",
+  "password": "",
+  "group":["adm","sudo","sambashare"],
+  "system":false,
+  "shell": "/bin/zsh",
+  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCstM7BcGTk9aSdm8mz7urEdKRfk0tmMQvWqJz6UNzV0Dd3tOtEiTZ/sgRA3CMf4m49FHkP4zL2P6LChGMGI9kE2Ub3Z/mFNwlIhrIYFTEBEJm4/SI58Dhy3coHp7v+UwgP3H7MjMCBqcXAIPX2oVdr7hBucp25FBAbFtoy9tEqzQzC3UIdJ99CdUl+KAn9GOv7UrJa2Rf4qh4bPi1D+Jabg9cOcir10zJ8Od0L4JQiI33RhaXBuSoaI3ptU9OMPVJwruyOYmmSYTFG7SPBzfGr5qUqUH0/Mc8Sbgb/kIiiJ3rPEVurnT3MNuIpmSUWoxTBOv4vdaGOxiGQPFG6clO7 wgrunenwald@commercehub.com"
+}
