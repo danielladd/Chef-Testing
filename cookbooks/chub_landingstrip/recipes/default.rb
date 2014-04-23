@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-landingstrip
+# Cookbook Name:: chub_landingstrip
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -19,14 +19,14 @@
 include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 
-group "chub-landingstrip" do
+group "chub_landingstrip" do
     action :create
     system true
 end
 
-user "chub-landingstrip" do
-    comment "Application user for chub-landingstrip"
-    gid "chub-landingstrip"
+user "chub_landingstrip" do
+    comment "Application user for chub_landingstrip"
+    gid "chub_landingstrip"
     system true
 end
 
@@ -35,69 +35,69 @@ user "chadmin" do
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
 end
 
-group "chub-landingstrip" do
+group "chub_landingstrip" do
     action :modify
     append true
-    members ["chub-landingstrip", "chadmin"]
+    members ["chub_landingstrip", "chadmin"]
 end
 
-directory node["chub-landingstrip"]['app']["config_dir"] do
+directory node["chub_landingstrip"]['app']["config_dir"] do
   action :create
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/#{node['chub-landingstrip']['app']['app_name']}" do
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+directory "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}" do
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
 directory "#{node['tomcat']['webapp_dir']}" do
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
 directory "#{node['tomcat']['base']}" do
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
-directory node["chub-landingstrip"]['app']["app_dir"] do
+directory node["chub_landingstrip"]['app']["app_dir"] do
   action :create
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
-directory node["chub-landingstrip"]['app']["log_dir"] do
+directory node["chub_landingstrip"]['app']["log_dir"] do
   action :create
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   mode 0777
 end
 
 execute 'clear_tomcat_app_directory' do
-	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub-landingstrip']['app']['app_name']}"
+	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}"
 	action :nothing
 end
 
-file "#{node['tomcat']['webapp_dir']}/#{node['chub-landingstrip']['app']['app_name']}.war" do
+file "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}.war" do
 	action :delete
 end
 
-touchfile = node['chub-landingstrip']['app']['touchfile']
+touchfile = node['chub_landingstrip']['app']['touchfile']
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub-landingstrip']['app']['app_name']}.war" do
-  source "#{node['chub-landingstrip']['app']['war_file_url']}"
+remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}.war" do
+  source "#{node['chub_landingstrip']['app']['war_file_url']}"
   not_if do
     File.exists?(touchfile)
   end
-  owner "chub-landingstrip"
-  group "chub-landingstrip"
+  owner "chub_landingstrip"
+  group "chub_landingstrip"
   action :create	# This should pull the file down forcefully
   notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
   notifies :restart, "service[tomcat]", :delayed
