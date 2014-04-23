@@ -1,3 +1,6 @@
+# 0.1.6
+* Support remote JMX
+
 # 0.1.5
 * Use chub_java
 
