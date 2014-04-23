@@ -17,10 +17,6 @@
 # limitations under the License .
 #
 
-include_recipe "tomcat"
-node.set['tomcat']['base_version'] = 7
-node.set['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
-
 directory node["chub-missioncontrol"]['app']["config_dir"] do
   action :create
   owner "chub-missioncontrol"
