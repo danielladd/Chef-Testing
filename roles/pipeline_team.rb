@@ -9,7 +9,7 @@ default_attributes "sensu" => {
         "lzarou" => "lzarou",
         "wgrunenwald" => "wgrunenwald",
         "kstahl" => "kstahl",
-        "bcarr" => "",
+        "bcarr" => "bcarr",
         "dcross" => "dcross"
 }
 run_list "recipe[chub_pipeline::sensu_client]","recipe[base::users]","ssh-keys"
