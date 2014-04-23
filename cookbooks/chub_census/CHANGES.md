@@ -1,3 +1,6 @@
+# 0.1.5
+* Enable remote JMX
+
 # 0.1.4
 * Use chub_java cookbook
 * Update default app_url

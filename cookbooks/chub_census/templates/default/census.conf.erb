@@ -1,7 +1,7 @@
 setuid census
 setgid census
 chdir /var/census
-exec java -server -d64 -Xms<%= node[:chub_census][:java_heap_size] %> -Xmx<%= node[:chub_census][:java_heap_size] %> -Djava.net.preferIPv4Stack=true -jar /opt/census/census.jar server /etc/census/census.yaml
+exec java -server -d64 -Xms<%= node[:chub_census][:java_heap_size] %> -Xmx<%= node[:chub_census][:java_heap_size] %> -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false-jar /opt/census/census.jar server /etc/census/census.yaml
 respawn
 start on runlevel [2345]
 stop on runlevel [016]
