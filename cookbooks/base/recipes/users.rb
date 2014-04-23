@@ -42,7 +42,7 @@ users.each do |login|
     pass = "$1$miusDUAL$rfsyWxpxUCd8IeXj5.RhT/"
   end
 
-  user user['user'] do
+  user "#{user['user']}" do
     system    system
     password  pass
     shell     shell
@@ -56,7 +56,7 @@ users.each do |login|
       members user['user']
       append true
       action :modify
-      only_if "cut -d: -f1 /etc/group | grep #{name}"
+      only_if "cut -d: -f1 /etc/group | grep '^#{name}$'"
     end
   end
 
