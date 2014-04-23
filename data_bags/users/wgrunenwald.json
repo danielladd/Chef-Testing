@@ -2,7 +2,7 @@
   "id": "wgrunenwald",
   "user": "wgrunenwald",
   "password": "",
-  "group":["adm","sudo","sambashare","notagroup", "puppet"],
+  "group":["adm","sudo","sambashare"],
   "system":false,
   "shell": "/bin/zsh",
   "ssh_keys": ""
