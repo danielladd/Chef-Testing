@@ -10,7 +10,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.17",
-  "chub_census" => "= 0.1.4",
+  "chub_census" => "= 0.1.5",
   "chub_java" => "= 0.1.0",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.5",
