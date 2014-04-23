@@ -1,7 +1,7 @@
 {
   "id": "wgrunenwald",
   "user": "wgrunenwald",
-  "password": "",
+  "password": "$1$3K.KZxny$N7vK7rCmGUaLmjtYTHzpA0",
   "group":["adm","sudo","sambashare"],
   "system":false,
   "shell": "/bin/zsh",
