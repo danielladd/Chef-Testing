@@ -6,6 +6,7 @@ default_attributes "sensu" => {
     }
 },
 "ssh_keys" => {
-        "lzarou" => "lzarou"
+        "lzarou" => "lzarou",
+        "wgrunenwald" => "wgrunenwald"
 }
 run_list "recipe[chub_pipeline::sensu_client]"
