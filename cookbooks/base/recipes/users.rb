@@ -28,6 +28,7 @@ users.each do |login|
   shell = user['shell']
   system = user['system']
   pass = user['password']
+  roles = user['roles']
 
   if shell.nil? or shell == ''
     shell = '/bin/bash'
@@ -42,22 +43,24 @@ users.each do |login|
     pass = "$1$miusDUAL$rfsyWxpxUCd8IeXj5.RhT/"
   end
 
-  user "#{user['user']}" do
-    system    system
-    password  pass
-    shell     shell
-    home      home
-    supports  :manage_home => true
-    action    :create
-  end
+  if node[:ssh_keys].keys.include?(user['user'])
+    user "#{user['user']}" do
+      system    system
+      password  pass
+      shell     shell
+      home      home
+      supports  :manage_home => true
+      action    :create
+    end
 
-  groups.each do |name|
-    group name do
-      members user['user']
-      append true
-      action :modify
-      only_if "cut -d: -f1 /etc/group | grep '^#{name}$'"
+    groups.each do |name|
+      group "#{user['user']}-#{name}" do
+        group_name name
+        members user['user']
+        append true
+        action :modify
+        only_if "cut -d: -f1 /etc/group | grep '^#{name}$'"
+      end
     end
   end
-
 end
