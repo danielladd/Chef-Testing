@@ -8,5 +8,8 @@ default_attributes "sensu" => {
 "ssh_keys" => {
         "lzarou" => "lzarou",
         "wgrunenwald" => "wgrunenwald"
+        "kstahl" => "kstahl",
+        "bcarr" => "",
+        "dcross" => "dcross"
 }
-run_list "recipe[chub_pipeline::sensu_client]"
+run_list "recipe[chub_pipeline::sensu_client],recipe[base::users]"
