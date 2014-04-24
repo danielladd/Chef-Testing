@@ -38,13 +38,12 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "git checkout-index -f -a --prefix=#{site_path}/"
+	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
 	action :nothing
-	notifies :run, 'execute[fix_ownership]', "immediately"
 end
 
 execute "fix_ownership" do
-	command "chown -R www-data:www-data #{site_path}"
+	command "chown -R www-data:www-data #{repo_path}"
 	action :nothing
 end
 
@@ -58,7 +57,6 @@ end
 end
 
 template "/etc/nginx/sites-available/#{site}" do
-	#source "simple_static_site.erb"
 	source "php_fcgi_site.erb"
 	mode "0644"
 	owner "www-data"
@@ -88,10 +86,12 @@ end
 
 git repo_path do
 	repository repo
+	additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"
 	group "www-data"
+	notifies :run, 'execute[fix_ownership]', "immediately"
 	notifies :run, 'execute[copy_site]', "immediately"
 	notifies :reload, "service[nginx]", :delayed
 end

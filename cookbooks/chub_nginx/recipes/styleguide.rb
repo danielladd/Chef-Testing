@@ -36,7 +36,6 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	#command "git checkout-index -f -a --prefix=#{site_path}/"
 	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
 	action :nothing
 end
