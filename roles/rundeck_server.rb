@@ -39,4 +39,4 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
 "
    }
 }
-run_list "recipe[chub_rundeck::server]","recipe[base::users]"
+run_list "recipe[base::users]","recipe[chub_rundeck::server]"
