@@ -1,7 +1,7 @@
 setuid castle
 setgid castle
 chdir /var/castle
-exec java -server -d64 -Xms<%= node[:chub_castle][:java_heap_size] %> -Xmx<%= node[:chub_castle][:java_heap_size] %> -Dcontainer.ssl.keyStore=/etc/castle/keystore.jks -Dcontainer.ssl.keyStorePassword="<%= node[:chub_castle][:keystore_password] %>" -Dcontainer.ssl.trustStore=/etc/castle/truststore.jks -Dcontainer.ssl.trustStorePassword="<%= node[:chub_castle][:truststore_password] %>" -Djava.net.preferIPv4Stack=true -Dapplication.properties=/etc/castle/castle.properties -jar /opt/castle/castle.war run
+exec java -server -d64 -Xms<%= node[:chub_castle][:java_heap_size] %> -Xmx<%= node[:chub_castle][:java_heap_size] %> -Dcontainer.ssl.keyStore=/etc/castle/keystore.jks -Dcontainer.ssl.keyStorePassword="<%= node[:chub_castle][:keystore_password] %>" -Dcontainer.ssl.trustStore=/etc/castle/truststore.jks -Dcontainer.ssl.trustStorePassword="<%= node[:chub_castle][:truststore_password] %>" -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dapplication.properties=/etc/castle/castle.properties -jar /opt/castle/castle.war run
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

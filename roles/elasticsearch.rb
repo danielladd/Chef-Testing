@@ -1,6 +1,6 @@
 name "elasticsearch"
 description "an elasticsearch cluster node"
-run_list "role[base]", "recipe[java]", "recipe[elasticsearch::search_discovery]", "recipe[elasticsearch]"
+run_list "recipe[java]", "recipe[elasticsearch::search_discovery]", "recipe[elasticsearch]"
 default_attributes(
   "java" => {
     "install_flavor" => "oracle",

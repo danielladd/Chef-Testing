@@ -1,0 +1,5 @@
+chdir <%= node['chub-csdashboard']['app']['deploy_dir'] %>
+exec java -jar /<%= node['chub-csdashboard']['app']['deploy_dir'] %>/<%= node['chub-csdashboard']['app']['app_name'] %>.jar context=<%= node['chub-csdashboard']['app']['app_name'] %> port=<%= node['chub-csdashboard']['app']['port'] %>
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
