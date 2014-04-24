@@ -17,11 +17,6 @@
 # limitations under the License.
 #
 
-node.normal[:nginx][:default_site_enabled]	= false
-node.normal[:nginx][:keepalive_timeout]	= 3
-
-include_recipe "chub_nginx"
-
 # # Site-specific Variables
 # # Change These
 site		= "styleguide"
@@ -33,6 +28,11 @@ repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
 site_path	= "/var/www/#{site}"
 site_log	= "/var/log/nginx/#{site}"
 repo_path	= "/var/repo/#{site}"
+
+node.normal[:nginx][:default_site_enabled]	= false
+node.normal[:nginx][:keepalive_timeout]	= 3
+
+include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path

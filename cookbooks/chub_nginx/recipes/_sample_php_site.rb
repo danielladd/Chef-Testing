@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub_nginx
-# Recipe:: corpsite
+# Recipe:: _sample_site
 #
 # Copyright 2014, CommerceHub Inc.
 #
@@ -17,11 +17,15 @@
 # limitations under the License.
 #
 
+# README:  This is a sample implementation of this cookbook.
+# For a simple static-content-only site, copy and rename this cookbook, and
+# change the three variables below.
+
 # # Site-specific Variables
 # # Change These
-site		= "corpsite"
-http_index	= "homepage.html"
-repo		= "http://mpgit03.nexus.commercehub.com/marketing/commercehub-corporate-website.git"
+site		= "samplephpsite"		# This is the name of the site
+http_index	= "index.php"		# This is the homepage of the website
+repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
 
 # # Derivitive Variables
 # # Don't Change These
