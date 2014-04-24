@@ -1,11 +1,11 @@
-chub-batchagent CHANGELOG
+chub_onboarding_webservice CHANGELOG
 =========================
 
 This file is used to list changes made in each version of the chub-batchagent cookbook.
 
 0.1.0
 -----
-- [your_name] - Initial release of chub-batchagent
+- [your_name] - Initial release of chub_onboarding_webservice
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

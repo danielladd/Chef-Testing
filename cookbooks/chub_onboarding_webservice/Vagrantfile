@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.define "box1" do |box1|
-    box1.vm.hostname = "batchagent"
+    box1.vm.hostname = "onboarding_webservice"
 #   box1.vm.network :public_network
     box1.vm.network :private_network, ip: "192.168.12.11"
     box1.vm.network :forwarded_port, guest: 8080, host: 8080
@@ -18,23 +18,15 @@ Vagrant.configure("2") do |config|
     box1.vm.provision "chef_solo" do |chef|
       chef.cookbooks_path = "D:/git/chef/cookbooks"
       chef.json = {
-        "chub-batchagent" => {
-          "deployJarUrl" => "OVERWRITE_ME_PLZ",
-          "hornetqHost" => "OVERWRITE_ME_PLZ",
-          "database" => {
-            "default" => {
-              "name" => "OVERWRITE_ME_PLZ",
-              "server" => "OVERWRITE_ME_PLZ",
-              "user" => "OVERWRITE_ME_PLZ",
-              "pass" => "OVERWRITE_ME_PLZ",
+        "chub_onboarding_webservice" => {
+          "deployJarUrl" => "OVERWRITE_ME_PLZ"
             },
           }
         }
       }
       chef.add_recipe "base"
-      chef.add_recipe 'git'
-      chef.add_recipe 'chub-batchagent'
-      chef.add_recipe 'chub-batchagent::batchagent'
+      chef.add_recipe 'chub_java::oracle7'
+      chef.add_recipe 'chub_onboarding_webservice'
     end
   end
 end
