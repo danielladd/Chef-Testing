@@ -49,26 +49,29 @@ Just include `chub_nginx` in your node's `run_list`:
 }
 ```
 
+#### chub_nginx::_sample_static_site.rb
+Do not run this recipe.  If you need to serve a basic static-files site (html,
+css, javascript), Copy this file to a new recipe, update the three variables at the top of the
+recipe (name, index, and repo), and add the recipe to your server's runlist.
+
+#### chub_nginx::_sample_php_site.rb
+Identical in purpose to the _sample_static_site except that you want to serve
+php content.  Likewise, you will not run this recipe; you are to copy this file
+to a new recipe, update the top three variables, and use that recipe.
+
 #### chub_nginx::styleguide
+This is the recipe that serves the [StyleGuide.](http://styleguide.nexus.commercehub.com)
+Originally an example of the _sample_static_site, it was later converted to a
+php site.
 
-#### chub_nginx::files
+#### chub_nginx::corpsite
+This is the new version of the [Corporate Website.](http://www.commercehub.com)
 
 
-
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
 
 License and Authors
 -------------------
 Authors:
 
-H. "Waldo" Grunenwald
+* H. "Waldo" Grunenwald
+* David Carr

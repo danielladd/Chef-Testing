@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 include_recipe "chub_java::oracle7"
-include_recipe "tomcat"
 
 group "chub_landingstrip" do
     action :create
@@ -41,32 +40,14 @@ group "chub_landingstrip" do
     members ["chub_landingstrip", "chadmin"]
 end
 
-directory node["chub_landingstrip"]['app']["config_dir"] do
+directory node["chub_landingstrip"]['app']['deploy_dir'] do
   action :create
   owner "chub_landingstrip"
   group "chub_landingstrip"
   mode 0777
 end
 
-directory "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}" do
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
-  mode 0777
-end
-
-directory "#{node['tomcat']['webapp_dir']}" do
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
-  mode 0777
-end
-
-directory "#{node['tomcat']['base']}" do
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
-  mode 0777
-end
-
-directory node["chub_landingstrip"]['app']["app_dir"] do
+directory node["chub_landingstrip"]['app']["config_dir"] do
   action :create
   owner "chub_landingstrip"
   group "chub_landingstrip"
@@ -80,25 +61,27 @@ directory node["chub_landingstrip"]['app']["log_dir"] do
   mode 0777
 end
 
-execute 'clear_tomcat_app_directory' do
-	command "rm -fr #{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}"
-	action :nothing
-end
-
-file "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}.war" do
-	action :delete
-end
-
 touchfile = node['chub_landingstrip']['app']['touchfile']
 
-remote_file "#{node['tomcat']['webapp_dir']}/#{node['chub_landingstrip']['app']['app_name']}.war" do
-  source "#{node['chub_landingstrip']['app']['war_file_url']}"
+remote_file "#{node["chub_landingstrip"]['app']['deploy_dir']}/#{node['chub_landingstrip']['app']['app_name']}.jar" do
+  source "#{node['chub_landingstrip']['app']['jar_file_url']}"
   not_if do
     File.exists?(touchfile)
   end
   owner "chub_landingstrip"
   group "chub_landingstrip"
   action :create	# This should pull the file down forcefully
-  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-  notifies :restart, "service[tomcat]", :delayed
+end
+
+template "/etc/init/landingstrip.conf" do
+    source "landingstrip.conf.erb"
+    owner "root"
+    group "root"
+    mode 0644
+    notifies "restart", "service[landingstrip]", :delayed
+end
+
+service "landingstrip" do
+    provider Chef::Provider::Service::Upstart
+    action [ "enable", "start" ]
 end

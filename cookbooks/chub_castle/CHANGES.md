@@ -1,3 +1,6 @@
+# 0.1.18
+* Add support for remote JMX
+
 # 0.1.17
 * Add default for chub_castle/hazelcast/group based on environment
 * Add default hazelcast service_ticket_timeout and ticket_granting_ticket_timeout
