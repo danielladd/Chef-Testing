@@ -1,11 +1,9 @@
 name "rundeck_server"
 description "role for rundeck_server machines"
-default_attributes "rundeck" => {
-  "admin" => {
-    "password" => "securepassword1"
-  },
-  "ssh_keys" => {
-    "rundeck-ssh" => "rundeck-ssh",
+default_attributes(
+  "rundeck" => {
+    "admin" => {
+      "password" => "securepassword1"
   },
   "chef" => {
     "client_name" => "rundeck",
@@ -36,7 +34,12 @@ mD1P4QKBgGrP6CGFoqSHdvICddWG5ma7dfD1pgdyLxMSXB2r9vsdXBoRh8/8gLNa
 eub7aI6YSxFEDwFnLheZpu9vIPB+ghbRLTRM0ADZN6HqWdxwZCS39GDkkn11FMnD
 g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
 -----END RSA PRIVATE KEY-----
-"
-   }
-}
+"}
+  }
+)
+override_attributes(
+  "ssh_keys" => {
+    "rundeck-ssh" => "rundeck-ssh",
+  }
+)
 run_list "recipe[base::users]","recipe[chub_rundeck::server]"
