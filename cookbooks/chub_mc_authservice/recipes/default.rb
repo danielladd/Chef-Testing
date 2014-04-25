@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub_landingstrip
+# Cookbook Name:: chub_mc_authservice
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -18,14 +18,14 @@
 #
 include_recipe "chub_java::oracle7"
 
-group "chub_landingstrip" do
+group "chub_mc_authservice" do
     action :create
     system true
 end
 
-user "chub_landingstrip" do
-    comment "Application user for chub_landingstrip"
-    gid "chub_landingstrip"
+user "chub_mc_authservice" do
+    comment "Application user for chub_mc_authservice"
+    gid "chub_mc_authservice"
     system true
 end
 
@@ -34,48 +34,54 @@ user "chadmin" do
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
 end
 
-group "chub_landingstrip" do
+group "chub_mc_authservice" do
     action :modify
     append true
-    members ["chub_landingstrip", "chadmin"]
+    members ["chub_mc_authservice", "chadmin"]
 end
 
-directory node['chub_landingstrip']['app']['deploy_dir'] do
+directory node[:chub_mc_authservice][:deploy_dir] do
   action :create
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
   mode 0777
 end
 
-touchfile = node['chub_landingstrip']['app']['touchfile']
+directory node[:chub_mc_authservice][:config_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
 
-remote_file "#{node['chub_landingstrip']['app']['deploy_dir']}/#{node['chub_landingstrip']['app']['app_name']}.jar" do
-  source "#{node['chub_landingstrip']['app']['jar_file_url']}"
+directory node[:chub_mc_authservice][:log_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+
+touchfile = node[:chub_mc_authservice][:touchfile]
+
+remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
+  source "#{node[:chub_mc_authservice][:jar_file_url]}"
   not_if do
     File.exists?(touchfile)
   end
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
   action :create	# This should pull the file down forcefully
 end
 
-template "/etc/init/landingstrip.conf" do
-    source "landingstrip.conf.erb"
+template "/etc/init/mc_authservice.conf" do
+    source "mc_authservice.conf.erb"
     owner "root"
     group "root"
     mode 0644
-    notifies "restart", "service[landingstrip]", :delayed
+    notifies "restart", "service[mc_authservice]", :delayed
 end
 
-link "/etc/landingstrip" do
-  to "#{node['chub_landingstrip']['app']['deploy_dir']}/config"
-end
-
-link "/var/log/landingstrip" do
-  to "#{node['chub_landingstrip']['app']['deploy_dir']}/log"
-end
-
-service "landingstrip" do
+service "mc_authservice" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
