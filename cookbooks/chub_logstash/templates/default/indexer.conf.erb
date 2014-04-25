@@ -1,0 +1,15 @@
+input {
+  lumberjack {
+    port => 2351
+    ssl_certificate => "/opt/logstash/ssl/logstash.crt"
+    ssl_key => "/opt/logstash/ssl/logstash.key"
+  }
+}
+
+output {
+  elasticsearch {
+    cluster => "<%= @clustername %>"
+    protocol => "node"
+    host => "<%= @host %>"
+  }
+}
