@@ -73,6 +73,19 @@ remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authserv
   action :create	# This should pull the file down forcefully
 end
 
+# TODO figure out how to work with two touchfiles post 5/1
+
+file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
+	action :delete
+end
+
+remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
+  source "#{node[:chub_mc_authservice][:keystore_file_url]}"
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  action :create	# This should pull the file down forcefully
+end
+
 template "/etc/init/mc_authservice.conf" do
     source "mc_authservice.conf.erb"
     owner "root"
