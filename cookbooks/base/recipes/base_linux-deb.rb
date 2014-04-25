@@ -48,3 +48,8 @@ include_recipe "chef-kick"
 unless node['instance_role'] == 'vagrant'
 	include_recipe "chef-client"
 end
+
+group "minions" do 
+  action :create
+  append true
+end

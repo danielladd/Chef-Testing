@@ -43,6 +43,8 @@ users.each do |login|
     pass = "$1$miusDUAL$rfsyWxpxUCd8IeXj5.RhT/"
   end
 
+  #sudo passwd --all -S | grep P
+
   if node[:ssh_keys].keys.include?(user['user'])
     user "#{user['user']}" do
       system    system
