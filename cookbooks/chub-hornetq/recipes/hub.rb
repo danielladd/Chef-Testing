@@ -42,15 +42,15 @@ end
 directory node['chub-hornetq']['staging_dir'] do
   action :create
   owner "hornetq"
-  group "hornetq"
-  mode 0550
+  group "minions"
+  mode 0551
 end
 
 directory node['chub-hornetq']['app_dir'] do
   action :create
   owner "hornetq"
-  group "hornetq"
-  mode 0550
+  group "minions"
+  mode 0551
 end
 
 execute "delete property file" do
@@ -100,6 +100,8 @@ execute "installService" do
   cwd "#{node['chub-hornetq']['app_dir']}/bin"
   creates "/etc/rc0.d/K20hornetq"
   action :run
+  #TODO - THIS
+  # not_if { ::File.exists?()}
 end
 
 link "/etc/hornetq" do
