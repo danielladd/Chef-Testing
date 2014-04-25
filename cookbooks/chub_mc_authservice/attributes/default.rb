@@ -8,4 +8,4 @@ default[:chub_mc_authservice][:deploy_dir] = '/opt/mc-authservice'
 default[:chub_mc_authservice][:log_dir] = '/opt/mc-authservice/logs'
 default[:chub_mc_authservice][:jar_file_url] = 'OVERRIDE ME'
 default[:chub_mc_authservice][:jar_file_name] = 'mc-authservice.jar' 
-default[:chub_mc_authservice][:touchfile] = "node['chub_mc_authservice']['app']['app_dir']/deployed"
+default[:chub_mc_authservice][:touchfile] = "node[:chub_mc_authservice][:deploy_dir]/deployed"
