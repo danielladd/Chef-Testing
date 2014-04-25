@@ -1,10 +1,8 @@
 #
-# Cookbook Name:: Base
-# Recipe:: base_linux-deb
+# Cookbook Name:: chub_rundeck
+# Recipe:: default
 #
-# Cookbook that installs standard packages
-#
-# Copyright 2013, CommerceHub
+# Copyright 2014, CommerceHub Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,37 +17,3 @@
 # limitations under the License.
 #
 
-include_recipe "apt"
-
-package_list = %w{
-	build-essential
-	zsh
-	vim
-	nmap
-	curl
-	wget
-	netcat
-	htop
-	strace
-	sysstat
-	ruby1.9.3
-	mercurial
-}
-
-package_list.each do |pkg|
-	package pkg do
-		action :install
-	end
-end
-
-include_recipe "git"
-include_recipe "chef-kick"
-
-unless node['instance_role'] == 'vagrant'
-	include_recipe "chef-client"
-end
-
-group "minions" do 
-  action :create
-  append true
-end

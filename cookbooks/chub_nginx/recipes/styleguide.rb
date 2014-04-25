@@ -17,11 +17,6 @@
 # limitations under the License.
 #
 
-node.normal[:nginx][:default_site_enabled]	= false
-node.normal[:nginx][:keepalive_timeout]	= 3
-
-include_recipe "chub_nginx"
-
 # # Site-specific Variables
 # # Change These
 site		= "styleguide"
@@ -33,30 +28,36 @@ repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
 site_path	= "/var/www/#{site}"
 site_log	= "/var/log/nginx/#{site}"
 repo_path	= "/var/repo/#{site}"
+#fcgi_port	= "unix:/var/run/php5-fpm.sock"
+fcgi_port	= "127.0.0.1:9000"
+
+node.normal[:nginx][:default_site_enabled]	= false
+node.normal[:nginx][:keepalive_timeout]	= 3
+
+include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "git checkout-index -f -a --prefix=#{site_path}/"
+	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
 	action :nothing
-	notifies :run, 'execute[fix_ownership]', "immediately"
 end
 
 execute "fix_ownership" do
-	command "chown -R www-data:www-data #{site_path}"
+	command "chown -R www-data:www-data #{repo_path}"
 	action :nothing
 end
 
-# %w{
-# 	php5
-# 	php5-fpm
-# }.each do |pkg|
-# 	package pkg do
-# 		action :install
-# 	end
-# end
+%w{
+	php5-cli
+	php5-fpm
+}.each do |pkg|
+	package pkg do
+		action :install
+	end
+end
 
 template "/etc/nginx/sites-available/#{site}" do
-	source "simple_static_site.erb"
+	source "php_fcgi_site.erb"
 	mode "0744"
 	owner "www-data"
 	group "www-data"
@@ -64,7 +65,8 @@ template "/etc/nginx/sites-available/#{site}" do
 		:site => site,
 		:site_path => site_path,
 		:site_log => site_log,
-		:http_index => http_index
+		:http_index => http_index,
+		:fcgi_port => fcgi_port
 	})
 end
 
@@ -84,12 +86,24 @@ end
 
 git repo_path do
 	repository repo
+	additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"
 	group "www-data"
+	notifies :run, 'execute[fix_ownership]', "immediately"
 	notifies :run, 'execute[copy_site]', "immediately"
 	notifies :reload, "service[nginx]", :delayed
+end
+
+if node[:instance_role] == 'vagrant'
+	cookbook_file "info.php" do
+		path "#{site_path}/info.php"
+		action :create_if_missing
+		owner "www-data"
+		group "www-data"
+		mode "0755"
+	end
 end
 
 nginx_site "#{site}"

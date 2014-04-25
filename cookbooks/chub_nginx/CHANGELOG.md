@@ -3,6 +3,23 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.6
+-----
+
+* 'H. "Waldo" Grunenwald' - Converting styleguide to a php/fcgi site.
+
+
+
+0.1.5
+-----
+
+* 'H. "Waldo" Grunenwald' - Fixing removal of files in all standard sites and samplesites. Minor cleanup
+
+0.1.4
+-----
+
+* 'H. "Waldo" Grunenwald' - Adding php/fcgi to Corpsite, and a _sample_php_site example recipe.  Minor cleanup of other recipes.
+
 0.1.3
 -----
 

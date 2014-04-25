@@ -1,10 +1,9 @@
 #
-# Cookbook Name:: Base
-# Recipe:: base_linux-deb
+# Author:: Gilles Devaux <gilles.devaux@gmail.com>
+# Cookbook Name:: supervisor
+# Resource:: group
 #
-# Cookbook that installs standard packages
-#
-# Copyright 2013, CommerceHub
+# Copyright:: 2011, Formspring.me
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,37 +18,13 @@
 # limitations under the License.
 #
 
-include_recipe "apt"
+actions :enable, :disable, :start, :stop, :restart, :reload
 
-package_list = %w{
-	build-essential
-	zsh
-	vim
-	nmap
-	curl
-	wget
-	netcat
-	htop
-	strace
-	sysstat
-	ruby1.9.3
-	mercurial
-}
-
-package_list.each do |pkg|
-	package pkg do
-		action :install
-	end
+def initialize(*args)
+  super
+  @action = [:enable, :start]
 end
 
-include_recipe "git"
-include_recipe "chef-kick"
-
-unless node['instance_role'] == 'vagrant'
-	include_recipe "chef-client"
-end
-
-group "minions" do 
-  action :create
-  append true
-end
+attribute :group_name, :kind_of => String, :name_attribute => true
+attribute :programs, :kind_of => Array, :default => []
+attribute :priority, :kind_of => Integer

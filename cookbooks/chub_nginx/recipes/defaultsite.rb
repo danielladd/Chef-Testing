@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+# # NOTE: Please do not use this recipe unless you know exactly why you want it.
+# # You should copy the _sample_static_site or _sample_php_site to a new recipe 
+# # and use that.
+
 include_recipe 'chub_nginx'
 
 directory node[:nginx][:default_root] do
