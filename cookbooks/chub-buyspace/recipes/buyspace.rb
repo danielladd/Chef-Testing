@@ -51,16 +51,58 @@ directory "#{node['chub-buyspace']['log_dir']}" do
 	mode 0774
 end
 
+directory "/var/buyspace" do
+  owner "#{node['chub-buyspace']['user']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0774
+end
+
 directory "#{node['chub-buyspace']['data_dir']}" do
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
 	mode 0774
 end
 
+directory "/var/buyspace/images" do
+  owner "#{node['chub-buyspace']['user']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0774
+end
+
+directory "/var/buyspace/images/products" do
+  owner "#{node['chub-buyspace']['user']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0774
+end
+
+directory "/var/buyspace/images/image-datastore" do
+  owner "#{node['chub-buyspace']['user']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0774
+end
+
 directory "#{node['chub-buyspace']['temp_dir']}" do
 	owner "tomcat#{node['tomcat']['base_version']}"
 	group "#{node['chub-buyspace']['group']}"
 	mode 0775
+end
+
+directory "/var/lib/tomcat7/data" do
+  owner "tomcat#{node['tomcat']['base_version']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0777
+end
+
+directory "/usr/share/tomcat7/ehcache" do
+  owner "tomcat#{node['tomcat']['base_version']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0777
+end
+
+directory "/usr/share/tomcat7/ehcache/marketplace" do
+  owner "tomcat#{node['tomcat']['base_version']}"
+  group "#{node['chub-buyspace']['group']}"
+  mode 0777
 end
 
 template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspace_conf']}" do
