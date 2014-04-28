@@ -18,14 +18,14 @@
 #
 
 group "hornetq" do
-    action :create
-    system true
+  action  :create
+  system  true
 end
 
 user "hornetq" do
-    comment "Application user for hornetq"
-    gid "hornetq"
-    system true
+  comment  "Application user for hornetq"
+  gid      "hornetq"
+  system   true
 end
 
 user "chadmin" do
@@ -34,72 +34,78 @@ user "chadmin" do
 end
 
 group "hornetq" do
-    action :modify
-    append true
-    members ["hornetq", "chadmin"]
+  action   :modify
+  append   true
+  members  ["hornetq", "chadmin"]
 end
 
 directory node['chub-hornetq']['staging_dir'] do
-  action :create
-  owner "hornetq"
-  group "minions"
-  mode 0551
+  action   :create
+  owner    "hornetq"
+  group    "minions"
+  mode     0771
 end
 
 directory node['chub-hornetq']['app_dir'] do
-  action :create
-  owner "hornetq"
-  group "minions"
-  mode 0551
+  action   :create
+  owner    "hornetq"
+  group    "minions"
+  mode     0771
 end
 
 execute "delete property file" do
-  command "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
-  action :nothing
+  command   "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
+  action    :nothing
+  only_if   { ::File.exists?("#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}") }
 end
 
 prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['deploy_prop']}"
 
 remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']}" do
-  source node['chub-hornetq']['deploy_jar_url']
+  source    node['chub-hornetq']['deploy_jar_url']
+  owner     "hornetq"
+  group     "minions"
   #notifies :create, "template[#{prop_file}]"	
-  notifies :run, "execute[delete property file]"
+  notifies  :run, "execute[delete property file]", :immediately
 end
 
 template prop_file do
-  source "deploy.properties.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  action :create_if_missing
+  source     "deploy.properties.erb"
+  owner      "hornetq"
+  group      "minions"
+  mode       0765
+  action     :create_if_missing
   #TODO: This does not properly notify or re-execute deploy after property file is updated
-  notifies :run, "execute[deploy]"
+  notifies   :run, "execute[deploy]", :immediately
 end
 
 execute "deploy" do
-  command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']} -d #{prop_file}"
-  creates "#{node['chub-hornetq']['app_dir']}/config/jndi.properties"
-  cwd node['chub-hornetq']['staging_dir']
-  action :nothing
-  notifies :restart, "service[hornetq]", :delayed
+  command    "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']} -d #{prop_file}"
+  creates    "#{node['chub-hornetq']['app_dir']}/config/jndi.properties"
+  cwd        node['chub-hornetq']['staging_dir']
+  action     :nothing
+  user       "hornetq"
+  group      "minions" 
+  umask      003
+  notifies   :restart, "service[hornetq]", :delayed
 end
 
 # Update file permissions to allow execute access
 file "#{node['chub-hornetq']['app_dir']}/bin/hornetq" do
-  mode "0755"
+  mode   "0755"
   action :touch
 end
 
 file "#{node['chub-hornetq']['app_dir']}/bin/wrapper" do
-  mode "0755"
+  mode   "0755"
   action :touch
 end
 
 execute "installService" do
-  command "./hornetq install"
-  cwd "#{node['chub-hornetq']['app_dir']}/bin"
-  creates "/etc/rc0.d/K20hornetq"
-  action :run
+  command   "./hornetq install"
+  cwd       "#{node['chub-hornetq']['app_dir']}/bin"
+  creates   "/etc/rc0.d/K20hornetq"
+  action    :run
   #TODO - THIS
   # not_if { ::File.exists?()}
 end
@@ -113,6 +119,6 @@ link "/var/log/hornetq" do
 end
 
 service "hornetq" do
-    action [ :start ]
+  action [ :start ]
 end
 
