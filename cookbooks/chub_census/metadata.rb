@@ -4,7 +4,7 @@ maintainer_email 'ktitus@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_census'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.5'
+version          '0.1.6'
 
 supports "ubuntu"
 depends "apt"
@@ -29,3 +29,8 @@ attribute "chub_census/database/password", :required => "required"
 
 attribute "graphite/host", :required => "recommended"
 attribute "graphite/port", :required => "optional"
+
+attribute "plaza/url",
+	:display_name => "Plaza application URL",
+	:description => "URL endpoint of the Plaza application",
+	:required => "required"
