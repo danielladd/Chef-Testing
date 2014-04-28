@@ -10,7 +10,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.18",
-  "chub_census" => "= 0.1.5",
+  "chub_census" => "= 0.1.6",
   "chub_java" => "= 0.1.0",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.6",
@@ -92,7 +92,8 @@ default_attributes(
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev1-census",
       :user => "devusr01",
       :password => "usrdev"
-    }
+    },
+    :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com"
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
