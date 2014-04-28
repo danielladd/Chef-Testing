@@ -5,6 +5,10 @@ default_attributes(
     "admin" => {
       "password" => "securepassword1"
   },
+#  "authentication" => {
+#    "file" => "jaas-ldap.conf",
+#    "name" => "chubldap"
+#  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----
