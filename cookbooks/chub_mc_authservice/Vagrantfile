@@ -8,13 +8,13 @@ Vagrant.configure("2") do |config|
 #		vb.customize ["modifyvm", :id, "--memory", 512]
 #	end
 
-	 config.vm.define "mc2" do |box2|
-    box2.vm.hostname = "mc2"
-    box2.vm.network :private_network, ip: "192.168.14.12"
-    box2.vm.network :forwarded_port, guest: 9200, host: 9200
-    box2.vm.network :forwarded_port, guest: 555, host: 8555
-    box2.vm.provision :shell, :path => "install_chef.sh"
-    box2.vm.provision "chef_solo" do |chef|
+	config.vm.define "mc_authservice" do |box1|
+    box1.vm.hostname = "mc_authservice"
+    box1.vm.network :private_network, ip: "192.168.14.11"
+    box1.vm.network :forwarded_port, guest: 9100, host: 9100
+    box1.vm.network :forwarded_port, guest: 443, host: 8443
+    box1.vm.provision :shell, :path => "install_chef.sh"
+    box1.vm.provision "chef_solo" do |chef|
       chef.cookbooks_path = "D:/chef/cookbooks/"
       ####################################################################
       # In chef you can check for Vagrantness with:
@@ -25,9 +25,8 @@ Vagrant.configure("2") do |config|
       ####################################################################
       chef.json = {
         'instance_role' => 'vagrant',
-        'chub-csdashboard' => {
-          'app' =>  { 
-		  		########################################################################
+        'chub_mc_authseervice' => {
+				########################################################################
 				# This vagrantfile defaults to pull in the latest builds from bamboo, 
 				# to work with a local war file, uncomment the commented out parameter 
 				# and comment out the uncommented parameter to work with a locally built
@@ -40,9 +39,8 @@ Vagrant.configure("2") do |config|
 				# install_chef.sh in whatever directory you are running vagrant up from
 				# if you are working with a locally deployed war file.
 				########################################################################
-				"jar_file_url" => "http://bamboom1:8085/browse/MC-CSD/latest/artifact/shared/CS-Dashboard-Jar/csd.jar/?os_username=mess&os_password=messuser"
-				#"jar_file_url" => "file:///vagrant/csd.jar"
-          }
+				"jar_file_url" => "http://bamboom1:8085/browse/MC-LAN/latest/artifact/shared/Landing-Strip-Jar/mc-authservice.jar/?os_username=mess&os_password=messuser"
+				#"jar_file_url" => "file:///vagrant/mc-authservice.jar"
         },
         "ulimit" => {
           "users" => {
@@ -58,17 +56,14 @@ Vagrant.configure("2") do |config|
             }
           }
         },
-       "mongodb" => {
+        "mongodb" => {
           "enable_rest" => true,
           "dbpath" => "/data/db"
         }
-     }
-     chef.add_recipe "base"
-	 chef.add_recipe "chub_java::oracle7"
-     chef.add_recipe "ulimit"
-     chef.add_recipe "mongodb::10gen_repo"
-     chef.add_recipe "mongodb"
-     chef.add_recipe "chub-csdashboard"
+      }
+      chef.add_recipe "base"
+	  chef.add_recipe "chub_java::oracle7"
+      chef.add_recipe "chub_mc_authseervice"
     end
   end
 end

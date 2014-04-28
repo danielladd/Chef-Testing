@@ -16,9 +16,10 @@ default['chub-buyspace']['temp_dir']		= '/tmp/buyspace'
 default['chub-buyspace']['buyspace_conf']	= 'buyspace-config.groovy'
 default['chub-buyspace']['logging_conf']	= 'logging.properties'
 
+
 # Use this only to revert to a specific Bamboo build, by specifying the Bamboo
 # Build Number
-default['chub-buyspace']['install_specific_build']	= 1
+default['chub-buyspace']['install_specific_build']	= 250
 
 # These should be overridden
 default['chub-buyspace']['grails_env']		= 'local'
@@ -38,9 +39,16 @@ default['chub-buyspace']['adminEmailAddress'] = 'testing@localhost.com'
 default['chub-buyspace']['msExchangeApi']['url'] = "https://localhost"
 default['chub-buyspace']['msExchangeApi']['credentials']['username'] = 'PLACEHOLDER'
 default['chub-buyspace']['msExchangeApi']['credentials']['password'] = 'PLACEHOLDER'
+default['chub-buyspace']['msExchangeApi']['overrideAddress'] = 'productstream-testing@commercehub.com'
 default['chub-buyspace']['paymentFailureEmailAddress'] = 'testing@localhost.com'
 
 # The rest is alphabetical
+default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['accessKey'] = 'PLACEHOLDER'
+default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['secretKey'] = 'PLACEHOLDER'
+default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['bucketName'] = 'PLACEHOLDER'
+default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['keyTemplate'] = 'mpprod1-master/${resourceId}'
+default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['artifactUrlDuration'] = '1.day'
+
 default['chub-buyspace']['antivirus']['host'] = 'localhost'
 default['chub-buyspace']['antivirus']['hosts'] = ['vscan.commercehub.com']
 default['chub-buyspace']['antivirus']['enabled'] = false
@@ -48,17 +56,18 @@ default['chub-buyspace']['antivirus']['port'] = 1344
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
 default['chub-buyspace']['bestBuyMarketplace']['retailerId'] = '51247477c519e3a71e639634'
 default['chub-buyspace']['creSecure']['cardTokenValidationUrl'] = 'https://localhost/direct/services/validation'
+default['chub-buyspace']['data_dir'] = "/var/buyspace/data"
 default['chub-buyspace']['grails']['serverURL'] = "https://localhost"
 default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:8080"
-default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost"
+default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost:8080"
 default['chub-buyspace']['grails']['plugin']['excludes'] = "null"
 default['chub-buyspace']['hornetq']['host'] = 'localhost',
 default['chub-buyspace']['hornetq']['port'] = 5445
 default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin/gm'
-default['chub-buyspace']['images']['baseDirectory'] = "node['chub-buyspace']['data_dir']/images"
-default['chub-buyspace']['images']['productBaseDirectory'] = "node['chub-buyspace']['images']['baseDirectory']/products"
+default['chub-buyspace']['images']['baseDirectory'] = "/var/buyspace/images"
+default['chub-buyspace']['images']['productBaseDirectory'] = "/var/buyspace/images/products"
 default['chub-buyspace']['images']['serverUrls'] = ['https://localhost']
-default['chub-buyspace']['images']['datastoreDirectories'] = "node['chub-buyspace']['images']['baseDirectory']/image-datastore"
+default['chub-buyspace']['images']['datastoreDirectories'] = "/var/buyspace/images/image-datastore"
 default['chub-buyspace']['images']['productImageAttachmentStrategy'] = 'local'
 default['chub-buyspace']['imageUploading']['amazon']['accessKey']	= 'PLACEHOLDER'
 default['chub-buyspace']['imageUploading']['amazon']['secretKey']	= 'PLACEHOLDER'
@@ -70,6 +79,8 @@ default['chub-buyspace']['marketplace']['files']['commerceHubRelationshipsFile']
 default['chub-buyspace']['marketplace']['gitRevision'] = 'System.currentTimeMillis()'
 default['chub-buyspace']['mongo']['databaseName'] = "marketplaceTest"
 default['chub-buyspace']['mongo']['replicas'] = ['localhost']
+default['chub-buyspace']['mongo']['blobstoreDatabaseName'] = "marketplaceTest"
+default['chub-buyspace']['mongo']['blobstoreReplicas'] = ['localhost']
 default['chub-buyspace']['salesforce']['url'] = 'https://localhost'
 default['chub-buyspace']['salesforce']['apiUrl'] = "node['chub-buyspace']['salesforce']['url']/services/data/v24.0"
 default['chub-buyspace']['salesforce']['clientId'] = 'PLACEHOLDER'
@@ -83,6 +94,8 @@ default['chub-buyspace']['solr']['url'] = 'http://localhost:8080/solr/'
 default['chub-buyspace']['sprite']['conductorApiUrl'] = 'http://localhost/sprite-conductor'
 default['chub-buyspace']['sprite']['outputContainerPrefix'] = 'testing-'
 default['chub-buyspace']['sprite']['imageUrlTemplate'] = 'http://localhost/mpprod1-watermarked/${resourceId}-watermark-${size}-${size}.jpg'
+default['chub-buyspace']['sprite']['productImageSpriteManifestWritingEnabled'] = false
+default['chub-buyspace']['sprite']['pendingSpriteManifestPostingEnabled'] = false
 default['chub-buyspace']['sugar']['restUrl'] = 'https://localhost/service/v2/rest.php'
 default['chub-buyspace']['sugar']['username'] = 'PLACEHOLDER',
 default['chub-buyspace']['sugar']['password'] = 'PLACEHOLDER'

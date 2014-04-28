@@ -40,21 +40,7 @@ group "chub_landingstrip" do
     members ["chub_landingstrip", "chadmin"]
 end
 
-directory node["chub_landingstrip"]['app']['deploy_dir'] do
-  action :create
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
-  mode 0777
-end
-
-directory node["chub_landingstrip"]['app']["config_dir"] do
-  action :create
-  owner "chub_landingstrip"
-  group "chub_landingstrip"
-  mode 0777
-end
-
-directory node["chub_landingstrip"]['app']["log_dir"] do
+directory node['chub_landingstrip']['app']['deploy_dir'] do
   action :create
   owner "chub_landingstrip"
   group "chub_landingstrip"
@@ -63,7 +49,7 @@ end
 
 touchfile = node['chub_landingstrip']['app']['touchfile']
 
-remote_file "#{node["chub_landingstrip"]['app']['deploy_dir']}/#{node['chub_landingstrip']['app']['app_name']}.jar" do
+remote_file "#{node['chub_landingstrip']['app']['deploy_dir']}/#{node['chub_landingstrip']['app']['app_name']}.jar" do
   source "#{node['chub_landingstrip']['app']['jar_file_url']}"
   not_if do
     File.exists?(touchfile)
@@ -79,6 +65,14 @@ template "/etc/init/landingstrip.conf" do
     group "root"
     mode 0644
     notifies "restart", "service[landingstrip]", :delayed
+end
+
+link "/etc/landingstrip" do
+  to "#{node['chub_landingstrip']['app']['deploy_dir']}/config"
+end
+
+link "/var/log/landingstrip" do
+  to "#{node['chub_landingstrip']['app']['deploy_dir']}/log"
 end
 
 service "landingstrip" do
