@@ -1,5 +1,10 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.2
+_____
+
+* Larry - Hub_deployment now uses a touchfile's presence to decide if it should carry out deployment
+
 0.2.1
 _____
 
