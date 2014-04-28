@@ -1,4 +1,4 @@
-default[:chub_mc_authservice][:http_Port] = "5080"
+default[:chub_mc_authservice][:http_port] = "5080"
 default[:chub_mc_authservice][:https_port] = "5443"
 default[:chub_mc_authservice][:key_alias] = "localsso"
 default[:chub_mc_authservice][:keystore_file] = "localsso.jks"
