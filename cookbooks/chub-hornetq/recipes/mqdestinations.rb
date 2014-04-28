@@ -18,30 +18,36 @@
 #
 
 execute "delete mq property file" do
-  command "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
-  action :nothing
+  command   "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
+  action    :nothing
+  only_if   { ::File.exists?("#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}") }
 end
 
 prop_file = "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
 remote_file "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']}" do
-  source node['chub-hornetq']['destinations_deploy_jar_url']
-  notifies :run, "execute[delete mq property file]"
+  source     node['chub-hornetq']['destinations_deploy_jar_url']
+  owner      "hornetq"
+  group      "minions"
+  notifies   :run, "execute[delete mq property file]", :immediately
 end
 
 template prop_file do
-  source "destinations.deploy.properties.erb"
-  owner "root"
-  group "root"
-  mode 0644
-  action :create_if_missing
+  source   "destinations.deploy.properties.erb"
+  owner    "hornetq"
+  group    "minions"
+  mode     0745
+  action   :create_if_missing
   #TODO: This does not properly notify or re-execute deploy after property file is updated
-  notifies :run, "execute[deployDestinations]"
+  notifies :run, "execute[deployDestinations]", :immediately
 end
 
 execute "deployDestinations" do
-  command "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']} -d #{prop_file}"
-  cwd node['chub-hornetq']['staging_dir']
-  action :nothing
-  notifies :restart, "service[hornetq]", :delayed
+  command   "java -jar #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']} -d #{prop_file}"
+  cwd       node['chub-hornetq']['staging_dir']
+  user      "hornetq"
+  group     "minions" 
+  action    :nothing
+  umask      003
+  notifies  :restart, "service[hornetq]", :delayed
 end
 

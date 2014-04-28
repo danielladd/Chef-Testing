@@ -1,5 +1,9 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.1
+_____
+
+* Larry - Adding new property for platform deployment
 
 0.2.0
 _____
