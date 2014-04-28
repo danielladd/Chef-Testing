@@ -91,6 +91,7 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "file:///var/census/staged-census.jar",
+    :plaza_url => "https://plaza.commercehub.com",
     :database => {
       :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
       :user => "sso_user",
@@ -99,6 +100,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :forgot_password_url => "https://plaza.commercehub.com/forgotPassword",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
@@ -112,9 +114,9 @@ default_attributes(
   },
   :chub_plaza => {
     :app_url => "file:///var/plaza/staged-plaza.jar",
-    :cas_server_url => "https://ssoprod1-castle.commercehub.com",
-    :cas_service_url => "https://ssoprod1-plaza.commercehub.com/shiro-cas",
-    :cas_failure_url => "https://ssoprod1-plaza.commercehub.com/",
+    :cas_server_url => "https://castle.commercehub.com",
+    :cas_service_url => "https://plaza.commercehub.com/shiro-cas",
+    :cas_failure_url => "https://plaza.commercehub.com/",
     :census_url => "https://ssoprod1-census.commercehub.com:8443"
   }
 )
