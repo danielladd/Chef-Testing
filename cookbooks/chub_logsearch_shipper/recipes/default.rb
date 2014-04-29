@@ -7,12 +7,18 @@
 # All rights reserved - Do Not Redistribute
 #
 
-directory "c:/Program Files/logsearch-shipper" do
-  action :create
+#directory "c:/Program Files/logsearch-shipper" do
+#  action :create
+#end
+
+ruby_block "CHEF-4453 Bug" do
+  block do
+    FileUtils.mkdir_p "c:/Program Files/logsearch-shipper"
+  end
 end
 
 file "c:/Program Files/logsearch-shipper/ls.crt" do
-  content data_bag_item('logstash',node.chef_environment)
+  content data_bag_item('logstash',node.chef_environment)["sslcrt"]
 end
 
 template "c:/Program Files/logsearch-shipper/LogsearchShipper.Service.exe.config" do
