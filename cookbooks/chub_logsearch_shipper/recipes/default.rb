@@ -39,7 +39,7 @@ end
 windows_zipfile 'c:/Program Files/logsearch-shipper' do
   source "#{Chef::Config[:file_cache_path]}/logsearch-shipper.zip"
   action :nothing
-  notifies :execute, 'execute[install_shipper]', :immediately
+  notifies :run, 'execute[install_shipper]', :immediately
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/logsearch-shipper.zip" do
