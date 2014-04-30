@@ -1,11 +1,11 @@
-chub-missioncontrol CHANGELOG
-=============================
+chub_logsearch_shipper CHANGELOG
+================================
 
-This file is used to list changes made in each version of the chub-missioncontrol cookbook.
+This file is used to list changes made in each version of the chub_logsearch_shipper cookbook.
 
 0.1.0
 -----
-- [ H. "Waldo" Grunenwald ] - Initial release of chub-missioncontrol; boilerplate only.
+- [your_name] - Initial release of chub_logsearch_shipper
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

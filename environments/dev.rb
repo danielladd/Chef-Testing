@@ -6,6 +6,9 @@ default_attributes(
     "cluster" => {
       "name" => "esdev1"
     }
+  }, 
+  "chub_logstash" => {
+    "endpoint" => "lsdev01.nexus.commercehub.com"
   }
 )
 

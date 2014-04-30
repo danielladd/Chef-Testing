@@ -1,6 +1,6 @@
 name "albers"
 description "A windows machine running Albers"
-run_list "recipe[chub_windows]", "recipe[chub_albers]"
+run_list "recipe[chub_windows]", "recipe[chub_albers]", "recipe[chub_logsearch_shipper]"
 default_attributes(
   "java" => {
     "windows" => {

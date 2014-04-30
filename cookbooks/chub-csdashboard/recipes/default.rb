@@ -18,14 +18,14 @@
 #
 include_recipe "chub_java::oracle7"
 
-group "chub-csdashboard" do
+group 'chub-csdashboard' do
     action :create
     system true
 end
 
-user "chub-csdashboard" do
+user 'chub-csdashboard' do
     comment "Application user for chub-csdashboard"
-    gid "chub-csdashboard"
+    gid 'chub-csdashboard'
     system true
 end
 
@@ -34,42 +34,42 @@ user "chadmin" do
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
 end
 
-group "chub-csdashboard" do
+group 'chub-csdashboard' do
     action :modify
     append true
-    members ["chub-csdashboard", "chadmin"]
+    members ['chub-csdashboard', 'chadmin']
 end
 
-directory node["chub-csdashboard"]['app']['deploy_dir'] do
+directory node['chub-csdashboard']['app']['deploy_dir'] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner 'chub-csdashboard'
+  group 'chub-csdashboard'
   mode 0777
 end
 
-directory node["chub-csdashboard"]['app']["config_dir"] do
+directory node['chub-csdashboard']['app']['config_dir'] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner 'chub-csdashboard'
+  group 'chub-csdashboard'
   mode 0777
 end
 
-directory node["chub-csdashboard"]['app']["log_dir"] do
+directory node['chub-csdashboard']['app']['log_dir'] do
   action :create
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner 'chub-csdashboard'
+  group 'chub-csdashboard'
   mode 0777
 end
 
 touchfile = node['chub-csdashboard']['app']['touchfile']
 
-remote_file "#{node["chub-csdashboard"]['app']['deploy_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar" do
+remote_file "#{node['chub-csdashboard']['app']['deploy_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar" do
   source "#{node['chub-csdashboard']['app']['jar_file_url']}"
   not_if do
     File.exists?(touchfile)
   end
-  owner "chub-csdashboard"
-  group "chub-csdashboard"
+  owner 'chub-csdashboard'
+  group 'chub-csdashboard'
   action :create	# This should pull the file down forcefully
 end
 
