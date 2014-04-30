@@ -1,5 +1,5 @@
 chdir <%= node[:chub_mc_authservice][:deploy_dir] %>
-exec java -jar <%= node[:chub_mc_authservice][:deploy_dir] %>/<%= node[:chub_mc_authservice][:jar_file_name] %>.jar -httpPort <%= node[:chub_mc_authservice][:http_port] %> -httpsPort <%= node[:chub_mc_authservice][:https_port] %> -keyAlias <%= node[:chub_mc_authservice][:key_alias] %> -Djavax.net.ssl.keyStore=<%= node[:chub_mc_authservice][:keystore_file] %> -Djavax.net.ssl.keyStorePassword=<%= node[:chub_mc_authservice][:keystore_password] %>
+exec java -jar <%= node[:chub_mc_authservice][:jar_file_name] %> -httpPort <%= node[:chub_mc_authservice][:http_port] %> -httpsPort <%= node[:chub_mc_authservice][:https_port] %> -keyAlias <%= node[:chub_mc_authservice][:key_alias] %> -Djavax.net.ssl.keyStore=../<%= node[:chub_mc_authservice][:keystore_file] %> -Djavax.net.ssl.keyStorePassword=<%= node[:chub_mc_authservice][:keystore_password] %>
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

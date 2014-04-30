@@ -9,8 +9,8 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.0",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.18",
-  "chub_census" => "= 0.1.5",
+  "chub_castle" => "= 0.1.19",
+  "chub_census" => "= 0.1.6",
   "chub_java" => "= 0.1.0",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.6",
@@ -88,6 +88,7 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "file:///var/census/staged-census.jar",
+    :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com",
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev1-census",
       :user => "devusr01",
@@ -96,6 +97,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",

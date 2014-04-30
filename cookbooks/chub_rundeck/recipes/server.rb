@@ -23,13 +23,33 @@ directory "/var/lib/rundeck/.ssh" do
     action :create
     owner 'rundeck'
     group 'rundeck'
-    mode 00644
+    mode 00744
 end 
 
 file "/var/lib/rundeck/.ssh/id_rsa" do
     action :create
-    owner 'rundeck-ssh'
-    group 'rundeck-ssh'
-    mode 00644
+    owner 'rundeck'
+    group 'rundeck'
+    mode 00600
     content node[:rundeck][:ssh][:private_key]
+end
+
+# TODO: Create necessary directory structure if not present? 
+node[:chub_rundeck][:resources].each do |project, nodes|
+  template "/var/rundeck/projects/#{project}/etc/resources.xml" do
+    source "resources.xml.erb"
+    mode 0440
+    owner "rundeck"
+    group "rundeck"
+    variables({
+       :nodes => node[:chub_rundeck][:resources]["#{project}"]
+    })
+  end
+end
+
+cookbook_file "/etc/rundeck/jaas-ldap.conf" do
+  source "jaas-ldap.conf"
+  mode 00644
+  owner "rundeck"
+  group "rundeck"
 end

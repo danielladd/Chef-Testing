@@ -1,3 +1,6 @@
+# 0.1.6
+* Add Plaza application endpoint URL 
+
 # 0.1.5
 * Enable remote JMX
 
