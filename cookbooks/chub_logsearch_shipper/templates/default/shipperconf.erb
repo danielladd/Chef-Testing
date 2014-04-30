@@ -24,26 +24,6 @@ Change the settings to fit your environment
 				<field key="@environment" value="<%= @environment %>" />
 			</watch>
 		</fileWatchers>
-		<edbFileWatchers>
-			<watch
-				dataFile="SampleData/EDB/ENV1/Latest.xml"
-        logEnvironmentDiagramDataEveryMinutes="1"
-				networkAreas="DMZ|APP"
-				serverNames="(.*01|.*02)"
-				serviceNames="nolio.*" 
-			>
-				<field key="edb_key/subkey" value="edb_value/subvalue" />
-			</watch>
-			<watch
-				dataFile="SampleData/EDB/ENV2/Latest.xml"
-        logEnvironmentDiagramDataEveryMinutes="1"
-				networkAreas="DMZ|APP"
-				serverNames="(.*01|.*02)"
-				serviceNames="nolio.*" 
-			>
-				<field key="edb_key/subkey" value="edb_value/subvalue" />
-			</watch>
-		</edbFileWatchers>
     </LogsearchShipper>
   </LogsearchShipperGroup>
 
