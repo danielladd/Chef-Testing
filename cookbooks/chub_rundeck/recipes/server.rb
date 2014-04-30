@@ -52,4 +52,21 @@ cookbook_file "/etc/rundeck/jaas-ldap.conf" do
   mode 00644
   owner "rundeck"
   group "rundeck"
+  notifies   :restart, "service[rundeckd]", :delayed
+end
+
+cookbook_file "/etc/rundeck/admin.aclpolicy" do
+  source "admin.aclpolicy"
+  mode 00644
+  owner "rundeck"
+  group "rundeck"
+  notifies   :restart, "service[rundeckd]", :delayed
+end
+
+cookbook_file "/var/lib/rundeck/exp/webapp/WEB-INF/web.xml" do
+  source "web.xml"
+  mode 00644
+  owner "root"
+  group "root"
+  notifies   :restart, "service[rundeckd]", :delayed
 end
