@@ -5,7 +5,7 @@ This file is used to list changes made in each version of the chub-missioncontro
 
 0.1.0
 -----
-- [ H. "Waldo" Grunenwald ] - Initial release of chub-missioncontrol; boilerplate only.
+- [ Erik Stegmann ] - Initial release of chub-landingstrip; boilerplate only.
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
