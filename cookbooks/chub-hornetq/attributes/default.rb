@@ -12,6 +12,8 @@ default['chub-hornetq']['hornetq_data_dir'] = ""
 default['chub-hornetq']['jvm_heap_max'] = 512
 default['chub-hornetq']['jvm_perm_max'] = 64
 default['chub-hornetq']['hornetq_data_dir'] = "#{node['chub-hornetq']['app_dir']}/data"
+default['chub-hornetq']['pathtojava'] = '/usr/lib/jvm/jdk1.7.0_51'
+default['chub-hornetq']['touchfile'] = "#{node['chub-hornetq']['app_dir']}/deployed"
 
 # MQ Destinations Props
 default['chub-hornetq']['destinations_to_deploy'] = "ALL"

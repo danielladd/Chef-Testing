@@ -5,6 +5,10 @@ default_attributes(
     "admin" => {
       "password" => "securepassword1"
   },
+#  "authentication" => {
+#    "file" => "jaas-ldap.conf",
+#    "name" => "chubldap"
+#  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----
@@ -35,7 +39,35 @@ eub7aI6YSxFEDwFnLheZpu9vIPB+ghbRLTRM0ADZN6HqWdxwZCS39GDkkn11FMnD
 g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
 -----END RSA PRIVATE KEY-----
 "}
-  }
+},
+  "chub_rundeck" => {
+     "resources" => {
+        "HornetQ" => [
+            {
+                "name" => "qaregubuntu01",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qaregubuntu01.nexus.commercehub.com",
+                "osArch" => "amd64",
+                "osFamily" => "unix",
+                "osName" => "Linux",
+                "osVersion" => "3.5.0-23-generic",
+                "username" => "rundeck-ssh"
+            },
+            {
+                "name" => "qaregubuntu02",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qaregubuntu02.nexus.commercehub.com",
+                "osArch" => "amd64",
+                "osFamily" => "unix",
+                "osName" => "Linux",
+                "osVersion" => "3.5.0-23-generic",
+                "username" => "rundeck-ssh"
+            },
+        ]
+    }
+  },
 )
 override_attributes(
   "ssh_keys" => {

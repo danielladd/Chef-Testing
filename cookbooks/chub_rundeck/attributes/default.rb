@@ -27,3 +27,5 @@ arvJwEkijZIjDJBnhjfO8aCj5BcetSkNeRvTAqZwRCIgNErdx0N2hdWO9nWqEq8h
 7WI6y+O1aXP8EXmk5ONI4AgK0Uu4ALFOPmoF0VDtZH66Pq6YeaI+RA==
 -----END RSA PRIVATE KEY-----"
 
+
+default[:chub_rundeck][:resources]

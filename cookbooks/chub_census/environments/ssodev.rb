@@ -12,7 +12,8 @@ default_attributes(
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev-census",
       :user => "devusr01",
-      :password => "usrdev"
-    }
+      :password => "usrdev",
+    },
+    :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com"
   }
 )

@@ -1,3 +1,6 @@
+# 0.1.19
+* Add forgot_password_url attribute
+
 # 0.1.18
 * Add support for remote JMX
 
