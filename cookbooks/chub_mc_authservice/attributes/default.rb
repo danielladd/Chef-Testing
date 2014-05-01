@@ -1,6 +1,6 @@
 default[:chub_mc_authservice][:http_port] = "5080"
 default[:chub_mc_authservice][:https_port] = "5443"
-default[:chub_mc_authservice][:key_alias] = "selfsigned"
+default[:chub_mc_authservice][:key_alias] = "le-0e1da6f2-ef87-4d8c-9957-60fd129b2cb3"
 default[:chub_mc_authservice][:keystore_file] = "mcauth.jks"
 default[:chub_mc_authservice][:keystore_password] = "password"
 default[:chub_mc_authservice][:config_dir] = '/etc/mc-authservice'
