@@ -9,6 +9,9 @@ default_attributes(
     "file" => "jaas-ldap.conf",
     "name" => "chubldap"
   },
+  "ssh" => {
+    'timeout' => '0'
+  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----
