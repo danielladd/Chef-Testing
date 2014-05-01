@@ -21,6 +21,9 @@ channelProductExporter {
         secretKey = '<%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['secretKey'] %>'
         bucketName = '<%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['bucketName'] %>' 
         keyTemplate = '<%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['keyTemplate'] %>'
+        use(groovy.time.TimeCategory) {
+             artifactUrlDuration = 1.day
+        }
     }
 }
 

@@ -22,6 +22,16 @@ Using http://mpwiki01.nexus.commercehub.com/display/bs/Setting+Up+A+QA+Environme
 as a starting point for this cookbook.
 =end
 
+hostsfile_entry '127.0.1.1' do
+  action    :remove
+end
+
+hostsfile_entry node['ipaddress'] do
+  hostname  node['fqdn']
+  aliases   [node['hostname']]
+  action    :create
+end
+
 group "#{node['chub-buyspace']['group']}" do
 	action :create
 	system true
@@ -54,13 +64,13 @@ end
 directory "/var/buyspace" do
   owner "#{node['chub-buyspace']['user']}"
   group "#{node['chub-buyspace']['group']}"
-  mode 0774
+  mode 0777
 end
 
 directory "#{node['chub-buyspace']['data_dir']}" do
 	owner "#{node['chub-buyspace']['user']}"
 	group "#{node['chub-buyspace']['group']}"
-	mode 0774
+	mode 0775
 end
 
 directory "/var/buyspace/images" do
@@ -105,6 +115,13 @@ directory "/usr/share/tomcat7/ehcache/marketplace" do
   mode 0777
 end
 
+template "#{node["tomcat"]["config_dir"]}/server.xml" do
+  source "tomcat_server.xml.erb"
+  mode 0774
+  owner "tomcat#{node['tomcat']['base_version']}"
+  group "#{node['chub-buyspace']['group']}"
+end
+  
 template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspace_conf']}" do
 	source "buyspace-config.groovy.erb"
 	mode 0554
@@ -126,15 +143,36 @@ execute 'clear_tomcat_app_directory' do
 	action :nothing
 end
 
-remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
-	source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM/latestSuccessful/artifact/shared/buyspace.war/buyspace.war"
-	owner "#{node['chub-buyspace']['user']}"
-	group "#{node['chub-buyspace']['group']}"
-	action :create_if_missing
-	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-	notifies :restart, "service[tomcat]", :delayed
+service "tomcat" do
+    action [ "stop" ]
 end
 
+execute 'clear_tomcat_app_directory' do
+  command "rm -fr #{node['chub-buyspace']['app_dir']}/ROOT"
+  action :nothing
+end
+
+file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
+  action :delete
+end
+
+remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
+    source "file://#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
+    owner "#{node['chub-buyspace']['user']}"
+    group "#{node['chub-buyspace']['group']}"
+    mode 0440
+    notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+    notifies :start, "service[tomcat]", :delayed
+end
+
+if not Chef::Config[:solo] then
+  ruby_block "Remove Buyspace Upgrade recipe from run-list" do
+    block do
+      node.run_list.remove("recipe[chub-buyspace::upgrade_buyspace]")
+    end
+    only_if { node.run_list.include?("recipe[chub-buyspace::upgrade_buyspace]") }
+  end
+end
 
 
 =begin

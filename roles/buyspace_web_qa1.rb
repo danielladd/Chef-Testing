@@ -21,8 +21,8 @@ default_attributes "chub-buyspace" => {
       "enabled" => false
     },
     "grails" => {
-      "serverURL" => "http://localhost:8080",
-      "apiServerURL" => "http://localhost:8080"
+      "serverURL" => "https://mpqa1-buyspace.commercehub.com",
+      "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
      # "serverURL" => "http://qa-vip7.buyspace.com",
      # "apiServerURL" => "http://qa-vip7.buyspace.com"
     },
@@ -79,4 +79,10 @@ default_attributes "chub-buyspace" => {
         "artifactUrlDuration" => "1.day"
       }
     }
+},
+'tomcat' => {
+  'base_version' => 7,
+  'loglevel' => 'WARN',
+  'keystore_password' => 'throwawaypassword',
+  'truststore_password' => 'throwawaypassword'
 }

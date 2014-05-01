@@ -9,3 +9,5 @@ version          '0.2.0'
 depends 'chub_java'
 depends 'tomcat'
 depends 'openssl'
+
+depends "hostsfile", "= 2.4.4"
