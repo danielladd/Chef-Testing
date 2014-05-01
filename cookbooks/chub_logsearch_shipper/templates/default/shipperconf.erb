@@ -20,30 +20,10 @@ Change the settings to fit your environment
   <LogsearchShipperGroup>
     <LogsearchShipper servers="<%= @endpoint %>:<%= @port %>" ssl_ca="c:\Program Files\logsearch-shipper\ls.crt" timeout="23">
 		<fileWatchers>
-			<watch files="C:\Albers\log\Albers.log" type="java">
+			<watch files="C:\Albers\logs\Albers.log" type="java">
 				<field key="@environment" value="<%= @environment %>" />
 			</watch>
 		</fileWatchers>
-		<edbFileWatchers>
-			<watch
-				dataFile="SampleData/EDB/ENV1/Latest.xml"
-        logEnvironmentDiagramDataEveryMinutes="1"
-				networkAreas="DMZ|APP"
-				serverNames="(.*01|.*02)"
-				serviceNames="nolio.*" 
-			>
-				<field key="edb_key/subkey" value="edb_value/subvalue" />
-			</watch>
-			<watch
-				dataFile="SampleData/EDB/ENV2/Latest.xml"
-        logEnvironmentDiagramDataEveryMinutes="1"
-				networkAreas="DMZ|APP"
-				serverNames="(.*01|.*02)"
-				serviceNames="nolio.*" 
-			>
-				<field key="edb_key/subkey" value="edb_value/subvalue" />
-			</watch>
-		</edbFileWatchers>
     </LogsearchShipper>
   </LogsearchShipperGroup>
 
