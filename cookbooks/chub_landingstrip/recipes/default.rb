@@ -77,5 +77,10 @@ end
 
 service "landingstrip" do
     provider Chef::Provider::Service::Upstart
+    action [ "enable", "stop" ]
+end
+
+service "landingstrip" do
+    provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
