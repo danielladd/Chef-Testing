@@ -13,4 +13,3 @@ default['chub-solr']['origin_http_uri']	= "http://archive.apache.org/dist/lucene
 
 default['chub-solr']['cores']		= [	'marketplaceProduct', 'product', 'user', 'company', 'help', 'channelProduct' ]
 default['chub-solr']['port']		= '8983'
-#normal['tomcat']['base_version']	= '7'

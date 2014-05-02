@@ -46,7 +46,6 @@ end
 
 execute 'Copy_SLF4J_Stuff' do
 	command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar"
-	#command "cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/lib/ext/*.jar /usr/share/tomcat7/lib && chmod +x /usr/share/tomcat7/lib/*slf4j*.jar && cp #{node['chub-solr']['base']}/solr-#{node['chub-solr']['version']}/example/resources/log4j.properties /usr/share/tomcat7/lib"
 	action :nothing
 end
 
