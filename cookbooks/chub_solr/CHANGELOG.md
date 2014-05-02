@@ -1,7 +1,7 @@
-chub-solr CHANGELOG
+chub_solr CHANGELOG
 ===================
 
-This file is used to list changes made in each version of the chub-solr cookbook.
+This file is used to list changes made in each version of the chub_solr cookbook.
 
 0.2.0
 -----
@@ -9,7 +9,7 @@ This file is used to list changes made in each version of the chub-solr cookbook
 
 0.1.0
 -----
-- H. "Waldo" Grunenwald - Initial release of chub-solr
+- H. "Waldo" Grunenwald - Initial release of chub_solr
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.

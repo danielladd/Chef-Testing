@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-solr
+# Cookbook Name:: chub_solr
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -19,7 +19,7 @@
 
 node.normal['tomcat']['base_version']	= 7
 node.normal['tomcat']['loglevel']		= 'WARN'	# default is 'INFO'
-node.normal['tomcat']['catalina_options'] = "-Dsolr.solr.home=#{node['chub-solr']['cores_dir']}"
+node.normal['tomcat']['catalina_options'] = "-Dsolr.solr.home=#{node['chub_solr']['cores_dir']}"
 node.normal['tomcat']['port'] = "8983"
 
 if node[:instance_role] == 'vagrant'
