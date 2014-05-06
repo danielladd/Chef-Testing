@@ -91,14 +91,6 @@ template "/etc/init/landingstrip.conf" do
 	action :create
 end
 
-link "/etc/landingstrip" do
-  to "#{node[:chub_landingstrip][:app][:deploy_dir]}/config"
-end
-
-link "/var/log/landingstrip" do
-  to "#{node[:chub_landingstrip][:app][:deploy_dir]}/log"
-end
-
 service "landingstrip" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
