@@ -40,48 +40,67 @@ group 'chub-csdashboard' do
     members ['chub-csdashboard', 'chadmin']
 end
 
-directory node['chub-csdashboard']['app']['deploy_dir'] do
-  action :create
-  owner 'chub-csdashboard'
-  group 'chub-csdashboard'
-  mode 0777
-end
+unless File.exists?("#{node['chub-csdashboard']['app']['touchfile']}")
 
-directory node['chub-csdashboard']['app']['config_dir'] do
-  action :create
-  owner 'chub-csdashboard'
-  group 'chub-csdashboard'
-  mode 0777
-end
-
-directory node['chub-csdashboard']['app']['log_dir'] do
-  action :create
-  owner 'chub-csdashboard'
-  group 'chub-csdashboard'
-  mode 0777
-end
-
-touchfile = node['chub-csdashboard']['app']['touchfile']
-
-remote_file "#{node['chub-csdashboard']['app']['deploy_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar" do
-  source "#{node['chub-csdashboard']['app']['jar_file_url']}"
-  not_if do
-    File.exists?(touchfile)
+  directory node['chub-csdashboard']['app']['staging_dir'] do
+    action :create
+    owner 'chub-csdashboard'
+    group 'chub-csdashboard'
+    mode 0777
   end
-  owner 'chub-csdashboard'
-  group 'chub-csdashboard'
-  action :create	# This should pull the file down forcefully
-end
 
-template "/etc/init/csdashboard.conf" do
-    source "csdashboard.conf.erb"
-    owner "root"
-    group "root"
-    mode 0644
-    notifies "restart", "service[csdashboard]", :delayed
-end
+  directory node['chub-csdashboard']['app']['deploy_dir'] do
+    action :create
+    owner 'chub-csdashboard'
+    group 'chub-csdashboard'
+    mode 0777
+  end
 
-service "csdashboard" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
-end
+  service "csdashboard" do
+      provider Chef::Provider::Service::Upstart
+      action [ "disable", "stop" ]
+  end
+
+  remote_file "#{node['chub-csdashboard']['app']['staging_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar" do
+    source "#{node['chub-csdashboard']['app']['jar_file_url']}"
+    owner 'chub-csdashboard'
+    group 'chub-csdashboard'
+    action :create	# This should pull the file down forcefully
+  end
+
+  file "#{node['chub-csdashboard']['app']['deploy_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar" do
+    action   :delete
+    mode     "0755"
+    owner    "chub-csdashboard"
+    group    "chub-csdashboard"
+  end
+
+  remote_file "Copy deploy jar file from staging" do 
+    path "#{node['chub-csdashboard']['app']['deploy_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar"
+    source "file://#{node['chub-csdashboard']['app']['staging_dir']}/#{node['chub-csdashboard']['app']['app_name']}.jar"
+    owner 'root'
+    group 'root'
+    mode 0755
+  end
+
+  template "/etc/init/csdashboard.conf" do
+      source "csdashboard.conf.erb"
+      owner "root"
+      group "root"
+      mode 0644
+      notifies "restart", "service[csdashboard]", :delayed
+  end
+
+  service "csdashboard" do
+      provider Chef::Provider::Service::Upstart
+      action [ "enable", "start" ]
+  end
+
+  file node['chub-csdashboard']['app']['touchfile'] do
+    action   :touch
+    mode     "0755"
+    owner    "chub-csdashboard"
+    group    "chub-csdashboard"
+  end
+
+end#close unless block
