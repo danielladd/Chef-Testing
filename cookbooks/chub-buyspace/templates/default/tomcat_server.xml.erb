@@ -71,27 +71,27 @@
                connectionTimeout="20000" 
                redirectPort="8443"
                compressableMimeType="text/html,text/xml,text/plain,text/javascript,text/css,application/javascript,application/json"
-               compression="on"
-          />
-          
-    <Connector port="8090" protocol="HTTP/1.1" 
+			   			 compression="on"
+			    />
+			    
+	  <Connector port="8090" protocol="HTTP/1.1" 
            connectionTimeout="20000" 
            redirectPort="443" 
-         scheme="https" 
-         proxyPort="443" 
-          URIEncoding="UTF-8" 
-         secure="true"
-         compressableMimeType="text/html,text/xml,text/plain,text/javascript,text/css,application/javascript,application/json"
-         compression="on"
-         maxThreads="1000"
-         minSpareThreads="50"
-         acceptCount="200"
-         acceptorThreadCount="2"
-         
-         />
-          
-   
-         <!--
+	       scheme="https" 
+	       proxyPort="443" 
+	        URIEncoding="UTF-8" 
+	       secure="true"
+	       compressableMimeType="text/html,text/xml,text/plain,text/javascript,text/css,application/javascript,application/json"
+	       compression="on"
+	       maxThreads="1000"
+	       minSpareThreads="50"
+	       acceptCount="200"
+	       acceptorThreadCount="2"
+	       
+	       />
+			    
+	 
+	       <!--
     -->
     <!-- A "Connector" using the shared thread pool-->
     <!--
@@ -122,27 +122,24 @@
 
     <!-- You should set jvmRoute to support load-balancing via AJP ie :
     <Engine name="Catalina" defaultHost="localhost" jvmRoute="jvm1">         
-   
+    --> 
     <Engine name="Catalina" defaultHost="localhost">
 
-    
-      For clustering, please take a look at documentation at:
+      <!--For clustering, please take a look at documentation at:
           /docs/cluster-howto.html  (simple how to)
-          /docs/config/cluster.html (reference documentation) 
+          /docs/config/cluster.html (reference documentation) -->
       
-      -->
+      
       <Cluster className="org.apache.catalina.ha.tcp.SimpleTcpCluster">
-          <Manager className="org.apache.catalina.ha.session.DeltaManager"
-                    name="SimpleSessionClusterManager"
-                    expireSessionsOnShutdown="false"
-                    sessionAttributeFilter="^(?!org.apache.catalina.valves.CrawlerSessionManagerValve$).*$">
-                      
-          </Manager>
-            
-            
-        </Cluster> 
-
-
+      		<Manager className="org.apache.catalina.ha.session.DeltaManager"
+      							name="SimpleSessionClusterManager"
+      							expireSessionsOnShutdown="false"
+      							sessionAttributeFilter="^(?!org.apache.catalina.valves.CrawlerSessionManagerValve$).*$">
+      								
+      		</Manager>
+      			
+      			
+      	</Cluster> 
 
       <!-- Use the LockOutRealm to prevent attempts to guess user passwords
            via a brute-force attack -->
@@ -164,7 +161,7 @@
         <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
         -->
 
-      <Valve className="org.apache.catalina.valves.RemoteIpValve"
+  		<Valve className="org.apache.catalina.valves.RemoteIpValve"
            remoteIpHeader="x-forwarded-for"
            proxiesHeader="x-forwarded-by"
            protocolHeader="x-forwarded-proto"
@@ -173,15 +170,15 @@
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
        
-      <Valve className="org.apache.catalina.valves.CrawlerSessionManagerValve"
+  		<Valve className="org.apache.catalina.valves.CrawlerSessionManagerValve"
            crawlerUserAgents=".*CommerceHubBot.*|.*AppManager.*|.*Hyperic-HQ-Agent.*|.*Pingdom.com_bot.*"
            sessionInactiveInterval="6000"/> 
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" 
-               directory="logs"  
-               prefix="localhost_access_log." z
+        			 directory="logs"  
+               prefix="localhost_access_log." 
                suffix=".txt"
                requestAttributesEnabled="true"
                pattern='%h %l %S %u %t "%r" %s %b "%{User-Agent}i" "%{Referer}i"'

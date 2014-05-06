@@ -24,12 +24,14 @@ default_attributes "chub-buyspace" => {
       "serverURL" => "https://mpqa1-buyspace.commercehub.com",
       "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
      # "serverURL" => "http://qa-vip7.buyspace.com",
-     # "apiServerURL" => "http://qa-vip7.buyspace.com"
+     #"apiServerURL" => "http://qa-vip7.buyspace.com"
+      #"serverURL" => "http://localhost:8080",
+      #"apiServerURL" => "http://localhost:8080"
     },
     "antivirus" => {
       "hosts" => "['10.10.40.80']",
       "enabled" => true,
-      "port" => 1334
+      "port" => 1344
     },
     "sprite" => {
         "conductorApiUrl" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
@@ -39,7 +41,7 @@ default_attributes "chub-buyspace" => {
     "imageUploading" => {
       "amazon" => {
         "accessKey" => "AKIAIR3QJXR63XPHWPRA",
-        "secretKey" => "hfuzFWUFicOyx6uJssbFzpdkFEIIWS8XNGO85e",
+        "secretKey" => "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",
         "bucket" => "commercehub-sprite-mpqa1-uploaded",
         "duration" => "1.days"
       } 
