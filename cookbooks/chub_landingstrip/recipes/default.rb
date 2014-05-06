@@ -88,6 +88,7 @@ template "/etc/init/landingstrip.conf" do
     owner "root"
     group "root"
     mode 0644
+	action :create_if_missing
 end
 
 link "/etc/landingstrip" do
