@@ -20,29 +20,48 @@
 # Forcefully install the latest buyspace .war file from Bamboo, delete the ROOT 
 # directory, and then remove this recipe from the runlist
 
+
+
+trigger_file = "/#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
+
+template "/home/chadmin/check_up.sh" do
+  source "check_up.sh.erb"
+  mode 0774
+  owner "chadmin"
+  group "chadmin"
+end
+
+service "tomcat7" do
+    action [ "stop" ]
+    only_if { File.exists?(trigger_file) }
+end
+
 execute 'clear_tomcat_app_directory' do
-	command "rm -fr #{node['chub-buyspace']['app_dir']}/ROOT"
-	action :nothing
+  command "rm -fr #{node['chub-buyspace']['app_dir']}/ROOT"
+  action :nothing
+  only_if { File.exists?(trigger_file) }
 end
 
 file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
-	action :delete
+  action :delete
+  only_if { File.exists?(trigger_file) }
 end
 
 remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
-	source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM/latestSuccessful/artifact/shared/buyspace.war/buyspace.war"
-	owner "#{node['chub-buyspace']['user']}"
-	group "#{node['chub-buyspace']['group']}"
-	action :create	# This should pull the file down forcefully
-	notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-	notifies :restart, "service[tomcat]", :delayed
+    source "file://#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
+    owner "#{node['chub-buyspace']['user']}"
+    group "#{node['chub-buyspace']['group']}"
+    mode 0440
+    notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+    only_if { File.exists?(trigger_file) }
 end
 
-if not Chef::Config[:solo] then
-	ruby_block "Remove Buyspace Upgrade recipe from run-list" do
-		block do
-			node.run_list.remove("recipe[chub-buyspace::upgrade_buyspace]")
-		end
-		only_if { node.run_list.include?("recipe[chub-buyspace::upgrade_buyspace]") }
-	end
+service "tomcat7" do
+    action [ "start" ]
+    only_if { File.exists?(trigger_file) }
+end
+
+file trigger_file do
+  action :delete
+  only_if { File.exists?(trigger_file) }
 end

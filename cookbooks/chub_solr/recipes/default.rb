@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub-solr
+# Cookbook Name:: chub_solr
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -17,15 +17,14 @@
 # limitations under the License.
 #
 
-node.default['tomcat']['base_version']		= 7
-node.default["tomcat"]["config_dir"]		= "/etc/tomcat#{node["tomcat"]["base_version"]}"
-node.default['tomcat']['loglevel']			= 'WARN'	# default is 'INFO'
-node.default['tomcat']['port']				= node['chub-solr']['port']
-node.default['tomcat']['catalina_options']	= "-Dsolr.solr.home=#{node['chub-solr']['base']}"
+node.normal['tomcat']['base_version']	= 7
+node.normal['tomcat']['loglevel']		= 'WARN'	# default is 'INFO'
+node.normal['tomcat']['catalina_options'] = "-Dsolr.solr.home=#{node['chub_solr']['cores_dir']}"
+node.normal['tomcat']['port'] = "8983"
 
 if node[:instance_role] == 'vagrant'
-	node.set["tomcat"]["keystore_password"]		= 'throwawaypassword'
-	node.set["tomcat"]["truststore_password"]	= 'throwawaypassword'
+	node.normal["tomcat"]["keystore_password"]		= 'throwawaypassword'
+	node.normal["tomcat"]["truststore_password"]	= 'throwawaypassword'
 end
 
 include_recipe "chub_java::oracle7"

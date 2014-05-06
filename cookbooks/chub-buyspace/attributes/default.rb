@@ -1,4 +1,5 @@
 
+default['tomcat']['base_version']             = 7
 default['chub-buyspace']['config_dir']		= '/etc/buyspace'
 # # Use these when Buyspace includes an embedded Tomcat
 # default['chub-buyspace']['user']			= 'buyspace'
@@ -15,8 +16,12 @@ default['chub-buyspace']['data_dir']		= '/var/buyspace'
 default['chub-buyspace']['temp_dir']		= '/tmp/buyspace'
 default['chub-buyspace']['buyspace_conf']	= 'buyspace-config.groovy'
 default['chub-buyspace']['logging_conf']	= 'logging.properties'
+default['chub-buyspace']['staged_war_name']  = 'staged-buyspace.war'
+  
+  
+#{node['']['app']['app_name']}
 
-
+  
 # Use this only to revert to a specific Bamboo build, by specifying the Bamboo
 # Build Number
 default['chub-buyspace']['install_specific_build']	= 250
@@ -56,7 +61,6 @@ default['chub-buyspace']['antivirus']['port'] = 1344
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
 default['chub-buyspace']['bestBuyMarketplace']['retailerId'] = '51247477c519e3a71e639634'
 default['chub-buyspace']['creSecure']['cardTokenValidationUrl'] = 'https://localhost/direct/services/validation'
-default['chub-buyspace']['data_dir'] = "/var/buyspace/data"
 default['chub-buyspace']['grails']['serverURL'] = "https://localhost"
 default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:8080"
 default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost:8080"
@@ -78,9 +82,9 @@ default['chub-buyspace']['log4j']['root_loglevel'] = 'info'
 default['chub-buyspace']['marketplace']['files']['commerceHubRelationshipsFile'] = "/marketplace/rels.csv"
 default['chub-buyspace']['marketplace']['gitRevision'] = 'System.currentTimeMillis()'
 default['chub-buyspace']['mongo']['databaseName'] = "marketplaceTest"
-default['chub-buyspace']['mongo']['replicas'] = ['localhost']
+#default['chub-buyspace']['mongo']['replicas'] = ['localhost']
 default['chub-buyspace']['mongo']['blobstoreDatabaseName'] = "marketplaceTest"
-default['chub-buyspace']['mongo']['blobstoreReplicas'] = ['localhost']
+#default['chub-buyspace']['mongo']['blobstoreReplicas'] = ['localhost']
 default['chub-buyspace']['salesforce']['url'] = 'https://localhost'
 default['chub-buyspace']['salesforce']['apiUrl'] = "node['chub-buyspace']['salesforce']['url']/services/data/v24.0"
 default['chub-buyspace']['salesforce']['clientId'] = 'PLACEHOLDER'

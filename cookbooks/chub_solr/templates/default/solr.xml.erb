@@ -8,7 +8,7 @@
 <solr persistent="false">
 	<cores adminPath="/admin/cores">
 		<% @cores.each_with_index do |core| %>
-		<%= <core name="#{core}" instanceDir="#{core}" dataDir="#{node['chub-solr']['data_dir']}/#{core}"/> %>
+		<%= <core name="#{core}" instanceDir="#{core}" dataDir="#{node['chub_solr']['data_dir']}/#{core}"/> %>
 		<% end %>
 	</cores>
 </solr>

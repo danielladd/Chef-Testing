@@ -1,4 +1,5 @@
 host.name=<%= @castle_host_name %>
+defaultService.url=<%= node[:chub_castle][:default_service_url] %>
 forgotPassword.url=<%= node[:chub_castle][:forgot_password_url] %>
 vault.url=<%= node[:chub_castle][:vault_url] %>
 <% if node[:graphite] -%>

@@ -31,7 +31,7 @@
 
 # Enforcing needed settings, but these should be applied at the Role level
 
-node.default['tomcat']['base_version'] = 7
+node.normal['tomcat']['base_version'] = 7
 node.default['tomcat']['loglevel'] = 'WARN'		# default is 'INFO'
 
 tempdir		= node['chub-buyspace']['temp_dir']			#puts "tempdir is #{tempdir}"
@@ -49,9 +49,7 @@ if Chef::Config[:solo]
 	node.set["tomcat"]["truststore_password"] = 'throwawaypassword'
 end
 
-
 include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
-include_recipe "chub-buyspace::graphicsmagick"
 include_recipe "chub-buyspace::buyspace"
 

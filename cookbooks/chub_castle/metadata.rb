@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.19'
+version          '0.1.20'
 
 supports "ubuntu"
 depends "apt"
@@ -46,6 +46,11 @@ attribute "chub_castle/truststore_password",
     :description => "The password to use with the truststore",
     :default => "changeit",
     :required => "optional"
+
+attribute "chub_castle/default_service_url",
+    :display_name => "Default service URL",
+    :description => "Service URL to use when none is specified",
+    :required => "required"
 
 attribute "chub_castle/forgot_password_url",
     :display_name => "Forgot password URL",

@@ -1,3 +1,6 @@
+* 0.1.20
+* Add default_service_url attribute
+
 # 0.1.19
 * Add forgot_password_url attribute
 
