@@ -90,14 +90,6 @@ template "/etc/init/connman.conf" do
     mode 0644
 end
 
-link "/etc/connman" do
-  to "#{node["chub-connman"][:app][:deploy_dir]}/config"
-end
-
-link "/var/log/connman" do
-  to "#{node["chub-connman"][:app][:deploy_dir]}/log"
-end
-
 service "connman" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
