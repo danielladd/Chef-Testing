@@ -57,6 +57,7 @@ vertx{
 }
 
 msExchangeApi {
+    overrideAddress='<%= node['chub-buyspace']['msExchangeApi']['overrideAddress'] %>' 
     url = "<%= node['chub-buyspace']['msExchangeApi']['url'] %>"
     credentials {
         username = '<%= node['chub-buyspace']['msExchangeApi']['credentials']['username'] %>'
@@ -68,13 +69,14 @@ msExchangeApi {
 hornetq {
 	host = '<%= node['chub-buyspace']['hornetq']['host'] %>'
 	port = <%= node['chub-buyspace']['hornetq']['port'] %>
+    embedded=false
 }
 
 mongo{
-	databaseName = "<%= node['chub-buyspace']['mongo']['databaseName'] %>"
+	databaseName = '<%= node['chub-buyspace']['mongo']['databaseName'] %>'
 	replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
     blobStore {
-	   databaseName = "<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>"
+	   databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
 	   replicas =  <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
     }
 }
