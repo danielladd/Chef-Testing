@@ -49,7 +49,7 @@ directory node["chub-connman"][:app][:staging_dir] do
   mode 0777
 end
 
-directory node["chub-connman"]['app']['deploy_dir'] do
+directory node["chub-connman"]["app"]["deploy_dir"] do
   action :create
   owner "chub-connman"
   group "chub-connman"
@@ -61,7 +61,7 @@ service "connman" do
     action [ "disable", "stop" ]
 end
 
-remote_file "#{node['chub-connman']['app']['deploy_dir']}/#{node['chub-connman']['app']['app_name']}.jar" do
+remote_file "#{node['chub-connman']['app']['staging_dir']}/#{node['chub-connman']['app']['app_name']}.jar" do
   source "#{node['chub-connman']['app']['jar_file_url']}"
   owner "chub-connman"
   group "chub-connman"
@@ -88,6 +88,7 @@ template "/etc/init/connman.conf" do
     owner "root"
     group "root"
     mode 0644
+    action :create
 end
 
 service "connman" do
