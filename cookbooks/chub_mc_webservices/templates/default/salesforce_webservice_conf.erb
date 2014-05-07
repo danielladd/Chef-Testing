@@ -1,4 +1,4 @@
-exec java -jar <%= node[:chub_mc_webservice][:salesforce][:deploy_dir] %>/<%= node[:chub_mc_webservice][:salesforce][:jar_file_name] %> server <%= node[:chub_mc_webservice][:salesforce][:config_file_name] %>
+exec java -jar <%= node[:chub_mc_webservice][:salesforce][:deploy_dir] %>/<%= node[:chub_mc_webservice][:salesforce][:jar_file_name] %> server <%= node[:chub_mc_webservice][:salesforce][:deploy_dir] %>/<%= node[:chub_mc_webservice][:salesforce][:config_file_name] %>
 respawn
 start on runlevel [2345]
 stop on runlevel [016]
