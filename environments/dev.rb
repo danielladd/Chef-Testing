@@ -11,4 +11,3 @@ default_attributes(
     "endpoint" => "lsdev01.nexus.commercehub.com"
   }
 )
-

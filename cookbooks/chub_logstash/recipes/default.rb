@@ -83,7 +83,8 @@ template "/etc/indexer.conf" do
   source "indexer.conf.erb"
   variables({
     :clustername => node[:elasticsearch][:cluster][:name],
-    :host => node[:elasticsearch][:discovery][:zen][:ping][:unicast][:hosts].split(',')[0]
+    :host => node[:elasticsearch][:discovery][:zen][:ping][:unicast][:hosts].split(',')[0],
+    :rules => node[:chub_log][types]
   })
   notifies :run, 'execute[stop_logstash]', :immediately
   notifies :run, 'execute[start_logstash]', :delayed
