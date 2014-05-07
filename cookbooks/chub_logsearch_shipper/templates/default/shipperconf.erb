@@ -20,9 +20,12 @@ Change the settings to fit your environment
   <LogsearchShipperGroup>
     <LogsearchShipper servers="<%= @endpoint %>:<%= @port %>" ssl_ca="c:\Program Files\logsearch-shipper\ls.crt" timeout="23">
 		<fileWatchers>
-			<watch files="C:\Albers\logs\Albers.log" type="java">
+                        <% @logfiles.each { |logfile| %>
+                        <!-- Logfile for: <%= logfile[0] %> -->
+			<watch files="<%= logfile[1][:path] %>" type="<%= logfile[1][:type] %>">
 				<field key="@environment" value="<%= @environment %>" />
 			</watch>
+                        <% } %>
 		</fileWatchers>
     </LogsearchShipper>
   </LogsearchShipperGroup>

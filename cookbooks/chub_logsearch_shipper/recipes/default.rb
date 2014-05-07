@@ -26,6 +26,7 @@ template "c:/Program Files/logsearch-shipper/LogsearchShipper.Service.exe.config
   variables({
     :endpoint => node[:chub_logstash][:endpoint],
     :port => "2351",
+    :logfiles => node[:chub_log][:logfiles],
     :environment => node.chef_environment
   })
 end
