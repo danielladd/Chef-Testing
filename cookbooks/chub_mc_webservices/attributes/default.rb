@@ -1,12 +1,11 @@
-default[:chub_mc_authservice][:http_port] = "5080"
-default[:chub_mc_authservice][:https_port] = "5443"
-default[:chub_mc_authservice][:key_alias] = "localsso"
-default[:chub_mc_authservice][:keystore_file] = "localsso.jks"
-default[:chub_mc_authservice][:keystore_password] = "changeme"
-default[:chub_mc_authservice][:config_dir] = '/etc/mc-authservice'
-default[:chub_mc_authservice][:deploy_dir] = '/opt/mc-authservice'
-default[:chub_mc_authservice][:log_dir] = '/opt/mc-authservice/logs'
-default[:chub_mc_authservice][:jar_file_url] = 'OVERRIDE ME'
-default[:chub_mc_authservice][:keystore_file_url] = 'OVERRIDE ME'
-default[:chub_mc_authservice][:jar_file_name] = 'mc-authservice-1.0-SNAPSHOT-war-exec.jar' 
-default[:chub_mc_authservice][:touchfile] = "node[:chub_mc_authservice][:deploy_dir]/jar_deployed"
+default[:chub_mc_webservice][:flight][:deploy_dir] = opt/mc-webservices/flight
+default[:chub_mc_webservice][:flight][:staging_dir] = opt/mc-webservices-staging/flight
+default[:chub_mc_webservice][:flight][:jar_file_url] = OVERRIDE ME
+
+default[:chub_mc_webservice][:salesforce][:deploy_dir] = opt/mc-webservices/salesforce
+default[:chub_mc_webservice][:salesforce][:staging_dir] = opt/mc-webservices-staging/salesforce
+default[:chub_mc_webservice][:salesforce][:jar_file_url] = OVERRIDE ME
+
+default[:chub_mc_webservice][:netsuite][:deploy_dir] = opt/mc-webservices/netsuite
+default[:chub_mc_webservice][:netsuite][:staging_dir] = opt/mc-webservices-staging/netsuite
+default[:chub_mc_webservice][:netsuite][:jar_file_url] = OVERRIDE ME
