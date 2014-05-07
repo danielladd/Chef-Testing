@@ -1,6 +1,9 @@
-default[:chub_mc_webservice][:flight][:deploy_dir] = 'opt/mc-webservices/flight'
-default[:chub_mc_webservice][:flight][:staging_dir] = 'opt/mc-webservices-staging/flight'
-default[:chub_mc_webservice][:flight][:jar_file_url] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:onboarding][:deploy_dir] = 'opt/mc-webservices/onboarding'
+default[:chub_mc_webservice][:onboarding][:staging_dir] = 'opt/mc-webservices-staging/onboarding'
+default[:chub_mc_webservice][:onboarding][:jar_file_url] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:onboarding][:jar_file_name] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:onboarding][:config_file_name] = 'onboarding_webservice_config.yml'
+default[:chub_mc_webservice][:onboarding][:touchfile] = "#{node[:chub_mc_webservice][:onboarding][:deploy_dir]}/deployed"
 
 default[:chub_mc_webservice][:salesforce][:deploy_dir] = 'opt/mc-webservices/salesforce'
 default[:chub_mc_webservice][:salesforce][:staging_dir] = 'opt/mc-webservices-staging/salesforce'
