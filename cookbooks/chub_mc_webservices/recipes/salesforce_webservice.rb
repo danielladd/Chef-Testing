@@ -113,5 +113,3 @@ file node[:chub_mc_webservice][:salesforce][:touchfile] do
 end
 
 end#close unless block
-
-end
