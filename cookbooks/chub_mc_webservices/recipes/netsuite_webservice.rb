@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: chub_mc_webservice
-# Recipe:: default
+# Recipe:: flight_webservice
 #
 # Copyright 2014, CommerceHub Inc.
 #
@@ -16,4 +16,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-include_recipe "chub_java::oracle7"
+

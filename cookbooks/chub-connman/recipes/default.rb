@@ -61,14 +61,14 @@ service "connman" do
     action [ "disable", "stop" ]
 end
 
-remote_file "#{node["chub-connman"]['app']['deploy_dir']}/#{node['chub-connman']['app']['app_name']}.jar" do
+remote_file "#{node['chub-connman']['app']['deploy_dir']}/#{node['chub-connman']['app']['app_name']}.jar" do
   source "#{node['chub-connman']['app']['jar_file_url']}"
   owner "chub-connman"
   group "chub-connman"
   action :create	# This should pull the file down forcefully
 end
 
-file "#{node["chub-connman"][:app][:deploy_dir]}/#{node["chub-connman"][:app][:app_name]}.jar" do
+file "#{node['chub-connman'][:app][:deploy_dir]}/#{node['chub-connman'][:app][:app_name]}.jar" do
     action   :delete
     mode     "0755"
     owner    "chub-connman"
@@ -76,8 +76,8 @@ file "#{node["chub-connman"][:app][:deploy_dir]}/#{node["chub-connman"][:app][:a
 end
 
 remote_file "Copy deploy jar file from staging" do 
-  path "#{node["chub-connman"][:app][:deploy_dir]}/#{node["chub-connman"][:app][:app_name]}.jar"
-  source "file://#{node["chub-connman"][:app][:staging_dir]}/#{node["chub-connman"][:app][:app_name]}.jar"
+  path "#{node['chub-connman'][:app][:deploy_dir]}/#{node['chub-connman'][:app][:app_name]}.jar"
+  source "file://#{node['chub-connman'][:app][:staging_dir]}/#{node['chub-connman'][:app][:app_name]}.jar"
   owner 'root'
   group 'root'
   mode 0755
