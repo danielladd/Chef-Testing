@@ -1,45 +1,6 @@
-{
-    "spring": {
-        "appContextType": "web",
-        "configLocationsType": "classpath",
-        "configLocations": [
-            "applicationContext.xml",
-            "dropwizard-service.xml",
-            "dsm-prod-spring-jdo-config.xml",
-            "orgDataDir-config.xml"
-        ],
-        "resources": [
-            "productResource"
-        ],
-        "filters": {
-            "OpenPersistenceManagerInViewFilter": {
-                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
-                "url": "/*",
-                "param": {
-                    "persistenceManagerFactoryBeanName": "internalPersistenceManagerFactory"
-                }
-            },
-            "dsmProdOpenPersistenceManagerInViewFilter": {
-                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
-                "url": "/*",
-                "param": {
-                    "persistenceManagerFactoryBeanName": "dsmProdInternalPersistenceManagerFactory"
-                }
-            },
-            "onboarderOpenPersistenceManagerInViewFilter": {
-                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
-                "url": "/*",
-                "param": {
-                    "persistenceManagerFactoryBeanName": "onboarderInternalPersistenceManagerFactory"
-                }
-            },
-            "OpenEntityManagerInViewFilter": {
-                "clazz": "org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter",
-                "url": "/*",
-                "param": {
-                    "entityManagerFactoryBeanName": "orgDataDir_EntityManagerFactory"
-                }
-            }
-        }
-    }
-}
+salesforceClient:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:client]
+  host:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:host]
+  clientId:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:clientId]
+  clientSecret:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:clientSecret]
+  username:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:username]
+  password:[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:password]
