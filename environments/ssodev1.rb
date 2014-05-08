@@ -15,7 +15,7 @@ cookbook_versions({
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.6",
   "chub_sensu_sso" => "= 0.1.13",
-  "chub_vault" => "= 0.3.3",
+  "chub_vault" => "= 0.3.4",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
