@@ -24,6 +24,7 @@ end
 group "castle" do
     action :create
     system true
+    append true
 end
 
 user "castle" do
