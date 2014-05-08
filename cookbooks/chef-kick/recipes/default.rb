@@ -14,6 +14,7 @@ end
 
 apt_package "chef-kick" do
     action :upgrade
+    options "--force-yes"
 end
 
 file "/usr/bin/chef-kick" do

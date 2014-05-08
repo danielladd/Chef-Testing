@@ -7,7 +7,7 @@ cookbook_versions({
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
-  "chef-kick" => "= 0.1.0",
+  "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.20",
   "chub_census" => "= 0.1.6",
