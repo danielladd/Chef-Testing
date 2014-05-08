@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub_mc_authservice
+# Cookbook Name:: chub_mc_webservice
 # Recipe:: default
 #
 # Copyright 2014, CommerceHub Inc.
@@ -17,84 +17,3 @@
 # limitations under the License.
 #
 include_recipe "chub_java::oracle7"
-
-group "chub_mc_authservice" do
-    action :create
-    system true
-end
-
-user "chub_mc_authservice" do
-    comment "Application user for chub_mc_authservice"
-    gid "chub_mc_authservice"
-    system true
-end
-
-user "chadmin" do
-    # Placeholder user; in "real" VMs, this user is expected to already exist.
-    # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
-end
-
-group "chub_mc_authservice" do
-    action :modify
-    append true
-    members ["chub_mc_authservice", "chadmin"]
-end
-
-directory node[:chub_mc_authservice][:deploy_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-directory node[:chub_mc_authservice][:config_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-directory node[:chub_mc_authservice][:log_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-touchfile = node[:chub_mc_authservice][:touchfile]
-
-remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
-  source "#{node[:chub_mc_authservice][:jar_file_url]}"
-  not_if do
-    File.exists?(touchfile)
-  end
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  action :create	# This should pull the file down forcefully
-end
-
-# TODO figure out how to work with two touchfiles post 5/1
-
-file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
-	action :delete
-end
-
-remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
-  source "#{node[:chub_mc_authservice][:keystore_file_url]}"
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  action :create	# This should pull the file down forcefully
-end
-
-template "/etc/init/mc_authservice.conf" do
-    source "mc_authservice.conf.erb"
-    owner "root"
-    group "root"
-    mode 0644
-    notifies "restart", "service[mc_authservice]", :delayed
-end
-
-service "mc_authservice" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
-end

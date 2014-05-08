@@ -97,6 +97,14 @@ service "landingstrip" do
 end
 
 file node[:chub_landingstrip][:app][:touchfile] do
+    action   :create
+    mode     "0755"
+    owner    "chub_landingstrip"
+    group    "chub_landingstrip"
+	content  "deployed"
+end
+
+file node[:chub_landingstrip][:app][:touchfile] do
     action   :touch
     mode     "0755"
     owner    "chub_landingstrip"

@@ -1,0 +1,45 @@
+{
+    "spring": {
+        "appContextType": "web",
+        "configLocationsType": "classpath",
+        "configLocations": [
+            "applicationContext.xml",
+            "dropwizard-service.xml",
+            "dsm-prod-spring-jdo-config.xml",
+            "orgDataDir-config.xml"
+        ],
+        "resources": [
+            "productResource"
+        ],
+        "filters": {
+            "OpenPersistenceManagerInViewFilter": {
+                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
+                "url": "/*",
+                "param": {
+                    "persistenceManagerFactoryBeanName": "internalPersistenceManagerFactory"
+                }
+            },
+            "dsmProdOpenPersistenceManagerInViewFilter": {
+                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
+                "url": "/*",
+                "param": {
+                    "persistenceManagerFactoryBeanName": "dsmProdInternalPersistenceManagerFactory"
+                }
+            },
+            "onboarderOpenPersistenceManagerInViewFilter": {
+                "clazz": "org.springframework.orm.jdo.support.OpenPersistenceManagerInViewFilter",
+                "url": "/*",
+                "param": {
+                    "persistenceManagerFactoryBeanName": "onboarderInternalPersistenceManagerFactory"
+                }
+            },
+            "OpenEntityManagerInViewFilter": {
+                "clazz": "org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter",
+                "url": "/*",
+                "param": {
+                    "entityManagerFactoryBeanName": "orgDataDir_EntityManagerFactory"
+                }
+            }
+        }
+    }
+}

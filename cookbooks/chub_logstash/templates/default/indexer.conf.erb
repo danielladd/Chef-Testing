@@ -6,6 +6,21 @@ input {
   }
 }
 
+filter {
+  <% @rules.each_with_index { |rule, index|  %>
+#rule for <%= rule[0] %>
+    <% if (index == 0) %>	
+      if [type] == "<%= rule[1][:name] %>" {
+    <% else %>
+      else if [type] == "<%= rule[1][:name] %>" {
+    <% end %>
+      <%= rule[1][:body] %>
+    } else {
+#fallthrough catch-all.. need to put something here
+    }
+  <% } %>
+}
+
 output {
   elasticsearch {
     cluster => "<%= @clustername %>"
