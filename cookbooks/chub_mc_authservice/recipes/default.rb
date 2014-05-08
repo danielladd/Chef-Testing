@@ -76,7 +76,7 @@ service "mc_authservice" do
 end
 
 remote_file "#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
-  source "#{node[:chub_mc_authservice][:[:jar_file_url]}"
+  source "#{node[:chub_mc_authservice][:jar_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
   action :create	# This should pull the file down forcefully
