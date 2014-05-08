@@ -23,6 +23,7 @@ end
 group "vault" do
     action :create
     system true
+    append true
 end
 
 user "vault" do
