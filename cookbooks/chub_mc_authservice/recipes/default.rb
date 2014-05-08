@@ -40,6 +40,8 @@ group "chub_mc_authservice" do
     members ["chub_mc_authservice", "chadmin"]
 end
 
+unless File.exists?("#{node[:chub_mc_authservice][:touchfile]}")
+
 directory node[:chub_mc_authservice][:deploy_dir] do
   action :create
   owner "chub_mc_authservice"
@@ -61,19 +63,32 @@ directory node[:chub_mc_authservice][:log_dir] do
   mode 0777
 end
 
-touchfile = node[:chub_mc_authservice][:touchfile]
+service "mc_authservice" do
+    provider Chef::Provider::Service::Upstart
+    action [ "disable", "stop" ]
+end
 
-remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
-  source "#{node[:chub_mc_authservice][:jar_file_url]}"
-  not_if do
-    File.exists?(touchfile)
-  end
+remote_file "#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
+  source "#{node[:chub_mc_authservice][:[:jar_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
   action :create	# This should pull the file down forcefully
 end
 
-# TODO figure out how to work with two touchfiles post 5/1
+file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
+    action   :delete
+    mode     "0755"
+    owner    "chub_mc_authservice"
+    group    "chub_mc_authservice"
+end
+
+remote_file "Copy deploy jar file from staging" do 
+  path "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
+  source "file://#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
+  owner 'root'
+  group 'root'
+  mode 0755
+end
 
 file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
 	action :delete
@@ -98,3 +113,20 @@ service "mc_authservice" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
+
+file node[:chub_mc_authservice][:touchfile] do
+    action   :create
+    mode     "0755"
+    owner    "chub_mc_authservice"
+    group    "chub_mc_authservice"
+	content  "deployed"
+end
+
+file node[:chub_mc_authservice][:touchfile] do
+    action   :touch
+    mode     "0755"
+    owner    "chub_mc_authservice"
+    group    "chub_mc_authservice"
+end
+
+end#close unless block
