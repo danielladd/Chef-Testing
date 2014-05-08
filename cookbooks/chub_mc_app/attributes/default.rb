@@ -1,0 +1,7 @@
+default[:chub_mc_app][:port] = "OVERRIDE_ME"
+default[:chub_mc_app][:app_name] = "OVERRIDE_ME"
+default[:chub_mc_app][:deploy_dir] = "/opt/#{node[:chub_mc_app][:app_name]}"
+default[:chub_mc_app][:staging_dir] = "/opt/#{node[:chub_mc_app][:app_name]}-staging"
+default[:chub_mc_app][:config_file_name] = "#{node[:chub_mc_app][:app_name]}-config.groovy"
+default[:chub_mc_app][:jar_file_url] = "OVERRIDE ME"
+default[:chub_mc_app][:touchfile] = "#{node[:chub_mc_app][:deploy_dir]}/deployed.txt"

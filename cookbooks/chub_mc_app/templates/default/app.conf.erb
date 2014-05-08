@@ -1,0 +1,4 @@
+exec java -jar <%= node[:chub_mc_app][:deploy_dir] %>/<%= node[:chub_mc_app][:app_name] %>.jar context=<%= node[:chub_mc_app][:app_name] %> port=<%= node[:chub_mc_app][:port] %>
+respawn
+start on runlevel [2345]
+stop on runlevel [016]

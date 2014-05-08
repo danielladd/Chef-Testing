@@ -1,4 +1,8 @@
-* 0.1.20
+# 0.1.21
+* Make castle group append
+* Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant
+
+# 0.1.20
 * Add default_service_url attribute
 
 # 0.1.19

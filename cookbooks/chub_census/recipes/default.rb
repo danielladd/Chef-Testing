@@ -23,6 +23,7 @@ end
 group "census" do
     action :create
     system true
+    append true
 end
 
 user "census" do

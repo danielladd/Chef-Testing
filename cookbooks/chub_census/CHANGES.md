@@ -1,3 +1,7 @@
+# 0.1.7
+* Make census group append
+* Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant
+
 # 0.1.6
 * Add Plaza application endpoint URL 
 

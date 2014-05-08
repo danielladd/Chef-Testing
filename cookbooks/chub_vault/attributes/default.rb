@@ -1,4 +1,4 @@
-default[:chub_vault][:app_url] = "http://mpbamboo.nexus.commercehub.com/browse/SSO-VAULT/latestSuccessful/artifact/shared/vault-shadow.jar/vault-shadow.jar"
+default[:chub_vault][:app_url] = "http://mpbamboo.nexus.commercehub.com/browse/SSO-VAULT/latestSuccessful/artifact/shared/vault-server-shadow.jar/vault-server-shadow.jar"
 default[:chub_vault][:ldap][:base_dn] = "dc=vault,dc=commercehub,dc=com"
 default[:chub_vault][:ldap][:user_ou] = "ou=users"
 default[:chub_vault][:ldap][:read][:cn] = "cn=searchrole"
