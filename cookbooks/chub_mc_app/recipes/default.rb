@@ -78,15 +78,15 @@ end
 remote_file "Copy deploy jar file from staging" do 
   path "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
   source "file://#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
-  owner 'root'
-  group 'root'
+  owner 'chub_#{node[:chub_mc_app][:app_name]}'
+  group 'chub_#{node[:chub_mc_app][:app_name]}'
   mode 0755
 end
 
 template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
     source "app.conf.erb"
-    owner "root"
-    group "root"
+    owner "chub_#{node[:chub_mc_app][:app_name]}"
+    group "chub_#{node[:chub_mc_app][:app_name]}"
     mode 0644
 	action :create
 end

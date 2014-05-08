@@ -92,8 +92,8 @@ end
 remote_file "Copy deploy jar file from staging" do 
   path "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
   source "file://#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
-  owner 'root'
-  group 'root'
+  owner 'chub_mc_authservice'
+  group 'chub_mc_authservice'
   mode 0755
 end
 
@@ -110,8 +110,8 @@ end
 
 template "/etc/init/mc_authservice.conf" do
     source "mc_authservice.conf.erb"
-    owner "root"
-    group "root"
+    owner "chub_mc_authservice"
+    group "chub_mc_authservice"
     mode 0644
     notifies "restart", "service[mc_authservice]", :delayed
 end
