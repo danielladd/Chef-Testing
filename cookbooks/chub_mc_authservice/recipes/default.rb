@@ -49,6 +49,13 @@ directory node[:chub_mc_authservice][:deploy_dir] do
   mode 0777
 end
 
+directory node[:chub_mc_authservice][:staging_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+
 directory node[:chub_mc_authservice][:config_dir] do
   action :create
   owner "chub_mc_authservice"
