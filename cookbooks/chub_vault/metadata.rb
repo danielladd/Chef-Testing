@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.3'
+version          '0.3.4'
 
 supports "ubuntu"
 depends "apt"
@@ -15,7 +15,7 @@ attribute "chub_vault/app_url",
     :display_name => "Vault application URL",
     :description => "URL from which to obtain the application JAR; can use a remote URL",
     :required => "optional",
-    :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-VAULT/latestSuccessful/artifact/shared/vault-shadow.jar/vault-shadow.jar"
+    :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-VAULT/latestSuccessful/artifact/shared/vault-server-shadow.jar/vault-server-shadow.jar"
 
 attribute "chub_vault/ldap/base_dn",
     :display_name => "Base DN",

@@ -1,3 +1,7 @@
+# 0.3.4
+* Make vault group append
+* Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant
+
 # 0.3.3
 * Use chub_java cookbook
 
