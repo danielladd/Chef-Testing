@@ -101,7 +101,7 @@ file node[:chub_landingstrip][:app][:touchfile] do
     mode     "0755"
     owner    "chub_landingstrip"
     group    "chub_landingstrip"
-	content "deployed"
+	content  "deployed"
 end
 
 file node[:chub_landingstrip][:app][:touchfile] do
