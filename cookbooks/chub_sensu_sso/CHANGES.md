@@ -1,3 +1,9 @@
+#0.1.15
+* Changed castle health check again
+
+#0.1.14
+* Changed castle health check
+
 # 0.1.13
 * Load sensu checks from chef cookbook rather than git repo
 
