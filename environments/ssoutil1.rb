@@ -5,6 +5,11 @@ cookbook_versions({
   "chub_java" => "= 0.1.0"
 })
 default_attributes(
+  :sensu => {
+    :rabbitmq => {
+      :host => "ssodev1sensu.nexus.commercehub.com"
+    }
+  },
   :chub_envdash => {
     :title => "SSO Environments",
     :prefix => "sso",
