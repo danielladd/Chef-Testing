@@ -110,7 +110,7 @@ unless Chef::Config[:solo]
             handlers ["default"]
             subscribers ["monitor"]
             interval 60
-            additional(:occurrences => 2)
+            additional(:occurrences => 4)
         end
     end
 end
@@ -144,7 +144,7 @@ sensu_check "check-census-health" do
 end
 
 sensu_check "check-castle-health" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb -s -k --url https://localhost:8443/login --response-code 200"
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb -s -k --url http://localhost:8080/admin/healthcheck --response-code 200 --response-bytes 5000"
     handlers ["default"]
     subscribers ["castle"]
     interval 60

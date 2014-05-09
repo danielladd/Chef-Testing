@@ -88,13 +88,23 @@ unless File.exists?("#{node['chub-csdashboard']['app']['touchfile']}")
       owner "root"
       group "root"
       mode 0644
-      notifies "restart", "service[csdashboard]", :delayed
+      action :create
   end
 
   service "csdashboard" do
       provider Chef::Provider::Service::Upstart
       action [ "enable", "start" ]
   end
+
+
+    file node['chub-csdashboard']['app']['touchfile'] do
+     action   :create      
+     mode     "0755"     
+    owner    "chub_landingstrip"      
+    group    "chub_landingstrip"      
+     content  "deployed"     
+ end
+
 
   file node['chub-csdashboard']['app']['touchfile'] do
     action   :touch

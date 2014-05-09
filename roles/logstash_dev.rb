@@ -14,6 +14,6 @@ default_attributes(
     }
   },
   "chub_logstash" => {
-    "logstash_tar" => "logstash-1.4.0.tar.gz"
+    "logstash_tar" => "logstash-1.4.1.tar.gz"
   })
 

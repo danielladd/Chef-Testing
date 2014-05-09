@@ -93,7 +93,7 @@ end
 link "currentversion" do
   link_type :symbolic
   target_file "/opt/logstash"
-  to "/opt/logstash-1.4.0"
+  to "/opt/logstash-1.4.1"
   action :nothing
   notifies :create, "directory[/opt/logstash/ssl]", :immediately
 end

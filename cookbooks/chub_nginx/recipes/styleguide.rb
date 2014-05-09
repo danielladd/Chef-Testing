@@ -96,6 +96,7 @@ git repo_path do
 	notifies :reload, "service[nginx]", :delayed
 end
 
+# phpinfo should not be available in Prod, but may be helpful in test
 if node[:instance_role] == 'vagrant'
 	cookbook_file "info.php" do
 		path "#{site_path}/info.php"
@@ -103,6 +104,10 @@ if node[:instance_role] == 'vagrant'
 		owner "www-data"
 		group "www-data"
 		mode "0755"
+	end
+else
+	file "#{site_path}/info.php" do
+		action :delete
 	end
 end
 

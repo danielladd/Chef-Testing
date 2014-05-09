@@ -49,6 +49,13 @@ directory node[:chub_mc_authservice][:deploy_dir] do
   mode 0777
 end
 
+directory node[:chub_mc_authservice][:staging_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+
 directory node[:chub_mc_authservice][:config_dir] do
   action :create
   owner "chub_mc_authservice"
@@ -69,7 +76,7 @@ service "mc_authservice" do
 end
 
 remote_file "#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
-  source "#{node[:chub_mc_authservice][:[:jar_file_url]}"
+  source "#{node[:chub_mc_authservice][:jar_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
   action :create	# This should pull the file down forcefully
@@ -85,8 +92,8 @@ end
 remote_file "Copy deploy jar file from staging" do 
   path "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
   source "file://#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
-  owner 'root'
-  group 'root'
+  owner 'chub_mc_authservice'
+  group 'chub_mc_authservice'
   mode 0755
 end
 
@@ -103,8 +110,8 @@ end
 
 template "/etc/init/mc_authservice.conf" do
     source "mc_authservice.conf.erb"
-    owner "root"
-    group "root"
+    owner "chub_mc_authservice"
+    group "chub_mc_authservice"
     mode 0644
     notifies "restart", "service[mc_authservice]", :delayed
 end
