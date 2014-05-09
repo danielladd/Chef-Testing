@@ -17,7 +17,7 @@ default_attributes(
     "types" => {
       "albers" => {
         "name" => "albers",
-        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }"
+        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{WORD:loglevel} | jvm 1 | %{DATESTAMP:timestamp} | %{TIME:time} [%{JAVACLASS:procname}] %{WORD:loglevel2} %{JAVACLASS:classname} - %{DATA:statusmessage}\" ]\n  }\n"
       }
     }
   }
