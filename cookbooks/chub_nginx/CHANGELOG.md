@@ -3,12 +3,15 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.7
+-----
+
+* 'H. "Waldo" Grunenwald' - Ensuring that the phpinfo site doesn't exist in non-Vagrant environs
+
 0.1.6
 -----
 
 * 'H. "Waldo" Grunenwald' - Converting styleguide to a php/fcgi site.
-
-
 
 0.1.5
 -----
