@@ -1,3 +1,6 @@
+#0.1.16
+* Changed openldap replication check to tolerate 4 failures instead of 2
+
 #0.1.15
 * Changed castle health check again
 

@@ -110,7 +110,7 @@ unless Chef::Config[:solo]
             handlers ["default"]
             subscribers ["monitor"]
             interval 60
-            additional(:occurrences => 2)
+            additional(:occurrences => 4)
         end
     end
 end
