@@ -1,3 +1,12 @@
+#0.1.16
+* Changed openldap replication check to tolerate 4 failures instead of 2
+
+#0.1.15
+* Changed castle health check again
+
+#0.1.14
+* Changed castle health check
+
 # 0.1.13
 * Load sensu checks from chef cookbook rather than git repo
 
