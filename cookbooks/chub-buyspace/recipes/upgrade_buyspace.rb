@@ -22,24 +22,24 @@
 
 template "#{node["tomcat"]["config_dir"]}/server.xml" do
   source "tomcat_server.xml.erb"
-  owner "buyspace"
-  group "buyspace"
+  owner "tomcat7"
+  group "tomcat7"
   mode 0770
   notifies :restart, "service[tomcat7]", :delayed
 end
   
 template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['buyspace_conf']}" do
   source "buyspace-config.groovy.erb"
-  owner "buyspace"
-  group "buyspace"
+  owner "tomcat7"
+  group "tomcat7"
   mode 0775
   notifies :restart, "service[tomcat7]", :delayed
 end
 
 template "#{node['chub-buyspace']['config_dir']}/#{node['chub-buyspace']['logging_conf']}" do
   source "logging.properties.erb"
-  owner "buyspace"
-  group "buyspace"
+  owner "tomcat7"
+  group "tomcat7"
   mode 0770
   notifies :restart, "service[tomcat7]", :delayed
 end
@@ -51,15 +51,21 @@ template "/etc/chadmin/check_up.sh" do
   mode 0770
 end
 
-#remote_file  "#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}" do
-#  source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM-250/artifact/shared/buyspace.war/buyspace.war"
-#  owner "#{node['chub-buyspace']['user']}"
-#  group "#{node['chub-buyspace']['group']}"
-#  action :create  # This should pull the file down forcefully
-#  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-#  notifies :restart, "service[tomcat7]", :delayed
-#end
+template "/etc/tomcat7/Catalina/localhost/static-images.xml" do
+  source "static-images.xml.erb"
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0770
+end
 
+remote_file  "#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}" do
+  source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM-292/artifact/shared/buyspace.war/buyspace.war"
+  owner "tomcat7"
+  group "tomcat7"
+  action :create  # This should pull the file down forcefully
+  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+  notifies :restart, "service[tomcat7]", :delayed
+end
 
 trigger_file = "/#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
 service "tomcat7" do
@@ -80,8 +86,8 @@ end
 
 remote_file "#{node['chub-buyspace']['app_dir']}/ROOT.war" do
     source "file://#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
-    owner "buyspace"
-    group "buyspace"
+    owner "tomcat7"
+    group "tomcat7"
     mode 0775
     notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
     only_if { File.exists?(trigger_file) }
