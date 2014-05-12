@@ -1,0 +1,7 @@
+setuid oddrest
+setgid oddrest
+chdir /var/oddrest
+exec java -server -d64 -Xms<%= node[:chub_oddrest][:java_heap_size] %> -Xmx<%= node[:chub_oddrest][:java_heap_size] %> -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /opt/oddrest/oddrest.jar server /etc/oddrest/oddrest.yaml
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
