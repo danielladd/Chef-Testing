@@ -78,8 +78,8 @@ template "/etc/init/oddrest.conf" do
 end
 
 #This is just a hack until we get the jar deployed to Artifactory.
-cookbook_file "/opt/oddrest/oddrest.jar" do
-    source "odd-rest-service-standalone.jar"
+remote_file "/opt/oddrest/oddrest.jar" do
+    source node[:chub_oddrest][:app_url]
     owner user_name
     group group_name
     mode 0440
