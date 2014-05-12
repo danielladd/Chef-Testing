@@ -58,14 +58,14 @@ template "/etc/tomcat7/Catalina/localhost/static-images.xml" do
   mode 0770
 end
 
-remote_file  "#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}" do
-  source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM-292/artifact/shared/buyspace.war/buyspace.war"
-  owner "tomcat7"
-  group "tomcat7"
-  action :create  # This should pull the file down forcefully
-  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
-  notifies :restart, "service[tomcat7]", :delayed
-end
+#remote_file  "#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}" do
+#  source "http://mpbamboo.nexus.commercehub.com/browse/BS-BSM-292/artifact/shared/buyspace.war/buyspace.war"
+#  owner "tomcat7"
+#  group "tomcat7"
+#  action :create  # This should pull the file down forcefully
+#  notifies :run, 'execute[clear_tomcat_app_directory]', :immediately
+#  notifies :restart, "service[tomcat7]", :delayed
+#end
 
 trigger_file = "/#{node['chub-buyspace']['data_dir']}/#{node['chub-buyspace']['staged_war_name']}"
 service "tomcat7" do
