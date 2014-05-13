@@ -46,7 +46,7 @@ end
 directory "#{node['chub-buyspace']['config_dir']}" do
 	owner "tomcat7"
 	group "tomcat7"
-	mode 0770
+	mode 0775
 end
 
 directory "#{node['chub-buyspace']['app_dir']}" do
@@ -64,7 +64,7 @@ end
 directory "#{node['chub-buyspace']['log_dir']}" do
 	owner "tomcat7"
 	group "tomcat7"
-	mode 0770
+	mode 0775
 end
 
 directory "/etc/chadmin" do
