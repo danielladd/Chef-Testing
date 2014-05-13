@@ -21,12 +21,12 @@ default_attributes "chub-buyspace" => {
       "enabled" => false
     },
     "grails" => {
-      "serverURL" => "https://mpqa1-buyspace.commercehub.com",
-      "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
+      #"serverURL" => "https://mpqa1-buyspace.commercehub.com",
+      #"apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
      # "serverURL" => "http://qa-vip7.buyspace.com",
-     #"apiServerURL" => "http://qa-vip7.buyspace.com"
-      #"serverURL" => "http://localhost:8080",
-      #"apiServerURL" => "http://localhost:8080"
+     # "apiServerURL" => "http://qa-vip7.buyspace.com"
+      "serverURL" => "http://localhost:8080",
+      "apiServerURL" => "http://localhost:8080"
     },
     "antivirus" => {
       "hosts" => "['10.10.40.80']",
@@ -43,7 +43,7 @@ default_attributes "chub-buyspace" => {
         "accessKey" => "AKIAIR3QJXR63XPHWPRA",
         "secretKey" => "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",
         "bucket" => "commercehub-sprite-mpqa1-uploaded",
-        "duration" => "1.days"
+        "duration" => "1.day"
       } 
     },
     "salesforce" => {
@@ -83,14 +83,23 @@ default_attributes "chub-buyspace" => {
     },
     "images" => {
       "serverUrls" => ["https://qa-vip7.buyspace.com/static-images"],
-      "datastoreDirectories" => "'/var/buyspace/images/datastore/images1', '/var/buyspace/images/datastore/images2'",
-      "baseDirectory" => '/var/buyspace/images',
-      "productBaseDirectory" => "/var/buyspace/images/products" ,
-      "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+      "datastoreDirectories" => 
     }  
-},'tomcat' => {
+  images {
+
+
+
+
+      datastoreDirectories = "<%= node['chub-buyspace']['images']['datastoreDirectories'] %>"
+      productImageAttachmentStrategy = "<%= node['chub-buyspace']['images']['productImageAttachmentStrategy'] %>"
+  }
+    
+    
+    
+},
+'tomcat' => {
   'base_version' => 7,
   'loglevel' => 'WARN',
   'keystore_password' => 'throwawaypassword',
-  'truststore_password' => 'throwawaypassword' 
+  'truststore_password' => 'throwawaypassword'
 }

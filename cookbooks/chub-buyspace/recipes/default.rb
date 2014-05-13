@@ -51,3 +51,4 @@ end
 include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 include_recipe "chub-buyspace::buyspace"
+include_recipe "chub-buyspace::graphicsmagick"
