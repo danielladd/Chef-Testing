@@ -11,7 +11,7 @@ cookbook_versions({
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.21",
   "chub_census" => "= 0.1.7",
-  "chub_java" => "= 0.1.0",
+  "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.6",
   "chub_sensu_sso" => "= 0.1.16",
