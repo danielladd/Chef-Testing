@@ -48,7 +48,7 @@ directory node[:chub_mc_webservice][:onboarding][:staging_dir] do
   mode 0777
 end
 
-directory node[:chub_mc_webservice][:onboarding][:staging_dir] do
+directory node[:chub_mc_webservice][:onboarding][:deploy_dir] do
   action :create
   owner "chub_onboarding_webservice"
   group "chub_onboarding_webservice"
