@@ -1,5 +1,5 @@
-name "pipeline_team"
-description "role for pipeline team machines"
+name "missioncontrol_team"
+description "role for Mission Control team machines"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
@@ -16,4 +16,4 @@ override_attributes(
     "dcross" => "dcross"
   }
 )
-run_list "recipe[chub_pipeline::sensu_client]","recipe[base::users]"
+run_list "recipe[chub_mc_app::sensu_client]"

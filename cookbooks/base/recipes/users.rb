@@ -66,3 +66,5 @@ users.each do |login|
     end
   end
 end
+
+include_recipe "ssh-keys"
