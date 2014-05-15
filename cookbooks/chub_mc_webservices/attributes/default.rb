@@ -11,7 +11,6 @@ default[:chub_mc_webservice][:salesforce][:jar_file_url] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:salesforce][:jar_file_name] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:salesforce][:config_file_name] = 'salesforce_webservice_config.yml'
 default[:chub_mc_webservice][:salesforce][:touchfile] = "#{node[:chub_mc_webservice][:salesforce][:deploy_dir]}/deployed"
-default[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:client] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:host] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:clientId] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:salesforce][:config][:salesforceClient][:clientSecret] = 'OVERRIDE ME'

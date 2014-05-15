@@ -8,12 +8,11 @@ default_attributes "chub_mc_webservice" => {
 		},
 		"config" => {
 			"salesforceClient" => {
-				"client" => "1",
-				"host" => "1",
-				"clientId" => "1",
-				"clientSecret" => "1",
-				"username" => "1",
-				"password" => "1"
+				"host" => "https://test.salesforce.com",
+				"clientId" => "",
+				"clientSecret" => "",
+				"username" => "",
+				"password" => ""
 
 			},
 		
