@@ -4,7 +4,7 @@ maintainer_email 'jdipierro@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_rolodex'
 long_description 'Installs/Configures chub_rolodex'
-version          '0.1.0'
+version          '0.1.1'
 
 supports "ubuntu"
 depends "apt"
