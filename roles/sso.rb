@@ -8,4 +8,4 @@ override_attributes(
     "ktitus" => "ktitus"
   }
 )
-run_list "role[base]", "recipe[base::users]", "ssh-keys", "recipe[chub_sensu_sso::client]"
+run_list "role[base]", "recipe[base::users]", "recipe[chub_sensu_sso::client]"

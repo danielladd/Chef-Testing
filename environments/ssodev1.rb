@@ -3,7 +3,7 @@ description "SSO development environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.15",
+  "base" => "= 0.1.16",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
@@ -69,7 +69,7 @@ default_attributes(
     :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   :chub_vault => {
-    :app_url => "file:///var/vault/staged-vault.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
     :ldap => {
       :read => {
         :host => "ssodev1-ldap-read.nexus.commercehub.com",
