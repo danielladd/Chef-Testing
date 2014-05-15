@@ -10,6 +10,9 @@ security {
 census {
     url = "<%= node[:chub_plaza][:census_url] %>"
 }
+vault {
+    url = "<%= node[:chub_plaza][:vault_url] %>"
+}
 <% if node[:graphite] -%>
 metrics {
     <% if node[:graphite][:host] -%>

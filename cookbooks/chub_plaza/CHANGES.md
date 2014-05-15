@@ -1,3 +1,6 @@
+# 0.1.7
+* Add configuration of the Vault URL
+
 # 0.1.6
 * Support remote JMX
 
