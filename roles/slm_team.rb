@@ -5,4 +5,4 @@ override_attributes(
     "jdipierro" => "jdipierro"
   }
 )
-run_list "recipe[base::users]","ssh-keys"
+run_list "recipe[base::users]"
