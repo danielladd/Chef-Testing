@@ -60,13 +60,18 @@ default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:80
 default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost:8080"
 default['chub-buyspace']['grails']['plugin']['excludes'] = "null"
   
-default['chub-buyspace']['hornetq']['host'] = 'localhost',
+default['chub-buyspace']['hornetq']['host'] = 'localhost'
 default['chub-buyspace']['hornetq']['port'] = 5445
   
 default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin/gm'
 default['chub-buyspace']['images']['baseDirectory'] = "/var/buyspace/images/"
 default['chub-buyspace']['images']['productBaseDirectory'] = "/var/buyspace/images/products"
 default['chub-buyspace']['images']['serverUrls'] = ['https://localhost']
+default['chub-buyspace']['images']['shareDirectory'] = "//mpqa02.nexus.commercehub.com/images_qa7"
+default['chub-buyspace']['images']['shareMount'] = "/var/buyspace/images/"
+default['chub-buyspace']['images']['shareUser'] = "mpqatomcat"
+default['chub-buyspace']['images']['sharePassword'] = "MarketPl@ce"
+  
 default['chub-buyspace']['images']['datastoreDirectories'] = "/var/buyspace/images/image-datastore"
 default['chub-buyspace']['images']['productImageAttachmentStrategy'] = 'local'
   
