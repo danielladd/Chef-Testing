@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "0.10.7"
+version "1.0.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -54,9 +54,12 @@ attribute "chub-klerk/hazelcast_group_name",
 attribute "chub-klerk/hazelcast_group_password",
     "display_name" => "Hazelcast Group Password"
 
-attribute "chub-klerk/event_notification_endpoints",
-    "display_name" => "Event Notification Endpoints",
+attribute "chub-klerk/product_data_event_endpoints",
+    "display_name" => "Product Data Event Endpoints",
     "type" => "hash"
+
+attribute "chub-klerk/product_data_application_metadata_update_job_finished_event_endpoint",
+    "display_name" => "Product Data Application Metadata Update Job Finished Event Endpoint"
 
 attribute "chub-klerk/antivirus_hosts",
     "display_name" => "Antivirus Hosts",
