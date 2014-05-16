@@ -55,7 +55,7 @@ directory node[:chub_mc_webservice][:onboarding][:deploy_dir] do
   mode 0777
 end
 
-service "chub_onboarding_webservice" do
+service "onboarding_webservice" do
     provider Chef::Provider::Service::Upstart
     action [ "disable", "stop" ]
 end
@@ -83,8 +83,8 @@ remote_file "Copy deploy jar file from staging" do
 end
 
 #create yaml config file
-template "#{node[:chub_mc_webservice][:onboarding][:deploy_dir]}/onboarding_webservice_config.yml" do
-    source "onboarding_webservice_config.yml.erb"
+template "#{node[:chub_mc_webservice][:onboarding][:deploy_dir]}/onboarding_webservice_config.json" do
+    source "onboarding_webservice_config.json.erb"
     owner "root"
     group "root"
     mode 0644
@@ -100,7 +100,7 @@ template "/etc/init/onboarding_webservice.conf" do
 	action :create
 end
 
-service "chub_onboarding_webservice" do
+service "onboarding_webservice" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
