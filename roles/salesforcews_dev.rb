@@ -1,5 +1,5 @@
 name "salesforcews_dev"
-description "A linux machine running catalog of controls (in development)"
+description "A linux machine running salesforce web service (in development)"
 run_list "recipe[base]", "recipe[chub_mc_webservices]", "recipe[chub_mc_webservices::salesforce_webservice]"
 default_attributes "chub_mc_webservice" => {
 	"salesforce" => {
