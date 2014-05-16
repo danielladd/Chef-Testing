@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "elasticsearch::search_discovery"
-
 user "logstash" do
   system true
   home "/opt/logstash"
