@@ -85,9 +85,8 @@ end
     end
 end
 
-#Hack until we get the jar deployed to Artifactory
-cookbook_file "/opt/rolodex/rolodex.jar" do
-    source "rolodex.jar"
+remote_file "/opt/rolodex/rolodex.jar" do
+    source node[:chub_rolodex][:app_url]
     owner user_name
     group group_name
     mode 0440
