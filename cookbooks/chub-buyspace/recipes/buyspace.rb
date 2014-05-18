@@ -88,12 +88,12 @@ image_dir_existed = File.exists?(image_dir)
 directory image_dir do
   owner "tomcat7"
   group "tomcat7"
-  mode 0770
+  mode 0777
   not_if {image_dir_existed}
 end
 
 execute "mount_windows_share" do
-  command "echo #{node['chub-buyspace']['images']['shareDirectory']} #{node['chub-buyspace']['images']['shareMount']} cifs username=#{node['chub-buyspace']['images']['shareUser']},pass=#{node['chub-buyspace']['images']['sharePassword']},iocharset=utf8 >> /etc/fstab"
+  command "echo #{node['chub-buyspace']['images']['shareDirectory']} #{node['chub-buyspace']['images']['shareMount']} cifs username=#{node['chub-buyspace']['images']['shareUser']},pass=#{node['chub-buyspace']['images']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
   not_if {image_dir_existed}
 end
 
