@@ -70,3 +70,6 @@ attribute "chub-klerk/sprite_conductor_url",
 
 attribute "chub-klerk/sprite_output_container_prefix",
     "display_name" => "Sprite Output Container Prefix"
+
+attribute "chub-klerk/jms_provider_url",
+    "display_name" => "JMS Provider URL"

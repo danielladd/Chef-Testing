@@ -7,6 +7,7 @@ v1.0.0
 - Update klerk yaml template to reflect restructured and added config values
 - Rename `event_notification_endpoints` attribute to `product_data_event_endpoints` as it's now only related to a specfic type of endpoint
 - Introduce `product_data_application_metadata_update_job_finished_event_endpoint` attribute
+- Introduce JMS configuration section to enable communication with HornetQ
 - NOTE: as these changes are not backwards compatible, we decided to bump the version to 1.0.0 along with the semver definition
 
 v0.10.7

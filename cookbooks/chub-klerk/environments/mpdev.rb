@@ -11,6 +11,7 @@ default_attributes(
         },
         "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
         "sprite_conductor_url" => "http://192.168.33.1:8060/sprite-conductor",
-        "sprite_output_container_prefix" => "mpdev-"
+        "sprite_output_container_prefix" => "mpdev-",
+        "jms_provider_url" => "jnp://localhost:1099"
     }
 )

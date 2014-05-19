@@ -35,6 +35,12 @@ sprite:
   conductorUrl: <%= @sprite_conductor_url %>
   outputContainerPrefix: <%= @sprite_output_container_prefix %>
 
+jms:
+  initialContextFactory: org.jnp.interfaces.NamingContextFactory
+  providerUrl: <%= @jms_provider_url %>
+  urlPkgPrefixes: org.jboss.naming:org.jnp.interfaces
+  connectionFactoryName: /ConnectionFactory
+
 # HTTP-specific options.
 http:
 

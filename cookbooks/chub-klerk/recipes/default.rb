@@ -88,7 +88,8 @@ template "/etc/opt/klerk/klerk.yml" do
         "product_data_event_endpoints" => node["chub-klerk"]["product_data_event_endpoints"],
         "product_data_application_metadata_update_job_finished_event_endpoint" => node["chub-klerk"]["product_data_application_metadata_update_job_finished_event_endpoint"],
         "sprite_conductor_url" => node["chub-klerk"]["sprite_conductor_url"],
-        "sprite_output_container_prefix" => node["chub-klerk"]["sprite_output_container_prefix"]
+        "sprite_output_container_prefix" => node["chub-klerk"]["sprite_output_container_prefix"],
+        "jms_provider_url" => node["chub-klerk"]["jms_provider_url"]
     })
     owner "root"
     group "klerk"
