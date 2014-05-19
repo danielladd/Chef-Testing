@@ -9,6 +9,7 @@ default_attributes(
     :host => "stats02.nexus.commercehub.com"
   },
   :chub_castle => {
+    :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",

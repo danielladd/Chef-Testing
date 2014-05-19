@@ -9,7 +9,7 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.21",
+  "chub_castle" => "= 0.1.22",
   "chub_census" => "= 0.1.7",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
@@ -97,6 +97,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
