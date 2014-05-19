@@ -97,6 +97,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "ssoqa1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssoqa1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",

@@ -100,6 +100,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "castle.commercehub.com",
     :default_service_url => "https://plaza.commercehub.com/shiro-cas",
     :forgot_password_url => "https://plaza.commercehub.com/forgotPassword",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
