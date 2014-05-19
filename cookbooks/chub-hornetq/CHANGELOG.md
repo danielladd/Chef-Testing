@@ -1,5 +1,15 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.4
+_____
+
+* Larry - Adding rundeck_sudoers file to add a sudoers file allowing rundeck-ssh user to assume hornetq for starting/stopping purposes. Also added sudo cookbook as dependency.
+
+0.2.3
+_____
+
+* Larry - Getting download URLs from file in staging dir for hq and mq destinations.  Will fall back to attributes if file not found
+
 0.2.2
 _____
 
@@ -35,6 +45,3 @@ _____
 - [your_name] - Initial release of chub-hornetq
 
 - - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.

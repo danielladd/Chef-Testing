@@ -20,3 +20,6 @@ default['chub-hornetq']['destinations_to_deploy'] = "ALL"
 default['chub-hornetq']['destinations_deploy_prop'] = "mqdestinations-deploy.properties"
 default['chub-hornetq']['destinations_jar_name'] = "mq-destinations-deploy.jar"
 default['chub-hornetq']['destinations_deploy_jar_url'] = "OVERRIDE_ME_PLZ"
+
+# Sudo
+default["authorization"]["sudo"]["include_sudoers_d"] = true
