@@ -3,7 +3,7 @@ description "SSO Prod environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.15",
+  "base" => "= 0.1.16",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
@@ -100,6 +100,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "castle.commercehub.com",
     :default_service_url => "https://plaza.commercehub.com/shiro-cas",
     :forgot_password_url => "https://plaza.commercehub.com/forgotPassword",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
