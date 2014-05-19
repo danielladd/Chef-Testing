@@ -48,14 +48,14 @@ directory node[:chub_mc_webservice][:salesforce][:staging_dir] do
   mode 0777
 end
 
-directory node[:chub_mc_webservice][:salesforce][:staging_dir] do
+directory node[:chub_mc_webservice][:salesforce][:deploy_dir] do
   action :create
   owner "chub_salesforce_webservice"
   group "chub_salesforce_webservice"
   mode 0777
 end
 
-service "chub_salesforce_webservice" do
+service "salesforce_webservice" do
     provider Chef::Provider::Service::Upstart
     action [ "disable", "stop" ]
 end
@@ -100,7 +100,7 @@ template "/etc/init/salesforce_webservice.conf" do
 	action :create
 end
 
-service "chub_salesforce_webservice" do
+service "salesforce_webservice" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end

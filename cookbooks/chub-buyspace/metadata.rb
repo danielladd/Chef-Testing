@@ -20,7 +20,7 @@ version          '0.2.2'
 #depends "yum-epel", "= 0.2.0"
 #depends "runit", "= 1.2.0"
 #depends "chef_handler", "= 1.1.4"
-#depends "dmg", "="
+#depends "dmg", "= "
 #depends "git", "= 2.6.0"
 #depends "base", "= 0.1.15"
 #depends "hostsfile", "= 0.1.15"
