@@ -1,6 +1,6 @@
 name "buyspace_api"
 description "role defining buyspace api"
-override_attributes "chub-buyspace" => {
+default_attributes "chub-buyspace" => {
     "taskScheduler" => {
       "enabled" => false
     }, 

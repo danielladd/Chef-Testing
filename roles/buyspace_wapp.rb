@@ -1,6 +1,6 @@
 name "buyspace_wapp"
 description "role defining buyspace web app node"
-override_attributes "chub-buyspace" => {
+default_attributes "chub-buyspace" => {
     "taskScheduler" => {
       "enabled" => false
     }, 

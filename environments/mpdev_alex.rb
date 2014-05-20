@@ -1,5 +1,5 @@
-name "mpqa1"
-description "marketplace qa environment 1"
+name "mpdev_alex"
+description "alex dev environment"
 cookbook "chub-klerk", "= 1.0.1"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
@@ -8,7 +8,7 @@ default_attributes "chub-klerk" => {
     "hazelcast_group_password" => "mpqa1_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "product_data_event_endpoints" => {
-        "productstream" => "http://mpqa1-api.commercehub.com/klerk/productDataEvents"
+        "productstream" => "http://mpqa01.nexus.commercehub.com:17070/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "sprite_conductor_url" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
@@ -36,8 +36,8 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "https://mpqa1-buyspace.commercehub.com",
-    "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
+    "serverURL" => "http://mpalex:8080",
+    "apiServerURL" => "http://mpalex:8080"
    # "serverURL" => "http://qa-vip7.buyspace.com",
    #"apiServerURL" => "http://qa-vip7.buyspace.com"
     #"serverURL" => "http://localhost:8080",
