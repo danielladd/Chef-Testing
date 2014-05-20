@@ -4,6 +4,10 @@ input {
     ssl_certificate => "/opt/logstash/ssl/logstash.crt"
     ssl_key => "/opt/logstash/ssl/logstash.key"
   }
+  syslog {
+    type => missioncontrol
+    port => 5544
+  }
 }
 
 filter {
