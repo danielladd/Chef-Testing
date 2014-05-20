@@ -1,3 +1,9 @@
+# 0.1.23
+* Increase ST/TGT timouts
+
+# 0.1.22
+* Add support for chub_castle/domain
+
 # 0.1.21
 * Make castle group append
 * Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant

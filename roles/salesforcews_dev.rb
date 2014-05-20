@@ -1,11 +1,11 @@
 name "salesforcews_dev"
-description "A linux machine running catalog of controls (in development)"
+description "A linux machine running salesforce web service (in development)"
 run_list "recipe[base]", "recipe[chub_mc_webservices]", "recipe[chub_mc_webservices::salesforce_webservice]"
 default_attributes "chub_mc_webservice" => {
 	"salesforce" => {
     	"jar_file_name" => "crm-standalone.jar",
-		"jar_file_url" => "http://bamboom1:8085/browse/MC-WSSAL/latest/artifact/shared/Salesforce-Web-Service-Jar/build/libs/crm-standalone.jar?os_username=mess&os_password=messuser"
-		},
+		"jar_file_url" => "http://bamboom1:8085/browse/MC-WSSAL/latest/artifact/shared/Salesforce-Web-Service-Jar/build/libs/crm-standalone.jar?os_username=mess&os_password=messuser",
+		
 		"config" => {
 			"salesforceClient" => {
 				"host" => "https://test.salesforce.com",
@@ -15,6 +15,6 @@ default_attributes "chub_mc_webservice" => {
 				"password" => ""
 
 			},
-		
+		},
 	},
 }
