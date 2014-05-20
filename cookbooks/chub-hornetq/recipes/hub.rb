@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 group "hornetq" do
   action  :create
   system  true
@@ -40,6 +39,28 @@ group "hornetq" do
 end
 
 unless File.exists?("#{node['chub-hornetq']['touchfile']}")
+
+  ruby_block "Check for hornetq deploy url file" do
+    block do
+      if File.exists?("#{node['chub-hornetq']['staging_dir']}/hq_deploy_url")
+        f = File.open("#{node['chub-hornetq']['staging_dir']}/hq_deploy_url")
+        
+        # Dynamically set the file resource's attribute
+        # Obtain the desired resource from resource_collection
+        file_r = run_context.resource_collection.find(:remote_file => "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['jar_name']}")
+        url = f.first
+        file_r.source url
+        node.set["chub-hornetq"]["deploy_jar_url"] = url
+        f.close
+      end
+    end
+  end
+
+  service "hornetq" do
+    init_command "su rundeck-ssh /etc/init.d/hornetq"
+    action [ :stop ]
+    only_if { ::File.exists?("/etc/init.d/hornetq") }
+  end
 
   directory node['chub-hornetq']['staging_dir'] do
     action   :create
@@ -106,10 +127,11 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
   execute "installService" do
     command   "./hornetq install"
     cwd       "#{node['chub-hornetq']['app_dir']}/bin"
-    creates   "/etc/rc0.d/K20hornetq"
     action    :run
+    user      'hornetq'
+    group     'minions'
     #TODO - THIS
-    # not_if { ::File.exists?()}
+    not_if { ::File.exists?("/etc/rc0.d/K20hornetq")}
   end
 
   link "/etc/hornetq" do
@@ -120,15 +142,23 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
     to "#{node['chub-hornetq']['app_dir']}/logs"
   end
 
+  #file "/etc/init.d/hornetq" do
+  #  group "minions"
+  #  action :touch
+  #end 
+
   service "hornetq" do
+    init_command "su hornetq /etc/init.d/hornetq"
     action [ :start ]
   end
 
   file node['chub-hornetq']['touchfile'] do
     action   :touch
     mode     "0755"
-    owner    hornetq
-    group    minions
+    owner    'hornetq'
+    group    'minions'
   end
 
 end
+
+include_recipe "chub-hornetq::rundeck_sudoers"

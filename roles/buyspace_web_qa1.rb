@@ -14,8 +14,8 @@ default_attributes "chub-buyspace" => {
       "url" => "http://mpqa1-klerk.commercehub.com:8090"
     },
     "hornetq" => {
-      "host" => "mpqa2db2.nexus.commercehub.com",
-      "port" => 5445
+      "host" => "mpqa03.nexus.commercehub.com",
+      "port" => 7447
     },
     "taskScheduler" => {
       "enabled" => false
