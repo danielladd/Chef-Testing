@@ -1,5 +1,5 @@
 hornetq.version=2.3.0.Final
-#anything but windows will use $JAVA_HOME and not %JAVA_HOME%
+#for envs that don't properly export env variables to tanuki, use an explicit path. FORWARD SLASHES PLS
 pathtojava=<%= node["chub-hornetq"]["pathtojava"] %>
 
 
