@@ -1,9 +1,14 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.5
+_____
+
+* Larry - Added sudo cookbook as dependency.
+
 0.2.4
 _____
 
-* Larry - Adding rundeck_sudoers file to add a sudoers file allowing rundeck-ssh user to assume hornetq for starting/stopping purposes. Also added sudo cookbook as dependency.
+* Larry - Adding rundeck_sudoers file to add a sudoers file allowing rundeck-ssh user to assume hornetq for starting/stopping purposes. 
 
 0.2.3
 _____
