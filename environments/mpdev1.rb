@@ -1,5 +1,6 @@
 name "mpdev1"
 description "marketplace dev environment 1"
+cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 0.10.7"
 default_attributes "mongodb" => {
     "package_version" => "2.2.7",
