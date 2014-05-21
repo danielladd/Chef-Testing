@@ -19,3 +19,4 @@
 
 include_recipe 'base::default'
 include_recipe 'base::users'
+include_recipe 'chub_java::oracle7'
