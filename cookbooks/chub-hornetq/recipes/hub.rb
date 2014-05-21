@@ -128,7 +128,7 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
     command   "./hornetq install"
     cwd       "#{node['chub-hornetq']['app_dir']}/bin"
     action    :run
-    user      'hornetq'
+    #user      'hornetq'
     group     'minions'
     #TODO - THIS
     not_if { ::File.exists?("/etc/rc0.d/K20hornetq")}
