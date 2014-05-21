@@ -53,3 +53,13 @@ group "minions" do
   action :create
   append true
 end
+
+hostsfile_entry '127.0.1.1' do
+  action    :remove
+end
+
+hostsfile_entry node['ipaddress'] do
+  hostname  node['fqdn']
+  aliases   [node['hostname']]
+  action    :create
+end
