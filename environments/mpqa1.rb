@@ -1,5 +1,6 @@
 name "mpqa1"
 description "marketplace qa environment 1"
+cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 1.0.1"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
