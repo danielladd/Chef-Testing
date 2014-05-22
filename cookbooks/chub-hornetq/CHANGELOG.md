@@ -1,5 +1,15 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.7
+_____
+
+* Larry - Adding rundeck-ssh user to hornetq group
+
+0.2.6
+_____
+
+* Larry - Using proper attributes to have sudo not squash all sudo access
+
 0.2.5
 _____
 
