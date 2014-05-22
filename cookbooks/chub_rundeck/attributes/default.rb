@@ -29,3 +29,6 @@ arvJwEkijZIjDJBnhjfO8aCj5BcetSkNeRvTAqZwRCIgNErdx0N2hdWO9nWqEq8h
 
 
 default[:chub_rundeck][:resources]
+
+# Override default prop from rundeck to remove the admin.aclpolicy file
+override['rundeck']['stub_config_files'] = %w{ log4j.properties jaas-loginmodule.conf apitoken.aclpolicy }
