@@ -4,7 +4,7 @@ run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recip
 default_attributes "chub_mc_app" => {
 	"port" => "9200",
 	"app_name" => "flightcontrol",
-	"jar_file_url" => "http://artifactory01/artifactory/inteng-release/flightcontrol/0.1/flightcontroltest.jar"
+	"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/flightcontrol/0.1/flightcontroltest.jar"
 },
 "ulimit" => {
   "users" => {

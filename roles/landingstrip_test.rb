@@ -4,7 +4,7 @@ run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recip
 default_attributes "chub_mc_app" => {
 	"port" => "9100",
 	"app_name" => "landingstrip",
-	"jar_file_url" => "http://artifactory01/artifactory/simple/inteng-release/landingstrip/0.1/landingstriptest.jar"
+	"jar_file_url" => "http://artifactory01/artifactory/simple/inteng-snapshot/landingstrip/0.1/landingstriptest.jar"
 },
 "ulimit" => {
   "users" => {

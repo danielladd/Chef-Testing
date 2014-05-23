@@ -4,7 +4,7 @@ run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recip
 default_attributes "chub_mc_app" => {
 	"port" => "9400",
 	"app_name" => "catalog",
-	"jar_file_url" => "http://bamboom1:8085/browse/MC-CNM/latest/artifact/shared/Catalog/catalog.jar?os_username=mess&os_password=messuser"
+	"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/catalog/0.1/catalog.jar"
 },
 "ulimit" => {
   "users" => {
