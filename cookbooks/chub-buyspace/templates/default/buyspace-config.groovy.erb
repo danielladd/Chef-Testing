@@ -111,17 +111,25 @@ dateConfig {
     offsetMillis = 0 
 }
 
+marketplace.logUsernames = true
+
 log4j = {
     appenders {
-      rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
-      //rollingFile name: 'permissionsFile', maxFileSize: '2MB', file: "<%= node['chub-buyspace']['log_dir'] %>", maxBackupIndex: 75
-      'null' name: 'stacktrace'
+        rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
+        'null' name: 'stacktrace'
+        appender new com.ryantenney.log4j.RedisAppender(
+                name: 'logstash',
+                layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields:'env:mpqa1,app:marketplace'),
+                host: 'mplogs01.nexus.commercehub.com',
+                key: 'logstash',
+                alwaysBatch: false,
+                threshold: org.apache.log4j.Level.WARN
+        )
     }
 
-    info 'org.springframework.integration',
+    debug 'org.springframework.integration',
             'org.hornetq',
             'grails.app.services.marketplace.SalesforceService'
-    error file: 'marketplace.ShiroMongoDBRealm'
 
     error 'org.codehaus.groovy.grails.web.servlet',  //  controllers
             'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -142,15 +150,16 @@ log4j = {
             'org.apache.solr',
             'grails.app.services.marketplace.digest.MapReduceService'
 
-    debug 'grails.app.services.marketplace',
-            'grails.app.services.productstream',
-            'grails.app.controllers.marketplace.ChannelController'
-                
+    trace 'marketplace.salesforce.http.SalesforceResponseHandler',
+            'marketplace.salesforce.http.SalesforceRequest'
+
+
     root {
-        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file'
+        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file', 'logstash'
         additivity = true
     }
 }
+
 
 antivirus{
     hosts = <%= node['chub-buyspace']['antivirus']['hosts'] %>

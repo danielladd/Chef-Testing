@@ -110,7 +110,7 @@ default_attributes(
       :password => "ssoprod-pass",
       :multicast_group => "224.2.2.6",
       :multicast_port => 54330,
-      :service_ticket_timeout => 300,
+      :service_ticket_timeout => 1800,
       :ticket_granting_ticket_timeout => 7200
     }
   },
@@ -119,6 +119,7 @@ default_attributes(
     :cas_server_url => "https://castle.commercehub.com",
     :cas_service_url => "https://plaza.commercehub.com/shiro-cas",
     :cas_failure_url => "https://plaza.commercehub.com/",
-    :census_url => "https://ssoprod1-census.commercehub.com:8443"
+    :census_url => "https://ssoprod1-census.commercehub.com:8443",
+    :vault_url => "https://ssoprod1-vault.commercehub.com:8443"
   }
 )

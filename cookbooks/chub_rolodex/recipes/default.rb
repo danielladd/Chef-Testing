@@ -74,6 +74,12 @@ end
         source: "rolodex.conf.erb",
         mode: 0644,
         restart: true
+    },{
+        dest: "/etc/rolodex/rolodex.groovy",
+        source: "rolodex.groovy.erb",
+        group: group_name,
+        mode: 0640,
+        restart: true
     }
 ].each do |data|
     template data[:dest] do

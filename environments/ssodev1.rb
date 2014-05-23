@@ -107,7 +107,7 @@ default_attributes(
       :password => "ssodev-pass",
       :multicast_group => "224.2.2.4",
       :multicast_port => 54328,
-      :service_ticket_timeout => 300,
+      :service_ticket_timeout => 1800,
       :ticket_granting_ticket_timeout => 7200
     }
   },

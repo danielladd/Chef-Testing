@@ -1,3 +1,6 @@
+# 0.1.23
+* Increase ST/TGT timouts
+
 # 0.1.22
 * Add support for chub_castle/domain
 
