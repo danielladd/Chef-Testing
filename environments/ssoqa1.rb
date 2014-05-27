@@ -111,7 +111,7 @@ default_attributes(
       :password => "ssoqa-pass",
       :multicast_group => "224.2.2.5",
       :multicast_port => 54329,
-      :service_ticket_timeout => 300,
+      :service_ticket_timeout => 1800,
       :ticket_granting_ticket_timeout => 7200
     }
   },
