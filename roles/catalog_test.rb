@@ -5,22 +5,4 @@ default_attributes "chub_mc_app" => {
 	"port" => "9400",
 	"app_name" => "catalog",
 	"jar_file_url" => "http://artifactory01/artifactory/simple/inteng-snapshot/catalog/0.1/catalogtest.jar"
-},
-"ulimit" => {
-  "users" => {
-	"mongodb" => {
-	  "filehandle_limit" => 64000,
-	  "process_limit" => 32000,
-	  "memory_limit" => "unlimited"
-	},
-	"root" => {
-	  "filehandle_limit" => 64000,
-	  "process_limit" => 32000,
-	  "memory_limit" => "unlimited"
-	}
-  }
-},
-"mongodb" => {
-  "enable_rest" => true,
-  "dbpath" => "/data/db"
 }
