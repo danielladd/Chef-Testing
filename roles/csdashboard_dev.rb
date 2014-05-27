@@ -1,6 +1,6 @@
 name "csdashboard_dev"
 description "A linux machine running csdashboard (in development)"
-run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recipe[mongodb]", "recipe[chub_mc_app]"
+run_list "recipe[base]", "recipe[chub_mc_app]"
 default_attributes "chub_mc_app" => {
 	"port" => "9200",
 	"app_name" => "csdashboard",

@@ -1,6 +1,6 @@
-name "catalog_dev"
-description "A linux machine running catalog of controls (in development)"
-run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recipe[mongodb]", "recipe[chub_mc_app]"
+name "netsuitews_dev"
+description "A linux machine running netsuite webservice(in development)"
+run_list "recipe[base]", "recipe[chub_mc_webservices]"
 default_attributes "chub_mc_app" => {
 	"port" => "9400",
 	"app_name" => "catalog",
