@@ -1,3 +1,6 @@
+# 0.1.3
+* Add chub_envdash/role_names attribute
+
 # 0.1.2
 * Support sensu API username and password
 

@@ -1,7 +1,7 @@
 name "ssoutil1"
 description "SSO utility environment 1"
 cookbook_versions({
-  "chub_envdash" => "= 0.1.2",
+  "chub_envdash" => "= 0.1.3",
   "chub_java" => "= 0.1.1"
 })
 default_attributes(
@@ -17,6 +17,7 @@ default_attributes(
   :chub_envdash => {
     :title => "SSO Environments",
     :prefix => "sso",
-    :environment_names => ["ssodev1", "ssoqa1", "ssoprod1"]
+    :environment_names => ["ssodev1", "ssoqa1", "ssoprod1"],
+    :role_names => ["castle", "census", "ldap", "monitor", "plaza", "vault"]
   }
 )
