@@ -1,6 +1,6 @@
 name "flightcontrol_dev"
 description "A linux machine running flightcontrol_dev (in development)"
-run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recipe[mongodb]", "recipe[chub_mc_app]"
+run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recipe[mongodb]", "recipe[chub_mc_app]", "recipe[chub_mc_logs]"
 default_attributes "chub_mc_app" => {
 	"port" => "9200",
 	"app_name" => "flightcontrol",
@@ -23,4 +23,9 @@ default_attributes "chub_mc_app" => {
 "mongodb" => {
   "enable_rest" => true,
   "dbpath" => "/data/db"
+},
+"chub_mc_logs" => {
+	"mc_resource" => "flightcontrol",
+	"log_server" => "lsdev01.nexus.commercehub.com"
 }
+
