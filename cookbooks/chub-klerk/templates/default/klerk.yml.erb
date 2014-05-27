@@ -21,16 +21,25 @@ hazelcast:
 antivirus:
   hosts: [ <%= @antivirus_hosts ? @antivirus_hosts.map {|x| "\"#{x}\""}.join(", ") : "" %> ]
 
-<% if @event_notification_endpoints %>
-eventNotificationEndpoints:
-<% @event_notification_endpoints.each_pair do |applicationid, endpoint| %>
-<%= "  #{applicationid}: #{endpoint}" %>
+events:
+<% if @product_data_event_endpoints %>
+  productDataEventEndpoints:
+<% @product_data_event_endpoints.each_pair do |applicationid, endpoint| %>
+    <%= applicationid %>: <%= endpoint %>
 <% end %>
 <% end %>
+
+  productDataApplicationMetadataUpdateJobFinishedEventEndpoint: <%= @product_data_application_metadata_update_job_finished_event_endpoint %>
 
 sprite:
   conductorUrl: <%= @sprite_conductor_url %>
   outputContainerPrefix: <%= @sprite_output_container_prefix %>
+
+jms:
+  initialContextFactory: org.jnp.interfaces.NamingContextFactory
+  providerUrl: <%= @jms_provider_url %>
+  urlPkgPrefixes: org.jboss.naming:org.jnp.interfaces
+  connectionFactoryName: /ConnectionFactory
 
 # HTTP-specific options.
 http:

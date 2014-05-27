@@ -19,6 +19,22 @@
 
 unless File.exists?("#{node['chub-hornetq']['touchfile']}")
 
+  ruby_block "Check for mq deploy url file" do
+    block do
+      if File.exists?("#{node['chub-hornetq']['staging_dir']}/mq_deploy_url")
+        f = File.open("#{node['chub-hornetq']['staging_dir']}/mq_deploy_url")
+        
+        # Dynamically set the file resource's attribute
+        # Obtain the desired resource from resource_collection
+        file_r = run_context.resource_collection.find(:remote_file => "#{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_jar_name']}")
+        url = f.first
+        file_r.source url
+        node.set["chub-hornetq"]["destinations_deploy_jar_url"] = url
+        f.close
+      end
+    end
+  end
+
   execute "delete mq property file" do
     command   "rm #{node['chub-hornetq']['staging_dir']}/#{node['chub-hornetq']['destinations_deploy_prop']}"
     action    :nothing

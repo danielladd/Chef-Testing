@@ -3,13 +3,13 @@ description "SSO development environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.15",
+  "base" => "= 0.1.16",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.21",
+  "chub_castle" => "= 0.1.22",
   "chub_census" => "= 0.1.7",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
@@ -69,7 +69,7 @@ default_attributes(
     :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   :chub_vault => {
-    :app_url => "file:///var/vault/staged-vault.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
     :ldap => {
       :read => {
         :host => "ssodev1-ldap-read.nexus.commercehub.com",
@@ -97,6 +97,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
@@ -106,7 +107,7 @@ default_attributes(
       :password => "ssodev-pass",
       :multicast_group => "224.2.2.4",
       :multicast_port => 54328,
-      :service_ticket_timeout => 300,
+      :service_ticket_timeout => 1800,
       :ticket_granting_ticket_timeout => 7200
     }
   },

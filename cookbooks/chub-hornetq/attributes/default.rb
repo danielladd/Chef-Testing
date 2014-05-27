@@ -12,7 +12,7 @@ default['chub-hornetq']['hornetq_data_dir'] = ""
 default['chub-hornetq']['jvm_heap_max'] = 512
 default['chub-hornetq']['jvm_perm_max'] = 64
 default['chub-hornetq']['hornetq_data_dir'] = "#{node['chub-hornetq']['app_dir']}/data"
-default['chub-hornetq']['pathtojava'] = '/usr/lib/jvm/jdk1.7.0_51'
+default['chub-hornetq']['pathtojava'] = '/usr/lib/jvm/jdk1.7.0_55'
 default['chub-hornetq']['touchfile'] = "#{node['chub-hornetq']['app_dir']}/deployed"
 
 # MQ Destinations Props
@@ -20,3 +20,8 @@ default['chub-hornetq']['destinations_to_deploy'] = "ALL"
 default['chub-hornetq']['destinations_deploy_prop'] = "mqdestinations-deploy.properties"
 default['chub-hornetq']['destinations_jar_name'] = "mq-destinations-deploy.jar"
 default['chub-hornetq']['destinations_deploy_jar_url'] = "OVERRIDE_ME_PLZ"
+
+# Sudo
+default["authorization"]["sudo"]["include_sudoers_d"] = true
+default["authorization"]["sudo"]["groups"] = ["sudo"]
+default["authorization"]["sudo"]["sudoers_defaults"] = ["env_reset", "exempt_group=admin", 'secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"']
