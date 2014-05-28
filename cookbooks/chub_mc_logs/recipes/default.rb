@@ -29,6 +29,11 @@ group "chub_mc_logger" do
     members ["chub_mc_logger", "chadmin"]
 end
 
+execute "restart_rsyslog" do
+  command "initctl restart rsyslog"
+  action :nothing
+end
+
 template "/etc/rsyslog.conf" do
   source "rsyslog.conf.erb"
   variables({
@@ -39,4 +44,5 @@ template "/etc/rsyslog.conf" do
   group "chub_mc_logger"
   mode 0644
   action :create
+  notifies :run, 'execute[restart_rsyslog]', :immediately
 end
