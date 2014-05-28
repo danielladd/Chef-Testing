@@ -32,103 +32,116 @@ hostsfile_entry node['ipaddress'] do
   action    :create
 end
 
-group "buyspace" do
-    action :create
-    system true
-end
-
-user "buyspace" do
-    comment "Application user for BuySpace"
-    gid "buyspace"
-    system true
-end
-
 user "chadmin" do
     # Placeholder user; in "real" VMs, this user is expected to already exist.
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
 end
 
-group "buyspace" do
+group "tomcat7" do
     action :modify
     append true
-    members ["buyspace", "chadmin", "tomcat7"]
+    members ["chadmin", "tomcat7"]
 end
 
 directory "#{node['chub-buyspace']['config_dir']}" do
-	owner "root"
-	group "buyspace"
-	mode 0770
-end
-
-directory "#{node['chub-buyspace']['app_dir']}" do
-	owner "buyspace"
-	group "buyspace"
+	owner "tomcat7"
+	group "tomcat7"
 	mode 0775
 end
 
+directory "#{node['chub-buyspace']['app_dir']}" do
+	owner "tomcat7"
+	group "tomcat7"
+	mode 0775
+end
+
+directory "/etc/buyspace/temp" do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0775
+end
+
 directory "#{node['chub-buyspace']['log_dir']}" do
-	owner "buyspace"
-	group "buyspace"
-	mode 0770
+	owner "tomcat7"
+	group "tomcat7"
+	mode 0775
 end
 
 directory "/etc/chadmin" do
-  owner "chadmin"
-  group "chadmin"
+  owner "tomcat7"
+  group "tomcat7"
   mode 0770
 end
 
 directory "/var/buyspace" do
-  owner "buyspace"
-  group "buyspace"
+  owner "tomcat7"
+  group "tomcat7"
   mode 0770
 end
 
-directory "#{node['chub-buyspace']['data_dir']}" do
-	owner "buyspace"
-	group "buyspace"
-	mode 0770
+package "cifs-utils" do
+  action :install
+end  
+
+image_dir = "/var/buyspace/images"
+image_dir_existed = File.exists?(image_dir)
+directory image_dir do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0777
+  not_if {image_dir_existed}
 end
 
-directory "/var/buyspace/images" do
-  owner "buyspace"
-  group "buyspace"
-  mode 0770
+execute "mount_windows_share" do
+  command "echo #{node['chub-buyspace']['images']['shareDirectory']} #{node['chub-buyspace']['images']['shareMount']} cifs username=#{node['chub-buyspace']['images']['shareUser']},pass=#{node['chub-buyspace']['images']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
+  not_if {image_dir_existed}
 end
 
-directory "/var/buyspace/images/products" do
-  owner "buyspace"
-  group "buyspace"
-  mode 0770
+execute "mount all" do
+  command "mount -a"
+  not_if {image_dir_existed}
 end
 
-directory "/var/buyspace/images/image-datastore" do
-  owner "buyspace"
-  group "buyspace"
-  mode 0770
-end
+#mount "#{node['chub-buyspace']['images']['baseDirectory']}" do
+#  device node['chub-buyspace']['images']['shareDirectory']
+#  fstype "cifs"
+#  action :enable
+#  username "#{node['chub-buyspace']['images']['shareUser']}"
+#  password "#{node['chub-buyspace']['images']['sharePassword']}"
+#end
+
+##{node['chub-buyspace']['images']['shareDirectory']} //mpqa02.nexus.commercehub.com/images_qa7
+##{node['chub-buyspace']['images']['shareMount']} /var/buyspace/images/
+##{node['chub-buyspace']['images']['shareUser']} mpqatomcat
+##{node['chub-buyspace']['images']['sharePassword']} MarketPl@ce
 
 directory "#{node['chub-buyspace']['temp_dir']}" do
 	owner "tomcat7"
-	group "buyspace"
+	group "tomcat7"
 	mode 0775
 end
 
 directory "/var/lib/tomcat7/data" do
   owner "tomcat7"
-  group "buyspace"
+  group "tomcat7"
+  mode 0770
+end
+
+directory "/var/lib/tomcat7/webapps" do
+  owner "tomcat7"
+  group "tomcat7"
   mode 0770
 end
 
 directory "/usr/share/tomcat7/ehcache" do
   owner "tomcat7"
-  group "buyspace"
+  group "tomcat7"
   mode 0770
 end
 
 directory "/usr/share/tomcat7/ehcache/marketplace" do
   owner "tomcat7"
-  group "buyspace"
+  group "tomcat7"
   mode 0770
 end
 

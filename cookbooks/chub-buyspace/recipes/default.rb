@@ -40,7 +40,7 @@ loggingconf	= node['chub-buyspace']['logging_conf']
 grailsenv	= node['chub-buyspace']['grails_env']
 appdir		= node['chub-buyspace']['app_dir']
 
-node.set['tomcat']['java_options'] = "-Djava.base=/var/lib/tomcat7 -Djava.io.tmpdir=#{ tempdir } -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=#{ configdir }/#{ loggingconf } -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dgrails.env=#{ grailsenv } -XX:MaxPermSize=1024m -Dbase.dir=#{ appdir }/ROOT "
+node.set['tomcat']['java_options'] = "-Djava.base=/var/lib/tomcat7 -Djava.io.tmpdir=#{ tempdir } -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djava.util.logging.config.file=#{ configdir }/#{ loggingconf } -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dgrails.env=#{ grailsenv } -XX:MaxPermSize=3072m -Dbase.dir=#{ appdir }/ROOT "
 
 #if node[:instance_role] == 'vagrant'
 if Chef::Config[:solo]
@@ -51,3 +51,4 @@ end
 include_recipe "chub_java::oracle7"
 include_recipe "tomcat"
 include_recipe "chub-buyspace::buyspace"
+include_recipe "chub-buyspace::graphicsmagick"

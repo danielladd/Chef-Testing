@@ -1,5 +1,6 @@
 name "mpdemo1"
 description "marketplace demo environment 1"
+cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 0.10.7"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpdemo1db1.commercehub.com:27017" ],

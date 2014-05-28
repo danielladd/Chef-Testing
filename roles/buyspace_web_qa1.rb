@@ -14,8 +14,8 @@ default_attributes "chub-buyspace" => {
       "url" => "http://mpqa1-klerk.commercehub.com:8090"
     },
     "hornetq" => {
-      "host" => "mpqa2db2.nexus.commercehub.com",
-      "port" => 5445
+      "host" => "mpqa03.nexus.commercehub.com",
+      "port" => 7447
     },
     "taskScheduler" => {
       "enabled" => false
@@ -80,11 +80,17 @@ default_attributes "chub-buyspace" => {
         "keyTemplate" => "mpqa1-master/${resourceId}",
         "artifactUrlDuration" => "1.day"
       }
-    }
-},
-'tomcat' => {
+    },
+    "images" => {
+      "serverUrls" => ["https://qa-vip7.buyspace.com/static-images"],
+      "datastoreDirectories" => "'/var/buyspace/images/datastore/images1', '/var/buyspace/images/datastore/images2'",
+      "baseDirectory" => '/var/buyspace/images',
+      "productBaseDirectory" => "/var/buyspace/images/products" ,
+      "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+    }  
+},'tomcat' => {
   'base_version' => 7,
   'loglevel' => 'WARN',
   'keystore_password' => 'throwawaypassword',
-  'truststore_password' => 'throwawaypassword'
+  'truststore_password' => 'throwawaypassword' 
 }

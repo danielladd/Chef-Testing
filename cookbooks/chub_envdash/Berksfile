@@ -1,6 +1,4 @@
-chef_api :config
-# Most of the time, don't resolve against the community site, as we want to be intentional about when we pull new external cookbooks
-# site :opscode
+source 'https://api.berkshelf.com'
 metadata
 
-cookbook "base"
+cookbook "chub_java", git: "git@git.nexus.commercehub.com:chef/chub_java.git"

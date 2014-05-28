@@ -1,5 +1,13 @@
 base CHANGELOG
 ==============
+0.1.17
+----
+- Larry - Adding in hostfile resource to remove '127.0.1.1' entry pointing to local system hostname
+
+0.1.16
+----
+- Larry - Moving ssh-keys recipe into users recipe 
+
 0.1.15
 ----
 - Larry - Adding minions group to all machines by default. 

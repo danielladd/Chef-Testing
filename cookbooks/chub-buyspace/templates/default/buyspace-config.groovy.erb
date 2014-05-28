@@ -1,7 +1,3 @@
-//Please try to keep this file in order.  
-//The choice is to use chain brackets and to try 
-//to maintain the config in alpha order
-
 klerk {
     url = "<%= node['chub-buyspace']['klerk']['url'] %>"
 }
@@ -49,11 +45,11 @@ salesforce {
     username = '<%= node['chub-buyspace']['salesforce']['username'] %>'
 }
 
-vertx{
-	enabled = <%= node['chub-buyspace']['vertx']['enabled'] %>
-	hazelcastConfigFile = '<%= node['chub-buyspace']['vertx']['hazelcastConfigFile'] %>'
-	hostname = '<%= node['chub-buyspace']['vertx']['hostname'] %>'
-	port = <%= node['chub-buyspace']['vertx']['port'] %>
+vertx {
+    enabled = <%= node['chub-buyspace']['vertx']['enabled'] %>
+    hazelcastConfigFile = '<%= node['chub-buyspace']['vertx']['hazelcastConfigFile'] %>'
+    hostname = '<%= node['chub-buyspace']['vertx']['hostname'] %>'
+    port = <%= node['chub-buyspace']['vertx']['port'] %>
 }
 
 msExchangeApi {
@@ -67,40 +63,40 @@ msExchangeApi {
 }
 
 hornetq {
-	host = '<%= node['chub-buyspace']['hornetq']['host'] %>'
-	port = <%= node['chub-buyspace']['hornetq']['port'] %>
+    host = '<%= node['chub-buyspace']['hornetq']['host'] %>'
+    port = <%= node['chub-buyspace']['hornetq']['port'] %>
     embedded=false
 }
 
-mongo{
-	databaseName = '<%= node['chub-buyspace']['mongo']['databaseName'] %>'
-	replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
+mongo {
+    databaseName = '<%= node['chub-buyspace']['mongo']['databaseName'] %>'
+    replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
     blobStore {
-	   databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
-	   replicas =  <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
+       databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
+       replicas =  <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
     }
 }
-       
-images{
-	graphicsMagickHome= "<%= node['chub-buyspace']['images']['graphicsMagickHome'] %>"
-	baseDirectory= "<%= node['chub-buyspace']['images']['baseDirectory'] %>"
-	productBaseDirectory="<%= node['chub-buyspace']['images']['productBaseDirectory'] %>"
-	serverUrls= <%= node['chub-buyspace']['images']['serverUrls'] %>
-	datastoreDirectories = "<%= node['chub-buyspace']['images']['datastoreDirectories'] %>"
-	productImageAttachmentStrategy = "<%= node['chub-buyspace']['images']['productImageAttachmentStrategy'] %>"
+ 
+images {
+    graphicsMagickHome= "<%= node['chub-buyspace']['images']['graphicsMagickHome'] %>"
+    baseDirectory= "<%= node['chub-buyspace']['images']['baseDirectory'] %>"
+    productBaseDirectory="<%= node['chub-buyspace']['images']['productBaseDirectory'] %>"
+    serverUrls= ['<%= node['chub-buyspace']['images']['serverUrls'] %>']
+    datastoreDirectories = [<%= node['chub-buyspace']['images']['datastoreDirectories'] %>]
+    productImageAttachmentStrategy = "<%= node['chub-buyspace']['images']['productImageAttachmentStrategy'] %>"
 }
                 
 solr {
-	url = '<%= node['chub-buyspace']['solr']['url'] %>'
+    url = '<%= node['chub-buyspace']['solr']['url'] %>'
 }
 
 grails {
-	serverURL="<%= node['chub-buyspace']['grails']['serverURL'] %>"
-	//serverURL="<%= node['chub-buyspace']['grails']['serverURLbyHostname'] %>"
-	apiServerURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
-	plugin{
-		excludes = <%= node['chub-buyspace']['grails']['plugin']['excludes'] %>
-	}
+    serverURL="<%= node['chub-buyspace']['grails']['serverURL'] %>"
+    //serverURL="<%= node['chub-buyspace']['grails']['serverURLbyHostname'] %>"
+    apiServerURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
+    plugin{
+        excludes = <%= node['chub-buyspace']['grails']['plugin']['excludes'] %>
+    }
 }
 
 paymentStrategy = 'mock'
@@ -112,55 +108,63 @@ taskScheduler.enabled=<%= node['chub-buyspace']['taskScheduler']['enabled'] %>
 
 dateConfig {
     enabled = true
-    // default to current time
-    offsetMillis = 0 // 1000L/*millis*/ * 60L /*seconds*/ * 60L /*minutes*/ * 24L /*hours*/ * 90L /*days*/
+    offsetMillis = 0 
 }
+
+marketplace.logUsernames = true
 
 log4j = {
-	appenders {
-      rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
-      //rollingFile name: 'permissionsFile', maxFileSize: '2MB', file: "<%= node['chub-buyspace']['log_dir'] %>", maxBackupIndex: 75
-      'null' name: 'stacktrace'
-	}
+    appenders {
+        rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
+        'null' name: 'stacktrace'
+        appender new com.ryantenney.log4j.RedisAppender(
+                name: 'logstash',
+                layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields:'env:mpqa1,app:marketplace'),
+                host: 'mplogs01.nexus.commercehub.com',
+                key: 'logstash',
+                alwaysBatch: false,
+                threshold: org.apache.log4j.Level.WARN
+        )
+    }
 
-    info 'org.springframework.integration',
+    debug 'org.springframework.integration',
             'org.hornetq',
             'grails.app.services.marketplace.SalesforceService'
-    error file: 'marketplace.ShiroMongoDBRealm'
 
-	error 'org.codehaus.groovy.grails.web.servlet',  //  controllers
-			'org.codehaus.groovy.grails.web.pages', //  GSP
-			'org.codehaus.groovy.grails.web.sitemesh', //  layouts
-			'org.codehaus.groovy.grails."web.mapping.filter', // URL mapping
-			'org.codehaus.groovy.grails."web.mapping', // URL mapping
-			'org.codehaus.groovy.grails.commons', // core / classloading
-			'org.codehaus.groovy.grails.plugins', // plugins
-			'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
-			'org.springframework',
-			'org.hibernate',
-			'org.codehaus.groovy.grails.web.binding',
-			'net.sf.ehcache.hibernate',
-			'org.codehaus.groovy.grails.web.binding.GrailsDataBinder',
-			'org.springframework.security',
-			'com.mongodb',
-			'com.google.code',
-			'org.apache.solr',
-			'grails.app.services.marketplace.digest.MapReduceService'
+    error 'org.codehaus.groovy.grails.web.servlet',  //  controllers
+            'org.codehaus.groovy.grails.web.pages', //  GSP
+            'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+            'org.codehaus.groovy.grails."web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails."web.mapping', // URL mapping
+            'org.codehaus.groovy.grails.commons', // core / classloading
+            'org.codehaus.groovy.grails.plugins', // plugins
+            'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'org.codehaus.groovy.grails.web.binding',
+            'net.sf.ehcache.hibernate',
+            'org.codehaus.groovy.grails.web.binding.GrailsDataBinder',
+            'org.springframework.security',
+            'com.mongodb',
+            'com.google.code',
+            'org.apache.solr',
+            'grails.app.services.marketplace.digest.MapReduceService'
 
-	debug 'grails.app.services.marketplace',
-            'grails.app.services.productstream',
-            'grails.app.controllers.marketplace.ChannelController'
-				
-	root {
-		<%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file'
-		additivity = true
-	}
+    trace 'marketplace.salesforce.http.SalesforceResponseHandler',
+            'marketplace.salesforce.http.SalesforceRequest'
+
+
+    root {
+        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file', 'logstash'
+        additivity = true
+    }
 }
 
+
 antivirus{
-	hosts = <%= node['chub-buyspace']['antivirus']['hosts'] %>
-	enabled= <%= node['chub-buyspace']['antivirus']['enabled'] %>
-	port = <%= node['chub-buyspace']['antivirus']['port'] %>
+    hosts = <%= node['chub-buyspace']['antivirus']['hosts'] %>
+    enabled= <%= node['chub-buyspace']['antivirus']['enabled'] %>
+    port = <%= node['chub-buyspace']['antivirus']['port'] %>
 }
 
 bestbuy {

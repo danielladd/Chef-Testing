@@ -3,19 +3,19 @@ description "SSO QA environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.15",
+  "base" => "= 0.1.16",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.20",
-  "chub_census" => "= 0.1.6",
-  "chub_java" => "= 0.1.0",
+  "chub_castle" => "= 0.1.22",
+  "chub_census" => "= 0.1.7",
+  "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.1.5",
-  "chub_sensu_sso" => "= 0.1.13",
-  "chub_vault" => "= 0.3.3",
+  "chub_plaza" => "= 0.1.7",
+  "chub_sensu_sso" => "= 0.1.16",
+  "chub_vault" => "= 0.3.4",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -43,6 +43,10 @@ cookbook_versions({
 })
 default_attributes(
   :sensu => {
+    :api => {
+      :user => "sensuapi",
+      :password => "@HrMgi1I3exo"
+    },
     :rabbitmq => {
       :host => "ssoqa1sensu.nexus.commercehub.com"
     }
@@ -97,6 +101,7 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "file:///var/castle/staged-castle.war",
+    :domain => "ssoqa1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssoqa1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
@@ -106,7 +111,7 @@ default_attributes(
       :password => "ssoqa-pass",
       :multicast_group => "224.2.2.5",
       :multicast_port => 54329,
-      :service_ticket_timeout => 300,
+      :service_ticket_timeout => 1800,
       :ticket_granting_ticket_timeout => 7200
     }
   },
@@ -115,6 +120,7 @@ default_attributes(
     :cas_server_url => "https://ssoqa1-castle.nexus.commercehub.com",
     :cas_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     :cas_failure_url => "https://ssoqa1-plaza.nexus.commercehub.com/",
-    :census_url => "https://ssoqa1-census.nexus.commercehub.com:8443"
+    :census_url => "https://ssoqa1-census.nexus.commercehub.com:8443",
+    :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443"
   }
 )
