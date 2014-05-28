@@ -1,5 +1,10 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.8
+_____
+
+* Larry - Adding rm command to sudoers for rundeck-ssh
+
 0.2.7
 _____
 
