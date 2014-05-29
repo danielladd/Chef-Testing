@@ -38,8 +38,10 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "https://mpqa2-buyspace.commercehub.com",
-    "apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
+    #"serverURL" => "https://mpqa2-buyspace.commercehub.com",
+    #"apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
+     "serverURL" => "http://mpqa2wapp1:8090",
+     "apiServerURL" => "http://mpqa2wapp1:8090"
   },
   "webServerUrl"=> "http://mppq2app1.nexus.commercehub.com",
   "antivirus" => {
@@ -102,7 +104,7 @@ default_attributes "chub-klerk" => {
     "serverUrls" => "https://mpqa2-buyspace.commercehub.com/static-images",
     "shareDirectory" => "//mpqa02.nexus.commercehub.com/images_qa7",
     "shareMount" => "/var/buyspace/images/",
-    "shareUser" => "mpqatomcat/",
+    "shareUser" => "mpqatomcat",
     "sharePassword" => "MarketPl@ce"
   }  
 },

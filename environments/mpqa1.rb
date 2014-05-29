@@ -102,7 +102,7 @@ default_attributes "chub-klerk" => {
     "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images",
     "shareDirectory" => "//mpqa02.nexus.commercehub.com/images_qa7",
     "shareMount" => "/var/buyspace/images/",
-    "shareUser" => "mpqatomcat/",
+    "shareUser" => "mpqatomcat",
     "sharePassword" => "MarketPl@ce"
   }  
 },
