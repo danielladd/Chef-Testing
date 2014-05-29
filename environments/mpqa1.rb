@@ -1,6 +1,7 @@
 name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "chub-klerk", "= 1.0.1"
+cookbook "chub-buyspace", "= 0.2.2"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa1_klerk_quartz;user=devusr01;password=usrdev",
@@ -38,11 +39,8 @@ default_attributes "chub-klerk" => {
   "grails" => {
     "serverURL" => "https://mpqa1-buyspace.commercehub.com",
     "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
-   # "serverURL" => "http://qa-vip7.buyspace.com",
-   #"apiServerURL" => "http://qa-vip7.buyspace.com"
-    #"serverURL" => "http://localhost:8080",
-    #"apiServerURL" => "http://localhost:8080"
   },
+  "webServerUrl"=> "https://mpqa1-buyspace.commercehub.com",
   "antivirus" => {
     "hosts" => "['10.10.40.80']",
     "enabled" => true,
@@ -58,7 +56,7 @@ default_attributes "chub-klerk" => {
       "accessKey" => "AKIAIR3QJXR63XPHWPRA",
       "secretKey" => "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",
       "bucket" => "commercehub-sprite-mpqa1-uploaded",
-      "duration" => "1.days"
+      "duration" => "1.day"
     } 
   },
   "salesforce" => {
@@ -97,11 +95,14 @@ default_attributes "chub-klerk" => {
     }
   },
   "images" => {
-    "serverUrls" => ["https://qa-vip7.buyspace.com/static-images"],
     "datastoreDirectories" => "'/var/buyspace/images/datastore/images1', '/var/buyspace/images/datastore/images2'",
     "baseDirectory" => '/var/buyspace/images',
     "productBaseDirectory" => "/var/buyspace/images/products" ,
-    "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+    "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images",
+    "shareDirectory" => "//mpqa02.nexus.commercehub.com/images_qa7",
+    "shareMount" => "/var/buyspace/images/",
+    "shareUser" => "mpqatomcat/",
+    "sharePassword" => "MarketPl@ce"
   }  
 },
 'tomcat' => {

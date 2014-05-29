@@ -4,7 +4,7 @@ maintainer_email 'aheiss@commercehub.com'
 license          'Apache 2.0'
 description      'Installs/Configures chub-buyspace'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.2'
+version          '0.2.3'
 
 #depends "hostsfile", "= 2.4.4"
 #depends "python", "= 1.3.6"

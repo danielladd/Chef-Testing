@@ -21,10 +21,6 @@ default_attributes "chub-buyspace" => {
       "enabled" => false
     },
     "grails" => {
-      #"serverURL" => "https://mpqa1-buyspace.commercehub.com",
-      #"apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
-     # "serverURL" => "http://qa-vip7.buyspace.com",
-     # "apiServerURL" => "http://qa-vip7.buyspace.com"
       "serverURL" => "http://localhost:8080",
       "apiServerURL" => "http://localhost:8080"
     },
