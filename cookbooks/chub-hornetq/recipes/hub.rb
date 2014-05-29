@@ -132,7 +132,6 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
     action    :run
     #user      'hornetq'
     group     'minions'
-    #TODO - THIS
     not_if { ::File.exists?("/etc/rc0.d/K20hornetq")}
   end
 
@@ -150,7 +149,7 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
   #end 
 
   service "hornetq" do
-    init_command "su hornetq /etc/init.d/hornetq"
+    init_command "/etc/init.d/hornetq"
     action [ :start ]
   end
 

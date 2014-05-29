@@ -118,3 +118,5 @@ default['chub-buyspace']['vertx']['enabled'] = false
 default['chub-buyspace']['vertx']['hazelcastConfigFile'] = '/marketplace/hazelcast/cluster.xml'
 default['chub-buyspace']['vertx']['hostname'] = 'localhost'
 default['chub-buyspace']['vertx']['port'] = 25500
+  
+default['chub-buyspace']['webServerUrl'] = 'http://localhost:8080'

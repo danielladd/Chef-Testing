@@ -76,7 +76,7 @@ end
 directory "/var/buyspace" do
   owner "tomcat7"
   group "tomcat7"
-  mode 0770
+  mode 0775
 end
 
 package "cifs-utils" do

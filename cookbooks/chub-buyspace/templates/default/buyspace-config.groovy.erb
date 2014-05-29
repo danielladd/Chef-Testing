@@ -1,3 +1,7 @@
+import groovy.time.TimeCategory 
+
+webServerUrl = "<%= node['chub-buyspace']['webServerUrl'] %>"
+
 klerk {
     url = "<%= node['chub-buyspace']['klerk']['url'] %>"
 }
@@ -30,6 +34,16 @@ imageUploading {
           bucket = '<%= node['chub-buyspace']['imageUploading']['amazon']['bucket'] %>'
      }
 }
+
+useGoogleAnalytics=false
+useHubSpot=false
+marketplace.gitRevision = System.currentTimeMillis()
+adminEmailAddress='lrotter@commercehub.com'
+paymentFailureEmailAddress='paymentissues@buyspace.com'
+creSecure.cardTokenValidationUrl='https://sandbox.cresecure.net/direct/services/validation'
+
+marketplace.files.commerceHubRelationshipsFile="/marketplace/rels.csv"
+bestBuyMarketplace.retailerId ='51247477c519e3a71e639634'
 
 salesforce {
     url = '<%= node['chub-buyspace']['salesforce']['url'] %>'
@@ -155,7 +169,7 @@ log4j = {
 
 
     root {
-        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file', 'logstash'
+        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file'
         additivity = true
     }
 }
@@ -172,5 +186,11 @@ bestbuy {
         username = 'chub.test1'
         password = 'test'
         url = 'http://54.208.33.194/ingest-service/service'
+    }
+}
+
+beans{
+    shiroSecurityManager{
+        rememberMeManager = null
     }
 }
