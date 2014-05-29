@@ -105,8 +105,11 @@ solr {
 }
 
 grails {
+  <% if node['chub-buyspace']['role']['isApi'] -%>
+    serverURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
+  <% else -%>
     serverURL="<%= node['chub-buyspace']['grails']['serverURL'] %>"
-    //serverURL="<%= node['chub-buyspace']['grails']['serverURLbyHostname'] %>"
+  <% end -%>
     apiServerURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
     plugin{
         excludes = <%= node['chub-buyspace']['grails']['plugin']['excludes'] %>
