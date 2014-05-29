@@ -13,6 +13,7 @@ default_attributes "chub-klerk" => {
         "productstream" => "http://mpqa1-api.commercehub.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
+    "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
     "sprite_conductor_url" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
     "sprite_output_container_prefix" => "mpqa1-",
     "jms_provider_url" => "jnp://mpqa03.nexus.commercehub.com:7099"
