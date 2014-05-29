@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "1.0.1"
+version "1.1.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -60,6 +60,9 @@ attribute "chub-klerk/product_data_event_endpoints",
 
 attribute "chub-klerk/product_data_application_metadata_update_job_finished_event_endpoint",
     "display_name" => "Product Data Application Metadata Update Job Finished Event Endpoint"
+
+attribute "chub-klerk/dead_product_data_application_metadata_update_job_finished_event_endpoint",
+    "display_name" => "Dead Product Data Application Metadata Update Job Finished Event Endpoint"
 
 attribute "chub-klerk/antivirus_hosts",
     "display_name" => "Antivirus Hosts",
