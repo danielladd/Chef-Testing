@@ -10,7 +10,7 @@ default_attributes "chub-klerk" => {
     "hazelcast_group_password" => "mpqa2_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "product_data_event_endpoints" => {
-        "productstream" => "http://mpqa2app1.nexus.commercehub.com/klerk/productDataEvents"
+        "productstream" => "http://mpqa2wapp1.nexus.commercehub.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
@@ -41,10 +41,10 @@ default_attributes "chub-klerk" => {
   "grails" => {
     #"serverURL" => "https://mpqa2-buyspace.commercehub.com",
     #"apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
-     "serverURL" => "http://mpqa2wapp1:8090",
-     "apiServerURL" => "http://mpqa2wapp1:8090"
+     "serverURL" => "http://mpqa2wapp1:8080",
+     "apiServerURL" => "http://mpqa2wapp1:8080"
   },
-  "webServerUrl"=> "http://mppq2app1.nexus.commercehub.com",
+  "webServerUrl"=> "https://mpqa2-buyspace.commercehub.com",
   "antivirus" => {
     "hosts" => "['qa-scanengine.commercehub.com']",
     "enabled" => true,
@@ -79,7 +79,7 @@ default_attributes "chub-klerk" => {
   "vertex" => {
     "enabled" => false,
     "hazelcastConfigFile" => "/marketplace/hazelcast/cluster.xml",
-    "hostname" => "mpqa2app1",
+    "hostname" => "mpqa2wapp1",
     "port" => 25500
   },
   "msExchangeApi" => {
