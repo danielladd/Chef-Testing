@@ -42,7 +42,7 @@ default_attributes "chub-klerk" => {
     #"serverURL" => "https://mpqa2-buyspace.commercehub.com",
     #"apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
      "serverURL" => "http://mpqa2wapp1:8080",
-     "apiServerURL" => "http://mpqa2wapp1:8080"
+     "apiServerURL" => "http://mpqa2api1:8080"
   },
   "webServerUrl"=> "https://mpqa2-buyspace.commercehub.com",
   "antivirus" => {
