@@ -43,6 +43,10 @@ cookbook_versions({
 })
 default_attributes(
   :sensu => {
+    :api => {
+      :user => "sensuapi",
+      :password => "@HrMgi1I3exo"
+    },
     :rabbitmq => {
       :host => "ssoqa1sensu.nexus.commercehub.com"
     }

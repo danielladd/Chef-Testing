@@ -86,8 +86,8 @@ end
 remote_file "Copy deploy jar file from staging" do 
   path "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
   source "file://#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
-  owner 'chub_#{node[:chub_mc_app][:app_name]}'
-  group 'chub_#{node[:chub_mc_app][:app_name]}'
+  owner "chub_#{node[:chub_mc_app][:app_name]}"
+  group "chub_#{node[:chub_mc_app][:app_name]}"
   mode 0755
 end
 

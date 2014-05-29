@@ -19,6 +19,11 @@
 
 include_recipe "rundeck::default"
 
+# Using unwind as an alternative
+# https://github.com/bryanwb/chef-rewind#unwind
+
+
+
 directory "/var/lib/rundeck/.ssh" do
     action :create
     owner 'rundeck'

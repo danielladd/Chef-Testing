@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: chub_mc_webservice
+# Cookbook Name:: chub_mc_webservices
 # Recipe:: onboarding_webservice
 #
 # Copyright 2014, CommerceHub Inc.
