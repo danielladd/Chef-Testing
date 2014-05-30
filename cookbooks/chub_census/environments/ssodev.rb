@@ -15,5 +15,6 @@ default_attributes(
       :password => "usrdev",
     },
     :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com"
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443"
   }
 )
