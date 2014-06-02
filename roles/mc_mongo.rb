@@ -1,4 +1,4 @@
-name "mc_mongo_dev"
+name "mc_mongo"
 description "A linux machine running mongodb for missioncontrol (in development)"
 run_list "recipe[base]", "recipe[ulimit]", "recipe[mongodb::10gen_repo]", "recipe[mongodb]"
 default_attributes "ulimit" => {
