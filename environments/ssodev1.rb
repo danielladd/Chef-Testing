@@ -91,7 +91,7 @@ default_attributes(
     },
   },
   :chub_census => {
-    :app_url => "file:///var/census/staged-census.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
     :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :database => {
