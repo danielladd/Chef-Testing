@@ -101,7 +101,7 @@ default_attributes(
     }
   },
   :chub_castle => {
-    :app_url => "file:///var/castle/staged-castle.war",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
