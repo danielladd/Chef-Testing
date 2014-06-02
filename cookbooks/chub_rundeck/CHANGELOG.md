@@ -1,5 +1,8 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.3
+-----
+- Larry - Attempting to solve problem of server restarting every chef run
 
 0.1.2
 -----

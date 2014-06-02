@@ -1,5 +1,6 @@
 name "mpprod1"
 description "marketplace production environment 1"
+cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 0.10.7"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mdb01:27017", "mdb02:27017", "mdb03:27017" ],

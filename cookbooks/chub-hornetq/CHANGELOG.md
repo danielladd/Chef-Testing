@@ -1,9 +1,29 @@
 chub-hornetq CHANGELOG
 ======================
+0.2.8
+_____
+
+* Larry - Adding rm command to sudoers for rundeck-ssh
+
+0.2.7
+_____
+
+* Larry - Adding rundeck-ssh user to hornetq group
+
+0.2.6
+_____
+
+* Larry - Using proper attributes to have sudo not squash all sudo access
+
+0.2.5
+_____
+
+* Larry - Added sudo cookbook as dependency.
+
 0.2.4
 _____
 
-* Larry - Adding rundeck_sudoers file to add a sudoers file allowing rundeck-ssh user to assume hornetq for starting/stopping purposes. Also added sudo cookbook as dependency.
+* Larry - Adding rundeck_sudoers file to add a sudoers file allowing rundeck-ssh user to assume hornetq for starting/stopping purposes. 
 
 0.2.3
 _____

@@ -10,7 +10,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.22",
-  "chub_census" => "= 0.1.7",
+  "chub_census" => "= 0.1.8",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.7",
@@ -43,6 +43,10 @@ cookbook_versions({
 })
 default_attributes(
   :sensu => {
+    :api => {
+      :user => "sensuapi",
+      :password => "@HrMgi1I3exo"
+    },
     :rabbitmq => {
       :host => "ssodev1sensu.nexus.commercehub.com"
     }
@@ -87,8 +91,9 @@ default_attributes(
     },
   },
   :chub_census => {
-    :app_url => "file:///var/census/staged-census.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
     :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com",
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev1-census",
       :user => "devusr01",
@@ -96,7 +101,7 @@ default_attributes(
     }
   },
   :chub_castle => {
-    :app_url => "file:///var/castle/staged-castle.war",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",

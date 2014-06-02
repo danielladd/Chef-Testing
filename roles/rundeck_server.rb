@@ -47,10 +47,10 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
      "resources" => {
         "HornetQ" => [
             {
-                "name" => "qaregubuntu01",
+                "name" => "qaregmq01",
                 "description" => "qa regression machine",
                 "tags" => "",
-                "hostname" => "qaregubuntu01.nexus.commercehub.com",
+                "hostname" => "qaregmq01.nexus.commercehub.com",
                 "osArch" => "amd64",
                 "osFamily" => "unix",
                 "osName" => "Linux",
@@ -58,10 +58,10 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "username" => "rundeck-ssh"
             },
             {
-                "name" => "qaregubuntu02",
+                "name" => "qaregmq02",
                 "description" => "qa regression machine",
                 "tags" => "",
-                "hostname" => "qaregubuntu02.nexus.commercehub.com",
+                "hostname" => "qaregmq02.nexus.commercehub.com",
                 "osArch" => "amd64",
                 "osFamily" => "unix",
                 "osName" => "Linux",

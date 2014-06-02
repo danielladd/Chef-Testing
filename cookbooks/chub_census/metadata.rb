@@ -4,7 +4,7 @@ maintainer_email 'ktitus@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_census'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.7'
+version          '0.1.8'
 
 supports "ubuntu"
 depends "apt"
@@ -34,3 +34,8 @@ attribute "plaza/url",
 	:display_name => "Plaza application URL",
 	:description => "URL endpoint of the Plaza application",
 	:required => "required"
+
+attribute "vault/url",
+    :display_name => "Vault application URL",
+    :description => "URL endpoint of the Vault application",
+    :required => "required"    

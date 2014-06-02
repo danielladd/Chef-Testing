@@ -2,6 +2,7 @@ name "sso"
 description "Base role for all SSO machines"
 override_attributes(
   "ssh_keys" => {
+    "ssodeployer" => "ssodeployer",
     "dcarr" => "dcarr",
     "dcross" => "dcross",
     "kstahl" => "kstahl",

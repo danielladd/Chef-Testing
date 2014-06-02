@@ -1,5 +1,9 @@
+import groovy.time.TimeCategory 
+
+webServerUrl = "<%= node['chub-buyspace']['webServerUrl'] %>"
+
 klerk {
-    url = "<%= node['chub-buyspace']['klerk']['url'] %>"
+    url = '<%= node['chub-buyspace']['klerk']['url'] %>'
 }
 
 sprite {
@@ -28,8 +32,22 @@ imageUploading {
           accessKey = '<%= node['chub-buyspace']['imageUploading']['amazon']['accessKey'] %>'
           secretKey = '<%= node['chub-buyspace']['imageUploading']['amazon']['secretKey'] %>'
           bucket = '<%= node['chub-buyspace']['imageUploading']['amazon']['bucket'] %>'
+          use(TimeCategory) { 
+            uploadedFileUrlDuration = 1.days 
+          } 
      }
 }
+
+useGoogleAnalytics= <%= node['chub-buyspace']['useGoogleAnalytics'] %>
+useHubSpot= <%= node['chub-buyspace']['useGoogleAnalytics'] %>
+
+marketplace.gitRevision = System.currentTimeMillis()
+adminEmailAddress='lrotter@commercehub.com'
+paymentFailureEmailAddress='paymentissues@buyspace.com'
+creSecure.cardTokenValidationUrl='https://sandbox.cresecure.net/direct/services/validation'
+
+marketplace.files.commerceHubRelationshipsFile="/marketplace/rels.csv"
+bestBuyMarketplace.retailerId ='51247477c519e3a71e639634'
 
 salesforce {
     url = '<%= node['chub-buyspace']['salesforce']['url'] %>'
@@ -53,7 +71,9 @@ vertx {
 }
 
 msExchangeApi {
-    overrideAddress='<%= node['chub-buyspace']['msExchangeApi']['overrideAddress'] %>' 
+    <% if node.chef_environment != 'mpdev_alex' -%>
+       overrideAddress='<%= node['chub-buyspace']['msExchangeApi']['overrideAddress'] %>' 
+    <% end -%>
     url = "<%= node['chub-buyspace']['msExchangeApi']['url'] %>"
     credentials {
         username = '<%= node['chub-buyspace']['msExchangeApi']['credentials']['username'] %>'
@@ -70,11 +90,13 @@ hornetq {
 
 mongo {
     databaseName = '<%= node['chub-buyspace']['mongo']['databaseName'] %>'
-    replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
+    replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>    
+    <% if node.chef_environment != 'mpdev_alex' -%>
     blobStore {
        databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
        replicas =  <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
     }
+    <% end -%>
 }
  
 images {
@@ -91,8 +113,11 @@ solr {
 }
 
 grails {
+  <% if node['chub-buyspace']['role']['isApi'] -%>
+    serverURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
+  <% else -%>
     serverURL="<%= node['chub-buyspace']['grails']['serverURL'] %>"
-    //serverURL="<%= node['chub-buyspace']['grails']['serverURLbyHostname'] %>"
+  <% end -%>
     apiServerURL="<%= node['chub-buyspace']['grails']['apiServerURL'] %>"
     plugin{
         excludes = <%= node['chub-buyspace']['grails']['plugin']['excludes'] %>
@@ -155,13 +180,12 @@ log4j = {
 
 
     root {
-        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file', 'logstash'
+        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file'
         additivity = true
     }
 }
 
-
-antivirus{
+antivirus {
     hosts = <%= node['chub-buyspace']['antivirus']['hosts'] %>
     enabled= <%= node['chub-buyspace']['antivirus']['enabled'] %>
     port = <%= node['chub-buyspace']['antivirus']['port'] %>
@@ -174,3 +198,21 @@ bestbuy {
         url = 'http://54.208.33.194/ingest-service/service'
     }
 }
+
+beans {
+    shiroSecurityManager{
+        rememberMeManager = null
+    }
+}
+
+grails.plugin.excludes = {}
+
+<% if node.chef_environment == 'mpdev_alex' -%>
+sugar {
+    restUrl = "https://chub.sugarondemand.com/service/v2/rest.php"
+    username = "frankpny"
+    password = "f33df3aa9450daed583ce2756a5fc9f1"
+    uiUrl = "https://chub.sugarondemand.com/index.php?action=DetailView&module=Accounts&record="
+}
+<% end -%>
+    

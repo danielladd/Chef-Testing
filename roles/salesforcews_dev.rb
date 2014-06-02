@@ -13,7 +13,6 @@ default_attributes "chub_mc_webservice" => {
 				"clientSecret" => "",
 				"username" => "",
 				"password" => ""
-
 			},
 		},
 	},

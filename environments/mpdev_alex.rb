@@ -14,55 +14,51 @@ default_attributes "chub-klerk" => {
     "sprite_conductor_url" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
     "sprite_output_container_prefix" => "mpqa1-",
     "jms_provider_url" => "jnp://mpqa03.nexus.commercehub.com:7099"
-},
-"chub-buyspace" => {
-  "mongo" => {
-       "databaseName" => "marketplaceProd_91212bak",
-        "replicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777'],
-        "blobstoreDatabaseName" => "marketplaceProd_91212bak_blobStore",
-        "blobstoreReplicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777']
-  },
+},"chub-buyspace" => {
+  'mongo' => {
+    'databaseName' => "marketplaceProd",
+    'replicas' => ['mdb01.commercehub.com', 'mdb02.commercehub.com', 'mdb03.commercehub.com']
+  },  
   "solr" => {
-    "url" => "http://mpqa03:7070/solr/"
+    "url" => "http://search01.commercehub.com:8080/solr/"
   },
   "klerk" => {
-    "url" => "http://mpqa1-klerk.commercehub.com:8090"
+    "url" => "http://klerk.commercehub.com:8090"
   },
   "hornetq" => {
-    "host" => "mpqa03.nexus.commercehub.com",
-    "port" => 7447
+    "host" => "mq01.commercehub.com",
+    "port" => 5445
   },
   "taskScheduler" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "http://mpalex:8080",
-    "apiServerURL" => "http://mpalex:8080"
-   # "serverURL" => "http://qa-vip7.buyspace.com",
-   #"apiServerURL" => "http://qa-vip7.buyspace.com"
-    #"serverURL" => "http://localhost:8080",
-    #"apiServerURL" => "http://localhost:8080"
+    #"serverURL" => "https://mpqa2-buyspace.commercehub.com",
+    #"apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
+     "serverURL" => "https://www.buyspace.com",
+     "apiServerURL" => "http://api.commercehub.com"
   },
+  "webServerUrl"=> "https://www.buyspace.com",  
   "antivirus" => {
-    "hosts" => "['10.10.40.80']",
+    "hosts" => "['vscan.commercehub.com']",
     "enabled" => true,
     "port" => 1344
   },
   "sprite" => {
-      "conductorApiUrl" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
-      "outputContainerPrefix" => "mpqa1-",
-      "imageUrlTemplate" => "https://d172c2gjqice63.cloudfront.net/mpqa1-watermarked/${resourceId}-watermark-${size}-${size}.jpg"
-  },
+      "conductorApiUrl" => "http://sprite.buyspace.com/sprite-conductor",
+      "outputContainerPrefix" => "mpprod1-",
+      "imageUrlTemplate" => "http://d3k3ht6exf8iib.cloudfront.net/mpprod1-watermarked/${resourceId}-watermark-${size}-${size}.jpg"
+  },  
   "imageUploading" => {
     "amazon" => {
-      "accessKey" => "AKIAIR3QJXR63XPHWPRA",
-      "secretKey" => "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",
-      "bucket" => "commercehub-sprite-mpqa1-uploaded",
+      "accessKey" => "AKIAJK63J4IFXXGB7RYA",
+      "secretKey" => "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",
+      "bucket" => "commercehub-sprite-mpprod1-uploaded",
       "duration" => "1.days"
     } 
   },
   "salesforce" => {
-    "url" => "https://cs1.salesforce.com",
+    "url" => "https://na1.salesforce.com",
     "apiUrl" => "${salesforce.url}/services/data/v24.0",
     "clientId" => "3MVG99OxTyEMCQ3jLWU2aXrHra9IH.vcatnvgH6L4x4kiIDyvjLQuuBfIZVKPLPRA_qFWCRNaLkBB32KOnLzT",
     "clientSecret" => "3939258714251867600",
@@ -71,20 +67,20 @@ default_attributes "chub-klerk" => {
       "totalConnections" => 100
     },
     "password" => "hAhE4awR",
-    "tokenUrl" => "https://test.salesforce.com/services/oauth2/token",
-    "username" => "buyspace@buyspace.com.staging"
+    "tokenUrl" => "https://login.salesforce.com/services/oauth2/token",
+    "username" => "buyspace@buyspace.com"
   },
-  "vertex" => {
-    "enabled" => false,
-    "hazelcastConfigFile" => "/marketplace/hazelcast/cluster.xml",
-    "hostname" => "mpqa01",
-    "port" => 25500
-  },
+  "vertx" => {
+    'enabled' => 'false',
+    'hazelcastConfigFile' => '/marketplace/hazelcast/cluster.xml',
+    'hostname' => 'wapp02',
+    'port' => '25500'
+    },
   "msExchangeApi" => {
-    "url" => "https://mymail.commercehub.com/ews/exchange.asmx",
+    "url" => "https://mymail.commercehub.com/ews/Exchange.asmx",
     "credentials" => {
-      "username" => "mpdev",
-      "password" => "MarketPlaceDev1"
+      "username" => "buyspace",
+      "password" => "1buySp@ce"
     }
   },
   "channelProductExporter" => {
@@ -95,14 +91,23 @@ default_attributes "chub-klerk" => {
       "keyTemplate" => "mpqa1-master/${resourceId}",
       "artifactUrlDuration" => "1.day"
     }
-  },
+  },  
   "images" => {
-    "serverUrls" => ["https://qa-vip7.buyspace.com/static-images"],
-    "datastoreDirectories" => "'/var/buyspace/images/datastore/images1', '/var/buyspace/images/datastore/images2'",
-    "baseDirectory" => '/var/buyspace/images',
+    'graphicsMagickHome' => '/marketplace/software/GraphicsMagick',
+    "datastoreDirectories" => "'\\\\imagefs01\\image-datastore', '\\\\imagefs03\\image-datastore'",
+    "baseDirectory" => '\\\\imagefs02\\images',
     "productBaseDirectory" => "/var/buyspace/images/products" ,
-    "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
-  }  
+    "serverUrls" => "https://s1.buyspace.com",
+    "shareDirectory" => "//mpqa02.nexus.commercehub.com/images_qa7",
+    "shareMount" => "/var/buyspace/images/",
+    "shareUser" => "mpqatomcat",
+    "sharePassword" => "MarketPl@ce"
+  },
+  'useGoogleAnalytics' => 'true',
+  'useHubSpot' => 'true',
+  'creSecure' => {
+    'cardTokenValidationUrl' => 'https://direct.cresecure.net/direct/services/validation'
+  },
 },
 'tomcat' => {
   'base_version' => 7,
@@ -110,3 +115,25 @@ default_attributes "chub-klerk" => {
   'keystore_password' => 'throwawaypassword',
   'truststore_password' => 'throwawaypassword' 
 }
+
+ 
+
+#  'marketplace' => {
+#    'gitRevision' => 'System.currentTimeMillis()'
+#  },
+#    'files' => {
+#      'commerceHubRelationshipsFile' => "/marketplace/rels.csv"
+#    },
+#  'adminEmailAddress' => 'lrotter@commercehub.com',
+#  'paymentFailureEmailAddress' => 'paymentissues@buyspace.com',
+#  'taskScheduler' => {'enabled' => 'true'},
+#  'bestBuyMarketplace.retailerId' => '51247477c519e3a71e639634',
+#  'log4j' => {
+
+#  },
+#  'beans' => {
+#    'shiroSecurityManager' => {
+#      'rememberMeManager' => 'null'
+#    }
+#  }
+  

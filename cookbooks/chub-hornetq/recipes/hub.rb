@@ -27,15 +27,17 @@ user "hornetq" do
   system   true
 end
 
-user "chadmin" do
-    # Placeholder user; in "real" VMs, this user is expected to already exist.
+%w{ chadmin rundeck-ssh }.each do |user|
+  user "#{user}" do
+    # Placeholder user; in "real" VMs, these users are expected to already exist.
     # This definition makes it so that in Vagrant VMs, the user exists so that the group definition below doesn't fail.
+  end
 end
 
 group "hornetq" do
   action   :modify
   append   true
-  members  ["hornetq", "chadmin"]
+  members  ["hornetq", "chadmin", "rundeck-ssh"]
 end
 
 unless File.exists?("#{node['chub-hornetq']['touchfile']}")
@@ -128,9 +130,8 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
     command   "./hornetq install"
     cwd       "#{node['chub-hornetq']['app_dir']}/bin"
     action    :run
-    user      'hornetq'
+    #user      'hornetq'
     group     'minions'
-    #TODO - THIS
     not_if { ::File.exists?("/etc/rc0.d/K20hornetq")}
   end
 
@@ -148,7 +149,7 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
   #end 
 
   service "hornetq" do
-    init_command "su hornetq /etc/init.d/hornetq"
+    init_command "/etc/init.d/hornetq"
     action [ :start ]
   end
 
