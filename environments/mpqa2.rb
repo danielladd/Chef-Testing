@@ -10,7 +10,7 @@ default_attributes "chub-klerk" => {
     "hazelcast_group_password" => "mpqa2_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "product_data_event_endpoints" => {
-        "productstream" => "http://mpqa2wapp1.nexus.commercehub.com/klerk/productDataEvents"
+        "productstream" => "http://mpqa2-api.commercehub.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
@@ -39,10 +39,10 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    #"serverURL" => "https://mpqa2-buyspace.commercehub.com",
-    #"apiServerURL" => "https://mpqa2-buyspace.commercehub.com"
-     "serverURL" => "http://mpqa2wapp1:8080",
-     "apiServerURL" => "http://mpqa2api1:8080"
+     "serverURL" => "https://mpqa2-buyspace.commercehub.com",
+     "apiServerURL" => "http://mpqa2-api.commercehub.com"
+     #"serverURL" => "http://mpqa2wapp1:8080",
+     #"apiServerURL" => "http://mpqa2api1:8080"
   },
   "webServerUrl"=> "https://mpqa2-buyspace.commercehub.com",
   "antivirus" => {

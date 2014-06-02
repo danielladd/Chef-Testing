@@ -40,7 +40,7 @@ default_attributes "chub-klerk" => {
   },
   "grails" => {
     "serverURL" => "https://mpqa1-buyspace.commercehub.com",
-    "apiServerURL" => "https://mpqa1-buyspace.commercehub.com"
+    "apiServerURL" => "http://mpqa1-api.commercehub.com"
   },
   "webServerUrl"=> "https://mpqa1-buyspace.commercehub.com",
   "antivirus" => {
