@@ -10,7 +10,7 @@ cookbook_versions({
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
   "chub_castle" => "= 0.1.22",
-  "chub_census" => "= 0.1.7",
+  "chub_census" => "= 0.1.8",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.1.7",
@@ -93,6 +93,7 @@ default_attributes(
   :chub_census => {
     :app_url => "file:///var/census/staged-census.jar",
     :plaza_url => "https://ssoqa1-plaza.nexus.commercehub.com",
+    :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
       :user => "devusr01",
