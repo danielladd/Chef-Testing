@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.4
+-----
+- Larry - adding SG_OrderStream_Batch_Admins to rundeck access
+
 0.1.3
 -----
 - Larry - Attempting to solve problem of server restarting every chef run
