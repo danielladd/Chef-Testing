@@ -2,6 +2,11 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v2.0.0
+------
+- Upgrade to JDK 8
+- Remove support for specification of JVM permanent generation size as it is no longer applicable as of Java 8
+
 v1.0.0
 ------
 - Update klerk yaml template to reflect restructured and added config values
