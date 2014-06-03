@@ -20,6 +20,9 @@
         <security-role>
                 <role-name>PTS</role-name>
         </security-role>
+        <security-role>
+                <role-name>SG_OrderStream_Batch_Admins</role-name>
+        </security-role>
         <security-constraint>
                 <web-resource-collection>
                         <web-resource-name>Login</web-resource-name>
