@@ -3,6 +3,11 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.1.8
+-----
+
+* 'H. "Waldo" Grunenwald' - Pointing the styleguide and corpsite to the new git server
+
 0.1.7
 -----
 

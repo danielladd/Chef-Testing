@@ -18,7 +18,6 @@ Vagrant.configure("2") do |config|
   config.hostmanager.include_offline = true
 
   config.vm.provision :chef_solo do |chef|
-    chef.data_bags_path = "data_bags"
     chef.roles_path = "roles"
     chef.environments_path = "environments"
     chef.environment = "ssodev"
