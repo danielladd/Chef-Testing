@@ -21,7 +21,7 @@
 # # Change These
 site		= "styleguide"
 http_index	= "index.html"
-repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
+repo		= "https://git.nexus.commercehub.com/ux/ch-style-guide.git"
 
 # # Derivitive Variables
 # # Don't Change These
@@ -86,7 +86,7 @@ end
 
 git repo_path do
 	repository repo
-	additional_remotes["gitlab"] = repo
+	#additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"
