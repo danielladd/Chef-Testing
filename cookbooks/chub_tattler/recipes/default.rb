@@ -90,22 +90,14 @@ end
     end
 end
 
-cookbook_file "/opt/tattler/tattler.jar" do
-  source "Tattler-standalone.jar"
-  owner user_name
-  group group_name
-  mode 0440
-  notifies "restart", "service[tattler]"
-end
-
 #This is just a hack until we get the jar deployed to Artifactory.
-#remote_file "/opt/tattler/tattler.jar" do
-#    source node[:chub_tattler][:app_url]
-#    owner user_name
-#    group group_name
-#    mode 0440
-#    notifies "restart", "service[tattler]"
-#end
+remote_file "/opt/tattler/tattler.jar" do
+    source node[:chub_tattler][:app_url]
+    owner user_name
+    group group_name
+    mode 0440
+    notifies "restart", "service[tattler]"
+end
 
 service service_name do
     provider Chef::Provider::Service::Upstart
