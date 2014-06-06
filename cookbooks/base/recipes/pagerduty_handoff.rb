@@ -27,10 +27,20 @@ node.set["base"]["pagerduty"]["auth_token"]			= 'zCNqqraNGpQBGdxjqcMu'
 node.set["base"]["pagerduty"]["base_url"]			= 'https://commercehub.pagerduty.com/api/v1/'
 node.set["base"]["pagerduty"]["schedules"]			= [
 													'BuySpace_Engineers',
+													'COMMS_OnCall',
+													'CoreEngineers_Oncall',
+													'DBA_NoOp',
+													'DBA_OnCall_Primary',
+													'DBA_OnCall_Secondary',
+													'dev_Oncall',
+													'Git Admin',
+													'IT_OnCall',
+													'OpsEngineers_OnCall',
 													'Pipeline',
+													'Primary OnCall Operations Engineers',
+													'Secondary OnCall Operations Engineers',
 													'Shipping_and_Logistics_Team',
-													'DBADirect_Primary',
-													'DBADirect_Secondary'
+													'SSO'
 													]
 node.set["base"]["pagerduty"]["smtp_server"]		= 'prodmail.commercehub.com'
 node.set["base"]["pagerduty"]["smtp_from_address"]	= 'pagerduty@commercehub.com'
