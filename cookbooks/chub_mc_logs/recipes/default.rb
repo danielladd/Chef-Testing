@@ -35,14 +35,24 @@ execute "restart_rsyslog" do
 end
 
 template "/etc/rsyslog.conf" do
-  source "rsyslog.conf.erb"
-  variables({
-    :mcResource => node[:chub_mc_logs][:mc_resource],
-    :logServer => node[:chub_mc_logs][:log_server]
-  })
+  source "rsyslog1.conf.erb"
   owner "chub_mc_logger"
   group "chub_mc_logger"
   mode 0644
   action :create
   notifies :run, 'execute[restart_rsyslog]', :immediately
 end
+
+
+#template "/etc/rsyslog.conf" do
+#  source "rsyslog.conf.erb"
+#  variables({
+#    :mcResource => node[:chub_mc_logs][:mc_resource],
+#    :logServer => node[:chub_mc_logs][:log_server]
+#  })
+ # owner "chub_mc_logger"
+  #group "chub_mc_logger"
+ # mode 0644
+ # action :create
+ # notifies :run, 'execute[restart_rsyslog]', :immediately
+#end
