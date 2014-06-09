@@ -1,3 +1,7 @@
+# 0.3.5
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+
 # 0.3.4
 * Make vault group append
 * Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant

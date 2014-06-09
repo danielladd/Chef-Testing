@@ -1,3 +1,9 @@
+# 0.1.8
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+* Make plaza group append
+* Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant
+
 # 0.1.7
 * Add configuration of the Vault URL
 

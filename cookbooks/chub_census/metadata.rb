@@ -4,12 +4,10 @@ maintainer_email 'ktitus@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_census'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.8'
+version          '0.1.9'
 
 supports "ubuntu"
-depends "apt"
 depends "chub_java"
-depends "hostsfile"
 
 attribute "chub_census/app_url",
     :display_name => "Census application URL",

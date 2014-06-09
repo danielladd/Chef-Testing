@@ -4,12 +4,10 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.23'
+version          '0.1.24'
 
 supports "ubuntu"
-depends "apt"
 depends "chub_java"
-depends "hostsfile"
 
 attribute "chub_castle/app_url",
     :display_name => "Castle application URL",

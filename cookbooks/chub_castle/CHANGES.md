@@ -1,3 +1,7 @@
+# 0.1.24
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+
 # 0.1.23
 * Increase ST/TGT timouts
 

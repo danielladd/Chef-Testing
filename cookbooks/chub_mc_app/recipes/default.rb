@@ -42,81 +42,81 @@ end
 
 unless File.exists?("#{node[:chub_mc_app][:touchfile]}")
 
-directory node[:chub_mc_app][:staging_dir] do
-  action :create
-  owner "chub_#{node[:chub_mc_app][:app_name]}"
-  group "chub_#{node[:chub_mc_app][:app_name]}"
-  mode 0777
-end
-
-directory node[:chub_mc_app][:deploy_dir] do
-  action :create
-  owner "chub_#{node[:chub_mc_app][:app_name]}"
-  group "chub_#{node[:chub_mc_app][:app_name]}"
-  mode 0777
-end
-
-service "#{node[:chub_mc_app][:app_name]}" do
-    provider Chef::Provider::Service::Upstart
-    action [ "disable", "stop" ]
-end
-
-file "#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
-    action   :delete
-    mode     "0755"
-    owner    "chub_#{node[:chub_mc_app][:app_name]}"
-    group    "chub_#{node[:chub_mc_app][:app_name]}"
-end
-
-
-remote_file "#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
-  source "#{node[:chub_mc_app][:jar_file_url]}"
-  owner "chub_#{node[:chub_mc_app][:app_name]}"
-  group "chub_#{node[:chub_mc_app][:app_name]}"
-  action :create	# This should pull the file down forcefully
-end
-
-file "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
-    action   :delete
-    mode     "0755"
-    owner    "chub_#{node[:chub_mc_app][:app_name]}"
-    group    "chub_#{node[:chub_mc_app][:app_name]}"
-end
-
-remote_file "Copy deploy jar file from staging" do 
-  path "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
-  source "file://#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
-  owner "chub_#{node[:chub_mc_app][:app_name]}"
-  group "chub_#{node[:chub_mc_app][:app_name]}"
-  mode 0755
-end
-
-template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
-    source "app.conf.erb"
+  directory node[:chub_mc_app][:staging_dir] do
+    action :create
     owner "chub_#{node[:chub_mc_app][:app_name]}"
     group "chub_#{node[:chub_mc_app][:app_name]}"
-    mode 0644
-	action :create
-end
+    mode 0777
+  end
 
-service "#{node[:chub_mc_app][:app_name]}" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
-end
+  directory node[:chub_mc_app][:deploy_dir] do
+    action :create
+    owner "chub_#{node[:chub_mc_app][:app_name]}"
+    group "chub_#{node[:chub_mc_app][:app_name]}"
+    mode 0777
+  end
 
-file node[:chub_mc_app][:touchfile] do
-    action   :create
-    mode     "0755"
-    owner    "chub_#{node[:chub_mc_app][:app_name]}"
-    group    "chub_#{node[:chub_mc_app][:app_name]}"
-	content  "deployed"
-end
+  service "#{node[:chub_mc_app][:app_name]}" do
+      provider Chef::Provider::Service::Upstart
+      action [ "disable", "stop" ]
+  end
 
-file node[:chub_mc_app][:touchfile] do
-    action   :touch
-    mode     "0755"
-    owner    "chub_#{node[:chub_mc_app][:app_name]}"
-    group    "chub_#{node[:chub_mc_app][:app_name]}"
-end
+  file "#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
+      action   :delete
+      mode     "0755"
+      owner    "chub_#{node[:chub_mc_app][:app_name]}"
+      group    "chub_#{node[:chub_mc_app][:app_name]}"
+  end
+
+
+  remote_file "#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
+    source "#{node[:chub_mc_app][:jar_file_url]}"
+    owner "chub_#{node[:chub_mc_app][:app_name]}"
+    group "chub_#{node[:chub_mc_app][:app_name]}"
+    action :create	# This should pull the file down forcefully
+  end
+
+  file "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
+      action   :delete
+      mode     "0755"
+      owner    "chub_#{node[:chub_mc_app][:app_name]}"
+      group    "chub_#{node[:chub_mc_app][:app_name]}"
+  end
+
+  remote_file "Copy deploy jar file from staging" do 
+    path "#{node[:chub_mc_app][:deploy_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
+    source "file://#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar"
+    owner "chub_#{node[:chub_mc_app][:app_name]}"
+    group "chub_#{node[:chub_mc_app][:app_name]}"
+    mode 0755
+  end
+
+  template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
+      source "app.conf.erb"
+      owner "chub_#{node[:chub_mc_app][:app_name]}"
+      group "chub_#{node[:chub_mc_app][:app_name]}"
+      mode 0644
+  	action :create
+  end
+
+  service "#{node[:chub_mc_app][:app_name]}" do
+      provider Chef::Provider::Service::Upstart
+      action [ "enable", "start" ]
+  end
+
+  file node[:chub_mc_app][:touchfile] do
+      action   :create
+      mode     "0755"
+      owner    "chub_#{node[:chub_mc_app][:app_name]}"
+      group    "chub_#{node[:chub_mc_app][:app_name]}"
+  	content  "deployed"
+  end
+
+  file node[:chub_mc_app][:touchfile] do
+      action   :touch
+      mode     "0755"
+      owner    "chub_#{node[:chub_mc_app][:app_name]}"
+      group    "chub_#{node[:chub_mc_app][:app_name]}"
+  end
 
 end#close unless block

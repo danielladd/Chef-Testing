@@ -1,8 +1,9 @@
 base CHANGELOG
 ==============
-0.1.17
+
+0.1.18
 ----
-- Larry - Adding in hostfile resource to remove '127.0.1.1' entry pointing to local system hostname
+- Waldo - Updated the Pagerduty Courtesy Notification to include new Schedules.
 
 0.1.16
 ----
