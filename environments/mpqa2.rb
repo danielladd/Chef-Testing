@@ -97,8 +97,8 @@ default_attributes "chub-klerk" => {
     "imageUrlStrategy" => {
       "accessKey" => "AKIAIJPXRBZOL4RUMINA",
       "secretKey" => "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",
-      "bucketName" => "commercehub-sprite-mpqa1-master",
-      "keyTemplate" => "mpqa1-master/${resourceId}",
+      "bucketName" => "commercehub-sprite-mpqa2-master",
+      "keyTemplate" => "mpqa2-master/${resourceId}",
       "artifactUrlDuration" => "1.day"
     }
   },
