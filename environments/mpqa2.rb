@@ -2,7 +2,7 @@ name "mpqa2"
 description "marketplace qa environment 2"
 cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 1.1.0"
-cookbook "chub-buyspace", "= 0.2.3"
+cookbook "chub-buyspace", "= 0.3.0"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa2db1:27017", "mpqa2db2:27017", "mpqa2db3:27017" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa2_klerk_quartz;user=devusr01;password=usrdev",
@@ -75,6 +75,10 @@ default_attributes "chub-klerk" => {
     "password" => "hAhE4awR",
     "tokenUrl" => "https://test.salesforce.com/services/oauth2/token",
     "username" => "buyspace@buyspace.com.staging"
+  },
+  "semantics3" => {
+    "apiKey" => "SEM38CAF563E5A1AC8A94D902EDABF2B07A1",
+    "apiSecret" => "YjI5YmQ0OTIyNTEwZjA4MjQyNGFhYzZhODZjZGZjZGE"
   },
   "vertex" => {
     "enabled" => false,

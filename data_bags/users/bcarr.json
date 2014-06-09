@@ -5,5 +5,5 @@
   "group":["adm","sudo","sambashare"],
   "system":false,
   "shell": "/bin/bash",
-  "ssh_keys": ""
+  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAs09omPz9gasoLh6hdruCZOxUNmuxswomAGVFtxfppsBA1XtvSfRkUWg7L4+qkO77jhxR6wcWEf2P9tKe3jfabZ/Vj/EwsbGuqcU0YSf403ZKwYIuFxxdeGyw57GN64bZRiflcMtTfc1iUp+hiXt2FvFavpYBo46r7YQGEJM0K7h88cJYmcFFfiPwQtJqjhKpRkfNxfaT0H/fyAXrsxyO5H6H6mlno/K9SKEz9PVBFr01H3Dmoft2jPjk2A2FZXx8CavB2ewNw6cshHuREiCps8JGw+aYZBq6KodRMdDgPBA1j5MbMYZ0+EmLFyHoqq32D7OZ5ppeRPSEYfcdaCy33Q== bcarr@PC-DEV-BC"
 }
