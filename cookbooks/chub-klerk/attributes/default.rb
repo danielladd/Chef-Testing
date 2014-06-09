@@ -1,7 +1,6 @@
 default["chub-klerk"]["app_url"] = "file:///var/opt/klerk/staged-klerk-app.jar"
 default["chub-klerk"]["klerk_database_name"] = "klerk"
 default["chub-klerk"]["blobstore_database_name"] = "klerk_blobStore"
-default["chub-klerk"]["java_perm_gen_size"] = "128m"
 default["chub-klerk"]["java_heap_size"] = "512M"
 # TODO: move this to base config?
 default["authorization"]["sudo"]["groups"] = ["sudo"]

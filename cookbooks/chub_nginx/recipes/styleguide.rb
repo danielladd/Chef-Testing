@@ -21,7 +21,7 @@
 # # Change These
 site		= "styleguide"
 http_index	= "index.html"
-repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
+repo		= "https://git.nexus.commercehub.com/ux/ch-style-guide.git"
 
 # # Derivitive Variables
 # # Don't Change These
@@ -37,6 +37,7 @@ node.normal[:nginx][:keepalive_timeout]	= 3
 include_recipe "chub_nginx"
 
 execute "copy_site" do
+	# This may need revisiting: https://wiki.opscode.com/display/chef/Evaluate+and+Run+Resources+at+Compile+Time;jsessionid=996B67A5129809DDFF8915B72D6A018F
 	cwd repo_path
 	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
 	action :nothing
@@ -86,7 +87,7 @@ end
 
 git repo_path do
 	repository repo
-	additional_remotes["gitlab"] = repo
+	#additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"

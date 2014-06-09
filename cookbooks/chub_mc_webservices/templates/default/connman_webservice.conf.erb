@@ -1,0 +1,4 @@
+exec java -jar <%= node[:chub_mc_webservice][:connman][:deploy_dir] %>/<%= node[:chub_mc_webservice][:connman][:jar_file_name] %> server <%= node[:chub_mc_webservice][:connman][:deploy_dir] %>/<%= node[:chub_mc_webservice][:connman][:config_file_name] %>
+respawn
+start on runlevel [2345]
+stop on runlevel [016]

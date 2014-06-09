@@ -100,6 +100,9 @@ default['chub-buyspace']['salesforce']['httpClient']['totalConnections'] = 100
 default['chub-buyspace']['salesforce']['password'] = 'PLACEHOLDER'
 default['chub-buyspace']['salesforce']['tokenUrl'] = 'https://localhost/services/oauth2/token'
 default['chub-buyspace']['salesforce']['username'] = 'buyspace@buyspace.com'
+
+default['chub-buyspace']['semantics3']['apiKey'] = 'PLACEHOLDER'
+default['chub-buyspace']['semantics3']['apiSecret'] = 'PLACEHOLDER'
   
 default['chub-buyspace']['solr']['url'] = 'http://localhost:8080/solr/'
   

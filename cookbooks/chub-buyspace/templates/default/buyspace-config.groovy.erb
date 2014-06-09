@@ -138,6 +138,11 @@ dateConfig {
 
 marketplace.logUsernames = true
 
+semantics3 {
+    apiKey = "<%= node['chub-buyspace']['semantics3']['apiKey'] %>"
+    apiSecret = "<%= node['chub-buyspace']['semantics3']['apiSecret'] %>"
+}
+
 log4j = {
     appenders {
         rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
