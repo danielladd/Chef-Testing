@@ -47,10 +47,10 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
      "resources" => {
         "HornetQ" => [
             {
-                "name" => "qaregmq01",
+                "name" => "qaregnix01",
                 "description" => "qa regression machine",
                 "tags" => "",
-                "hostname" => "qaregmq01.nexus.commercehub.com",
+                "hostname" => "qaregnix01.nexus.commercehub.com",
                 "osArch" => "amd64",
                 "osFamily" => "unix",
                 "osName" => "Linux",
@@ -58,10 +58,43 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "username" => "rundeck-ssh"
             },
             {
-                "name" => "qaregmq02",
+                "name" => "qaregnix02",
                 "description" => "qa regression machine",
                 "tags" => "",
-                "hostname" => "qaregmq02.nexus.commercehub.com",
+                "hostname" => "qaregnix02.nexus.commercehub.com",
+                "osArch" => "amd64",
+                "osFamily" => "unix",
+                "osName" => "Linux",
+                "osVersion" => "3.5.0-23-generic",
+                "username" => "rundeck-ssh"
+            },
+            {
+                "name" => "qaregnix03",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qaregnix03.nexus.commercehub.com",
+                "osArch" => "amd64",
+                "osFamily" => "unix",
+                "osName" => "Linux",
+                "osVersion" => "3.5.0-23-generic",
+                "username" => "rundeck-ssh"
+            },
+            {
+                "name" => "qaregnix04",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qaregnix04.nexus.commercehub.com",
+                "osArch" => "amd64",
+                "osFamily" => "unix",
+                "osName" => "Linux",
+                "osVersion" => "3.5.0-23-generic",
+                "username" => "rundeck-ssh"
+            },
+            {
+                "name" => "qaregnix05",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qaregnix05.nexus.commercehub.com",
                 "osArch" => "amd64",
                 "osFamily" => "unix",
                 "osName" => "Linux",
