@@ -47,7 +47,7 @@ default_attributes "chub-klerk" => {
   "webServerUrl"=> "https://mpqa2-buyspace.commercehub.com",
   "antivirus" => {
     "hosts" => "['qa-scanengine.commercehub.com']",
-    "enabled" => false,
+    "enabled" => true,
     "port" => 1344
   },
   "sprite" => {
@@ -97,8 +97,8 @@ default_attributes "chub-klerk" => {
     "imageUrlStrategy" => {
       "accessKey" => "AKIAIJPXRBZOL4RUMINA",
       "secretKey" => "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",
-      "bucketName" => "commercehub-sprite-mpqa1-master",
-      "keyTemplate" => "mpqa1-master/${resourceId}",
+      "bucketName" => "commercehub-sprite-mpqa2-master",
+      "keyTemplate" => "mpqa2-master/${resourceId}",
       "artifactUrlDuration" => "1.day"
     }
   },

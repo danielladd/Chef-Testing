@@ -6,7 +6,8 @@ default_attributes "chub_sensu" => {
         "subscriptions_mail_to" => {
             "pipeline_team" => "pipeline@commercehub.com",
             "scm_team" => "mercurial-admin@commercehub.com",
-            "platform_team" => "jlazzara@commercehub.com,mmiller@commercehub.com"
+            "platform_team" => "jlazzara@commercehub.com,mmiller@commercehub.com",
+            "missioncontrol_team" => "ccucinella@commercehub.com,blaviolette@commercehub.com,cmccormick@commercehub.com,zharvey@commercehub.com"
         }
     }
 }
