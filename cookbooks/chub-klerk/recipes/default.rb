@@ -26,16 +26,6 @@ sudo "admin" do
     commands ["ALL"]
 end
 
-hostsfile_entry '127.0.1.1' do
-    action    :remove
-end
-
-hostsfile_entry node['ipaddress'] do
-    hostname  node['fqdn']
-    aliases   [node['hostname']]
-    action    :create
-end
-
 include_recipe "chub_java::oracle8"
 
 group "klerk" do

@@ -6,6 +6,7 @@ v2.0.0
 ------
 - Upgrade to JDK 8
 - Remove support for specification of JVM permanent generation size as it is no longer applicable as of Java 8
+- Remove use of hostsfile cookbook; the base cookbook covers the usage that was removed
 
 v1.0.0
 ------
