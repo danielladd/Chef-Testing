@@ -61,5 +61,6 @@ end
 hostsfile_entry node['ipaddress'] do
   hostname  node['fqdn']
   aliases   [node['hostname']]
+  unique    true
   action    :create
 end
