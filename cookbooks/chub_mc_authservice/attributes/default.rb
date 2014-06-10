@@ -1,6 +1,3 @@
-default[:tomcat][:base_version] = "7"
-default[:tomcat][:keystore_file]  = "mcauth.jks"
-default[:tomcat][:config_dir] = '/etc/authservice'
 default[:chub_mc_authservice][:http_port] = "5080"
 default[:chub_mc_authservice][:https_port] = "8443"
 default[:chub_mc_authservice][:key_alias] = "le-0e1da6f2-ef87-4d8c-9957-60fd129b2cb3"

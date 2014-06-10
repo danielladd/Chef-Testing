@@ -63,7 +63,7 @@ service "tomcat7" do
 end
 
 #delete deployed app folder
-directory "#{node[:tomcat][webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}" do
+directory "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}" do
     action   :delete
     mode     "0755"
     owner    "chub_mc_authservice"
@@ -79,12 +79,12 @@ file "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war
 end
 
 #delete keystore file
-file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
+file "#{node[:tomcat][:config_dir]}/#{node[:tomcat][:keystore_file]}" do
 	action :delete
 end
 
 #delete cas.properties file
-file "#{node[:tomcat][:config_dir]/node[:chub_mc_authservice][:cas_properties]}" do
+file "#{node[:tomcat][:config_dir]}/#{node[:chub_mc_authservice][:cas_properties]}" do
 	action :delete
 end
 
@@ -95,7 +95,7 @@ end
 
 #download war file into tomcat webapps dir
 remote_file "Get the war file from bamboo" do 
-  path "#{node["tomcat"]["webapp_dir"]}"
+  path "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war"
   source "#{node[:chub_mc_authservice][:war_file_url]}"
   owner 'chub_mc_authservice'
   group 'chub_mc_authservice'
