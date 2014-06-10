@@ -5,7 +5,6 @@ supports "ubuntu"
 
 depends "sudo"
 depends "chub_java", "= 0.1.1"
-depends "hostsfile", "= 2.4.4"
 
 recipe "chub-klerk", "Main Klerk recipe"
 
