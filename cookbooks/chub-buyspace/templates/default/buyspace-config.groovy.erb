@@ -225,6 +225,12 @@ beans {
     }
 }
 
+forSaleImport {
+    pendingDir = '<%= node['chub-buyspace']['forSaleImport']['pendingDir'] %>'
+    inProgressDir = '<%= node['chub-buyspace']['forSaleImport']['inProgressDir'] %>'
+    doneDir = '<%= node['chub-buyspace']['forSaleImport']['doneDir'] %>'
+}
+
 <%# TODO This appears to be in conflict with the 'grails' block above %>
 grails.plugin.excludes = {}
 
