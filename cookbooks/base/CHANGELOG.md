@@ -1,5 +1,8 @@
 base CHANGELOG
 ==============
+0.1.19
+----
+- Larry - Updated base_linux recipe to add unique true for hostfile editing
 
 0.1.18
 ----
