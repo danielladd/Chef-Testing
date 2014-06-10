@@ -41,21 +41,14 @@ group "chub_mc_authservice" do
     members ["chub_mc_authservice", "chadmin"]
 end
 
-directory node[:chub_mc_authservice][:config_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-directory node[:chub_mc_authservice][:keystore_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
 directory node[:chub_mc_authservice][:log_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+
+directory node[:chub_mc_authservice][:deploy_dir] do
   action :create
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
@@ -86,7 +79,7 @@ file "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war
 end
 
 #delete keystore file
-file "#{node[:tomcat][:config_dir]/node[:chub_mc_authservice][:keystore_file]}" do
+file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
 	action :delete
 end
 
@@ -96,7 +89,7 @@ file "#{node[:tomcat][:config_dir]/node[:chub_mc_authservice][:cas_properties]}"
 end
 
 #delete log4j.xml file
-file "#{node[:chub_mc_authservice][:config_dir]}/log4j.xml" do
+file "#{node[:tomcat][:config_dir]}/log4j.xml" do
 	action :delete
 end
 
@@ -110,7 +103,7 @@ remote_file "Get the war file from bamboo" do
 end
 
 #download keystore file into config_dir
-remote_file "#{node[:tomcat][:config_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
+remote_file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
   source "#{node[:chub_mc_authservice][:keystore_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
