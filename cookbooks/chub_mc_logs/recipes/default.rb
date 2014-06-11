@@ -34,8 +34,7 @@ execute "restart_rsyslog" do
   action :nothing
 end
 
-logIsOn = false #define as truth value of whether logging should be on for machines running this recipe
-if logIsOn 
+if node[:chub_mc_logs][:logs_on]
   template "/etc/rsyslog.conf" do
     source "rsyslog.conf.erb"
     variables({
