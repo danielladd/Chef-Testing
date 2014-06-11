@@ -12,3 +12,4 @@ default[:chub_mc_authservice][:cas_properties_file_url] = 'OVERRIDE ME'
 default[:chub_mc_authservice][:app_name] = 'authservice' 
 default[:chub_mc_authservice][:touchfile] = "#{node[:chub_mc_authservice][:deploy_dir]}/deployed.txt"
 default[:chub_mc_authservice][:cas_properties] = "cas.properties"
+default[:chub_mc_authservice][:keystore_file] = "OVERRIDE ME"
