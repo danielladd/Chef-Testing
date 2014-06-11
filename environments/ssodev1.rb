@@ -3,7 +3,7 @@ description "SSO development environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.17",
+  "base" => "= 0.1.19",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.1.8",
+  "chub_plaza" => "= 0.2.0",
   "chub_sensu_sso" => "= 0.1.16",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
@@ -123,6 +123,11 @@ default_attributes(
     :cas_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :cas_failure_url => "https://ssodev1-plaza.nexus.commercehub.com/",
     :census_url => "https://ssodev1-census.nexus.commercehub.com:8443",
-    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443"
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
+    :hazelcast => {
+      :password => "ssodev-pass",
+      :multicast_group => "224.2.2.4",
+      :multicast_port => 54328
+    }
   }
 )

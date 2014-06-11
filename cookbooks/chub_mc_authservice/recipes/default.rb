@@ -54,6 +54,13 @@ directory node[:chub_mc_authservice][:deploy_dir] do
   group "chub_mc_authservice"
   mode 0777
 end
+#because we're overriding the tomcat config_dir in the role we will need to create our new directory (/etc/authservice)
+directory node[:chub_mc_authservice][:config_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
 
 unless File.exists?("#{node[:chub_mc_authservice][:touchfile]}")
 
@@ -63,7 +70,7 @@ service "tomcat7" do
 end
 
 #delete deployed app folder
-directory "#{node[:tomcat][webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}" do
+directory "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}" do
     action   :delete
     mode     "0755"
     owner    "chub_mc_authservice"
@@ -79,12 +86,12 @@ file "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war
 end
 
 #delete keystore file
-file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
+file "#{node[:tomcat][:config_dir]}/#{node[:tomcat][:keystore_file]}" do
 	action :delete
 end
 
 #delete cas.properties file
-file "#{node[:tomcat][:config_dir]/node[:chub_mc_authservice][:cas_properties]}" do
+file "#{node[:tomcat][:config_dir]}/#{node[:chub_mc_authservice][:cas_properties]}" do
 	action :delete
 end
 
@@ -95,7 +102,7 @@ end
 
 #download war file into tomcat webapps dir
 remote_file "Get the war file from bamboo" do 
-  path "#{node["tomcat"]["webapp_dir"]}"
+  path "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war"
   source "#{node[:chub_mc_authservice][:war_file_url]}"
   owner 'chub_mc_authservice'
   group 'chub_mc_authservice'
@@ -103,7 +110,7 @@ remote_file "Get the war file from bamboo" do
 end
 
 #download keystore file into config_dir
-remote_file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
+remote_file "#{node[:tomcat][:config_dir]}/#{node[:tomcat][:keystore_file]}" do
   source "#{node[:chub_mc_authservice][:keystore_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"

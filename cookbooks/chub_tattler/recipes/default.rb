@@ -41,17 +41,29 @@ end
 [
     {
         dir:    "/opt/tattler",
-        mode:   0550
+        mode:   0775
     },{
         dir:    "/etc/tattler",
         owner:  "root",
-        mode:   0755
+        mode:   0775
     },{
         dir:    "/var/tattler",
         mode:   0770
     },{
+        dir:    "/opt/tattler/conf",
+        mode:   0775
+    },{
+        dir:    "/opt/tattler/bin",
+        mode:   0776
+    },{
+        dir:    "/opt/tattler/logs",
+        mode:   0775
+    },{
+        dir:    "/opt/tattler/lib",
+        mode:   0775
+    },{
         dir:    "/var/log/tattler",
-        mode:   0770
+        mode:   0775
     }
 ].each do |data|
     directory data[:dir] do
@@ -66,18 +78,28 @@ end
         dest: "/etc/tattler/tattler.yaml",
         source: "tattler.yml.erb",
         group: group_name,
-        mode: 0640,
-        restart: true
-    },{
-        dest: "/etc/init/tattler.conf",
-        source: "tattler.conf.erb",
-        mode: 0644,
+        mode: 0774,
         restart: true
     },{
         dest: "/etc/tattler/tattler.properties",
         source: "tattler.properties.erb",
         group: group_name,
-        mode: 0640,
+        mode: 0774,
+        restart: true
+    },{
+        dest: "/opt/tattler/conf/wrapper.conf",
+        source: "wrapper.conf.erb",
+        mode: 0776,
+        restart: true
+    },{
+        dest: "/opt/tattler/conf/wrapper-license.conf",
+        source: "wrapper.conf.license.erb",
+        mode: 0776,
+        restart: true
+    },{
+        dest: "/opt/tattler/bin/tattler",
+        source: "sh.script.erb",
+        mode: 0775,
         restart: true
     }
 ].each do |data|
@@ -86,8 +108,28 @@ end
         owner data[:owner] || "root"
         group data[:group] || "root"
         mode data[:mode]
-        notifies "restart", "service[tattler]" if data[:restart]
     end
+end
+
+cookbook_file "/opt/tattler/bin/wrapper" do
+  source "wrapper"
+  owner user_name
+  group group_name
+  mode 0775
+end
+
+cookbook_file "/opt/tattler/lib/wrapper.jar" do
+  source "wrapper.jar"
+  owner user_name
+  group group_name
+  mode 0775
+end
+
+cookbook_file "/opt/tattler/lib/libwrapper.so" do
+  source "libwrapper.so"
+  owner user_name
+  group group_name
+  mode 0775
 end
 
 #This is just a hack until we get the jar deployed to Artifactory.
@@ -95,11 +137,15 @@ remote_file "/opt/tattler/tattler.jar" do
     source node[:chub_tattler][:app_url]
     owner user_name
     group group_name
-    mode 0440
+    mode 0775
     notifies "restart", "service[tattler]"
 end
 
 service service_name do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
+  supports :status => true, :restart => true, :stop => true, :start => true
+  start_command "/opt/tattler/bin/tattler start"
+  stop_command "/opt/tattler/bin/tattler stop"
+  restart_command "/opt/tattler/bin/tattler restart"
+  status_command "/opt/tattler/bin/tattler status"
+  action [ :start ]
 end

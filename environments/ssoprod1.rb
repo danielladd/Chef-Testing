@@ -3,7 +3,7 @@ description "SSO Prod environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
   "apt" => "= 2.3.8",
-  "base" => "= 0.1.16",
+  "base" => "= 0.1.19",
   "bluepill" => "= 2.3.1",
   "build-essential" => "= 1.4.2",
   "chef-client" => "= 3.0.6",
@@ -124,6 +124,11 @@ default_attributes(
     :cas_service_url => "https://plaza.commercehub.com/shiro-cas",
     :cas_failure_url => "https://plaza.commercehub.com/",
     :census_url => "https://ssoprod1-census.commercehub.com:8443",
-    :vault_url => "https://ssoprod1-vault.commercehub.com:8443"
+    :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
+    :hazelcast => {
+      :password => "ssoprod-pass",
+      :multicast_group => "224.2.2.6",
+      :multicast_port => 54330
+    }
   }
 )

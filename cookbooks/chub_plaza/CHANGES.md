@@ -1,3 +1,6 @@
+# 0.2.0
+* Add new hazelcast configuration support
+
 # 0.1.8
 * Remove apt dependency (base cookbook should ensure apt is appropriately updated)
 * Remove hostsfile tweaks (base cookbook should provide those when needed)

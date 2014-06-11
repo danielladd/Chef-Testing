@@ -13,6 +13,10 @@ default_attributes(
     :cas_service_url => "http://plaza.vagrant.dev:8080/shiro-cas",
     :cas_failure_url => "http://plaza.vagrant.dev:8080/",
     :census_url => "https://ssodev1-census.nexus.commercehub.com:8443",
-    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443"
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
+    :hazelcast => {
+      :group => "ssodev",
+      :password => "password"
+    }
   }
 )

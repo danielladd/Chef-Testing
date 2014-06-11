@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "elasticsearch::search_discovery"
-
 user "logstash" do
   system true
   home "/opt/logstash"
@@ -83,7 +81,7 @@ template "/etc/indexer.conf" do
   source "indexer.conf.erb"
   variables({
     :clustername => node[:elasticsearch][:cluster][:name],
-    :host => node[:elasticsearch][:discovery][:zen][:ping][:unicast][:hosts].split(',')[0],
+    :host => node[:chub_logstash][:esgateway],
     :rules => node[:chub_log][:types]
   })
   notifies :run, 'execute[stop_logstash]', :immediately

@@ -46,7 +46,7 @@ useHubSpot = <%= node['chub-buyspace']['useGoogleAnalytics'] %>
 marketplace.gitRevision = System.currentTimeMillis()
 
 <%# TODO We need to change the value of this property %>
-adminEmailAddress = 'lrotter@commercehub.com'
+adminEmailAddress = 'support@buyspace.com'
 
 paymentFailureEmailAddress = 'paymentissues@buyspace.com'
 
@@ -223,6 +223,12 @@ beans {
     shiroSecurityManager {
         rememberMeManager = null
     }
+}
+
+forSaleImport {
+    pendingDir = '<%= node['chub-buyspace']['forSaleImport']['pendingDir'] %>'
+    inProgressDir = '<%= node['chub-buyspace']['forSaleImport']['inProgressDir'] %>'
+    doneDir = '<%= node['chub-buyspace']['forSaleImport']['doneDir'] %>'
 }
 
 <%# TODO This appears to be in conflict with the 'grails' block above %>

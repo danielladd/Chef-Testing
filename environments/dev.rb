@@ -8,6 +8,7 @@ default_attributes(
     }
   }, 
   "chub_logstash" => {
-    "endpoint" => "lsdev01.nexus.commercehub.com"
+    "endpoint" => "lsdev.nexus.commercehub.com",
+    "esgateway" => "esdev.nexus.commercehub.com"
   }
 )
