@@ -54,6 +54,13 @@ directory node[:chub_mc_authservice][:deploy_dir] do
   group "chub_mc_authservice"
   mode 0777
 end
+#because we're overriding the tomcat config_dir in the role we will need to create our new directory (/etc/authservice)
+directory node[:chub_mc_authservice][:config_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
 
 unless File.exists?("#{node[:chub_mc_authservice][:touchfile]}")
 
@@ -103,7 +110,7 @@ remote_file "Get the war file from bamboo" do
 end
 
 #download keystore file into config_dir
-remote_file "#{node[:tomcat][:config_dir]/node[:tomcat][:keystore_file]}" do
+remote_file "#{node[:tomcat][:config_dir]}/#{node[:tomcat][:keystore_file]}" do
   source "#{node[:chub_mc_authservice][:keystore_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
