@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.8'
+version          '0.2.0'
 
 supports "ubuntu"
 depends "chub_java"
@@ -40,6 +40,14 @@ attribute "chub_plaza/census_url",
     :display_name => "Census URL",
     :description => "The URL for Census",
     :required => "required"
+
+attribute "chub_plaza/hazelcast/group", :required => "optional"
+attribute "chub_plaza/hazelcast/password", :required => "required"
+attribute "chub_plaza/hazelcast/network_port", :required => "optional"
+attribute "chub_plaza/hazelcast/multicast_group", :required => "optional"
+attribute "chub_plaza/hazelcast/multicast_port", :required => "optional"
+attribute "chub_plaza/hazelcast/backup_count", :required => "optional"
+attribute "chub_plaza/hazelcast/minimum_member_count", :required => "optional"
 
 attribute "graphite/host", :required => "recommended"
 attribute "graphite/port", :required => "optional"

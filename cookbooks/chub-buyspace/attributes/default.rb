@@ -54,6 +54,10 @@ default['chub-buyspace']['antivirus']['port'] = 1344
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
 default['chub-buyspace']['bestBuyMarketplace']['retailerId'] = '51247477c519e3a71e639634'
 default['chub-buyspace']['creSecure']['cardTokenValidationUrl'] = 'https://localhost/direct/services/validation'
+
+default['chub-buyspace']['forSaleImport']['pendingDir'] = "PLACEHOLDER"
+default['chub-buyspace']['forSaleImport']['inProgressDir'] = "PLACEHOLDER"
+default['chub-buyspace']['forSaleImport']['doneDir'] = "PLACEHOLDER"
   
 default['chub-buyspace']['grails']['serverURL'] = "https://localhost"
 default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:8080"

@@ -4,7 +4,7 @@ default_attributes(
   "elasticsearch" => {
     "version" => "1.1.0",
     "cluster" => {
-      "name" => "esdev1"
+      "name" => "vagrant"
     }
   }, 
   "chub_logstash" => {

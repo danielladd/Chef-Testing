@@ -26,3 +26,22 @@ metrics {
     <% end -%>
 }
 <% end -%>
+hazelcast {
+    group = "<%= node[:chub_plaza][:hazelcast][:group] %>"
+    password = "<%= node[:chub_plaza][:hazelcast][:password] %>"
+    <% if node[:chub_plaza][:hazelcast][:network_port] -%>
+    networkPort = <%= node[:chub_plaza][:hazelcast][:network_port] %>
+    <% end -%>
+    <% if node[:chub_plaza][:hazelcast][:multicast_group] -%>
+    multicastGroup = "<%= node[:chub_plaza][:hazelcast][:multicast_group] %>"
+    <% end -%>
+    <% if node[:chub_plaza][:hazelcast][:multicast_port] -%>
+    multicastPort = <%= node[:chub_plaza][:hazelcast][:multicast_port] %>
+    <% end -%>
+    <% if node[:chub_plaza][:hazelcast][:backup_count] -%>
+    backupCount = <%= node[:chub_plaza][:hazelcast][:backup_count] %>
+    <% end -%>
+    <% if node[:chub_plaza][:hazelcast][:minimum_member_count] -%>
+    minimumMemberCount = "<%= node[:chub_plaza][:hazelcast][:minimum_member_count] %>"
+    <% end -%>
+}
