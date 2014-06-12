@@ -143,10 +143,10 @@ end
     action :create
   end
 
-service "tomcat7" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
-end
+# service "tomcat7" do
+#     provider Chef::Provider::Service::Upstart
+#     action [ "enable", "start" ]
+# end
 
 file node[:chub_mc_authservice][:touchfile] do
     action   :create
