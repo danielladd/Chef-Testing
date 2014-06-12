@@ -14,7 +14,5 @@ default_attributes "berkshelf_api" => {
         }
       ]
     },
-    "host" => "#{node[:fqdn]}",
-    "home_path" => "#{node[:berkshelf_api][:home]}"
   }
 run_list "recipe[chub_berkshelf_api::default]"
