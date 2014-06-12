@@ -1,16 +1,19 @@
 name "mpprod1"
 description "marketplace production environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 0.10.7"
+cookbook "chub-klerk", "= 1.1.0"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mdb01:27017", "mdb02:27017", "mdb03:27017" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlps/Klerk_Quartz;user=Klerk_Admin;password=KAdminuser01!",
     "hazelcast_group_name" => "mpprod1_klerk",
     "hazelcast_group_password" => "dbYsD3PVD9HEpGbQ",
     "antivirus_hosts" => [ "vscan.commercehub.com" ],
-    "event_notification_endpoints" => {
+    "product_data_event_endpoints" => {
         "productstream" => "http://api.buyspace.com/klerk/productDataEvents"
     },
+    "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
+	"dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
+	"jms_provider_url" => "jnp://mq01.commercehub.com:1099",  
     "sprite_conductor_url" => "http://sprite.buyspace.com/sprite-conductor",
     "sprite_output_container_prefix" => "mpprod1-"
 },
