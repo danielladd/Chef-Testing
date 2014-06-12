@@ -39,18 +39,11 @@ imageUploading {
 }
 
 useGoogleAnalytics = <%= node['chub-buyspace']['useGoogleAnalytics'] %>
-
-<%# TODO We probably shouldn't use the 'useGoogleAnalytics' attribute to enable/disable HubSpot integration %>
 useHubSpot = <%= node['chub-buyspace']['useGoogleAnalytics'] %>
 
 marketplace.gitRevision = System.currentTimeMillis()
-
-<%# TODO We need to change the value of this property %>
 adminEmailAddress = 'support@buyspace.com'
-
 paymentFailureEmailAddress = 'paymentissues@buyspace.com'
-
-<%# TODO This should be attribute-driven %>
 creSecure.cardTokenValidationUrl = 'https://sandbox.cresecure.net/direct/services/validation'
 
 marketplace.files.commerceHubRelationshipsFile = "/marketplace/rels.csv"
@@ -100,9 +93,7 @@ mongo {
     replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
     <% if node.chef_environment != 'mpdev_alex' -%>
     blobStore {
-        <%# TODO Consider refactoring attribute as ['chub-buyspace']['mongo']['blobstore']['databaseName'] %>
         databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
-        <%# TODO Consider refactoring attribute as ['chub-buyspace']['mongo']['blobstore']['replicas'] %>
         replicas = <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
     }
     <% end -%>
@@ -133,9 +124,7 @@ grails {
     }
 }
 
-<%# TODO This should be attribute-driven as we won't be using the mock strategy in production %>
 paymentStrategy = 'mock'
-
 creSecure {
     baseFormBuilderUrl = "<%= node['chub-buyspace']['grails']['serverURL'] %>/cre/form.gsp"
 }
@@ -143,12 +132,10 @@ creSecure {
 taskScheduler.enabled = <%= node['chub-buyspace']['taskScheduler']['enabled'] %>
 
 dateConfig {
-    <%# TODO This needs to be attribute-driven as we won't be enabling dateConfig in production %>
     enabled = true
     offsetMillis = 0
 }
 
-<%# TODO This should probably be attribute-driven %>
 marketplace.logUsernames = true
 
 semantics3 {
@@ -162,9 +149,7 @@ log4j = {
         'null' name: 'stacktrace'
         appender new com.ryantenney.log4j.RedisAppender(
             name: 'logstash',
-            <%# TODO userFields should be attribute-driven since we're including an environment identifier (e.g. env:mpqa1, env:mpprod1) %>
             layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields: 'env:mpqa1,app:marketplace'),
-            <%# TODO host should be attribute-driven %>
             host: 'mplogs01.nexus.commercehub.com',
             key: 'logstash',
             alwaysBatch: false,
@@ -212,7 +197,6 @@ antivirus {
 
 bestbuy {
     ingestor {
-        <%# TODO The following may need to be attribute-driven %>
         username = 'chub.test1'
         password = 'test'
         url = 'http://54.208.33.194/ingest-service/service'
@@ -231,7 +215,6 @@ forSaleImport {
     doneDir = '<%= node['chub-buyspace']['forSaleImport']['doneDir'] %>'
 }
 
-<%# TODO This appears to be in conflict with the 'grails' block above %>
 grails.plugin.excludes = {}
 
 <% if node.chef_environment == 'mpdev_alex' -%>
@@ -242,3 +225,4 @@ sugar {
     uiUrl = "https://chub.sugarondemand.com/index.php?action=DetailView&module=Accounts&record="
 }
 <% end -%>
+
