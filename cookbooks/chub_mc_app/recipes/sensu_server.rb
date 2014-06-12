@@ -58,8 +58,8 @@ sensu_check "missioncontrol_check_cpu" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-cpu.rb -c 90 -w 70"
     handlers ["missioncontrol_team"]
     subscribers ["missioncontrol_team"]
-    interval 60
-    additional(:occurrences => 2)
+    interval 300
+    additional(:occurrences => 3)
 end
 
 sensu_check "missioncontrol_check_ram" do

@@ -1,3 +1,7 @@
+# 0.1.5
+
+Larry - Update mailer.json to set admin_gui url. 
+
 # 0.1.4
 
 * Defaulting to sensu01 server unless chef-solo run
