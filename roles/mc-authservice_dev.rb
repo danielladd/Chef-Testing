@@ -14,5 +14,6 @@ default_attributes "chub_mc_authservice" => {
 },
 "chub_mc_logs" => {
 	"mc_resource" => "authservice",
-	"log_server" => "lsdev01.nexus.commercehub.com"
+	"log_server" => "lsdev.nexus.commercehub.com", 
+	"logs_on" => false
 }
