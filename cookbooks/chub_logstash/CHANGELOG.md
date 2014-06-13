@@ -3,9 +3,13 @@ chub_logstash CHANGELOG
 
 This file is used to list changes made in each version of the chub_logstash cookbook.
 
+0.1.13
+-----
+- H. "Waldo" Grunenwald - Moved default recipe to server.rb; making default.rb a client recipe.
+
 0.1.0
 -----
-- [your_name] - Initial release of chub_logstash
+- David Cross - Initial release of chub_logstash
 
 - - -
 Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
