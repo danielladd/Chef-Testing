@@ -27,7 +27,8 @@ unless platform_family?('windows')
 		owner node[:chub_logstash][:user]
 		group "adm"
 		mode 00700
-		action :nothing
+		action :create
+		recursive true
 		notifies :create, 'cookbook_file[logstash.crt]', :immediately
 		notifies :create, 'cookbook_file[logstash.key]', :immediately
 	end
