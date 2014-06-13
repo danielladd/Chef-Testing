@@ -5,7 +5,7 @@ This file is used to list changes made in each version of the chub_logstash cook
 
 0.1.13
 -----
-- H. "Waldo" Grunenwald - Moved default recipe to server.rb; making default.rb a client recipe.
+- H. "Waldo" Grunenwald - Moved default recipe to server.rb; making default.rb common commands , and added a client recipe.
 
 0.1.0
 -----

@@ -7,45 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-user "logstash" do
-  system true
-  home "/opt/logstash"
-  action :create
-end
+# Installs the Logstash Server
 
-group "adm" do
-  append true
-  members "logstash"
-  action :modify
-end
-
-directory "/opt/logstash/ssl" do
-  owner "logstash"
-  group "adm"
-  mode 00700
-  action :nothing
-  notifies :create, 'cookbook_file[logstash.crt]', :immediately
-  notifies :create, 'cookbook_file[logstash.key]', :immediately
-end
-
-cookbook_file "logstash.crt" do
-  path "/opt/logstash/ssl/logstash.crt"
-  owner "logstash"
-  group "adm"
-  mode 00600
-  action :nothing
-end
-
-cookbook_file "logstash.key" do
-  path "/opt/logstash/ssl/logstash.key"
-  owner "logstash"
-  group "adm"
-  mode 00600
-  action :nothing
-end
+include_recipe "chub_logstash"
 
 file "/var/log/logstash-indexer.out" do
-  owner "logstash"
+  owner node[:chub_logstash][:user]
   group "adm"
   mode 00644
   action :create
@@ -90,7 +57,7 @@ end
 
 link "currentversion" do
   link_type :symbolic
-  target_file "/opt/logstash"
+  target_file node[:chub_logstash][:base_dir]
   to "/opt/logstash-1.4.1"
   action :nothing
   notifies :create, "directory[/opt/logstash/ssl]", :immediately
