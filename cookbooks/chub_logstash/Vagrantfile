@@ -1,0 +1,63 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+	config.vm.box = "precise64"
+	config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+#	config.vm.provider :virtualbox do |vb|
+#		vb.customize ["modifyvm", :id, "--memory", 512]
+#	end
+
+	if Vagrant.has_plugin?("vagrant-cachier")
+		config.cache.scope = :box
+		config.cache.auto_detect = true
+	end
+
+	config.hostmanager.enabled = true
+	config.hostmanager.manage_host = true
+	config.hostmanager.ignore_private_ip = false
+	config.hostmanager.include_offline = true
+
+	config.vm.define "lsvagrant1" do |lsvagrant1|
+		lsvagrant1.vm.hostname = "lsvagrant1"
+#		lsvagrant1.vm.network :forwarded_port, guest: 80, host: 8080
+		lsvagrant1.vm.network :forwarded_port, guest: 2351, host: 2351
+		lsvagrant1.hostmanager.aliases = %w(server alias)
+
+		lsvagrant1.omnibus.chef_version = :latest
+#		If using the Omnibus plugin, don't use the install_chef.sh script
+#		The downside is that the Omnibus plugin does not cache downloading the
+#		installer.
+#		lsvagrant1.vm.provision :shell, :path => "./install_chef.sh"
+		elk1.vm.provision "chef_solo" do |chef|
+			chef.cookbooks_path = "d:/git/chef/cookbooks"
+			chef.environments_path = "d:/git/chef/environments"
+			chef.roles_path = "d:/git/chef/roles"
+            chef.data_bags_path = "d:/git/chef/data_bags"
+# 			####################################################################
+#			# In chef you can check for Vagrantness with:
+#			#	 if node[:instance_role] == 'vagrant'
+#			#		# do something that should only be done inside
+#			#		# a Vagrant box
+#			#	 end
+# 			###################################################################
+			chef.environment = 'dev'
+			chef.json = {
+				'instance_role' => 'vagrant',
+				'chub_log' => {
+					'types' => {
+						'placeholder' => {
+							'name' => 'placeholder',
+							'body' => ''
+						}
+					}
+				}
+			}
+			chef.add_role("base")
+			chef.add_role("logstash_dev")
+			chef.add_recipe 'git'
+		end
+	end
+
+end
+
