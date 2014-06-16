@@ -8,5 +8,5 @@ default_attributes "chub_mc_app" => {
 },
 "chub_mc_logs" => {
 	"mc_resource" => "landingstrip",
-	"log_server" => "lsdev01.nexus.commercehub.com"
+	"log_server" => "lsdev.nexus.commercehub.com"
 }
