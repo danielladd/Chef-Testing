@@ -1,3 +1,8 @@
+# WinRMPlugin
+default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"
+
+
+# Rundeck Properties SSH
 default[:rundeck][:ssh][:private_key] = "
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAu8tn02Hw6UBXkGhEiGC8//esPen0VQkdQWJkJ128Kc3J4GdD
@@ -31,4 +36,4 @@ arvJwEkijZIjDJBnhjfO8aCj5BcetSkNeRvTAqZwRCIgNErdx0N2hdWO9nWqEq8h
 default[:chub_rundeck][:resources]
 
 # Override default prop from rundeck to remove the admin.aclpolicy file
-override['rundeck']['stub_config_files'] = %w{ log4j.properties jaas-loginmodule.conf apitoken.aclpolicy }
+override[:rundeck][:stub_config_files] = %w{ log4j.properties jaas-loginmodule.conf apitoken.aclpolicy }

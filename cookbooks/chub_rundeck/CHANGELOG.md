@@ -1,5 +1,17 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.7
+-----
+- Larry - Adding krb5.conf kerberos config as a cookbook_file deployed to /etc/krb5.conf
+
+0.1.6
+-----
+- Larry - Update resources.xml template to account for windows machines
+
+0.1.5
+-----
+- Larry - Install of rundeck-winrm plugin on server recipe.
+
 0.1.4
 -----
 - Larry - adding SG_OrderStream_Batch_Admins to rundeck access

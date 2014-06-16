@@ -52,6 +52,19 @@ node[:chub_rundeck][:resources].each do |project, nodes|
   end
 end
 
+cookbook_file "/etc/krb5.conf" do
+  source  "krb5.conf"
+  owner   "root"
+  mode    00644
+end
+
+remote_file "/var/lib/rundeck/libext/rundeck-winrm-plugin-1.1.jar" do
+  source    node[:chub_rundeck][:winrm_plugin_url]
+  owner     "root"
+  group     "root"
+  notifies  :restart, "service[rundeckd]", :delayed
+end
+
 cookbook_file "/etc/rundeck/jaas-ldap.conf" do
   source "jaas-ldap.conf"
   mode 00644

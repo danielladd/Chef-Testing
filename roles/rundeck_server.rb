@@ -101,6 +101,20 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "osVersion" => "3.5.0-23-generic",
                 "username" => "rundeck-ssh"
             },
+        ],
+        "Tomcat" => [
+            {
+                "name" => "qalzarou",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qalzarou.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
         ]
     }
   },
