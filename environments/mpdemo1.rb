@@ -15,5 +15,5 @@ default_attributes "chub-klerk" => {
     "sprite_output_container_prefix" => "mpdemo1-",
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
-    "jms_provider_url" => "jnp://mpdemo1db1.nexus.commercehub.com:1099"
+    "jms_provider_url" => "jnp://mpdemo1db1.commercehub.com:1099"
 }
