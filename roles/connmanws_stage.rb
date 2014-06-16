@@ -1,5 +1,5 @@
-name "connmanws_live"
-description "A linux machine running connman WS (in production)"
+name "connmanws_stage"
+description "A linux machine running connection manager WS (in stage)"
 run_list "recipe[base]", "recipe[chub_mc_webservices]", "recipe[chub_mc_webservices::connman_webservice]"
 default_attributes "chub_mc_webservice" => {
 	"connman" => {
@@ -7,5 +7,4 @@ default_attributes "chub_mc_webservice" => {
 		"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/connmanws/0.1/ConnMgrService-standalone.jar"
 		}
 }
-
 

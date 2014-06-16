@@ -1,3 +1,4 @@
+default[:chub_mc_webservice][:connman][:log_dir] = '/var/log/ConnMgrService'
 default[:chub_mc_webservice][:connman][:deploy_dir] = '/opt/connman-webservice'
 default[:chub_mc_webservice][:connman][:staging_dir] = '/opt/connman-webservice-staging'
 default[:chub_mc_webservice][:connman][:jar_file_url] = 'OVERRIDE ME'
@@ -31,3 +32,19 @@ default[:chub_mc_webservice][:netsuite][:config][:netSuiteClient][:signature] = 
 default[:chub_mc_webservice][:netsuite][:config][:netSuiteClient][:role] = '1037'
 default[:chub_mc_webservice][:netsuite][:config][:netSuiteClient][:maxConnections] = '50'
 default[:chub_mc_webservice][:netsuite][:config][:netSuiteClient][:gzipEnabledForRequests] = 'false'
+
+
+default[:chub_mc_webservice][:systems][:log_dir] = '/var/log/systems-webservice'
+default[:chub_mc_webservice][:systems][:deploy_dir] = '/opt/systems-webservice'
+default[:chub_mc_webservice][:systems][:staging_dir] = '/opt/systems-webservice-staging'
+default[:chub_mc_webservice][:systems][:jar_file_url] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:systems][:jar_file_name] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:systems][:config_file_name] = 'systems_webservice_config.yml'
+default[:chub_mc_webservice][:systems][:touchfile] = "#{node[:chub_mc_webservice][:systems][:deploy_dir]}/deployed"
+
+default[:chub_mc_webservice][:flight][:log_dir] = '/var/log/flight-webservice'
+default[:chub_mc_webservice][:flight][:deploy_dir] = '/opt/flight-webservice'
+default[:chub_mc_webservice][:flight][:staging_dir] = '/opt/flight-webservice-staging'
+default[:chub_mc_webservice][:flight][:jar_file_url] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:flight][:jar_file_name] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:flight][:touchfile] = "#{node[:chub_mc_webservice][:flight][:deploy_dir]}/deployed"
