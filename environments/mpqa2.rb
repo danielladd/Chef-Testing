@@ -111,6 +111,11 @@ default_attributes "chub-klerk" => {
     "shareMount" => "/var/buyspace/images/",
     "shareUser" => "mpqatomcat",
     "sharePassword" => "MarketPl@ce"
+  },
+  "forSaleImport" => {
+    "pendingDir" => "/var/buyspace/images/forSale",
+    "inProgressDir" => "/var/buyspace/images/forSale/processing",
+    "doneDir" => "/var/buyspace/images/forSale/archived"
   }  
 },
 'tomcat' => {
