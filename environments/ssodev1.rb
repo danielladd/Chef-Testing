@@ -118,7 +118,6 @@ default_attributes(
   },
   :chub_plaza => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssodev1.current+=true",
-    :app_url => "file:///var/plaza/staged-plaza.jar",
     :cas_server_url => "https://ssodev1-castle.nexus.commercehub.com",
     :cas_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :cas_failure_url => "https://ssodev1-plaza.nexus.commercehub.com/",
