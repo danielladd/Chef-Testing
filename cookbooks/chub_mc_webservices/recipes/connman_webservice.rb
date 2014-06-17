@@ -41,75 +41,82 @@ end
 
 unless File.exists?("#{node[:chub_mc_webservice][:connman][:touchfile]}")
 
-directory node[:chub_mc_webservice][:connman][:staging_dir] do
-  action :create
-  owner "chub_connman_webservice"
-  group "chub_connman_webservice"
-  mode 0777
-end
+  directory node[:chub_mc_webservice][:connman][:log_dir] do
+    action :create
+    owner "chub_connman_webservice"
+    group "chub_connman_webservice"
+    mode 0777
+  end
 
-directory node[:chub_mc_webservice][:connman][:deploy_dir] do
-  action :create
-  owner "chub_connman_webservice"
-  group "chub_connman_webservice"
-  mode 0777
-end
+  directory node[:chub_mc_webservice][:connman][:staging_dir] do
+    action :create
+    owner "chub_connman_webservice"
+    group "chub_connman_webservice"
+    mode 0777
+  end
 
-service "connman_webservice" do
-    provider Chef::Provider::Service::Upstart
-    action [ "disable", "stop" ]
-end
+  directory node[:chub_mc_webservice][:connman][:deploy_dir] do
+    action :create
+    owner "chub_connman_webservice"
+    group "chub_connman_webservice"
+    mode 0777
+  end
 
-remote_file "#{node[:chub_mc_webservice][:connman][:staging_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}" do
-  source "#{node[:chub_mc_webservice][:connman][:jar_file_url]}"
-  owner "chub_connman_webservice"
-  group "chub_connman_webservice"
-  action :create	# This should pull the file down forcefully
-end
+  service "connman_webservice" do
+      provider Chef::Provider::Service::Upstart
+      action [ "disable", "stop" ]
+  end
 
-file "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}" do
-    action   :delete
-    mode     "0755"
-    owner    "chub_connman_webservice"
-    group    "chub_connman_webservice"
-end
+  remote_file "#{node[:chub_mc_webservice][:connman][:staging_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}" do
+    source "#{node[:chub_mc_webservice][:connman][:jar_file_url]}"
+    owner "chub_connman_webservice"
+    group "chub_connman_webservice"
+    action :create	# This should pull the file down forcefully
+  end
 
-remote_file "Copy deploy jar file from staging" do 
-  path "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}"
-  source "file://#{node[:chub_mc_webservice][:connman][:staging_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}"
-  owner 'root'
-  group 'root'
-  mode 0755
-end
+  file "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}" do
+      action   :delete
+      mode     "0755"
+      owner    "chub_connman_webservice"
+      group    "chub_connman_webservice"
+  end
 
-#create yaml config file
-template "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/connman_webservice_config.json" do
-    source "connman_webservice_config.json.erb"
-    owner "root"
-    group "root"
-    mode 0644
-	action :create
-end
+  remote_file "Copy deploy jar file from staging" do 
+    path "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}"
+    source "file://#{node[:chub_mc_webservice][:connman][:staging_dir]}/#{node[:chub_mc_webservice][:connman][:jar_file_name]}"
+    owner 'root'
+    group 'root'
+    mode 0755
+  end
 
-#create connman webservice service wrapper
-template "/etc/init/connman_webservice.conf" do
-    source "connman_webservice.conf.erb"
-    owner "root"
-    group "root"
-    mode 0644
-	action :create
-end
+  #create yaml config file
+  template "#{node[:chub_mc_webservice][:connman][:deploy_dir]}/connman_webservice_config.json" do
+      source "connman_webservice_config.json.erb"
+      owner "root"
+      group "root"
+      mode 0644
+  	action :create
+  end
 
-service "connman_webservice" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
-end
+  #create connman webservice service wrapper
+  template "/etc/init/connman_webservice.conf" do
+      source "connman_webservice.conf.erb"
+      owner "root"
+      group "root"
+      mode 0644
+  	action :create
+  end
 
-file node[:chub_mc_webservice][:connman][:touchfile] do
-    action   :touch
-    mode     "0755"
-    owner    "chub_connman_webservice"
-    group    "chub_connman_webservice"
-end
+  service "connman_webservice" do
+      provider Chef::Provider::Service::Upstart
+      action [ "enable", "start" ]
+  end
+
+  file node[:chub_mc_webservice][:connman][:touchfile] do
+      action   :touch
+      mode     "0755"
+      owner    "chub_connman_webservice"
+      group    "chub_connman_webservice"
+  end
 
 end#close unless block
