@@ -18,10 +18,7 @@
                 <role-name>Development</role-name>
         </security-role>
         <security-role>
-                <role-name>PTS</role-name>
-        </security-role>
-        <security-role>
-                <role-name>SG_OrderStream_Batch_Admins</role-name>
+                <role-name>PSEAdmin</role-name>
         </security-role>
         <security-constraint>
                 <web-resource-collection>

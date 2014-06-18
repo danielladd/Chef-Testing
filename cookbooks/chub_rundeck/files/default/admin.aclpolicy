@@ -11,7 +11,7 @@ for:
   node:
     - allow: '*' # allow read/run for all nodes
 by:
-  group: [QA,Development,Pipeline,PTS,SG_OrderStream_Batch_Admins]
+  group: [QA,Development,Pipeline,PSEAdmin]
 
 ---
 
@@ -28,7 +28,7 @@ for:
         name: '.*'
     - allow: '*'
 by:
-  group: [QA,Development,Pipeline,PTS,SG_OrderStream_Batch_Admins]
+  group: [QA,Development,Pipeline,PSEAdmin]
 
 ---
 
