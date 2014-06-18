@@ -14,7 +14,7 @@ default_attributes(
     }
   },
   "kafka" => {
-    "version" => "kafka_2.9.2-0.8.1.1",
+    "version" => "2.9.2-0.8.1.1",
     "download_url" => "http://mirror.tcpdiag.net/apache/kafka/0.8.1.1",
     "checksum" => "7541ed160f1b3aa1a5334d4e782ba4d3"
   }

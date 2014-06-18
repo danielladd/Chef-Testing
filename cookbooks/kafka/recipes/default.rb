@@ -98,7 +98,7 @@ directory node[:kafka][:data_dir] do
 end
 
 # pull the remote file only if we create the directory
-tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
+tarball = "kafka_#{node[:kafka][:version]}.tar.gz"
 download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do
