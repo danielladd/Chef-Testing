@@ -2,7 +2,7 @@ name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 1.1.0"
-cookbook "chub-buyspace", "= 0.4.1"
+cookbook "chub-buyspace", "= 0.4.2"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa1_klerk_quartz;user=devusr01;password=usrdev",
@@ -109,6 +109,11 @@ default_attributes "chub-klerk" => {
     "shareMount" => "/var/buyspace/images/",
     "shareUser" => "mpqatomcat",
     "sharePassword" => "MarketPl@ce"
+  },
+  "forSaleImport" => {
+    "pendingDir" => "/var/buyspace/images/forSale",
+    "inProgressDir" => "/var/buyspace/images/forSale/processing",
+    "doneDir" => "/var/buyspace/images/forSale/archived"
   }  
 },
 'tomcat' => {

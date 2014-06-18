@@ -108,6 +108,7 @@ end
         owner data[:owner] || "root"
         group data[:group] || "root"
         mode data[:mode]
+        notifies "restart", "service[tattler]" if data[:restart]
     end
 end
 
@@ -142,10 +143,8 @@ remote_file "/opt/tattler/tattler.jar" do
 end
 
 service service_name do
-  supports :status => true, :restart => true, :stop => true, :start => true
-  start_command "/opt/tattler/bin/tattler start"
-  stop_command "/opt/tattler/bin/tattler stop"
+  #Chef::Provider::Service::Upstart
+  supports :restart => true
   restart_command "/opt/tattler/bin/tattler restart"
-  status_command "/opt/tattler/bin/tattler status"
   action [ :start ]
 end
