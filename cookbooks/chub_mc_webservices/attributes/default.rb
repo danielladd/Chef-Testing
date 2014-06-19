@@ -47,4 +47,5 @@ default[:chub_mc_webservice][:flight][:deploy_dir] = '/opt/flight-webservice'
 default[:chub_mc_webservice][:flight][:staging_dir] = '/opt/flight-webservice-staging'
 default[:chub_mc_webservice][:flight][:jar_file_url] = 'OVERRIDE ME'
 default[:chub_mc_webservice][:flight][:jar_file_name] = 'OVERRIDE ME'
+default[:chub_mc_webservice][:flight][:config_file_name] = 'flight_webservice_config.yml'
 default[:chub_mc_webservice][:flight][:touchfile] = "#{node[:chub_mc_webservice][:flight][:deploy_dir]}/deployed"
