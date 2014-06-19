@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.8
+-----
+- Larry - Updates to web.xml and ldap config to add PSEAdmin group and remove non-used groups
+
 0.1.7
 -----
 - Larry - Adding krb5.conf kerberos config as a cookbook_file deployed to /etc/krb5.conf

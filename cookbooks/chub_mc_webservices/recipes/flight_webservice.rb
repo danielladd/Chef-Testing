@@ -90,13 +90,13 @@ unless File.exists?("#{node[:chub_mc_webservice][:flight][:touchfile]}")
   end
 
   #create yaml config file
-  #template "#{node[:chub_mc_webservice][:flight][:deploy_dir]}/flight_webservice_config.yml" do
-  #   source "flight_webservice_config.yml.erb"
-  #    owner "root"
-  #    group "root"
-  #    mode 0644
-  #	action :create
-  #end
+  template "#{node[:chub_mc_webservice][:flight][:deploy_dir]}/flight_webservice_config.yml" do
+    source "flight_webservice_config.yml.erb"
+    owner "root"
+    group "root"
+    mode 0644
+  	action :create
+  end
 
   #create flight webservice service wrapper
   template "/etc/init/flight_webservice.conf" do
