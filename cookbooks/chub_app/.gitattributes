@@ -1,0 +1,4 @@
+* eol=lf
+
+*.jks binary
+*.bat eol=crlf
