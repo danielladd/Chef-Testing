@@ -1,5 +1,5 @@
-name "zookeeper_dev"
-description "a zookeeper node running in dev"
+name "zookeeper"
+description "a zookeeper node"
 run_list "recipe[zookeeper]"
 default_attributes(
   "java" => {
