@@ -73,7 +73,7 @@ default_attributes(
     :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   :chub_vault => {
-    :app_url => "file:///var/vault/staged-vault.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssoqa1.current+=true",
     :ldap => {
       :read => {
         :host => "ssoqa1-ldap-read.nexus.commercehub.com",
@@ -91,7 +91,7 @@ default_attributes(
     }
   },
   :chub_census => {
-    :app_url => "file:///var/census/staged-census.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoqa1.current+=true",
     :plaza_url => "https://ssoqa1-plaza.nexus.commercehub.com",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     :database => {
@@ -101,7 +101,7 @@ default_attributes(
     }
   },
   :chub_castle => {
-    :app_url => "file:///var/castle/staged-castle.war",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssoqa1.current+=true",
     :domain => "ssoqa1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssoqa1-plaza.nexus.commercehub.com/forgotPassword",
@@ -117,7 +117,7 @@ default_attributes(
     }
   },
   :chub_plaza => {
-    :app_url => "file:///var/plaza/staged-plaza.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssoqa1.current+=true",
     :cas_server_url => "https://ssoqa1-castle.nexus.commercehub.com",
     :cas_service_url => "https://ssoqa1-plaza.nexus.commercehub.com/shiro-cas",
     :cas_failure_url => "https://ssoqa1-plaza.nexus.commercehub.com/",

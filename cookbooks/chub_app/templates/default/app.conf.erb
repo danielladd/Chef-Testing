@@ -1,0 +1,11 @@
+setuid app
+setgid app
+limit nofile 65536 65536
+chdir /var/app
+<% node[:chub_app][:app_env].each_pair do |key, value| %>
+env <%= key %>=<%= value %>
+<% end %>
+exec java <%= node[:chub_app][:jvm_args].join(' ') %> -jar /opt/app/app.jar <%= node[:chub_app][:app_args].join(' ') %>
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
