@@ -42,9 +42,6 @@ end
   {
     dir:    "/var/combo",
     mode:   0775
-  },{
-    dir:    "/var/combo/yui",
-    mode:   0775
   }
 ].each do |data|
   directory data[:dir] do
