@@ -11,7 +11,7 @@
 include_recipe "apt"
 include_recipe "node"
 
-service_name 	= "combo"
+service_name  = "combo"
 group_name    = service_name
 user_name     = service_name
 
@@ -39,7 +39,7 @@ group group_name do
 end
 
 [
-	{
+  {
     dir:    "/var/combo",
     mode:   0775
   },{
@@ -55,11 +55,11 @@ end
 end
 
 [
-	{
+  {
     dest: "/etc/init/combo.conf",
     source: "combo.conf",
     mode: 0644,
-restart: true
+    restart: true
   }
 ].each do |data|
   cookbook_file data[:dest] do
