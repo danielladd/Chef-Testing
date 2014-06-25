@@ -8,3 +8,4 @@ default_attributes(
     }
   }
 )
+run_list "recipe[chub_windows]"
