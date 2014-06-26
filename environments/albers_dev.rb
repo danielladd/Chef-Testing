@@ -2,7 +2,7 @@ name "albers_dev"
 description "Albers Development Environment"
 default_attributes(
   "chub_albers" => {
-	"java_url" => ["http://bamboom1:8085/browse/AL-ASNAP/latest/artifact/shared/Albers-Service-Shadow-Jar/AlbersService-shadow.jar?os_username=chef_user&os_password=chef_user"],
+	"java_url" => ["http://artifactory01.nexus.commercehub.com/artifactory/libs-release-local/com/commercehub/AlbersService/%5BRELEASE%5D/AlbersService-%5BRELEASE%5D-shadow.jar;env.albersdev.current+=true"],
   "metrics_environment" => "dev"
   }
 )
