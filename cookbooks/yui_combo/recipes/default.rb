@@ -46,12 +46,12 @@ end
 #Set up required directories
 [
   {
-    dir:    "/var/combo",
-    mode:   0775
+    dir:        "/var/combo",
+    mode:       0775
   },{
-    dir:    "/data/nginx/cache",
-    mode:   0775,
-    recur
+    dir:        "/data/nginx/cache",
+    mode:       0775,
+    recursive:  true
   }
 ].each do |data|
   directory data[:dir] do
