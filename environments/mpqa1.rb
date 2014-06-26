@@ -1,7 +1,7 @@
 name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 1.1.0"
+cookbook "chub-klerk", "= 2.0.0"
 cookbook "chub-buyspace", "= 0.4.2"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
@@ -29,7 +29,7 @@ default_attributes "chub-klerk" => {
     "url" => "http://mpqa03:7070/solr/"
   },
   "klerk" => {
-    "url" => "http://mpqa1-klerk.commercehub.com:8090"
+    "url" => "http://mpqa1klerk1.nexus.commercehub.com:8090"
   },
   "hornetq" => {
     "host" => "mpqa03.nexus.commercehub.com",

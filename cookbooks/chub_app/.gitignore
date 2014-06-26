@@ -1,0 +1,27 @@
+.vagrant
+Berksfile.lock
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+/cookbooks
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
+
+.kitchen/*
+
+app.jar
+.DS_Store
+
+*.iml
+*.ipr
+*.iws
+.idea
+.gradle
+build/
+stage-me.sh

@@ -1,0 +1,38 @@
+apply plugin: "java"
+
+buildscript {
+    repositories {
+        maven {
+            name "artifactory01"
+            url "http://artifactory01.nexus.commercehub.com/artifactory/libs-release"
+        }
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:0.8"
+    }
+}
+
+apply plugin: "shadow"
+
+repositories {
+    maven {
+        name "artifactory01"
+        url "http://artifactory01.nexus.commercehub.com/artifactory/libs-release"
+    }
+}
+dependencies {
+    compile "io.dropwizard:dropwizard-core:0.7.0"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "app.TestApplication"
+    }
+}
+
+assemble.dependsOn "shadowJar"
+shadow {
+    outputFile = file("${buildDir}/distributions/app-shadow.jar")
+    exclude "META-INF/*.DSA"
+    exclude "META-INF/*.RSA"
+}
