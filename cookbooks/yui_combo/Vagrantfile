@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.network :forwarded_port, host: 8000, guest: 8000
+  config.vm.network :forwarded_port, host: 3000, guest: 3000
 
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
@@ -26,8 +27,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     }
 
     chef.run_list = [
-      "recipe[build-essential]",
-      "recipe[node]",
       "recipe[yui_combo::default]"
     ]
   end
