@@ -29,7 +29,7 @@ default_attributes "chub-klerk" => {
     "url" => "http://mpqa03:7070/solr/"
   },
   "klerk" => {
-    "url" => "http://mpqa1klerk1.nexus.commercehub.com:8090"
+    "url" => "http://mpqa1-klerk.commercehub.com:8090"
   },
   "hornetq" => {
     "host" => "mpqa03.nexus.commercehub.com",
