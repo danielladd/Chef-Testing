@@ -1,6 +1,5 @@
-name "onboarding"
-description "Environment for Onboarding"
-
+name "partnersetup"
+description "A windows machine running in partnersetup (base role)"
 default_attributes(
   "java" => {
     "windows" => {
@@ -9,3 +8,4 @@ default_attributes(
     }
   }
 )
+run_list "recipe[chub_windows]"

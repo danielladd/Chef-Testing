@@ -127,7 +127,8 @@ template "#{install_dir}/bin/service-control" do
     :java_home => java_home,
     :java_jmx_port => node[:kafka][:jmx_port],
     :java_class => "kafka.Kafka",
-    :user => user
+    :user => user,
+    :version => node[:kafka][:version]
   })
 end
 
