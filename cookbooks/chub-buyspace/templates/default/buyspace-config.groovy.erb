@@ -153,7 +153,16 @@ log4j = {
             host: 'mplogs01.nexus.commercehub.com',
             key: 'logstash',
             alwaysBatch: false,
-            threshold: org.apache.log4j.Level.WARN)
+            threshold: org.apache.log4j.Level.WARN,
+            jedisPoolConfig: new redis.clients.jedis.JedisPoolConfig(
+              blockWhenExhausted:false,
+              maxTotal: 10,
+              minIdle: 1,
+              maxIdle: 5,
+              testOnBorrow: true,
+              testOnReturn: true,
+              testWhileIdle: true
+            ))
     }
 
     info 'org.springframework.integration',
