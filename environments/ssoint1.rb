@@ -12,7 +12,7 @@ cookbook_versions({
   "chub_castle" => "= 0.1.24",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
-  "chub_openldap" => "= 1.12.16",
+  "chub_openldap" => "= 1.12.17",
   "chub_plaza" => "= 0.2.0",
   "chub_sensu_sso" => "= 0.1.16",
   "chub_vault" => "= 0.3.5",
