@@ -194,7 +194,7 @@ log4j = {
           'grails.app.services.marketplace.digest.MapReduceService'
 
     root {
-        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file'
+        <%= node['chub-buyspace']['log4j']['root_loglevel'] %> 'file', 'logstash'
         additivity = true
     }
 }
