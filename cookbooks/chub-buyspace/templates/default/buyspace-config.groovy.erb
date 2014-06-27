@@ -147,7 +147,7 @@ log4j = {
     appenders {
         rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
         'null' name: 'stacktrace'
-        appender new com.ryantenney.log4j.RedisAppender(
+        appender new com.commercehub.logging.log4j.redis.PooledRedisAppender(
             name: 'logstash',
             layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields: 'env:mpqa1,app:marketplace'),
             host: 'mplogs01.nexus.commercehub.com',
