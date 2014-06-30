@@ -22,12 +22,11 @@ default_attributes(
     "types" => {
       "albers" => {
         "name" => "albers",
-        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}" ]\n  }\n"
+        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
       },
       "wrapper" => {
         "name" => "albers",
-        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"
-      },
+        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"      },
     }
   }
 )
