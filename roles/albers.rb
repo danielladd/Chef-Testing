@@ -12,13 +12,22 @@ default_attributes(
       "albers" => {
         "path" => 'c:\Albers\logs\albers.log',
         "type" => "albers"
+      },
+    "logfiles" => {
+      "wrapper" => {
+        "path" => 'c:\Albers\logs\wrapper.log',
+        "type" => "wrapper"
       }
     },
     "types" => {
       "albers" => {
         "name" => "albers",
-        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"(?<tanukiprefix>[a-zA-Z0-9\\s]+)\\| %{TIME:time} \\[%{JAVACLASS:actorname}-dispatcher-%{INT:threadno}\\] %{LOGLEVEL:loglevel}  %{JAVACLASS:classname} - %{GREEDYDATA:albersmessage}\" ]\n  }\n"
-      }
+        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}" ]\n  }\n"
+      },
+      "wrapper" => {
+        "name" => "albers",
+        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+      },
     }
   }
 )
