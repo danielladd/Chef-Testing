@@ -18,7 +18,7 @@
                 <role-name>Development</role-name>
         </security-role>
         <security-role>
-                <role-name>PSEAdmin</role-name>
+                <role-name>PTS</role-name>
         </security-role>
         <security-constraint>
                 <web-resource-collection>
