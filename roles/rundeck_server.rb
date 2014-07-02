@@ -12,6 +12,9 @@ default_attributes(
   "ssh" => {
     'timeout' => '0'
   },
+  "proxy" => {
+     "hostname" => "orch01"
+  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----
@@ -186,4 +189,4 @@ override_attributes(
     "rundeck-ssh" => "rundeck-ssh",
   }
 )
-run_list "recipe[base::users]","recipe[chub_rundeck::server]"
+run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]"

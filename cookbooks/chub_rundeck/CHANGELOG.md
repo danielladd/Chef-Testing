@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.9
+-----
+- Larry - Setup rundeck to run on port 80
+
 0.1.8
 -----
 - Larry - Updates to web.xml and ldap config to add PSEAdmin group and remove non-used groups
