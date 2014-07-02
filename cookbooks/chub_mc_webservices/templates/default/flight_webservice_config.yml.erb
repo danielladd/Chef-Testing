@@ -1,0 +1,17 @@
+setupDatabase: 
+  serverName: <%= node[:chub_mc_webservice][:flight][:config][:setupDatabase][:serverName] %>
+  user: <%= node[:chub_mc_webservice][:flight][:config][:setupDatabase][:user] %>
+  password: <%= node[:chub_mc_webservice][:flight][:config][:setupDatabase][:password] %>
+  databaseName: <%= node[:chub_mc_webservice][:flight][:config][:setupDatabase][:databaseName] %>
+
+testDatabase: 
+  serverName: <%= node[:chub_mc_webservice][:flight][:config][:testDatabase][:serverName] %>
+  user: <%= node[:chub_mc_webservice][:flight][:config][:testDatabase][:user] %>
+  password: <%= node[:chub_mc_webservice][:flight][:config][:testDatabase][:password] %>
+  databaseName: <%= node[:chub_mc_webservice][:flight][:config][:testDatabase][:databaseName] %>
+
+productionDatabase:
+  serverName: <%= node[:chub_mc_webservice][:flight][:config][:prodDatabase][:serverName] %>
+  user: <%= node[:chub_mc_webservice][:flight][:config][:prodDatabase][:user] %>
+  password: <%= node[:chub_mc_webservice][:flight][:config][:prodDatabase][:password] %>
+  databaseName: <%= node[:chub_mc_webservice][:flight][:config][:prodDatabase][:databaseName] %>
