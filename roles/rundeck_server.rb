@@ -14,7 +14,7 @@ default_attributes(
   },
   "proxy" => {
      "hostname" => "orch01"
-  }
+  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----
