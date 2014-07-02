@@ -1,3 +1,5 @@
+default['rundeck']['port'] = 80
+
 # WinRMPlugin
 default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"
 

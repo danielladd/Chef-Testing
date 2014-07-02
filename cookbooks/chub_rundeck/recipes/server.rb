@@ -58,6 +58,7 @@ cookbook_file "/etc/krb5.conf" do
   mode    00644
 end
 
+#TODO: Consider using LWRP rundeck_plugin
 remote_file "/var/lib/rundeck/libext/rundeck-winrm-plugin-1.1.jar" do
   source    node[:chub_rundeck][:winrm_plugin_url]
   owner     "root"
