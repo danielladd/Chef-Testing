@@ -27,11 +27,11 @@ user = node[:kafka][:user]
 group = node[:kafka][:group]
 
 if node[:kafka][:broker_id].nil? || node[:kafka][:broker_id].empty?
-    node[:kafka][:broker_id] = node[:ipaddress].gsub(".","")
+    node.default[:kafka][:broker_id] = node[:ipaddress].gsub(".","")
 end
 
 if node[:kafka][:broker_host_name].nil? || node[:kafka][:broker_host_name].empty?
-    node[:kafka][:broker_host_name] = node[:fqdn]
+    node.default[:kafka][:broker_host_name] = node[:fqdn]
 end
 
 log "Broker id: #{node[:kafka][:broker_id]}"
@@ -98,7 +98,7 @@ directory node[:kafka][:data_dir] do
 end
 
 # pull the remote file only if we create the directory
-tarball = "kafka-#{node[:kafka][:version]}.tar.gz"
+tarball = "kafka_#{node[:kafka][:version]}.tgz"
 download_file = "#{node[:kafka][:download_url]}/#{tarball}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/#{tarball}" do

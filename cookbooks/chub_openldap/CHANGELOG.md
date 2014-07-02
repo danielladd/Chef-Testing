@@ -2,6 +2,10 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.17
+-------
+- add ssoint1 certs
+
 v1.12.16
 -------
 - changed the password-hash method from SHA-512 to SSHA-512 (salted sha 512)

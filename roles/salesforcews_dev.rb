@@ -8,10 +8,10 @@ default_attributes "chub_mc_webservice" => {
 		"config" => {
 			"salesforceClient" => {
 				"host" => "https://test.salesforce.com",
-				"clientId" => "",
-				"clientSecret" => "",
-				"username" => "",
-				"password" => ""
+				"clientId" => "3MVG98dostKihXN5fgPZri6UVPuAVRp5BSnfLhUOXRgBzJ4E0sdqGoL3VJxCjrNC9ZTv2mhCfWpazBSBdR9Oe",
+				"clientSecret" => "64733457986452344",
+				"username" => "mbouchard@commercehub.com.IntPro1",
+				"password" => "sMLc4YI4obXr"
 			},
 		},
 	},

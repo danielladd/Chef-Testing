@@ -19,7 +19,9 @@ filter {
       else if [@type] == "<%= rule[1][:name] %>" {
     <% end %>
       <%= rule[1][:body] %>
-    } else {
+    } else 
+    <% } %>
+    {
 #fallthrough catch-all.. need to put something here
     }
   <% } %>
