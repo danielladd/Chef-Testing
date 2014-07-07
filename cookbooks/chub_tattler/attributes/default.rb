@@ -34,7 +34,7 @@ default[:chub_tattler][:db][:numTestsPerEvictionRun] = 3
 default[:chub_tattler][:db][:minEvictableIdleTimeMillis] = 1800000
 
 # ODD
-default[:chub_tattler][:odd][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com:8080/"
+default[:slm][:odd_service][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com:8080/"
 
 # Exchange
 default[:chub_tattler][:exchange][:ewsURL] = "https://mymail.commercehub.com/ews/Exchange.asmx"
