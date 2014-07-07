@@ -58,6 +58,7 @@ cookbook_file "/etc/krb5.conf" do
   mode    00644
 end
 
+#TODO: Consider using LWRP rundeck_plugin
 remote_file "/var/lib/rundeck/libext/rundeck-winrm-plugin-1.1.jar" do
   source    node[:chub_rundeck][:winrm_plugin_url]
   owner     "root"
@@ -88,3 +89,10 @@ cookbook_file "/var/lib/rundeck/exp/webapp/WEB-INF/web.xml" do
   group "root"
   notifies   :restart, "service[rundeckd]", :delayed
 end
+
+link "/etc/nginx/sites-enabled/000-default" do
+    action :delete
+    only_if "test -L /etc/nginx/sites-enabled/000-default"
+end
+
+include_recipe "rundeck::proxy"
