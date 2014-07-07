@@ -118,6 +118,78 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "username" => "qa_reg@nexus.commercehub.com",
                 "winrm" => true
             },
+            {
+                "name" => "qareg11",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg11.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg12",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg12.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg13",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg13.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg14",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg14.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg15",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg15.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg16",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg16.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
         ],
         "Albers" => [
             {

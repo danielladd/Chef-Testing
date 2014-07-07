@@ -18,7 +18,7 @@ ruby_block "CHEF-4453 Bug" do
 end
 
 file "c:/Program Files/logsearch-shipper/ls.crt" do
-  content data_bag_item('logstash',node.chef_environment)["sslcrt"]
+  content data_bag_item('logstash',node[:chub_logstash][:env_crt])["sslcrt"]
 end
 
 template "c:/Program Files/logsearch-shipper/LogsearchShipper.Service.exe.config" do
