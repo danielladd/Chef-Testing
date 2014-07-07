@@ -1,51 +1,49 @@
-tattler.database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-# When configuring your application, please specify a more detailed applicationName property value
-tattler.database.url=jdbc:sqlserver://SQLVM03;databaseName=<%= node[:chub_tattler][:db_name] %>;integratedSecurity=false;trustServerCertificate=true;authenticationScheme=JavaKerberos;applicationName=DSM
-
 # Leave blank to use Windows Authentication (requires native library on path)
 # See http://coyote/mediawiki/index.php/Microsoft_JDBC_Driver
-tattler.database.user=<%= node[:chub_tattler][:db_user] %>
-tattler.database.password=<%= node[:chub_tattler][:db_pass] %>
+tattler.database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+tattler.database.url=jdbc:sqlserver://<%= node[:chub_tattler][:db][:server] %>;databaseName=<%= node[:chub_tattler][:db][:name] %>;integratedSecurity=false;trustServerCertificate=true;authenticationScheme=JavaKerberos;applicationName=Tattler
+tattler.database.user=<%= node[:chub_tattler][:db][:userName] %>
+tattler.database.password=<%= node[:chub_tattler][:db][:pass] %>
 
 # Should be false in production
-tattler.showSql=false
+tattler.showSql=<%= node[:chub_tattler][:db][:showSql] %>
 # Should be false in production
-tattler.formatSql=false
+tattler.formatSql=<%= node[:chub_tattler][:db][:formatSql] %>
 # Should be false in production
-tattler.generateDdl=false
+tattler.generateDdl=<%= node[:chub_tattler][:db][:generateDdl] %>
 
 # Database Configurations
 # c3p0 is very asynchronous. Slow JDBC operations are generally performed by helper threads that don't hold contended locks. Spreading these operations over multiple threads can significantly improve performance by allowing multiple operations to be performed simultaneously. (Default: 3)
-tattler.database.maxIdle=8
-tattler.database.maxActive=8
-tattler.database.minIdle=4
-tattler.database.maxWait=5000
-tattler.database.removeAbandoned=true
-tattler.database.removeAbandonedTimeout=60
-tattler.database.defaultAutoCommit=true
-tattler.database.defaultReadOnly=false
-tattler.database.validationQuery=select 1
-tattler.database.testOnBorrow=true
-tattler.database.testOnReturn=false
-tattler.database.testWhileIdle=false
-tattler.database.timeBetweenEvictionRunsMillis=-1
-tattler.database.numTestsPerEvictionRun=3
-tattler.database.minEvictableIdleTimeMillis=1800000
+tattler.database.maxIdle=<%= node[:chub_tattler][:db][:maxIdle] %>
+tattler.database.maxActive=<%= node[:chub_tattler][:db][:maxActive] %>
+tattler.database.minIdle=<%= node[:chub_tattler][:db][:minIdle] %>
+tattler.database.maxWait=<%= node[:chub_tattler][:db][:maxWait] %>
+tattler.database.removeAbandoned=<%= node[:chub_tattler][:db][:removeAbandoned] %>
+tattler.database.removeAbandonedTimeout=<%= node[:chub_tattler][:db][:removeAbandonedTimeout] %>
+tattler.database.defaultAutoCommit=<%= node[:chub_tattler][:db][:defaultAutoCommit] %>
+tattler.database.defaultReadOnly=<%= node[:chub_tattler][:db][:defaultReadOnly] %>
+tattler.database.validationQuery=<%= node[:chub_tattler][:db][:validationQuery] %>
+tattler.database.testOnBorrow=<%= node[:chub_tattler][:db][:testOnBorrow] %>
+tattler.database.testOnReturn=<%= node[:chub_tattler][:db][:testOnReturn] %>
+tattler.database.testWhileIdle=<%= node[:chub_tattler][:db][:testWhileIdle] %>
+tattler.database.timeBetweenEvictionRunsMillis=<%= node[:chub_tattler][:db][:timeBetweenEvictionRunsMillis] %>
+tattler.database.numTestsPerEvictionRun=<%= node[:chub_tattler][:db][:numTestsPerEvictionRun] %>
+tattler.database.minEvictableIdleTimeMillis=<%= node[:chub_tattler][:db][:minEvictableIdleTimeMillis] %>
 
 #########################
 # ODD Rest Properties
 #
-tattler.oddRest.baseURL=http://tatdev1rest1.nexus.commercehub.com:8080/
+tattler.oddRest.baseURL=<%= node[:chub_tattler][:odd][:baseUrl] %>
 
 #########################
 # Email Properties
 #
-tattler.exchange.ewsURL=https://mymail.commercehub.com/ews/Exchange.asmx
-tattler.exchange.ewsUser=tattler-test1
-tattler.exchange.ewsPassword=Password1
-tattler.customerServiceEmailAddress=chostetter@gavant.com
+tattler.exchange.ewsURL=<%= node[:chub_tattler][:exchange][:ewsURL] %>
+tattler.exchange.ewsUser=<%= node[:chub_tattler][:exchange][:ewsUser] %>
+tattler.exchange.ewsPassword=<%= node[:chub_tattler][:exchange][:ewsPassword] %>
+tattler.customerServiceEmailAddress=<%= node[:chub_tattler][:email][:customerServiceEmailAddress] %>
 
 #########################
 # Schedule properties
 #
-tattler.cron.default=0 */5 * * * *
+tattler.cron.default=<%= node[:chub_tattler][:cron][:default] %>
