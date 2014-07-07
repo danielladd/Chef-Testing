@@ -90,9 +90,9 @@ cookbook_file "/var/lib/rundeck/exp/webapp/WEB-INF/web.xml" do
   notifies   :restart, "service[rundeckd]", :delayed
 end
 
-link "/etc/nginx/sites-enabled/default" do
+link "/etc/nginx/sites-enabled/000-default" do
     action :delete
-    only_if "test -L /etc/nginx/sites-enabled/default"
+    only_if "test -L /etc/nginx/sites-enabled/000-default"
 end
 
 include_recipe "rundeck::proxy"
