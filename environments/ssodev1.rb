@@ -9,7 +9,7 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.24",
+  "chub_castle" => "= 0.1.25",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
@@ -103,6 +103,7 @@ default_attributes(
   :chub_castle => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
     :domain => "ssodev1-castle.nexus.commercehub.com",
+    :root_url => "https://ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
