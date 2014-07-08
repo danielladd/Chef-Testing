@@ -1,3 +1,6 @@
+# 0.1.25
+* Add support for chub_castle/root_url attribute
+
 # 0.1.24
 * Remove apt dependency (base cookbook should ensure apt is appropriately updated)
 * Remove hostsfile tweaks (base cookbook should provide those when needed)

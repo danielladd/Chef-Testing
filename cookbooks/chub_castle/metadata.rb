@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.24'
+version          '0.1.25'
 
 supports "ubuntu"
 depends "chub_java"
@@ -49,6 +49,11 @@ attribute "chub_castle/domain",
     :display_name => "Castle domain",
     :description => "Domain to use for Castle cookies",
     :required => "required"
+
+attribute "chub_castle/root_url",
+    :display_name => "Root URL",
+    :description => "Root URL for the application, to use in redirects",
+    :required => "optional"
 
 attribute "chub_castle/default_service_url",
     :display_name => "Default service URL",
