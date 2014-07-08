@@ -1,3 +1,6 @@
+# 0.2.1
+# Add support for chub_plaza/root_url attribute
+
 # 0.2.0
 * Add new hazelcast configuration support
 

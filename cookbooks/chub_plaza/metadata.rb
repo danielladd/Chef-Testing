@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.0'
+version          '0.2.1'
 
 supports "ubuntu"
 depends "chub_java"
@@ -20,6 +20,11 @@ attribute "chub_plaza/java_heap_size",
     :description => "The heap size with which to run the Plaza JVM",
     :required => "optional",
     :default => "512M"
+
+attribute "chub_plaza/root_url",
+    :display_name => "Root URL",
+    :description => "The root URL of the application, used for redirects",
+    :required => "optional"
 
 attribute "chub_plaza/cas_server_url",
     :display_name => "CAS Server URL",
