@@ -1,3 +1,9 @@
+# Database Stuffs
+
+default[:chub_rundeck][:dbmaster] = "orchdb01"
+default[:chub_rundeck][:dbslave] = "orchdb02"
+
+
 # WinRMPlugin
 default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"
 
