@@ -14,7 +14,7 @@ cookbook_versions({
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
   "chub_plaza" => "= 0.2.1",
-  "chub_sensu_sso" => "= 0.1.16",
+  "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",

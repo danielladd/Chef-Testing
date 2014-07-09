@@ -1,3 +1,6 @@
+#0.1.17
+* Support new format of castle health check URL
+
 #0.1.16
 * Changed openldap replication check to tolerate 4 failures instead of 2
 

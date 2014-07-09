@@ -144,7 +144,7 @@ sensu_check "check-census-health" do
 end
 
 sensu_check "check-castle-health" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb -s -k --url http://localhost:8080/admin/healthcheck --response-code 200 --response-bytes 5000"
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb -s -k --url http://localhost:8080#{node[:chub_castle] && node[:chub_castle][:app_context]}/admin/healthcheck --response-code 200 --response-bytes 5000"
     handlers ["default"]
     subscribers ["castle"]
     interval 60
