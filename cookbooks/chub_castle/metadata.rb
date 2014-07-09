@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.25'
+version          '0.1.26'
 
 supports "ubuntu"
 depends "chub_java"
@@ -13,6 +13,11 @@ attribute "chub_castle/app_url",
     :display_name => "Castle application URL",
     :description => "URL from which to obtain the application WAR; can use a remote URL",
     :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war",
+    :required => "optional"
+
+attribute "chub_castle/app_context",
+    :display_name => "Application context",
+    :description => "The path under which the application will be deployed (used in URLs)",
     :required => "optional"
 
 attribute "chub_castle/java_heap_size",
@@ -49,11 +54,6 @@ attribute "chub_castle/domain",
     :display_name => "Castle domain",
     :description => "Domain to use for Castle cookies",
     :required => "required"
-
-attribute "chub_castle/root_url",
-    :display_name => "Root URL",
-    :description => "Root URL for the application, to use in redirects",
-    :required => "optional"
 
 attribute "chub_castle/default_service_url",
     :display_name => "Default service URL",

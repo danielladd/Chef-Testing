@@ -1,7 +1,7 @@
 host.name=<%= @castle_host_name %>
 castle.domain=<%= node[:chub_castle][:domain] %>
-<% if node[:chub_castle][:root_url] %>
-root.url=<%= node[:chub_castle][:root_url] %>
+<% if node[:chub_castle][:app_context] %>
+application.context=<%= node[:chub_castle][:app_context] %>
 <% end %>
 defaultService.url=<%= node[:chub_castle][:default_service_url] %>
 forgotPassword.url=<%= node[:chub_castle][:forgot_password_url] %>

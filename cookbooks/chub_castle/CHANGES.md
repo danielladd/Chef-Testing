@@ -1,3 +1,7 @@
+# 0.1.26
+* Remove support for chub_castle/root_url attribute
+* Add support for chub_castle/app_context attribute
+
 # 0.1.25
 * Add support for chub_castle/root_url attribute
 
