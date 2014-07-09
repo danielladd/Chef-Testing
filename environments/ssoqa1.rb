@@ -61,8 +61,8 @@ default_attributes(
     :loadbalancer_urls => {
       :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/api-docs",
       :census => "https://ssoqa1-census.nexus.commercehub.com:8443/api-docs",
-      :castle => "https://ssoqa1-castle.nexus.commercehub.com/login",
-      :plaza => "https://ssoqa1-plaza.nexus.commercehub.com/buildInfo"
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/login",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/buildInfo"
     }
   },
   :openldap => {
