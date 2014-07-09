@@ -37,14 +37,23 @@ execute 'install_shipper' do
   action :nothing
 end
 
+execute 'uninstall_shipper' do
+  cwd 'c:/Program Files/logsearch-shipper'
+  command 'LogsearchShipper.Service.exe uninstall --sudo'
+  only_if do File.exists?("c:/Program Files/logsearch-shipper/LogsearchShipper.Service.exe") end
+  action :nothing
+end
+
 windows_zipfile 'c:/Program Files/logsearch-shipper' do
   source "#{Chef::Config[:file_cache_path]}/logsearch-shipper.zip"
   action :nothing
+  overwrite true
   notifies :run, 'execute[install_shipper]', :immediately
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/logsearch-shipper.zip" do
   source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/logstash/#{node[:chub_logsearch_shipper][:logsearch_zip]}"
   action :create
+  notifies :run, 'execute[uninstall_shipper]', :immediately
   notifies :unzip, 'windows_zipfile[c:/Program Files/logsearch-shipper]', :immediately
 end
