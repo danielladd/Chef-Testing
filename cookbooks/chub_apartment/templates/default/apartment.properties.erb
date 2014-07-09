@@ -1,0 +1,31 @@
+# Leave blank to use Windows Authentication (requires native library on path)
+# See http://coyote/mediawiki/index.php/Microsoft_JDBC_Driver
+apartment.database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
+apartment.database.url=jdbc:sqlserver://<%= node[:chub_apartment][:db][:server] %>;databaseName=<%= node[:chub_apartment][:db][:name] %>;integratedSecurity=false;trustServerCertificate=true;authenticationScheme=JavaKerberos;applicationName=apartment
+apartment.database.user=<%= node[:chub_apartment][:db][:userName] %>
+apartment.database.password=<%= node[:chub_apartment][:db][:pass] %>
+
+# Should be false in production
+apartment.showSql=<%= node[:chub_apartment][:db][:showSql] %>
+# Should be false in production
+apartment.formatSql=<%= node[:chub_apartment][:db][:formatSql] %>
+# Should be false in production
+apartment.generateDdl=<%= node[:chub_apartment][:db][:generateDdl] %>
+
+# Database Configurations
+# c3p0 is very asynchronous. Slow JDBC operations are generally performed by helper threads that don't hold contended locks. Spreading these operations over multiple threads can significantly improve performance by allowing multiple operations to be performed simultaneously. (Default: 3)
+apartment.database.maxIdle=<%= node[:chub_apartment][:db][:maxIdle] %>
+apartment.database.maxActive=<%= node[:chub_apartment][:db][:maxActive] %>
+apartment.database.minIdle=<%= node[:chub_apartment][:db][:minIdle] %>
+apartment.database.maxWait=<%= node[:chub_apartment][:db][:maxWait] %>
+apartment.database.removeAbandoned=<%= node[:chub_apartment][:db][:removeAbandoned] %>
+apartment.database.removeAbandonedTimeout=<%= node[:chub_apartment][:db][:removeAbandonedTimeout] %>
+apartment.database.defaultAutoCommit=<%= node[:chub_apartment][:db][:defaultAutoCommit] %>
+apartment.database.defaultReadOnly=<%= node[:chub_apartment][:db][:defaultReadOnly] %>
+apartment.database.validationQuery=<%= node[:chub_apartment][:db][:validationQuery] %>
+apartment.database.testOnBorrow=<%= node[:chub_apartment][:db][:testOnBorrow] %>
+apartment.database.testOnReturn=<%= node[:chub_apartment][:db][:testOnReturn] %>
+apartment.database.testWhileIdle=<%= node[:chub_apartment][:db][:testWhileIdle] %>
+apartment.database.timeBetweenEvictionRunsMillis=<%= node[:chub_apartment][:db][:timeBetweenEvictionRunsMillis] %>
+apartment.database.numTestsPerEvictionRun=<%= node[:chub_apartment][:db][:numTestsPerEvictionRun] %>
+apartment.database.minEvictableIdleTimeMillis=<%= node[:chub_apartment][:db][:minEvictableIdleTimeMillis] %>
