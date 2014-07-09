@@ -1,5 +1,9 @@
+# 0.2.2
+* Add support for chub_plaza/app_context
+* Rename chub_plaza/root_url to chub_plaza/app_root_url
+
 # 0.2.1
-# Add support for chub_plaza/root_url attribute
+* Add support for chub_plaza/root_url attribute
 
 # 0.2.0
 * Add new hazelcast configuration support

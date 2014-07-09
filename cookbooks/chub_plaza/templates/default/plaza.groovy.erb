@@ -1,5 +1,8 @@
-<% if node[:chub_plaza][:root_url] %>
-grails.serverURL = "<%= node[:chub_plaza][:root_url] %>"
+<% if node[:chub_plaza][:app_context] %>
+grails.app.context = "<%= node[:chub_plaza][:app_context] %>"
+<% end %>
+<% if node[:chub_plaza][:app_root_url] %>
+grails.serverURL = "<%= node[:chub_plaza][:app_root_url] %>"
 <% end %>
 security {
     shiro {

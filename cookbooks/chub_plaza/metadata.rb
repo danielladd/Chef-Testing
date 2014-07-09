@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.1'
+version          '0.2.2'
 
 supports "ubuntu"
 depends "chub_java"
@@ -15,16 +15,21 @@ attribute "chub_plaza/app_url",
     :required => "optional",
     :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-PLAZA/latestSuccessful/artifact/shared/plaza.jar/plaza.jar"
 
+attribute "chub_plaza/app_context",
+    :display_name => "Application context",
+    :description => "The path under which the application will be deployed (used in URLs)",
+    :required => "optional"
+
+attribute "chub_plaza/app_root_url",
+    :display_name => "Application root URL",
+    :description => "The root URL of the application, used for redirects",
+    :required => "optional"
+
 attribute "chub_plaza/java_heap_size",
     :display_name => "Plaza Java heap size",
     :description => "The heap size with which to run the Plaza JVM",
     :required => "optional",
     :default => "512M"
-
-attribute "chub_plaza/root_url",
-    :display_name => "Root URL",
-    :description => "The root URL of the application, used for redirects",
-    :required => "optional"
 
 attribute "chub_plaza/cas_server_url",
     :display_name => "CAS Server URL",

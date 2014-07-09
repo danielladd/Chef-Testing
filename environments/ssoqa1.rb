@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.2.1",
+  "chub_plaza" => "= 0.2.2",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
@@ -59,9 +59,9 @@ default_attributes(
       :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
     :loadbalancer_urls => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/api-docs",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8443/api-docs",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/login",
+      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/ping",
+      :census => "https://ssoqa1-census.nexus.commercehub.com:8443/ping",
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/admin/ping",
       :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/buildInfo"
     }
   },
@@ -119,7 +119,8 @@ default_attributes(
   },
   :chub_plaza => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssoqa1.current+=true",
-    :root_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza",
+    :app_context => "/plaza",
+    :app_root_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza",
     :cas_server_url => "https://ssoqa1-apps.nexus.commercehub.com/castle",
     :cas_service_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/shiro-cas",
     :cas_failure_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza",
