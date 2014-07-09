@@ -3,6 +3,10 @@ chub_logstash CHANGELOG
 
 This file is used to list changes made in each version of the chub_logstash cookbook.
 
+0.1.15
+------
+- H. "Waldo" Grunenwald - Downloading artifact from Artifactory
+
 0.1.13
 -----
 - H. "Waldo" Grunenwald - Moved default recipe to server.rb; making default.rb common commands , and added a client recipe.
