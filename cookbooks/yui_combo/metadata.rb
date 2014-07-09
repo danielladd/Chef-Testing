@@ -9,5 +9,7 @@ version          '0.1.0'
 supports "ubuntu"
 depends "apt"
 depends "build-essential"
-depends "node"
+depends "git"
+depends "nodejs"
+depends "npm"
 depends "nginx"

@@ -1,6 +1,3 @@
-#NodeJS packages to be installed
-default[:node][:packages] = ['combohandler']
-
 #Don't enable the default nginx site.
 override[:nginx][:default_site_enabled] = false
 
