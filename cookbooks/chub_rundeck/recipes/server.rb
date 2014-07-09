@@ -22,8 +22,6 @@ include_recipe "rundeck::default"
 # Using unwind as an alternative
 # https://github.com/bryanwb/chef-rewind#unwind
 
-
-
 directory "/var/lib/rundeck/.ssh" do
     action :create
     owner 'rundeck'
@@ -64,6 +62,32 @@ remote_file "/var/lib/rundeck/libext/rundeck-winrm-plugin-1.1.jar" do
   owner     "root"
   group     "root"
   notifies  :restart, "service[rundeckd]", :delayed
+end
+
+package "libmysql-java"
+
+link "/var/lib/rundeck/bootstrap/mysql-connector-java-5.1.31-bin.jar" do
+    action :create
+    to "/usr/share/java/mysql.jar"
+    only_if "test -e /usr/share/java/mysql.jar"
+end
+
+#TODO: remove once package jar is working 
+=begin
+cookbook_file "/var/lib/rundeck/bootstrap/mysql-connector-java-5.1.31-bin.jar" do
+  source "mysql-connector-java-5.1.31-bin.jar"
+  owner   "root"
+  group   "root"
+  notifies  :restart, "service[rundeckd]", :delayed 
+end
+=end
+
+template '/etc/rundeck/rundeck-config.properties' do
+  source 'rundeck-config.properties.erb'
+  owner 'rundeck'
+  group 'rundeck'
+  mode 00644
+  notifies :restart, 'service[rundeckd]'
 end
 
 cookbook_file "/etc/rundeck/jaas-ldap.conf" do

@@ -41,4 +41,4 @@ for:
   project:
     - allow: '*' # allow view/admin of all projects
 by:
-  username: [lzarou]
+  username: [lzarou, admin]

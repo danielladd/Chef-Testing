@@ -11,7 +11,8 @@
 #Dependencies
 include_recipe "build-essential"
 include_recipe "apt"
-include_recipe "node"
+include_recipe "git"
+include_recipe "nodejs"
 include_recipe "nginx"
 
 #Variables
@@ -61,6 +62,9 @@ end
     recursive data[:recursive] if data[:recursive]
   end
 end
+
+#Install the combohandler
+npm_package "combohandler@0.3.8"
 
 #Move cookbook files to the node
 [

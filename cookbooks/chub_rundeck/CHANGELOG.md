@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.10
+-----
+- Larry - Moving rundeck to a mysql database, h2 wasn't doing the job anymore.  
+
 0.1.9
 -----
 - Larry - Setup rundeck to run on port 80
