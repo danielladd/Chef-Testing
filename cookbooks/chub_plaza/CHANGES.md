@@ -1,3 +1,6 @@
+#0.2.3
+* Add email configuration section for test/dev/prod environments
+
 # 0.2.2
 * Add support for chub_plaza/app_context
 * Rename chub_plaza/root_url to chub_plaza/app_root_url
