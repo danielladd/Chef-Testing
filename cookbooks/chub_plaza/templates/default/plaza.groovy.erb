@@ -13,6 +13,15 @@ security {
         }
     }
 }
+email {
+	<% if node.chef_environment == "development" || node.chef_environment == "ssodev" -%>
+	strategy = "log"
+	<% elsif node.chef_environment == "test" || node.chef_environment == "ssoqa" -%>
+	strategy = "memory"
+	<% elsif node.chef_environment == "production" || node.chef_environment == "ssoprod" -%>
+	strategy = "exchange"
+	<% end -%>
+}
 census {
     url = "<%= node[:chub_plaza][:census_url] %>"
 }
