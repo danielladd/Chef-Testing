@@ -61,6 +61,7 @@ cookbook_file "/etc/krb5.conf" do
 end
 
 rundeck_plugin 'rundeck-winrm-plugin-1.1.jar' do
+  checksum    "bfada6ae4215d9d44a4d1b5728bd3dde"
   url         node[:chub_rundeck][:winrm_plugin_url]
   notifies    :restart, "service[rundeckd]", :delayed
 end
