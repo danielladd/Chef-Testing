@@ -33,6 +33,7 @@ default_attributes(
     }
   },
   :chub_oddrest => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar;env.odddev1.current+=true",
     :db => {
       :server => "SQLVM03",
       :name => "odddev1_odd",
@@ -41,6 +42,7 @@ default_attributes(
     }
   },
   :chub_apartment => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.odddev1.current+=true",
     :db => {
       :server => "SQLVM03",
       :name => "odddev1_chub",

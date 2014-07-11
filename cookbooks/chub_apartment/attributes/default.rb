@@ -1,4 +1,4 @@
-default[:chub_apartment][:app_url] = "http://bamboom1:8085/browse/ODD-APT/latestSuccessful/artifact/shared/apartment/apartment-standalone.jar?os_username=mess&os_password=messuser"
+default[:chub_apartment][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.odddev1.current+=true"
 
 ###
 # App Config Details
