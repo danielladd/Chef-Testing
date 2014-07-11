@@ -16,25 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-node.set[:mysql][:bind_address] = node[:ipaddress]
-node.save
-
-packages = %w{libssl-dev zlib1g-dev libreadline-dev libyaml-dev libmysqlclient-dev}
-packages.each do |dev_pkg|
-  package dev_pkg
-end
-
-include_recipe "database::mysql"
-include_recipe "mysql::client"
-
-mysql_service 'default' do
-  version            '5.5'
-  port               node[:mysql][:port]
-  data_dir           node[:mysql][:data_dir]
-  template_source    'my.cnf.erb'
-  action             :create
-end
+include_recipe "chub_rundeck::mysql_base"
 
 mysql_connection_info = {
   :host     => "localhost",
@@ -70,6 +52,7 @@ end
 
 ruby_block "store_mysql_master_status" do
   block do
+    require 'mysql'
     node.set[:mysql][:master] = true
     m = Mysql.new("localhost", "root", node[:mysql][:server_root_password])
     m.query("show master status") do |row|

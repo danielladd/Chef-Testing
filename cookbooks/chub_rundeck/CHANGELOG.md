@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.12
+-----
+- Larry - More cookbook refactoring, pulling shared components out into mysql_base
+
 0.1.11
 -----
 - Larry - Cookbook cleanup, generalizing, moving hardcoded values to attributes where necessary

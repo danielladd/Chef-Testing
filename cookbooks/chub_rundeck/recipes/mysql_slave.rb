@@ -16,28 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-node.set[:mysql][:bind_address] = node[:ipaddress]
-node.save
-
-packages = %w{libssl-dev zlib1g-dev libreadline-dev libyaml-dev libmysqlclient-dev}
-packages.each do |dev_pkg|
-  package dev_pkg
-end
-
-include_recipe "database::mysql"
-include_recipe "mysql::client"
-
-mysql_service 'default' do
-  version            '5.5'
-  port               node[:mysql][:port]
-  data_dir           node[:mysql][:data_dir]
-  template_source    'my.cnf.erb'
-  action             :create
-end
+include_recipe "chub_rundeck::mysql_base"
 
 ruby_block "start_replication" do
   block do
+    require 'mysql'
     dbmasters = search(:node, "mysql_master:true AND mysql_cluster_name:#{node[:mysql][:cluster_name]}")
  
     if dbmasters.size != 1
@@ -64,6 +47,7 @@ ruby_block "start_replication" do
     end
   end
   not_if do
+    require 'mysql'
     #TODO this fails if mysql is not running - check first
     m = Mysql.new("localhost", "root", node[:mysql][:server_root_password])
     slave_sql_running = ""
