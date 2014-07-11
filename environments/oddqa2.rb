@@ -33,6 +33,7 @@ default_attributes(
     }
   },
   :chub_oddrest => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar;env.oddqa2.current+=true",
     :db => {
       :server => "SQLVM03",
       :name => "oddqa2_odd",
