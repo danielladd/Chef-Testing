@@ -21,6 +21,11 @@ file "c:/Program Files/logsearch-shipper/ls.crt" do
   content data_bag_item('logstash',node[:chub_logstash][:env_crt])["sslcrt"]
 end
 
+service "logsearch_shipper_net" do
+  supports :restart => true, :reload => true,  :status => true
+  action :nothing
+end
+
 template "c:/Program Files/logsearch-shipper/LogsearchShipper.Service.exe.config" do
   source "shipperconf.erb"
   variables({
@@ -34,6 +39,7 @@ end
 execute 'install_shipper' do
   cwd 'c:/Program Files/logsearch-shipper'
   command 'LogsearchShipper.Service.exe install --sudo'
+  notifies :start, "service[logsearch_shipper_net]", :delayed
   action :nothing
 end
 
@@ -53,6 +59,7 @@ end
 
 remote_file "#{Chef::Config[:file_cache_path]}/logsearch-shipper.zip" do
   source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/logstash/#{node[:chub_logsearch_shipper][:logsearch_zip]}"
+  checksum node[:chub_logsearch_shipper][:logsearch_md5]
   action :create
   notifies :run, 'execute[uninstall_shipper]', :immediately
   notifies :unzip, 'windows_zipfile[c:/Program Files/logsearch-shipper]', :immediately
