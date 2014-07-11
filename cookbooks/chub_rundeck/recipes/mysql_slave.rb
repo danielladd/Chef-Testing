@@ -34,7 +34,7 @@ ruby_block "start_replication" do
       CHANGE MASTER TO
         MASTER_HOST="#{dbmaster.mysql.bind_address}",
         MASTER_USER="repl",
-        MASTER_PASSWORD="#{dbmaster.mysql.server_root_password}",
+        MASTER_PASSWORD="#{dbmaster.mysql.server_repl_password}",
         MASTER_LOG_FILE="#{dbmaster.mysql.master_file}",
         MASTER_LOG_POS=#{dbmaster.mysql.master_position};
       }

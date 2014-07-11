@@ -16,7 +16,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 include_recipe "rundeck::default"
 
 # Using unwind as an alternative
@@ -40,6 +39,8 @@ end
 node[:chub_rundeck][:resources].each do |project, nodes|
   directory "#{node[:chub_rundeck][:root_project_path]}/#{project}/etc/" do
     recursive    true
+    owner     node[:chub_rundeck][:rundeck_user]
+    group     node[:chub_rundeck][:rundeck_group]
     action       :create 
   end
 

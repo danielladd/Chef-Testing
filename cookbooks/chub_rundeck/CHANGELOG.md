@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.13
+-----
+- Larry - Fix of bug in mysql slave using root password for repl account
+
 0.1.12
 -----
 - Larry - More cookbook refactoring, pulling shared components out into mysql_base
