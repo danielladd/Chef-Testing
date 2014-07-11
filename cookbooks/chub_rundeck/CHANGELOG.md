@@ -1,8 +1,12 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.11
+-----
+- Larry - Cookbook cleanup, generalizing, moving hardcoded values to attributes where necessary
+
 0.1.10
 -----
-- Larry - Moving rundeck to a mysql database, h2 wasn't doing the job anymore.  
+- Larry - Moving rundeck to a mysql database, h2 wasn't doing the job anymore.
 
 0.1.9
 -----

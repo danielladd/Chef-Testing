@@ -17,59 +17,25 @@
 # limitations under the License.
 #
 
-node.set[:mysql][:server_root_password] = 'password'
-node.set[:mysql][:port] = '3308'
-node.set[:mysql][:data_dir] = '/data'
 node.set[:mysql][:bind_address] = node[:ipaddress]
-node.set[:mysql][:server_id] = 2
-node.set[:mysql][:log_bin] = "/var/log/mysql/mysql-bin.log"
-node.set[:mysql][:database_to_replicate] = "rundeckdb"
-node.set[:mysql][:cluster_name] = "rundeckcluster"
-node.set[:mysql][:server_repl_password] = "password"
+node.save
 
-packages = ["libssl-dev","zlib1g-dev","libreadline-dev", "libyaml-dev", "libmysqlclient-dev"]
-
+packages = %w{libssl-dev zlib1g-dev libreadline-dev libyaml-dev libmysqlclient-dev}
 packages.each do |dev_pkg|
   package dev_pkg
 end
 
 include_recipe "database::mysql"
 include_recipe "mysql::client"
-include_recipe "mysql::server"
 
-template '/etc/mysql/conf.d/mysite.cnf' do
-  owner 'mysql'
-  owner 'mysql'      
-  source 'my.cnf.erb'
-  notifies :restart, 'mysql_service[default]'
+mysql_service 'default' do
+  version            '5.5'
+  port               node[:mysql][:port]
+  data_dir           node[:mysql][:data_dir]
+  template_source    'my.cnf.erb'
+  action             :create
 end
 
-database 'rundeckdb' do
-  connection    mysql_connection_info
-  provider      Chef::Provider::Database::Mysql
-  action        :create
-end
-
-database_user 'rundeckuser' do
-  connection      mysql_connection_info
-  database_name   "rundeckdb"
-  password        'rundeck'
-  provider        Chef::Provider::Database::MysqlUser
-  privileges      [:all]
-  action          :create
-end
-
-database_user 'rundeckuser' do
-  connection      mysql_connection_info
-  database_name   "rundeckdb"
-  password        'rundeck'
-  provider        Chef::Provider::Database::MysqlUser
-  privileges      [:all]
-  action          :grant
-end
-
-
-## mysql::slave
 ruby_block "start_replication" do
   block do
     dbmasters = search(:node, "mysql_master:true AND mysql_cluster_name:#{node[:mysql][:cluster_name]}")
@@ -85,7 +51,7 @@ ruby_block "start_replication" do
       CHANGE MASTER TO
         MASTER_HOST="#{dbmaster.mysql.bind_address}",
         MASTER_USER="repl",
-        MASTER_PASSWORD="#{dbmaster.mysql.server_repl_password}",
+        MASTER_PASSWORD="#{dbmaster.mysql.server_root_password}",
         MASTER_LOG_FILE="#{dbmaster.mysql.master_file}",
         MASTER_LOG_POS=#{dbmaster.mysql.master_position};
       }

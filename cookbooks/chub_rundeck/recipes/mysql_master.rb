@@ -17,65 +17,57 @@
 # limitations under the License.
 #
 
-node.set[:mysql][:server_root_password] = 'password'
-node.set[:mysql][:port] = '3308'
-node.set[:mysql][:data_dir] = '/data'
 node.set[:mysql][:bind_address] = node[:ipaddress]
-node.set[:mysql][:server_id] = 1
-node.set[:mysql][:log_bin] = "/var/log/mysql/mysql-bin.log"
-node.set[:mysql][:database_to_replicate] = "rundeckdb"
-node.set[:mysql][:cluster_name] = "rundeckcluster"
-node.set[:mysql][:server_repl_password] = "password"
+node.save
 
-packages = ["libssl-dev","zlib1g-dev","libreadline-dev", "libyaml-dev", "libmysqlclient-dev"]
-
+packages = %w{libssl-dev zlib1g-dev libreadline-dev libyaml-dev libmysqlclient-dev}
 packages.each do |dev_pkg|
   package dev_pkg
 end
 
 include_recipe "database::mysql"
 include_recipe "mysql::client"
-include_recipe "mysql::server"
 
-template '/etc/mysql/conf.d/mysite.cnf' do
-  owner 'mysql'
-  owner 'mysql'      
-  source 'my.cnf.erb'
-  notifies :restart, 'mysql_service[default]'
+mysql_service 'default' do
+  version            '5.5'
+  port               node[:mysql][:port]
+  data_dir           node[:mysql][:data_dir]
+  template_source    'my.cnf.erb'
+  action             :create
 end
 
 mysql_connection_info = {
-  :host     => 'localhost',
+  :host     => "localhost",
   :username => 'root',
   :password => node['mysql']['server_root_password']
 }
 
-database 'rundeckdb' do
+database node[:chub_rundeck][:db_name] do
   connection    mysql_connection_info
   provider      Chef::Provider::Database::Mysql
   action        :create
 end
 
-database_user 'rundeckuser' do
-  connection      mysql_connection_info
-  database_name   "rundeckdb"
-  password        'rundeck'
-  provider        Chef::Provider::Database::MysqlUser
-  privileges      [:all]
-  action          :create
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
+  host             "%"
+  action           :create
 end
 
-database_user 'rundeckuser' do
-  connection      mysql_connection_info
-  database_name   "rundeckdb"
-  password        'rundeck'
-  provider        Chef::Provider::Database::MysqlUser
-  privileges      [:all]
-  action          :grant
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
+  host             "%"
+  action           :grant
 end
 
-
-## mysql::master
 ruby_block "store_mysql_master_status" do
   block do
     node.set[:mysql][:master] = true
@@ -92,7 +84,7 @@ ruby_block "store_mysql_master_status" do
   # only execute if mysql is running
   only_if "pgrep 'mysqld$'"
   # subscribe to mysql service to catch restarts
-  subscribes :create, resources(:service => "mysql")
+  subscribes :create, resources(:mysql_service => "default")
 end
 
 
