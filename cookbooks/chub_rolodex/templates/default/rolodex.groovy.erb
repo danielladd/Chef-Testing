@@ -1,6 +1,25 @@
-oddrest {
-    url = "<%= node[:chub_rolodex][:oddrest_url] %>"
+rolodex {
+    url = "<%= node[:slm][:rolodex][:baseUrl] %>"
 }
+oddrest {
+    url = "<%= node[:slm][:odd_service][:baseUrl] %>"
+}
+apartment {
+    url = "<%= node[:slm][:apartment][:baseUrl] %>"
+}
+sso {
+    vault_url = "<%= node[:slm][:sso][:vault] %>"
+    census_url = "<%= node[:slm][:sso][:census] %>"
+    castle_url = "<%= node[:slm][:sso][:castle] %>"
+    plaza_url = "<%= node[:slm][:sso][:plaza] %>"
+}
+
+yui {
+    filter = <%= node[:chub_rolodex][:yui][:filter] %>
+    combine = <%= node[:chub_rolodex][:yui][:combine] %>
+    url = <%= node[:chub_rolodex][:yui][:url] %>
+}
+
 <% if node[:graphite] -%>
 metrics {
     <% if node[:graphite][:host] -%>
