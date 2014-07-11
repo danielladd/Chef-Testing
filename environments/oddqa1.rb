@@ -42,6 +42,7 @@ default_attributes(
     }
   },
   :chub_apartment => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.oddqa1.current+=true",
     :db => {
       :server => "SQLVM03",
       :name => "oddqa1_chub",
