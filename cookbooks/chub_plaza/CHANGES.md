@@ -1,3 +1,6 @@
+#0.2.4
+* Modify email configuration section
+
 #0.2.3
 * Add email configuration section for test/dev/prod environments
 
