@@ -13,9 +13,9 @@ security {
         }
     }
 }
-<% if node[:chub_plaza][:email] -%>
-     email.strategy = "<%= node[:chub_plaza][:email][:strategy] %>"
-<% end -%>
+<% if node[:chub_plaza][:email] && node[:chub_plaza][:email][:strategy] %>
+email.strategy = "<%= node[:chub_plaza][:email][:strategy] %>"
+<% end %>
 census {
     url = "<%= node[:chub_plaza][:census_url] %>"
 }
