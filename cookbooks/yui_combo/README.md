@@ -1,10 +1,12 @@
 # yui_combo-cookbook
 
-TODO: Enter the cookbook description here.
+Installs NodeJS and the "combohandler" npm package.
+Configures the "combohandler" as an Upstart service.
+Configures nginx for response caching.
 
 ## Supported Platforms
 
-TODO: List your supported platforms.
+Ubuntu 12.04+
 
 ## Attributes
 
@@ -16,10 +18,16 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['yui_combo']['bacon']</tt></td>
+    <td><tt>['nginx']['default_site_enabled']</tt></td>
     <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td>Override from the nginx cookbook. We don't need the default site.</td>
+    <td><tt>false</tt></td>
+  </tr>
+  <tr>
+    <td><tt>['yui_combo']['git_repo']</tt></td>
+    <td>String</td>
+    <td>URL to a Git repository containing the YUI Source and a routes.json file.</td>
+    <td><tt>https://git.nexus.commercehub.com/JDipierro/yui-combo-resources.git</tt></td>
   </tr>
 </table>
 
