@@ -51,6 +51,11 @@ attribute "chub_plaza/census_url",
     :description => "The URL for Census",
     :required => "required"
 
+attribute "chub_plaza/email/strategy",
+    :display_name => "Plaza email service",
+    :description => "Email configuration",
+    :required => "required"
+	
 attribute "chub_plaza/hazelcast/group", :required => "optional"
 attribute "chub_plaza/hazelcast/password", :required => "required"
 attribute "chub_plaza/hazelcast/network_port", :required => "optional"
