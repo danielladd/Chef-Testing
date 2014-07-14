@@ -18,6 +18,8 @@
 #
 include_recipe "chub_rundeck::mysql_base"
 
+gem_package "mysql"
+
 ruby_block "start_replication" do
   block do
     require 'mysql'
@@ -58,6 +60,6 @@ end
 
 sensu_client node.name do
     address node[:ipaddress]
-    subscriptions node[:roles] + "rundeck_mysql_slave"
+    subscriptions node[:roles] + ["rundeck_mysql_slave"]
 end
 

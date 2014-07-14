@@ -18,6 +18,8 @@
 #
 include_recipe "chub_rundeck::mysql_base"
 
+gem_package "mysql"
+
 mysql_connection_info = {
   :host     => "localhost",
   :username => 'root',
@@ -72,7 +74,7 @@ end
 
 sensu_client node.name do
     address node[:ipaddress]
-    subscriptions node[:roles] + "rundeck_mysql_master"
+    subscriptions node[:roles] + ["rundeck_mysql_master"]
 end
 
 

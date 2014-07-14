@@ -19,7 +19,7 @@ end
 
 # Checks
 sensu_check "mysql_replication_status" do
-    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/mysql-replication-status.rb -h #{node[:chub_rundeck][:dbslave]} -u #{node[:chub_rundeck][:db_user]} -p #{node[:chub_rundeck][:db_pass]} -w 180 -c 300"
+    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/mysql-replication-status.rb -h localhost -u root -p #{node[:mysql][:server_root_password]} -w 180 -c 300"
     handlers ["pipeline_team"]
     subscribers ["rundeck_mysql_slave"]
     interval 60
@@ -28,7 +28,7 @@ end
 
 # Checks
 sensu_check "mysql_alive" do
-    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/mysql-alive.rb -h #{node[:chub_rundeck][:dbmaster]} -u #{node[:chub_rundeck][:db_user]} -p #{node[:chub_rundeck][:db_pass]} -d #{node[:chub_rundeck][:db_name]}"
+    command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/mysql-alive.rb -h localhost -u #{node[:chub_rundeck][:db_user]} -p #{node[:mysql][:server_root_password]} -d #{node[:chub_rundeck][:db_name]}"
     handlers ["pipeline_team"]
     subscribers ["rundeck_mysql_master"]
     interval 60

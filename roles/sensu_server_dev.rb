@@ -13,6 +13,9 @@ default_attributes "chub_sensu" => {
             "rundeck_mysql_slave" => "pipeline@commercehub.com"
         }
     }
+},
+"mysql" => {
+     "server_root_password" => "idontknowwhatiamdoing"
 }
 override_attributes(
   "ssh_keys" => {
