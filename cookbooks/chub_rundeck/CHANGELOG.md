@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.14
+-----
+- Larry - Adding an api account
+
 0.1.13
 -----
 - Larry - Fix of bug in mysql slave using root password for repl account

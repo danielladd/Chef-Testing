@@ -39,8 +39,8 @@ end
 node[:chub_rundeck][:resources].each do |project, nodes|
   directory "#{node[:chub_rundeck][:root_project_path]}/#{project}/etc/" do
     recursive    true
-    owner     node[:chub_rundeck][:rundeck_user]
-    group     node[:chub_rundeck][:rundeck_group]
+    owner        node[:chub_rundeck][:rundeck_user]
+    group        node[:chub_rundeck][:rundeck_group]
     action       :create 
   end
 
@@ -53,6 +53,13 @@ node[:chub_rundeck][:resources].each do |project, nodes|
        :nodes => node[:chub_rundeck][:resources]["#{project}"]
     })
   end
+end
+
+rundeck_user 'api' do
+  password 'apipassword'
+  encryption 'md5'
+  roles %w{ user admin architect deploy build api }
+  action :create
 end
 
 cookbook_file "/etc/krb5.conf" do
