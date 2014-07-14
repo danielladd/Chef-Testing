@@ -56,10 +56,10 @@ node[:chub_rundeck][:resources].each do |project, nodes|
 end
 
 rundeck_user 'api' do
-  password 'apipassword'
-  encryption 'md5'
-  roles %w{ user admin architect deploy build api }
-  action :create
+  password      'apipassword'
+  encryption    'md5'
+  roles         %w{ user admin architect deploy build api }
+  action        :create
 end
 
 cookbook_file "/etc/krb5.conf" do
