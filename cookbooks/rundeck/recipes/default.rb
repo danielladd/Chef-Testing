@@ -137,6 +137,7 @@ template '/etc/rundeck/project.properties' do
 	notifies :restart, 'service[rundeckd]'
 end
 
+=begin
 template '/etc/rundeck/rundeck-config.properties' do
 	source 'rundeck-config.properties.erb'
 	owner 'rundeck'
@@ -144,6 +145,7 @@ template '/etc/rundeck/rundeck-config.properties' do
 	mode 00644
 	notifies :restart, 'service[rundeckd]'
 end
+=end
 
 # Rundeck profile file
 template '/etc/rundeck/profile' do
