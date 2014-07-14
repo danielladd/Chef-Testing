@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.16
+-----
+- Larry - adding sensu alerting for the mysql master/slave
+
 0.1.15
 -----
 - Larry - Cleaning up cookbook a bit more, adding rundeck, proxy, hostname to default attributes to abstract out of role

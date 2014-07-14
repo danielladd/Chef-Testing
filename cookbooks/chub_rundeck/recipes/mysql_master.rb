@@ -70,5 +70,9 @@ ruby_block "store_mysql_master_status" do
   subscribes :create, resources(:mysql_service => "default")
 end
 
+sensu_client node.name do
+    address node[:ipaddress]
+    subscriptions node[:roles] + "rundeck_mysql_master"
+end
 
 

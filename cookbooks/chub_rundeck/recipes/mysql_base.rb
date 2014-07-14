@@ -35,3 +35,18 @@ mysql_service 'default' do
   template_source    'my.cnf.erb'
   action             :create
 end
+
+
+# Sensu
+include_recipe "chub_sensu::client"
+
+remote_file "#{node[:chub_sensu][:root_plugin_path]}/mysql-replication-status.rb" do
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/mysql/mysql-replication-status.rb"
+    mode 0755
+end
+
+remote_file "#{node[:chub_sensu][:root_plugin_path]}/mysql-alive.rb" do
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/mysql/mysql-alive.rb"
+    mode 0755
+end
+

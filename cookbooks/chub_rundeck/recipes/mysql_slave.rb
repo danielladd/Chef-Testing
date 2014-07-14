@@ -56,5 +56,8 @@ ruby_block "start_replication" do
   end
 end
 
-
+sensu_client node.name do
+    address node[:ipaddress]
+    subscriptions node[:roles] + "rundeck_mysql_slave"
+end
 
