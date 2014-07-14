@@ -8,7 +8,9 @@ default_attributes "chub_sensu" => {
             "pipeline_team" => "pipeline@commercehub.com",
             "scm_team" => "mercurial-admin@commercehub.com",
             "platform_team" => "jlazzara@commercehub.com,mmiller@commercehub.com",
-            "missioncontrol_team" => "BLaviolette@commercehub.com,CMcCormick@commercehub.com,CCucinella@commercehub.com,JLane@commercehub.com,LKulzer@commercehub.com,MBreen@commercehub.com,MBouchard@commercehub.com,SVonDuhn@commercehub.com,ZHarvey@commercehub.com"
+            "missioncontrol_team" => "BLaviolette@commercehub.com,CMcCormick@commercehub.com,CCucinella@commercehub.com,JLane@commercehub.com,LKulzer@commercehub.com,MBreen@commercehub.com,MBouchard@commercehub.com,SVonDuhn@commercehub.com,ZHarvey@commercehub.com",
+            "rundeck_mysql_master" => "pipeline@commercehub.com",
+            "rundeck_mysql_slave" => "pipeline@commercehub.com"
         }
     }
 }
@@ -21,4 +23,4 @@ override_attributes(
     "dcross" => "dcross"
   }
 )
-run_list "recipe[chub_sensu::server]","recipe[chub_sensu::client]","recipe[chub_pipeline::sensu_server]","recipe[chub_pipeline::sensu_client]","recipe[base::users]","recipe[sensu-admin]","recipe[chub_mc_app::sensu_server]","recipe[chub_scm::sensu_server]","recipe[chub_albers::sensu_server]"
+run_list "recipe[chub_sensu::server]","recipe[chub_sensu::client]","recipe[chub_pipeline::sensu_server]","recipe[chub_pipeline::sensu_client]","recipe[base::users]","recipe[sensu-admin]","recipe[chub_mc_app::sensu_server]","recipe[chub_scm::sensu_server]","recipe[chub_albers::sensu_server]","recipe[chub_rundeck::sensu_server]"

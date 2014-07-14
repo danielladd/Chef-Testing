@@ -1,6 +1,11 @@
 name "rundeck_db_master"
 description "role for rundeck_db_master machines"
 default_attributes(
+  "sensu" => {
+      "rabbitmq" => {
+          "host" => "sensu01.nexus.commercehub.com"
+      }
+  },
   "mysql" => {
      "server_root_password" => "idontknowwhatiamdoing",
      "server_repl_password" => "idontknowwhatiamdoing",
