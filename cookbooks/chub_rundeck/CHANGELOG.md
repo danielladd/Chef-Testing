@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.15
+-----
+- Larry - Cleaning up cookbook a bit more, adding rundeck, proxy, hostname to default attributes to abstract out of role
+
 0.1.14
 -----
 - Larry - Adding an api account

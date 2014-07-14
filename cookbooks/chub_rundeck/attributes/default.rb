@@ -22,9 +22,12 @@ default[:mysql][:data_dir] = "/var/lib/mysql"
 default[:mysql][:log_bin] = "/var/log/mysql/mysql-bin.log"
 
 
-## WinRMPlugin
+## Plugins
 default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"
+default[:chub_rundeck][:winrm_plugin_checksum] = "bfada6ae4215d9d44a4d1b5728bd3dde"
 
+# Proxy for nginx port forwarding
+default[:rundeck][:proxy][:hostname] = node[:fqdn]
 
 ## Override default prop from rundeck to remove the admin.aclpolicy file
 ## we manage the admin.aclpolicy locally
