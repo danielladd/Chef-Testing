@@ -1,4 +1,4 @@
-default[:chub_rolodex][:app_url] = "http://bamboom1:8085/browse/ODD-ROL/latestSuccessful/artifact/shared/Rolodex-Jar/true.jar?os_username=mess&os_password=messuser"
+default[:chub_rolodex][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar;env.oddqa2.current+=true"
 default[:chub_rolodex][:java_heap_size] = "512M"
 
 default[:slm][:odd_service][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com/"

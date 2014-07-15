@@ -51,6 +51,7 @@ default_attributes(
     }
   },
   :chub_rolodex => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar;env.oddqa1.current+=true",
     :yui => {
       :filter => "min",
       :combine => true,
