@@ -1,4 +1,4 @@
-default[:chub_oddrest][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar;env.odddev1.current+=true"
+default[:chub_oddrest][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
 default[:chub_oddrest][:java_heap_size] = "512M"
 # DB
 default[:chub_oddrest][:db][:server] = "SQLVM03"

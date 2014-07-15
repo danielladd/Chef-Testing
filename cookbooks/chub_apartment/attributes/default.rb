@@ -1,4 +1,4 @@
-default[:chub_apartment][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.odddev1.current+=true"
+default[:chub_apartment][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar"
 
 ###
 # App Config Details
