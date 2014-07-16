@@ -105,7 +105,7 @@ default_attributes(
     :app_context => "/castle",
     :domain => "ssoqa1-apps.nexus.commercehub.com",
     :default_service_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/shiro-cas",
-    :forgot_password_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/forgotPassword",
+    :forgot_password_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/forgot-password",
     :census_url => "https://ssoqa1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",

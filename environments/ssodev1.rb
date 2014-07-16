@@ -104,7 +104,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
-    :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
+    :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgot-password",
     :census_url => "https://ssodev1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
