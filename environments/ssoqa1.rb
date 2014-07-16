@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.2.2",
+  "chub_plaza" => "= 0.2.4",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
@@ -61,8 +61,8 @@ default_attributes(
     :loadbalancer_urls => {
       :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/ping",
       :census => "https://ssoqa1-census.nexus.commercehub.com:8443/ping",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/admin/ping",
-      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/buildInfo"
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/ping",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/ping"
     }
   },
   :openldap => {
@@ -130,6 +130,9 @@ default_attributes(
       :password => "ssoqa-pass",
       :multicast_group => "224.2.2.5",
       :multicast_port => 54329
+    },
+    :email => {
+      :strategy => "log"
     }
   }
 )
