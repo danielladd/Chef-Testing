@@ -16,6 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe "cron"
 
 group "mysql" do
   action    :create
@@ -49,9 +50,9 @@ template "#{node[:mysql][:backup_root_path]}/backup.sh" do
   action    :create
 end
 
-cron "mysql_backup" do
-  minute     "00"
-  hour       "01"
+cron_d "mysql_backup" do
+  minute     00
+  hour       01
   user       "mysql"
   command    "bash /opt/mysql/backup.sh"
   action     :create

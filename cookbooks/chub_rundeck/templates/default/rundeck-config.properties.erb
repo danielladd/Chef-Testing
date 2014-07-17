@@ -9,7 +9,7 @@ reportservice.log4j.port = <%= node['rundeck']['log4j_port'] %>
 grails.serverURL = http://<%= node['rundeck']['hostname'] %>:<%= node['rundeck']['port'] %>
 dataSource.dbCreate = update
 
-dataSource.url = jdbc:mysql://<%= node['rundeck']['dbmaster'] %>:3306/rundeckdb?autoReconnect=true
+dataSource.url = jdbc:mysql://<%= @rundeck_db_master %>:3306/rundeckdb?autoReconnect=true
 dataSource.username = rundeckuser
 dataSource.password = rundeck
 

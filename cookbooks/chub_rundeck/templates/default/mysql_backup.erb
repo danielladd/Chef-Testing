@@ -5,7 +5,7 @@
 ## Otherwise, do by day of week.
 
 DOW=`/bin/date +%a`
-REPLSET="replSetName"
+REPLSET="mysqldump"
 
 if [ $DOW == "Sun" ]; then
         DSTRING=`/bin/date +%Y-%m-%d`
@@ -28,6 +28,6 @@ touch "$LOCKFILE"
 /usr/bin/logger -t mysql_backup "$ARCHSTRING started"
 rm -f $BACKUP_DIR
 mkdir -p $BACKUP_DIR
-mysqldump --user=root --password=<%= node[:mysql][:server_root_password] %> --all-databases > dump.sql
+mysqldump --user=root --password=<%= node[:mysql][:server_root_password] %> --all-databases > $BACKUP_DIR/dump.sql
 rm -f "$LOCKFILE"
 /usr/bin/logger -t mysql_backup "$ARCHSTRING finished"

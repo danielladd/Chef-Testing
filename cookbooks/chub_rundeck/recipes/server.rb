@@ -82,11 +82,18 @@ link "/var/lib/rundeck/bootstrap/mysql-connector-java-5.1.31-bin.jar" do
   only_if    "test -e /usr/share/java/mysql.jar"
 end
 
+dbmasters = search(:node, "mysql_master:true AND mysql_cluster_name:#{node[:mysql][:cluster_name]}")
+dbmasters = dbmasters.first
+
+
 template "#{node[:chub_rundeck][:rundeck_config_path]}/rundeck-config.properties" do
   source      'rundeck-config.properties.erb'
   owner       node[:chub_rundeck][:rundeck_user]
   group       node[:chub_rundeck][:rundeck_group]
   mode        00644
+  variables({
+       :rundeck_db_master => dbmasters.name
+  })
   notifies    :restart, 'service[rundeckd]'
 end
 

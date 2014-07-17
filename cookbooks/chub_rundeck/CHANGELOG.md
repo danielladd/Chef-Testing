@@ -1,5 +1,9 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.19
+-----
+- Larry - using chef search in place of hard coded master/slave
+
 0.1.18
 -----
 - Larry - mysql_backup.rb recipe created, some small cookbook cleanup
