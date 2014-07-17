@@ -13,6 +13,7 @@ default_attributes(
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
+    :census_url => "https://ssodev1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :hazelcast => {
       :group => "ssodev-castle",

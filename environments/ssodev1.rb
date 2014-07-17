@@ -9,11 +9,11 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.26",
+  "chub_castle" => "= 0.1.27",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.2.2",
+  "chub_plaza" => "= 0.2.4",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
@@ -61,8 +61,8 @@ default_attributes(
     :loadbalancer_urls => {
       :vault => "https://ssodev1-vault.nexus.commercehub.com:8443/ping",
       :census => "https://ssodev1-census.nexus.commercehub.com:8443/ping",
-      :castle => "https://ssodev1-castle.nexus.commercehub.com/admin/ping",
-      :plaza => "https://ssodev1-plaza.nexus.commercehub.com/buildInfo"
+      :castle => "https://ssodev1-castle.nexus.commercehub.com/ping",
+      :plaza => "https://ssodev1-plaza.nexus.commercehub.com/ping"
     }
   },
   :openldap => {
@@ -104,7 +104,8 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
-    :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",
+    :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgot-password",
+    :census_url => "https://ssodev1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
@@ -128,6 +129,9 @@ default_attributes(
       :password => "ssodev-pass",
       :multicast_group => "224.2.2.4",
       :multicast_port => 54328
+    },
+    :email => {
+      :strategy => "log"
     }
   }
 )

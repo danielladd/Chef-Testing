@@ -9,11 +9,11 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.26",
+  "chub_castle" => "= 0.1.27",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.2.2",
+  "chub_plaza" => "= 0.2.4",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.3.5",
   "cron" => "= 1.2.6",
@@ -61,8 +61,8 @@ default_attributes(
     :loadbalancer_urls => {
       :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/ping",
       :census => "https://ssoqa1-census.nexus.commercehub.com:8443/ping",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/admin/ping",
-      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/buildInfo"
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle/ping",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza/ping"
     }
   },
   :openldap => {
@@ -105,7 +105,8 @@ default_attributes(
     :app_context => "/castle",
     :domain => "ssoqa1-apps.nexus.commercehub.com",
     :default_service_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/shiro-cas",
-    :forgot_password_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/forgotPassword",
+    :forgot_password_url => "https://ssoqa1-apps.nexus.commercehub.com/plaza/forgot-password",
+    :census_url => "https://ssoqa1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
@@ -130,6 +131,9 @@ default_attributes(
       :password => "ssoqa-pass",
       :multicast_group => "224.2.2.5",
       :multicast_port => 54329
+    },
+    :email => {
+      :strategy => "log"
     }
   }
 )
