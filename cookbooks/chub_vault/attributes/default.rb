@@ -8,3 +8,6 @@ default[:chub_vault][:ldap][:healthcheck][:valid_password] = "1337Pass"
 default[:chub_vault][:ldap][:healthcheck][:invalid_password] = "lamePass"
 default[:chub_vault][:ldap][:healthcheck][:guid] = "5311C4E3-228F-4664-8074-1EDEDE24025F"
 default[:chub_vault][:java_heap_size] = "1G"
+default[:chub_vault][:archaius_config] = {
+    "hystrix.threadpool.default.coreSize" => "20"
+}
