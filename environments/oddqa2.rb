@@ -18,8 +18,8 @@ default_attributes(
       :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com/"
     },
     :sso => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8080/",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8080/",
+      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/",
+      :census => "https://ssoqa1-census.nexus.commercehub.com:8443/",
       :castle => "https://ssoqa1-castle.nexus.commercehub.com/",
       :plaza => "https://ssoqa1-plaza.nexus.commercehub.com/"
     }
