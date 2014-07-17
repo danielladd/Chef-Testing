@@ -86,7 +86,7 @@ attribute "chub_vault/java_heap_size",
     :default => "1G"
 
 attribute "chub_vault/archaius_config",
-    :display_name "Archaius configuration",
+    :display_name => "Archaius configuration",
     :type => "hash",
     :required => "optional"
 
