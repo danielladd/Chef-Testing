@@ -1,5 +1,13 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.18
+-----
+- Larry - mysql_backup.rb recipe created, some small cookbook cleanup
+
+0.1.17
+-----
+- Larry - adding sensu alerting for rundeck server itself
+
 0.1.16
 -----
 - Larry - adding sensu alerting for the mysql master/slave

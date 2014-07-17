@@ -49,4 +49,3 @@ remote_file "#{node[:chub_sensu][:root_plugin_path]}/mysql-alive.rb" do
     source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/mysql/mysql-alive.rb"
     mode 0755
 end
-

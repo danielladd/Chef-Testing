@@ -20,7 +20,7 @@ default[:mysql][:database_to_replicate] = node[:chub_rundeck][:db_name]
 default[:mysql][:cluster_name] = "rundeckcluster"
 default[:mysql][:data_dir] = "/var/lib/mysql"
 default[:mysql][:log_bin] = "/var/log/mysql/mysql-bin.log"
-
+default[:mysql][:backup_root_path] = "/opt/mysql/backup"
 
 ## Plugins
 default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"

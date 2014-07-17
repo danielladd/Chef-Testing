@@ -120,3 +120,12 @@ link "/etc/nginx/sites-enabled/000-default" do
 end
 
 include_recipe "rundeck::proxy"
+
+
+# Sensu 
+include_recipe "chub_sensu::client"
+
+remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-http.rb" do
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/http/check-http.rb"
+    mode 0755
+end

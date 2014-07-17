@@ -13,4 +13,4 @@ default_attributes(
      "server_id" => 2,
   },
 )
-run_list "recipe[base::users]","recipe[chub_rundeck::mysql_slave]"
+run_list "recipe[base::users]","recipe[chub_rundeck::mysql_slave]","recipe[chub_rundeck::mysql_backup]"

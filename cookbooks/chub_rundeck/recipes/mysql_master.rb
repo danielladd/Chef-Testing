@@ -38,6 +38,26 @@ database_user node[:chub_rundeck][:db_user] do
   password         node[:chub_rundeck][:db_pass]
   provider         Chef::Provider::Database::MysqlUser
   privileges       [:all]
+  host             "localhost"
+  action           :create
+end
+
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
+  host             "localhost"
+  action           :grant
+end
+
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
   host             "%"
   action           :create
 end
@@ -72,6 +92,8 @@ ruby_block "store_mysql_master_status" do
   subscribes :create, resources(:mysql_service => "default")
 end
 
+
+# Sensu
 sensu_client node.name do
     address node[:ipaddress]
     subscriptions node[:roles] + ["rundeck_mysql_master"]

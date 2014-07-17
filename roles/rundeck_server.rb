@@ -1,9 +1,14 @@
 name "rundeck_server"
 description "role for rundeck_server machines"
 default_attributes(
+  "sensu" => {
+      "rabbitmq" => {
+          "host" => "sensu01.nexus.commercehub.com"
+      }
+  },
   "rundeck" => {
-    "dbmaster" => "orchdb03",
-    "dbslave"  => "orchdb02",
+    "dbmaster" => "orchdb02",
+    "dbslave"  => "orchdb03",
     "admin" => {
       "password" => "securepassword1"
     },
