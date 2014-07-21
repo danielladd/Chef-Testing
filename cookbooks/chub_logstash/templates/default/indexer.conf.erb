@@ -8,6 +8,13 @@ input {
     type => missioncontrol
     port => 5544
   }
+  tcp {
+    port => 2352
+    ssl_certificate => "/opt/logstash/ssl/logstash.crt"
+    ssl_key => "/opt/logstash/ssl/logstash.key"
+    codec => json { charset => "CP1252" }
+    
+  }
 }
 
 filter {
