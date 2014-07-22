@@ -12,7 +12,7 @@ default_attributes(
       :baseUrl => "http://odddev1-rest.nexus.commercehub.com/"
     },
     :apartment => {
-      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com/"
+      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080/"
     },
     :rolodex => {
       :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com/"
@@ -20,8 +20,8 @@ default_attributes(
     :sso => {
       :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/",
       :census => "https://ssoqa1-census.nexus.commercehub.com:8443/",
-      :castle => "https://ssoqa1-castle.nexus.commercehub.com/",
-      :plaza => "https://ssoqa1-plaza.nexus.commercehub.com/"
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza"
     }
   },
   :chub_tattler => {

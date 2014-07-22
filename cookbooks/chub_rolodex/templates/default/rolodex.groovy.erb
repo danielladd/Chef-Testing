@@ -1,3 +1,13 @@
+security {
+    shiro {
+        cas {
+            serverUrl = "<%= node[:slm][:sso][:castle] %>"
+            serviceUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/shiro-cas"
+            failureUrl = "<%= node[:slm][:rolodex][:baseUrl] %>"
+        }
+    }
+}
+
 rolodex {
     url = "<%= node[:slm][:rolodex][:baseUrl] %>"
 }
