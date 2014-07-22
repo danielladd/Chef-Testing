@@ -1,0 +1,33 @@
+define ROOT node[:chub_nxlog][:root_path]
+
+Moduledir %ROOT%\modules
+CacheDir %ROOT%\data
+Pidfile %ROOT%\data\nxlog.pid
+SpoolDir %ROOT%\data
+LogFile %ROOT%\data\nxlog.log
+
+<Extension json>
+  Module xm_json
+</Extension>
+
+<% if @logfiles %>
+<% @logfiles.each do |logfile| %>
+<Input <%= logfile[:type]%>>
+    Module im_file
+    File "<%= logfile[:path] %>"
+    Exec to_json();
+</Input>
+<% end %>
+<% end %>
+
+<Output logstash>
+    Module      om_ssl
+    Host        @endpoint
+    Port        @port
+    CAFile      @cafile
+</Output>
+
+<Route 1>
+    Path        @route_path
+</Route>
+

@@ -1,0 +1,5 @@
+default[:chub_nxlog][:package_name] = "nxlog-ce"
+default[:chub_nxlog][:package_version] = "2.8.1248"
+default[:chub_nxlog][:template_file] = "nxlog.conf.erb"
+default[:chub_nxlog][:config_directory] = "/etc/nginx/"
+default[:chub_nxlog][:root_path] = "/usr/lib/nxlog"
