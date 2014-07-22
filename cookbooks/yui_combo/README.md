@@ -10,26 +10,10 @@ Ubuntu 12.04+
 
 ## Attributes
 
-<table>
-  <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td><tt>['nginx']['default_site_enabled']</tt></td>
-    <td>Boolean</td>
-    <td>Override from the nginx cookbook. We don't need the default site.</td>
-    <td><tt>false</tt></td>
-  </tr>
-  <tr>
-    <td><tt>['yui_combo']['git_repo']</tt></td>
-    <td>String</td>
-    <td>URL to a Git repository containing the YUI Source and a routes.json file.</td>
-    <td><tt>https://git.nexus.commercehub.com/JDipierro/yui-combo-resources.git</tt></td>
-  </tr>
-</table>
+| Key | Type | Description | Default |
+|---|---|---|---|
+| ['nginx']['default_site_enabled'] | Boolean | Override from the nginx cookbook. We don't need the default site. | false |
+| ['yui_combo']['git_repo'] | String | URL to a Git repository containing the YUI Source and a routes.json file. | https://git.nexus.commercehub.com/JDipierro/yui-combo-resources.git |
 
 ## Usage
 
