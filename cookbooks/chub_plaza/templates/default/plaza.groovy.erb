@@ -13,8 +13,18 @@ security {
         }
     }
 }
-<% if node[:chub_plaza][:email] && node[:chub_plaza][:email][:strategy] %>
-email.strategy = "<%= node[:chub_plaza][:email][:strategy] %>"
+grails.greenmail.disabled = <%= node[:chub_plaza][:greenmail][:disabled] %>
+grails.mail.disabled = <%= node[:chub_plaza][:mail][:disabled] %>
+grails.mail.host = "<%= node[:chub_plaza][:mail][:host] || (!node[:chub_plaza][:greenmail][:disabled] ? 'localhost' : 'UNCONFIGURED') %>"
+grails.mail.port = <%= node[:chub_plaza][:mail][:port] || (!node[:chub_plaza][:greenmail][:disabled] ? 3025 : 25) %>
+<% if node[:chub_plaza][:mail][:username] %>
+grails.mail.username = "<%= node[:chub_plaza][:mail][:username] %>"
+<% end %>
+<% if node[:chub_plaza][:mail][:password] %>
+grails.mail.password = "<%= node[:chub_plaza][:mail][:password] %>"
+<% end %>
+<% if node[:chub_plaza][:mail][:override_address] %>
+grails.mail.overrideAddress = "<%= node[:chub_plaza][:mail][:override_address] %>"
 <% end %>
 census {
     url = "<%= node[:chub_plaza][:census_url] %>"

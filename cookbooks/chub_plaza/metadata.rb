@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.2.4'
+version          '0.3.0'
 
 supports "ubuntu"
 depends "chub_java"
@@ -51,11 +51,43 @@ attribute "chub_plaza/census_url",
     :description => "The URL for Census",
     :required => "required"
 
-attribute "chub_plaza/email/strategy",
-    :display_name => "Plaza email service",
-    :description => "Email configuration",
-    :required => "required"
-	
+attribute "chub_plaza/greenmail/disabled",
+    :display_name => "Greenmail disabled",
+    :description => "Whether to disable Greenmail",
+    :required => "optional",
+    :default => "true"
+
+attribute "chub_plaza/mail/disabled",
+    :display_name => "Mail disabled",
+    :description => "Whether to disable mail",
+    :required => "optional",
+    :default => "false"
+
+attribute "chub_plaza/mail/host",
+    :display_name => "Mail host",
+    :description => "Server to use for sending mail",
+    :required => "optional"
+
+attribute "chub_plaza/mail/port",
+    :display_name => "Mail port",
+    :description => "Port to use for sending mail",
+    :required => "optional"
+
+attribute "chub_plaza/mail/username",
+    :display_name => "Mail username",
+    :description => "Username to use for sending mail",
+    :required => "optional"
+
+attribute "chub_plaza/mail/password",
+    :display_name => "Mail password",
+    :description => "Password to use for sending mail",
+    :required => "optional"
+
+attribute "chub_plaza/mail/override_address",
+    :display_name => "Mail override address",
+    :description => "The address to use for all from and recipient addresses for sent mail",
+    :required => "optional"
+
 attribute "chub_plaza/hazelcast/group", :required => "optional"
 attribute "chub_plaza/hazelcast/password", :required => "required"
 attribute "chub_plaza/hazelcast/network_port", :required => "optional"
