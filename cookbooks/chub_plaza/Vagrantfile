@@ -6,6 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "plaza.vagrant.dev"
   config.vm.box = "boxer/ubuntu-14.04-basic"
   config.vm.network :private_network, ip: "192.168.24.126"
+  config.vm.network :forwarded_port, host: 8080, guest: 8080
   config.vm.provider :virtualbox do |vb|
     vb.name = config.vm.hostname
   end
