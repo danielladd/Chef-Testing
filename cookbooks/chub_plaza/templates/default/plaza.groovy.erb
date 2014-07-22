@@ -13,7 +13,7 @@ security {
         }
     }
 }
-grails.greenmail.disabled = <%= node[:chub_plaza][:greenmail][:disabled] %>
+greenmail.disabled = <%= node[:chub_plaza][:greenmail][:disabled] %>
 grails.mail.disabled = <%= node[:chub_plaza][:mail][:disabled] %>
 grails.mail.host = "<%= node[:chub_plaza][:mail][:host] || (!node[:chub_plaza][:greenmail][:disabled] ? 'localhost' : 'UNCONFIGURED') %>"
 grails.mail.port = <%= node[:chub_plaza][:mail][:port] || (!node[:chub_plaza][:greenmail][:disabled] ? 3025 : 25) %>
