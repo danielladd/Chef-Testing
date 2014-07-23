@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "2.0.0"
+version "3.0.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -40,7 +40,7 @@ attribute "chub-klerk/quartz_database_url",
 attribute "chub-klerk/java_heap_size",
     "display_name" => "Klerk Java heap size",
     "description" => "The heap size with which to run the Klerk JVM",
-    "default" => "512M"
+    "default" => "1g"
 
 attribute "chub-klerk/hazelcast_group_name",
     "display_name" => "Hazelcast Group Name"
