@@ -19,6 +19,28 @@ default_attributes(
   "ssh" => {
     'timeout' => '0'
   },
+  "chub_log" => {
+    "logfiles" => {
+      "rundeck_log" => {
+        "path" => '/var/log/rundeck/rundeck.log',
+        "type" => "rundeck_log"
+      },
+      "rundeck_service_log" => {
+        "path" => '/var/log/rundeck/service.log',
+        "type" => "rundeck_service_log"
+      }
+    },
+    "types" => {
+      "rundeck_log" => {
+        "name" => "rundeck_log",
+        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+      },
+      "rundeck_service_log" => {
+        "name" => "rundeck_service_log",
+        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"      
+      }
+    }
+  },
   "chef" => {
     "client_name" => "rundeck",
     "client_key" => "-----BEGIN RSA PRIVATE KEY-----

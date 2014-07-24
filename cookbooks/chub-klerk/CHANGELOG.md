@@ -2,6 +2,11 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v3.0.0
+------
+- Update klerk.yml template to support Klerk's upgrade to Dropwizard 0.7.x
+- Increase heap size to 1g
+
 v2.0.0
 ------
 - Upgrade to JDK 8

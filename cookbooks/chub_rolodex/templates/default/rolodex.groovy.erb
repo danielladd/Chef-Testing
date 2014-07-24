@@ -25,9 +25,9 @@ sso {
 }
 
 yui {
-    filter = <%= node[:chub_rolodex][:yui][:filter] %>
+    filter = "<%= node[:chub_rolodex][:yui][:filter] %>"
     combine = <%= node[:chub_rolodex][:yui][:combine] %>
-    url = <%= node[:chub_rolodex][:yui][:url] %>
+    url = "<%= node[:chub_rolodex][:yui][:url] %>"
 }
 
 <% if node[:graphite] -%>

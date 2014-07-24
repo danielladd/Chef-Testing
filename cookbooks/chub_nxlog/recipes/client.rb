@@ -16,37 +16,56 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+path = String.new
+logFileArray = Array.new
 
 case node['platform_family']
 when "debian", "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
-
+ 
   package node[:chub_nxlog][:package_name] do
     version    node[:chub_nxlog][:package_version]
     action     :install
   end
 when "windows"
   node.default.chub_nxlog.root_path = "C:\\Program Files (x86)\\nxlog"
-
+ 
   # Figure out how to install on windows
   # MSI?
 end
 
-path = ""
-node[:chub_nxlog][:logfiles].each do |log|
-    path << " #{log.type},"
+node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
+  unless index == 0
+    path << ","
+  end
+    path << " #{logfile.type}"
+
+  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type]}
+
 end
 path << " => logstash"
 
 template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do 
-  source    node[:chub_nxlog][:template_file]
-  action    :create
+  source      node[:chub_nxlog][:template_file]
+  action      :create
   variables({
     :endpoint => node[:chub_nxlog][:endpoint],
     :port => node[:chub_nxlog][:endpoint_port],
-    :logfiles => node[:chub_nxlog][:logfiles],
+    :logfiles => logFileArray,
     :route_path => path,
     :cafile => "#{node[:chub_nxlog][:root_path]}/#{node[:chub_nxlog][:logstash_cert]}"
   })
+  notifies    :restart, "service[nxlog]", :delayed
+end
+
+directory "#{node[:chub_nxlog][:root_path]}/data" do
+  owner     "root"
+  group     "root"
+  mode      0755
+  action    :create
+end
+
+service "nxlog" do
+  action         [:enable, :start]
+  init_command    "/etc/init.d/nxlog"
 end
