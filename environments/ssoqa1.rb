@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.17",
-  "chub_plaza" => "= 0.2.4",
+  "chub_plaza" => "= 0.3.1",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.4.0",
   "cron" => "= 1.2.6",
@@ -132,8 +132,9 @@ default_attributes(
       :multicast_group => "224.2.2.5",
       :multicast_port => 54329
     },
-    :email => {
-      :strategy => "log"
+    :mail => {
+      :host => "mail.commercehub.com",
+      :override_address => "dcarr@commercehub.com"
     }
   }
 )
