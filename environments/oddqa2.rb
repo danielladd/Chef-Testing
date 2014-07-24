@@ -9,19 +9,25 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://oddqa2-rest.nexus.commercehub.com/"
+      :baseUrl => "http://oddqa2-rest.nexus.commercehub.com"
     },
     :apartment => {
-      :baseUrl => "http://oddqa2-apartment.nexus.commercehub.com:8080/"
+      :baseUrl => "http://oddqa2-apartment.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com/"
+      :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com"
     },
     :sso => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443/",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8443/",
+      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443",
+      :census => "https://ssoqa1-census.nexus.commercehub.com:8443",
       :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle",
       :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza"
+    },
+    :ordersteam => {
+        :app => {
+            :id => "DSM",
+            :name => "oddqa2_orderstream"
+        }
     }
   },
   :chub_tattler => {
@@ -55,7 +61,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "http://yuicombo1.nexus.commercehub.com:3000/"
+      :url => "http://yuicombo1.nexus.commercehub.com:3000"
     }
   }
 )
