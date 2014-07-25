@@ -12,38 +12,16 @@ default_attributes(
     "admin" => {
       "password" => "securepassword1"
     },
-  "authentication" => {
-    "file" => "jaas-ldap.conf",
-    "name" => "chubldap"
-  },
-  "ssh" => {
-    'timeout' => '0'
-  },
-  "chub_log" => {
-    "logfiles" => {
-      "rundeck_log" => {
-        "path" => '/var/log/rundeck/rundeck.log',
-        "type" => "rundeck_log"
-      },
-      "rundeck_service_log" => {
-        "path" => '/var/log/rundeck/service.log',
-        "type" => "rundeck_service_log"
-      }
+    "authentication" => {
+      "file" => "jaas-ldap.conf",
+      "name" => "chubldap"
     },
-    "types" => {
-      "rundeck_log" => {
-        "name" => "rundeck_log",
-        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
-      },
-      "rundeck_service_log" => {
-        "name" => "rundeck_service_log",
-        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"      
-      }
-    }
-  },
-  "chef" => {
-    "client_name" => "rundeck",
-    "client_key" => "-----BEGIN RSA PRIVATE KEY-----
+    "ssh" => {
+      'timeout' => '0'
+    },
+    "chef" => {
+      "client_name" => "rundeck",
+      "client_key" => "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAtPfnWCD9tlQf0BjN+HQDifBY8HE/IXD2zIPdtKAJakaX09az
 UaiCv6kY8uOKsJWsweEHOEMYHRIEnQ7EP4z01VR5wt2I32Qys4QRDyXojKGfuIJz
 Agkzuw6UFugx2LMB05ognklqZVxccAu/XMtqBzjk4UwjbvzaLrCW7jmWzS6PkjkA
@@ -71,7 +49,7 @@ eub7aI6YSxFEDwFnLheZpu9vIPB+ghbRLTRM0ADZN6HqWdxwZCS39GDkkn11FMnD
 g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
 -----END RSA PRIVATE KEY-----
 "}
-},
+    },
   "chub_rundeck" => {
      "resources" => {
         "HornetQ" => [
@@ -287,4 +265,4 @@ override_attributes(
     "rundeck-ssh" => "rundeck-ssh",
   }
 )
-run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]"
+run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]","recipe[chub_log::client]","role[rundeck_logs]"
