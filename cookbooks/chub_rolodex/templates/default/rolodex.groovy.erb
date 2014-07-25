@@ -10,6 +10,12 @@ security {
 
 rolodex {
     url = "<%= node[:slm][:rolodex][:baseUrl] %>"
+    ordersteam {
+        app {
+            id = "<%= node[:slm][:ordersteam][:app][:id] %>"
+            name = "<%= node[:slm][:ordersteam][:app][:name] %>"
+        }
+    }
 }
 oddrest {
     url = "<%= node[:slm][:odd_service][:baseUrl] %>"

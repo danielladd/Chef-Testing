@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     vb.name = config.vm.hostname
   end
 
-  config.vm.network :forwarded_port, host: 8765, guest: 8080
+  config.vm.network :forwarded_port, host: 8766, guest: 8080
 
   config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true

@@ -51,14 +51,20 @@ default['chub-buyspace']['antivirus']['hosts'] = ['vscan.commercehub.com']
 default['chub-buyspace']['antivirus']['enabled'] = false
 default['chub-buyspace']['antivirus']['port'] = 1344
   
+default['chub-buyspace']['log4j']['redis_server_host'] = 'mplogs01.nexus.commercehub.com'
+
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
 default['chub-buyspace']['bestBuyMarketplace']['retailerId'] = '51247477c519e3a71e639634'
 default['chub-buyspace']['creSecure']['cardTokenValidationUrl'] = 'https://localhost/direct/services/validation'
 
+default['chub-buyspace']['environment_level'] = 'development'
+
+default['chub-buyspace']['files']['dailyBillingEventLocation'] = 'PLACEHOLDER'  
+
 default['chub-buyspace']['forSaleImport']['pendingDir'] = "PLACEHOLDER"
 default['chub-buyspace']['forSaleImport']['inProgressDir'] = "PLACEHOLDER"
 default['chub-buyspace']['forSaleImport']['doneDir'] = "PLACEHOLDER"
-  
+ 
 default['chub-buyspace']['grails']['serverURL'] = "https://localhost"
 default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:8080"
 default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost:8080"
@@ -67,7 +73,7 @@ default['chub-buyspace']['grails']['plugin']['excludes'] = "null"
 default['chub-buyspace']['hornetq']['host'] = 'localhost'
 default['chub-buyspace']['hornetq']['port'] = 5445
   
-default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin/gm'
+default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin'
 default['chub-buyspace']['images']['baseDirectory'] = "/var/buyspace/images/"
 default['chub-buyspace']['images']['productBaseDirectory'] = "/var/buyspace/images/products"
 default['chub-buyspace']['images']['serverUrls'] = ['https://localhost']

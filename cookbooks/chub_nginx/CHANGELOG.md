@@ -3,6 +3,12 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.2.0
+-----
+
+* 'H. "Waldo" Grunenwald' - Fixing the rsync job to work properly.  Was missing a trailing slash in the source (so it was copying as a subfolder of the destination), making the destination deletes recursive, and being more explicit about paths.
+
+
 0.1.8
 -----
 
