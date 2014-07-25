@@ -40,7 +40,7 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
