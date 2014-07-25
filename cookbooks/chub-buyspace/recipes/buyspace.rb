@@ -83,7 +83,22 @@ package "cifs-utils" do
   action :install
 end  
 
-image_dir = "/var/buyspace/images"
+#Add the directory underneath our shares
+dataTransferDir = "#{node['chub-buyspace']['dataTransfer']['mountPath']}"
+dataTransferDirExists = File.exists?(dataTransferDir)
+directory dataTransferDir do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0777
+  not_if {dataTransferDirExists}
+end
+
+execute "Add data transfer mount" do
+  command "echo #{node['chub-buyspace']['dataTransfer']['sharePath']} #{node['chub-buyspace']['dataTransfer']['mountPath']} cifs username=#{node['chub-buyspace']['dataTransfer']['shareUser']},pass=#{node['chub-buyspace']['dataTransfer']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
+  not_if {dataTransferDirExists}
+end
+
+image_dir = "#{node['chub-buyspace']['images_dir']}"
 image_dir_existed = File.exists?(image_dir)
 directory image_dir do
   owner "tomcat7"
@@ -92,28 +107,51 @@ directory image_dir do
   not_if {image_dir_existed}
 end
 
-execute "mount_windows_share" do
-  command "echo #{node['chub-buyspace']['images']['shareDirectory']} #{node['chub-buyspace']['images']['shareMount']} cifs username=#{node['chub-buyspace']['images']['shareUser']},pass=#{node['chub-buyspace']['images']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
-  not_if {image_dir_existed}
+cdnDir = "#{node['chub-buyspace']['cdn']['mountPath']}"
+cdnDirExisted = File.exists?(cdnDir)
+directory cdnDir do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0777
+  not_if {cdnDirExisted}
+end
+
+execute "Add cdn mount" do
+  command "echo #{node['chub-buyspace']['cdn']['sharePath']} #{node['chub-buyspace']['cdn']['mountPath']} cifs username=#{node['chub-buyspace']['cdn']['shareUser']},pass=#{node['chub-buyspace']['cdn']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
+  not_if {cdnDirExisted}
+end
+
+imageDatastore1Dir = "#{node['chub-buyspace']['imageDatastore1']['mountPath']}"
+imageDatastore1DirExisted = File.exists?(imageDatastore1Dir)
+directory imageDatastore1Dir do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0777
+  not_if {imageDatastore1DirExisted}
+end
+
+execute "Add image datastore 1 mount" do
+  command "echo #{node['chub-buyspace']['imageDatastore1']['sharePath']} #{node['chub-buyspace']['imageDatastore1']['mountPath']} cifs username=#{node['chub-buyspace']['imageDatastore1']['shareUser']},pass=#{node['chub-buyspace']['imageDatastore1']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
+  not_if {imageDatastore1DirExisted}
+end
+
+imageDatastore2Dir = "#{node['chub-buyspace']['imageDatastore2']['mountPath']}"
+imageDatastore2DirExisted = File.exists?(imageDatastore2Dir)
+directory imageDatastore2Dir do
+  owner "tomcat7"
+  group "tomcat7"
+  mode 0777
+  not_if {imageDatastore2DirExisted}
+end
+
+execute "Add image datastore 2 mount" do
+  command "echo #{node['chub-buyspace']['imageDatastore2']['sharePath']} #{node['chub-buyspace']['imageDatastore2']['mountPath']} cifs username=#{node['chub-buyspace']['imageDatastore2']['shareUser']},pass=#{node['chub-buyspace']['imageDatastore2']['sharePassword']},iocharset=utf8,rw,noperm >> /etc/fstab"
+  not_if {imageDatastore2DirExisted}
 end
 
 execute "mount all" do
   command "mount -a"
-  not_if {image_dir_existed}
 end
-
-#mount "#{node['chub-buyspace']['images']['baseDirectory']}" do
-#  device node['chub-buyspace']['images']['shareDirectory']
-#  fstype "cifs"
-#  action :enable
-#  username "#{node['chub-buyspace']['images']['shareUser']}"
-#  password "#{node['chub-buyspace']['images']['sharePassword']}"
-#end
-
-##{node['chub-buyspace']['images']['shareDirectory']} //mpqa02.nexus.commercehub.com/images_qa7
-##{node['chub-buyspace']['images']['shareMount']} /var/buyspace/images/
-##{node['chub-buyspace']['images']['shareUser']} mpqatomcat
-##{node['chub-buyspace']['images']['sharePassword']} MarketPl@ce
 
 directory "#{node['chub-buyspace']['temp_dir']}" do
 	owner "tomcat7"

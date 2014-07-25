@@ -2,7 +2,7 @@ name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 2.0.0"
-cookbook "chub-buyspace", "= 0.6.0"
+cookbook "chub-buyspace", "= 0.7.0"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa1_klerk_quartz;user=devusr01;password=usrdev",
@@ -20,10 +20,10 @@ default_attributes "chub-klerk" => {
 },
 "chub-buyspace" => {
   "mongo" => {
-       "databaseName" => "marketplaceProd_91212bak",
-        "replicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777'],
-        "blobstoreDatabaseName" => "marketplaceProd_91212bak_blobStore",
-        "blobstoreReplicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777']
+    "databaseName" => "marketplaceProd_91212bak",
+    "replicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777'],
+    "blobstoreDatabaseName" => "marketplaceProd_91212bak_blobStore",
+    "blobstoreReplicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777']
   },
   "solr" => {
     "url" => "http://mpqa03:7070/solr/"
@@ -100,29 +100,49 @@ default_attributes "chub-klerk" => {
       "artifactUrlDuration" => "1.day"
     }
   },
-  "images" => {
-    "datastoreDirectories" => "'/var/buyspace/images/datastore/images1', '/var/buyspace/images/datastore/images2'",
-    "baseDirectory" => '/var/buyspace/images',
-    "productBaseDirectory" => "/var/buyspace/images/products" ,
-    "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images",
-    "shareDirectory" => "//mpqa02.nexus.commercehub.com/images_qa7",
-    "shareMount" => "/var/buyspace/images/",
-    "shareUser" => "mpqatomcat",
-    "sharePassword" => "MarketPl@ce"
-  },
-  "forSaleImport" => {
-    "pendingDir" => "/var/buyspace/images/forSale",
-    "inProgressDir" => "/var/buyspace/images/forSale/processing",
-    "doneDir" => "/var/buyspace/images/forSale/archived"
-  },
   "log4j" => {
     "root_loglevel" => 'info',
     "redis_server_host" => "mplogs01.nexus.commercehub.com"
   },
   "environment_level" => "testing",
-  "files" => {
-      "dailyBillingEventLocation" => '\\\\\\\\imagefs01\\\\datatransfer\\\\productstream\\\\billing'
+  "cdn" => {
+    "sharePath" => "//mpqa02.nexus.commercehub.com/images_qa7",
+    "mountPath" => "/var/buyspace/images/cdn",
+    "shareUser" => "mpqatomcat",
+    "sharePassword" => "MarketPl@ce"
   },
+  "imageDatastore1" => {
+    "sharePath" => "//mpqa02.nexus.commercehub.com/images_qa7/datastore/images1",
+    "mountPath" => "/var/buyspace/images/datastore-1",
+    "shareUser" => "mpqatomcat",
+    "sharePassword" => "MarketPl@ce"
+  },  
+  "imageDatastore2" => {
+    "sharePath" => "//mpqa02.nexus.commercehub.com/images_qa7/datastore/images2",
+    "mountPath" => "/var/buyspace/images/datastore-2",
+    "shareUser" => "mpqatomcat",
+    "sharePassword" => "MarketPl@ce"
+  },  
+  "dataTransfer" => {
+    "sharePath" => "//mpqa02.nexus.commercehub.com/images_qa7/datatransfer",
+    "mountPath" => "/var/buyspace/data-transfer",
+    "shareUser" => "mpqatomcat",
+    "sharePassword" => "MarketPl@ce"
+  },  
+  "forSaleImport" => {
+    "pendingDir" => "/var/buyspace/data-transfer/forSale",
+    "inProgressDir" => "/var/buyspace/data-transfer/forSale/processing",
+    "doneDir" => "/var/buyspace/data-transfer/forSale/archived"
+  },
+  "files" => {
+    "dailyBillingEventLocation" => '/var/buyspace/data-transfer/productstream/billing'
+  },
+  "images" => {
+      "datastoreDirectories" => "'/var/buyspace/images/datastore-1', '/var/buyspace/images/datastore-2'",
+      "baseDirectory" => '/var/buyspace/images/cdn',
+      "productBaseDirectory" => "/var/buyspace/images/cdn/products" ,
+      "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+  },  
 },
 'tomcat' => {
   'base_version' => 7,
