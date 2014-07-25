@@ -1,5 +1,21 @@
+security {
+    shiro {
+        cas {
+            serverUrl = "<%= node[:slm][:sso][:castle] %>"
+            serviceUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/shiro-cas"
+            failureUrl = "<%= node[:slm][:rolodex][:baseUrl] %>"
+        }
+    }
+}
+
 rolodex {
     url = "<%= node[:slm][:rolodex][:baseUrl] %>"
+    ordersteam {
+        app {
+            id = "<%= node[:slm][:ordersteam][:app][:id] %>"
+            name = "<%= node[:slm][:ordersteam][:app][:name] %>"
+        }
+    }
 }
 oddrest {
     url = "<%= node[:slm][:odd_service][:baseUrl] %>"
@@ -15,9 +31,9 @@ sso {
 }
 
 yui {
-    filter = <%= node[:chub_rolodex][:yui][:filter] %>
+    filter = "<%= node[:chub_rolodex][:yui][:filter] %>"
     combine = <%= node[:chub_rolodex][:yui][:combine] %>
-    url = <%= node[:chub_rolodex][:yui][:url] %>
+    url = "<%= node[:chub_rolodex][:yui][:url] %>"
 }
 
 <% if node[:graphite] -%>

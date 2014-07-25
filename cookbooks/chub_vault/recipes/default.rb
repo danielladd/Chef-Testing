@@ -64,6 +64,14 @@ template "/etc/vault/vault.yaml" do
     notifies "restart", "service[vault]"
 end
 
+template "/etc/vault/archaius.properties" do
+    source "archaius.properties.erb"
+    owner "root"
+    group "vault"
+    mode 0640
+    # Intentionally does not notify; this file is reloaded without requiring an application restart
+end
+
 template "/etc/init/vault.conf" do
     source "vault.conf.erb"
     owner "root"

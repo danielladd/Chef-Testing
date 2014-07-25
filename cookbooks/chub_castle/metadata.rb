@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.26'
+version          '0.1.27'
 
 supports "ubuntu"
 depends "chub_java"
@@ -63,6 +63,11 @@ attribute "chub_castle/default_service_url",
 attribute "chub_castle/forgot_password_url",
     :display_name => "Forgot password URL",
     :description => "URL for users who forgot their password",
+    :required => "required"
+
+attribute "chub_castle/census_url",
+    :display_name => "Census Server URL",
+    :description => "Census server for Castle to connect to",
     :required => "required"
 
 attribute "chub_castle/vault_url",

@@ -1,5 +1,29 @@
 chub_rundeck CHANGELOG
 ======================
+0.1.19
+-----
+- Larry - using chef search in place of hard coded master/slave
+
+0.1.18
+-----
+- Larry - mysql_backup.rb recipe created, some small cookbook cleanup
+
+0.1.17
+-----
+- Larry - adding sensu alerting for rundeck server itself
+
+0.1.16
+-----
+- Larry - adding sensu alerting for the mysql master/slave
+
+0.1.15
+-----
+- Larry - Cleaning up cookbook a bit more, adding rundeck, proxy, hostname to default attributes to abstract out of role
+
+0.1.14
+-----
+- Larry - Adding an api account
+
 0.1.13
 -----
 - Larry - Fix of bug in mysql slave using root password for repl account

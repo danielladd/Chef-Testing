@@ -18,6 +18,8 @@
 #
 include_recipe "chub_rundeck::mysql_base"
 
+gem_package "mysql"
+
 mysql_connection_info = {
   :host     => "localhost",
   :username => 'root',
@@ -28,6 +30,26 @@ database node[:chub_rundeck][:db_name] do
   connection    mysql_connection_info
   provider      Chef::Provider::Database::Mysql
   action        :create
+end
+
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
+  host             "localhost"
+  action           :create
+end
+
+database_user node[:chub_rundeck][:db_user] do
+  connection       mysql_connection_info
+  database_name    node[:chub_rundeck][:db_name]
+  password         node[:chub_rundeck][:db_pass]
+  provider         Chef::Provider::Database::MysqlUser
+  privileges       [:all]
+  host             "localhost"
+  action           :grant
 end
 
 database_user node[:chub_rundeck][:db_user] do
@@ -70,5 +92,11 @@ ruby_block "store_mysql_master_status" do
   subscribes :create, resources(:mysql_service => "default")
 end
 
+
+# Sensu
+sensu_client node.name do
+    address node[:ipaddress]
+    subscriptions node[:roles] + ["rundeck_mysql_master"]
+end
 
 

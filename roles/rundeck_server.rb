@@ -1,10 +1,17 @@
 name "rundeck_server"
 description "role for rundeck_server machines"
 default_attributes(
+  "sensu" => {
+      "rabbitmq" => {
+          "host" => "sensu01.nexus.commercehub.com"
+      }
+  },
   "rundeck" => {
+    "dbmaster" => "orchdb02",
+    "dbslave"  => "orchdb03",
     "admin" => {
       "password" => "securepassword1"
-  },
+    },
   "authentication" => {
     "file" => "jaas-ldap.conf",
     "name" => "chubldap"
@@ -12,8 +19,27 @@ default_attributes(
   "ssh" => {
     'timeout' => '0'
   },
-  "proxy" => {
-     "hostname" => "orch01"
+  "chub_log" => {
+    "logfiles" => {
+      "rundeck_log" => {
+        "path" => '/var/log/rundeck/rundeck.log',
+        "type" => "rundeck_log"
+      },
+      "rundeck_service_log" => {
+        "path" => '/var/log/rundeck/service.log',
+        "type" => "rundeck_service_log"
+      }
+    },
+    "types" => {
+      "rundeck_log" => {
+        "name" => "rundeck_log",
+        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} %{LOGLEVEL:loglevel} (%{JAVACLASS:classname}:%{INT:linenumber}) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+      },
+      "rundeck_service_log" => {
+        "name" => "rundeck_service_log",
+        "body" => "  multiline {\n          pattern => \"[^|]* |(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIME:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"      
+      }
+    }
   },
   "chef" => {
     "client_name" => "rundeck",
@@ -25,7 +51,7 @@ Agkzuw6UFugx2LMB05ognklqZVxccAu/XMtqBzjk4UwjbvzaLrCW7jmWzS6PkjkA
 fwAUAFvI0IrhDFWGdefcEJ/GdTXWs/D8T2G0UYWsjdKTH/KAliPFBC6mrGH0incL
 F613amlhHTqt+H3pOT1QS0jAIUePYIWQVlAMxwIDAQABAoIBAFZDdbvEviwTnbaM
 nGI6qxUtxLeYxAck2gBTO3PGdbZ7QBRy27epI+pIqOPfI1VZg6hHpDFlijERTbGw
-QEwq3Op0Ajapc31JPgHkil02LMwcnw5M4JWv3UDliiIBPQGXEt/TMIlDZbw7crTW
+QEwq3Op0Ajapc31JPgHkil0k2LMwcnw5M4JWv3UDliiIBPQGXEt/TMIlDZbw7crTW
 ZLnPHROkQzZCHQHi9f4bn1afjQrwwaHBwtanAgbj0gBkR/+X1PfSzKmPagdHF1VX
 hp001hWg68JvtmR7HYWoKghFzM8Wb8x+aO2COrr5tUbZ6limIb6BdHJni0j9yCd1
 k0Q5vN332JXqJ33yDWRcHoiLEvXySz6CAFC65U4QVe6MXQMu9QEsD2EP4xdNBoXM

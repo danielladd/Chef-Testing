@@ -8,15 +8,30 @@ input {
     type => missioncontrol
     port => 5544
   }
+  tcp {
+    port => 2352
+    ssl_enable => true
+    ssl_cert => "/opt/logstash/ssl/logstash.crt"
+    ssl_key => "/opt/logstash/ssl/logstash.key"
+    codec => json_lines {
+      charset => "UTF-8"
+    }
+  }
+  tcp {
+    port => 2353
+    codec => json_lines {
+      charset => "UTF-8"
+    }
+  }
 }
 
 filter {
   <% @rules.each_with_index { |rule, index|  %>
 #rule for <%= rule[0] %>
     <% if (index == 0) %>	
-      if [@type] == "<%= rule[1][:name] %>" {
+      if ([@type] == "<%= rule[1][:name] %>") or ([type] == "<%= rule[1][:name] %>") {
     <% else %>
-      } else if [@type] == "<%= rule[1][:name] %>" {
+      } else if ([@type] == "<%= rule[1][:name] %>") or ([type] == "<%= rule[1][:name] %>") {
     <% end %>
       <%= rule[1][:body] %>
     <% } %>

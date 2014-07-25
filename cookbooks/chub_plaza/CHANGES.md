@@ -1,3 +1,9 @@
+#0.3.1
+* Fix greenmail config
+
+#0.3.0
+* Add new email configuration section
+
 #0.2.4
 * Modify email configuration section
 

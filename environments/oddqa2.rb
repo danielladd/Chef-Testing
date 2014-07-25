@@ -9,19 +9,25 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://oddqa2-rest.nexus.commercehub.com/"
+      :baseUrl => "http://oddqa2-rest.nexus.commercehub.com"
     },
     :apartment => {
-      :baseUrl => "http://oddqa2-apartment.nexus.commercehub.com/"
+      :baseUrl => "http://oddqa2-apartment.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com/"
+      :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com"
     },
     :sso => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8080/",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8080/",
-      :castle => "https://ssoqa1-castle.nexus.commercehub.com/",
-      :plaza => "https://ssoqa1-plaza.nexus.commercehub.com/"
+      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443",
+      :census => "https://ssoqa1-census.nexus.commercehub.com:8443",
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza"
+    },
+    :ordersteam => {
+        :app => {
+            :id => "DSM",
+            :name => "oddqa2_orderstream"
+        }
     }
   },
   :chub_tattler => {
@@ -33,7 +39,7 @@ default_attributes(
     }
   },
   :chub_oddrest => {
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar;env.oddqa2.current+=true",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
       :name => "oddqa2_odd",
@@ -42,7 +48,7 @@ default_attributes(
     }
   },
   :chub_apartment => {
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.oddqa2.current+=true",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
       :name => "oddqa2_chub",
@@ -51,10 +57,11 @@ default_attributes(
     }
   },
   :chub_rolodex => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar",
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "http://yuicombo1.nexus.commercehub.com:3000/"
+      :url => "http://yuicombo1.nexus.commercehub.com:3000"
     }
   }
 )

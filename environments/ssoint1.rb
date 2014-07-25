@@ -9,13 +9,13 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.24",
+  "chub_castle" => "= 0.1.27",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.17",
-  "chub_plaza" => "= 0.2.0",
-  "chub_sensu_sso" => "= 0.1.16",
-  "chub_vault" => "= 0.3.5",
+  "chub_plaza" => "= 0.2.4",
+  "chub_sensu_sso" => "= 0.1.17",
+  "chub_vault" => "= 0.4.0",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -59,10 +59,10 @@ default_attributes(
       :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
     :loadbalancer_urls => {
-      :vault => "https://ssoint1-vault.nexus.commercehub.com:8443/api-docs",
-      :census => "https://ssoint1-census.nexus.commercehub.com:8443/api-docs",
-      :castle => "https://ssoint1-castle.nexus.commercehub.com/login",
-      :plaza => "https://ssoint1-plaza.nexus.commercehub.com/buildInfo"
+      :vault => "https://ssoint1-vault.nexus.commercehub.com:8443/ping",
+      :census => "https://ssoint1-census.nexus.commercehub.com:8443/ping",
+      :castle => "https://ssoint1-castle.nexus.commercehub.com/ping",
+      :plaza => "https://ssoint1-plaza.nexus.commercehub.com/ping"
     }
   },
   :openldap => {
@@ -105,6 +105,7 @@ default_attributes(
     :domain => "ssoint1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssoint1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssoint1-plaza.nexus.commercehub.com/forgotPassword",
+    :census_url => "https://ssoint1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssoint1-vault.nexus.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
@@ -118,9 +119,10 @@ default_attributes(
   },
   :chub_plaza => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssoint1.current+=true",
+    :root_url => "https://ssoint1-plaza.nexus.commercehub.com",
     :cas_server_url => "https://ssoint1-castle.nexus.commercehub.com",
     :cas_service_url => "https://ssoint1-plaza.nexus.commercehub.com/shiro-cas",
-    :cas_failure_url => "https://ssoint1-plaza.nexus.commercehub.com/",
+    :cas_failure_url => "https://ssoint1-plaza.nexus.commercehub.com",
     :census_url => "https://ssoint1-census.nexus.commercehub.com:8443",
     :vault_url => "https://ssoint1-vault.nexus.commercehub.com:8443",
     :hazelcast => {
