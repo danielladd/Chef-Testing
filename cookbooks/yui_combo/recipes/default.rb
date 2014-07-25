@@ -53,6 +53,9 @@ end
     dir:        "/data/nginx/cache",
     mode:       0775,
     recursive:  true
+  },{
+    dir:        "/etc/combo",
+    mode:       0775
   }
 ].each do |data|
   directory data[:dir] do
@@ -97,6 +100,17 @@ npm_package "combohandler@0.3.8"
     mode data[:mode]
     notifies "restart", notify_service if data[:restart]
   end
+end
+
+template "/etc/combo/routes.json" do
+  source "routes.json.erb"
+  owner user_name
+  group group_name
+  mode 0644
+  variables({
+     :routes => node[:yui_combo][:routes]
+  })
+  notifies "restart", "service[combo]"
 end
 
 #Enable the nginx site definition for combo server proxying
