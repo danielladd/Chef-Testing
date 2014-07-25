@@ -20,8 +20,8 @@ default_attributes(
     :sso => {
       :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443",
       :census => "https://ssoqa1-census.nexus.commercehub.com:8443",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle",
-      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza"
+      :castle => "https://ssoqa1-apps.nexus.commercehub.com/account",
+      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/user"
     },
     :ordersteam => {
         :app => {

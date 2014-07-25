@@ -6,8 +6,8 @@ default[:slm][:apartment][:baseUrl] = "http://odddev1-apartment.nexus.commercehu
 default[:slm][:rolodex][:baseUrl] = "http://odddev1-rolodex.nexus.commercehub.com"
 default[:slm][:sso][:vault] = "https://ssoqa1-vault.nexus.commercehub.com:8080"
 default[:slm][:sso][:census] = "https://ssoqa1-census.nexus.commercehub.com:8080"
-default[:slm][:sso][:castle] = "https://ssoqa1-apps.nexus.commercehub.com/castle"
-default[:slm][:sso][:plaza] = "https://ssoqa1-apps.nexus.commercehub.com/plaza"
+default[:slm][:sso][:castle] = "https://ssoqa1-apps.nexus.commercehub.com/account"
+default[:slm][:sso][:plaza] = "https://ssoqa1-apps.nexus.commercehub.com/user"
 default[:slm][:ordersteam][:app][:id] = "DSM"
 default[:slm][:ordersteam][:app][:name] = "odddev1_orderstream"
 
