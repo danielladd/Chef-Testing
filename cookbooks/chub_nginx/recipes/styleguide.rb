@@ -39,7 +39,7 @@ include_recipe "chub_nginx"
 execute "copy_site" do
 	# This may need revisiting: https://wiki.opscode.com/display/chef/Evaluate+and+Run+Resources+at+Compile+Time;jsessionid=996B67A5129809DDFF8915B72D6A018F
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
