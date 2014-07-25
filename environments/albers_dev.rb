@@ -3,7 +3,8 @@ description "Albers Development Environment"
 default_attributes(
   "chub_albers" => {
   "jar_url" => ["http://artifactory01.nexus.commercehub.com/artifactory/libs-release-local/com/commercehub/AlbersService/%5BRELEASE%5D/AlbersService-%5BRELEASE%5D-shadow.jar;env.albers_dev.current+=true"],
-  "metrics_environment" => "dev"
+  "metrics_environment" => "dev",
+  "map_retention" => "144h"
   },
   "elasticsearch" => {
     "version" => "1.1.0",
