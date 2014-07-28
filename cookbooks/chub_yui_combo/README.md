@@ -12,8 +12,10 @@ Ubuntu 12.04+
 
 | Key | Type | Description | Default |
 |---|---|---|---|
-| ['nginx']['default_site_enabled'] | Boolean | Override from the nginx cookbook. We don't need the default site. | false |
-| ['yui_combo']['git_repo'] | String | URL to a Git repository containing the YUI Source and a routes.json file. | https://git.nexus.commercehub.com/JDipierro/yui-combo-resources.git |
+| [:nginx][:default_site_enabled] | Boolean | Override from the nginx cookbook. We don't need the default site. | false |
+| [:yui_combo][:git_export_enabled] | Boolean | Whether or not to export combo assets from a git repo. | false |
+| [:yui_combo][:git_repo] | String | URL to a Git Repo containing assets to make available to the combohandler. | "" |
+| [:yui_combo][:routes] | [String] | List of routes that the combohandler will server | ["yui"] |
 
 ## Usage
 
