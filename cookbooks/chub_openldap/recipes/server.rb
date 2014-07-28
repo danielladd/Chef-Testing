@@ -76,8 +76,22 @@ cookbook_file "#{node['openldap']['module_dir']}/slapd-sha2.la" do
   group "root"
 end
 
+# Add CHUB Password policy schema
+cookbook_file "#{node['openldap']['dir']}/schema/chubppolicy.schema" do
+  source "chubppolicy.schema"
+  mode 00644
+  owner "root"
+  group "root"
+end
+cookbook_file "#{node['openldap']['dir']}/schema/chubppolicy.ldif" do
+  source "chubppolicy.ldif"
+  mode 00644
+  owner "root"
+  group "root"
+end
+
 service "slapd" do
-  action [:enable, :start]
+  action :enable
 end
 
 if (node['platform'] == "ubuntu")

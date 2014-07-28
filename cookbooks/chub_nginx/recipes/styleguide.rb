@@ -92,8 +92,8 @@ git repo_path do
 	reference "master"
 	user "www-data"
 	group "www-data"
-	notifies :run, 'execute[fix_ownership]', "immediately"
-	notifies :run, 'execute[copy_site]', "immediately"
+	notifies :run, 'execute[fix_ownership]', :immediately
+	notifies :run, 'execute[copy_site]', :immediately
 	notifies :reload, "service[nginx]", :delayed
 end
 

@@ -52,6 +52,10 @@ if node[:chub_sensu].attribute?(:email)
     end
 end
 
-
-
-
+remote_file "/usr/local/bin/rabbitmqadmin" do
+    source "http://#{node[:hostname]}:15672/cli/rabbitmqadmin"
+    action :create_if_missing
+    owner "sensu"
+    group "adm"
+    mode "0754"
+end
