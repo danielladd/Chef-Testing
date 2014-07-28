@@ -44,7 +44,8 @@ filter {
 output {
   elasticsearch {
     cluster => "<%= @clustername %>"
-    protocol => "node"
+    protocol => "<%= @protocol %>"
     host => "<%= @host %>"
+    <% if node[:chub_logstash][:port] %>port => "<%= node[:chub_logstash][:port] %>"<% end %>
   }
 }

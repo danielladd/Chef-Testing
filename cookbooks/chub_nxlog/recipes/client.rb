@@ -40,7 +40,7 @@ node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
   end
     path << " #{logfile.type}"
 
-  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type]}
+  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type] }
 
 end
 path << " => logstash"
@@ -53,7 +53,6 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
     :port => node[:chub_nxlog][:endpoint_port],
     :logfiles => logFileArray,
     :route_path => path,
-    :cafile => "#{node[:chub_nxlog][:root_path]}/#{node[:chub_nxlog][:logstash_cert]}"
   })
   notifies    :restart, "service[nxlog]", :delayed
 end

@@ -13,7 +13,8 @@ LogFile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.log
 <Input <%= log[:logname] %>>
     Module im_file
     File "<%= log[:logfile] %>"
-    Exec to_json();
+    Exec $type = "<%= log[:logtype] %>"; $message = $raw_event; to_json();
+    InputType LineBased
 </Input>
 
 <% end %>

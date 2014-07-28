@@ -18,10 +18,10 @@ default_attributes(
       :baseUrl => "http://oddqa2-rolodex.nexus.commercehub.com"
     },
     :sso => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8443",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/castle",
-      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/plaza"
+      :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
+      :census => "https://ssoint1-census.nexus.commercehub.com:8443",
+      :castle => "https://ssoint1-apps.nexus.commercehub.com/account",
+      :plaza => "https://ssoint1-apps.nexus.commercehub.com/user"
     },
     :ordersteam => {
         :app => {
@@ -51,6 +51,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
+      :port => "1433",
       :name => "oddqa2_chub",
       :userName => "devusr01",
       :pass => "usrdev"

@@ -29,6 +29,7 @@ unless platform_family?('windows')
 		mode 00700
 		action :create
 		recursive true
+		action :nothing
 		notifies :create, 'cookbook_file[logstash.crt]', :immediately
 	end
 

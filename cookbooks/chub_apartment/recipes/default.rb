@@ -87,6 +87,12 @@ end
         mode: 0774,
         restart: true
     },{
+        dest: "/etc/apartment/system.properties",
+        source: "system.properties.erb",
+        group: group_name,
+        mode: 0774,
+        restart: true
+    },{
         dest: "/opt/apartment/conf/wrapper.conf",
         source: "wrapper.conf.erb",
         mode: 0776,
