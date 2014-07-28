@@ -9,7 +9,8 @@ default[:chub_apartment][:app_url] = "http://artifactory01.nexus.commercehub.com
 
 # DB
 default[:chub_apartment][:db][:server] = "SQLVM03"
-default[:chub_apartment][:db][:name] = "apartmentdev1_tat"
+default[:chub_apartment][:db][:port] = "1433"
+default[:chub_apartment][:db][:name] = "odddev1_chub"
 default[:chub_apartment][:db][:userName] = "devusr01"
 default[:chub_apartment][:db][:pass] = "usrdev"
 

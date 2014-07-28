@@ -51,6 +51,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
+      :port => "1433",
       :name => "oddqa1_chub",
       :userName => "devusr01",
       :pass => "usrdev"
