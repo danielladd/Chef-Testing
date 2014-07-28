@@ -102,14 +102,16 @@ npm_package "combohandler@0.3.8"
   end
 end
 
-template "/etc/combo/routes.json" do
-  source "routes.json.erb"
+#Create the routes file
+routes_json = Hash[node[:yui_combo][:routes].collect { |route|
+    ["/combo/#{route}", "/var/combo/#{route}"]
+}].to_json
+
+file "/etc/combo/routes.json" do
+  content routes_json
   owner user_name
   group group_name
   mode 0644
-  variables({
-     :routes => node[:yui_combo][:routes]
-  })
   notifies "restart", "service[combo]"
 end
 
