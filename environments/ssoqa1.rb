@@ -133,7 +133,7 @@ default_attributes(
       :multicast_port => 54329
     },
     :mail => {
-      :disabled => true,
+      :disabled => false,
       :host => "mail.commercehub.com",
       :override_address => "sso-email-test@commercehub.com"
     }
