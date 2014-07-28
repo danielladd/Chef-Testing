@@ -1,0 +1,13 @@
+attributetype ( 1.3.6.1.4.1.20764.20.1.1.1
+      NAME 'chubPwdFailureTime'
+      DESC 'The timestamps of the last failures'
+      EQUALITY generalizedTimeMatch
+      ORDERING generalizedTimeOrderingMatch
+      SYNTAX 1.3.6.1.4.1.1466.115.121.1.24
+      )
+
+objectclass ( 1.3.6.1.4.1.20764.20.1.2.1
+      NAME 'chubPwdPolicy'
+      SUP  top
+      AUXILIARY
+      MAY ( chubPwdFailureTime ) )

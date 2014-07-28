@@ -22,6 +22,7 @@ include         <%= node['openldap']['dir'] %>/schema/cosine.schema
 include         <%= node['openldap']['dir'] %>/schema/nis.schema
 include         <%= node['openldap']['dir'] %>/schema/inetorgperson.schema
 include         <%= node['openldap']['dir'] %>/schema/ppolicy.schema
+include         <%= node['openldap']['dir'] %>/schema/chubppolicy.schema
 
 # Where the pid file is put. The init.d script
 # will not stop the server if you change this.
@@ -101,8 +102,12 @@ syncprov-sessionlog 100
 <% if ['slave', 'mirror'].include? node['openldap']['slapd_type'] -%>
 syncrepl rid=<%= node['openldap']['slapd_rid'] %>
   provider=ldap://<%= node['openldap']['slapd_master'] %>:389
+  <% if node['openldap']['slapd_type'] == 'mirror' -%>
   type=refreshAndPersist
-  interval=01:00:00:00
+  <% else -%>
+  type=refreshOnly
+  <% end -%>
+  interval=00:07:45:00
   searchbase="<%= node['openldap']['basedn'] %>"
   filter="(objectClass=*)"
   scope=sub
@@ -118,6 +123,10 @@ syncrepl rid=<%= node['openldap']['slapd_rid'] %>
 <% if node['openldap']['slapd_type'] == 'mirror' -%>
 mirrormode on
 <% end -%>
+<% if node['openldap']['slapd_type'] == 'slave' -%>
+updateref ldap://<%= node['openldap']['slapd_master'] %>:389
+<% end -%>
+
 # The userPassword by default can be changed
 # by the entry owning it if they are authenticated.
 # Others should not be able to see it, except the
@@ -157,3 +166,5 @@ password-hash {ssha512}
 # Set the Overlay
 overlay ppolicy
 ppolicy_hash_cleartext
+ppolicy_use_lockout
+ppolicy_default "cn=default,ou=Policies,dc=vault,dc=commercehub,dc=com"
