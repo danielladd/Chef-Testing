@@ -1,9 +1,0 @@
-{
-	<%
-		routeLines = []
-		@routes.each do |root, localPath|
-			routeLines.push("\"#{root}\": \"#{localPath}\"")
-		end
-	%>
-	<%= routeLines.join(",\n\t") %>
-}
