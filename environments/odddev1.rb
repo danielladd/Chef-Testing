@@ -18,10 +18,10 @@ default_attributes(
       :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com"
     },
     :sso => {
-      :vault => "https://ssoqa1-vault.nexus.commercehub.com:8443",
-      :census => "https://ssoqa1-census.nexus.commercehub.com:8443",
-      :castle => "https://ssoqa1-apps.nexus.commercehub.com/account",
-      :plaza => "https://ssoqa1-apps.nexus.commercehub.com/user"
+      :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
+      :census => "https://ssoint1-census.nexus.commercehub.com:8443",
+      :castle => "https://ssoint1-apps.nexus.commercehub.com/account",
+      :plaza => "https://ssoint1-apps.nexus.commercehub.com/user"
     },
     :ordersteam => {
         :app => {
