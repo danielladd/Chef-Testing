@@ -1,7 +1,7 @@
 {
   "id": "bcarr",
   "user": "bcarr",
-  "password": "",
+  "password": "$1$snXtCsNQ$UVz5OLGJBvPTTlsmwpcoh1",
   "group":["adm","sudo","sambashare"],
   "system":false,
   "shell": "/bin/bash",
