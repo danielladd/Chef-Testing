@@ -120,12 +120,14 @@ nginx_site 'caching_combo_proxy' do
   enable true
 end
 
-#Pull down the repo containing YUI modules and route definitions.
-git "/var/combo" do
-  repo node[:yui_combo][:git_repo]
-  action :checkout
-  user user_name
-  group group_name
+#Pull down the repo containing combo assets
+if node[:yui_combo][:git_export_enabled]
+  git "/var/combo" do
+    repo node[:yui_combo][:git_repo]
+    action :export
+    user user_name
+    group group_name
+  end
 end
 
 #Start the combo service
