@@ -123,7 +123,7 @@ end
 #Pull down the repo containing YUI modules and route definitions.
 git "/var/combo" do
   repo node[:yui_combo][:git_repo]
-  action :checkout
+  action :export
   user user_name
   group group_name
 end
