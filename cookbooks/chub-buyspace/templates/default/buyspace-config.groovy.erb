@@ -71,7 +71,7 @@ vertx {
 }
 
 msExchangeApi {
-    <% if node.chef_environment != 'mpdev_alex' -%>
+    <% if node['chub-buyspace']['environment_level'] != 'production' -%>
        overrideAddress = '<%= node['chub-buyspace']['msExchangeApi']['overrideAddress'] %>'
     <% end -%>
     url = "<%= node['chub-buyspace']['msExchangeApi']['url'] %>"
@@ -227,6 +227,7 @@ bestbuy {
 <% end -%>
 
 marketplace.files.dailyBillingEventLocation = '<%= node['chub-buyspace']['files']['dailyBillingEventLocation'] %>' 
+marketplace.files.hubPartnerStatisticsFile = '<%= node['chub-buyspace']['files']['hubPartnerStatisticsFile'] %>' 
 
 beans {
     shiroSecurityManager {
