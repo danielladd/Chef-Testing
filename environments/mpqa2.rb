@@ -1,7 +1,7 @@
 name "mpqa2"
 description "marketplace qa environment 2"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 2.0.0"
+cookbook "chub-klerk", "= 3.0.0"
 cookbook "chub-buyspace", "= 0.7.1"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa2db1:27017", "mpqa2db2:27017", "mpqa2db3:27017" ],
