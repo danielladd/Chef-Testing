@@ -183,6 +183,48 @@ directory "/usr/share/tomcat7/ehcache/marketplace" do
   mode 0770
 end
 
+cron "remove old buyspace-app logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/buyspace -name \'*buyspace-app.log*\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove old tomcat localhost_access logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'localhost_access_log*.txt\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove old tomcat localhost logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'localhost.*log\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove tomcat catalina zipped logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'catalina.*gz\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove tomcat catalina logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'catalina.*log\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove tomcat host-manager logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'host-manager.*log\' -mtime +14 -exec rm {} \;'
+end
+
+cron "remove tomcat host-manager logs" do
+  minute "0"
+  hour "0"
+  command 'find /var/log/tomcat7 -name \'manager.*log\' -mtime +14 -exec rm {} \;'
+end
+
 =begin
 TODO:
 - buyspace_app
