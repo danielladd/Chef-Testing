@@ -1,4 +1,4 @@
-name "ssodevbackup1"
+name "ssodev1backup1"
 description "SSO development environment 1"
 cookbook_versions({
   "apache2" => "= 1.7.0",
@@ -12,7 +12,7 @@ cookbook_versions({
   "chub_castle" => "= 0.1.27",
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
-  "chub_openldap" => "= 1.12.18",
+  "chub_openldap" => "= 1.12.19",
   "chub_plaza" => "= 0.3.1",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.4.0",
@@ -70,8 +70,7 @@ default_attributes(
     :tls_enabled => false,
     :slapd_replpw => "replpw",
     :manage_ssl => false,
-    :basedn => "dc=vault,dc=commercehub,dc=com",
-    :slapd_master => "ssodev1ldap1.nexus.commercehub.com"
+    :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   :chub_vault => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
