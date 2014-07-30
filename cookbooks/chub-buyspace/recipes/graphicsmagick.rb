@@ -33,7 +33,7 @@ include_recipe 'chub-buyspace::default'
 end
 
 remote_file "/var/cache/apt/archives/graphicsmagick-1.3.18_amd64.deb" do
-	source "http://artifactory01/artifactory/ext-distribution-local/graphicsmagick/graphicsmagick/1.3.18_amd64/graphicsmagick-1.3.18_amd64.deb"
+	source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/graphicsmagick/graphicsmagick/1.3.18_amd64/graphicsmagick-1.3.18_amd64.deb"
 	mode 0644
 end
 
