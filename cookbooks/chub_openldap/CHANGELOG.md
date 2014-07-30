@@ -2,6 +2,15 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.20
+-------
+- custom password quality check config and module
+
+v1.12.19
+-------
+- new password policy stuff
+- tweaks to replication for backup support
+
 v1.12.17
 -------
 - add ssoint1 certs
