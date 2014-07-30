@@ -97,4 +97,10 @@ git repo_path do
 	notifies :reload, "service[nginx]", :delayed
 end
 
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
+end
+
 nginx_site "#{site}"

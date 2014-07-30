@@ -3,6 +3,11 @@ chub_nginx CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.2.2
+-----
+
+* 'H. "Waldo" Grunenwald' - Applied the rsync cron job to the other recipes.
+
 0.2.1
 -----
 
