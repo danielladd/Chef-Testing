@@ -1,3 +1,7 @@
+# 0.1.6
+
+Waldo - Grabbing the rabbitmqadmin script and making it available.
+
 # 0.1.5
 
 Larry - Update mailer.json to set admin_gui url. 

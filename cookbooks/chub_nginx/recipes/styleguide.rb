@@ -92,8 +92,8 @@ git repo_path do
 	reference "master"
 	user "www-data"
 	group "www-data"
-	notifies :run, 'execute[fix_ownership]', "immediately"
-	notifies :run, 'execute[copy_site]', "immediately"
+	notifies :run, 'execute[fix_ownership]', :immediately
+	notifies :run, 'execute[copy_site]', :immediately
 	notifies :reload, "service[nginx]", :delayed
 end
 
@@ -110,6 +110,12 @@ else
 	file "#{site_path}/info.php" do
 		action :delete
 	end
+end
+
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
 end
 
 nginx_site "#{site}"
