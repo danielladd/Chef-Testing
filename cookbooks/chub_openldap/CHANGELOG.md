@@ -2,6 +2,11 @@ openldap Cookbok CHANGELOG
 ==========================
 This file is used to list changes made in each version of the openldap cookbook.
 
+v1.12.21
+-------
+- Change PEN
+- Add boolean field to store frozen status
+
 v1.12.20
 -------
 - custom password quality check config and module
