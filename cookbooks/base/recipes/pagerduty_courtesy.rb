@@ -23,30 +23,28 @@ include_recipe "cron"
 include_recipe "python::pip"
 
 # Attributes
-node.set["base"]["pagerduty"]["auth_token"]			= 'zCNqqraNGpQBGdxjqcMu'
-node.set["base"]["pagerduty"]["base_url"]			= 'https://commercehub.pagerduty.com/api/v1/'
-node.set["base"]["pagerduty"]["schedules"]			= [
-													'BuySpace_Engineers',
-													'COMMS_OnCall',
-													'CoreEngineers_Oncall',
-													'DBA_NoOp',
-													'DBA_OnCall_Primary',
-													'DBA_OnCall_Secondary',
-													'dev_Oncall',
-													'Git Admin',
-													'IT_OnCall',
-													'OpsEngineers_OnCall',
-													'Pipeline',
-													'Primary OnCall Operations Engineers',
-													'Secondary OnCall Operations Engineers',
-													'Shipping_and_Logistics_Team',
-													'SSO'
-													]
-node.set["base"]["pagerduty"]["smtp_server"]		= 'prodmail.commercehub.com'
-node.set["base"]["pagerduty"]["smtp_from_address"]	= 'pagerduty@commercehub.com'
-node.set["base"]["pagerduty"]["warning_offset"]		= ''
-#node.set["base"]["pagerduty"][""]
-#node.set["base"]["pagerduty"][""]
+node.set[:base][:pagerduty][:courtesy][:schedules][:auth_token]	= 'zCNqqraNGpQBGdxjqcMu'
+node.set[:base][:pagerduty][:courtesy][:base_url]				= 'https://commercehub.pagerduty.com/api/v1/'
+node.set[:base][:pagerduty][:courtesy][:schedules]				= [
+																	'BuySpace_Engineers',
+																	'COMMS_OnCall',
+																	'CoreEngineers_Oncall',
+																	'DBA_NoOp',
+																	'DBA_OnCall_Primary',
+																	'DBA_OnCall_Secondary',
+																	'dev_Oncall',
+																	'Git Admin',
+																	'IT_OnCall',
+																	'OpsEngineers_OnCall',
+																	'Pipeline',
+																	'Primary OnCall Operations Engineers',
+																	'Secondary OnCall Operations Engineers',
+																	'Shipping_and_Logistics_Team',
+																	'SSO'
+																	]
+node.set[:base][:pagerduty][:courtesy]["smtp_server"]		= 'mail.commercehub.com'
+node.set[:base][:pagerduty][:courtesy]["smtp_from_address"]	= 'pagerduty@commercehub.com'
+node.set[:base][:pagerduty][:courtesy]["warning_offset"]		= ''
 
 
 # git "pagerduty_notifications" do
@@ -71,12 +69,12 @@ template "/opt/pagerduty_notifications/pagerduty_warning.py" do
 	owner "root"
 	group "adm"
 	variables( 
-		:auth_token => 	node[:base][:pagerduty][:auth_token],
-		:base_url => 	node[:base][:pagerduty][:base_url],
-		:schedules => 	node[:base][:pagerduty][:schedules],
-		:smtp_server => 	node[:base][:pagerduty][:smtp_server],
-		:smtp_from_address => 	node[:base][:pagerduty][:smtp_from_address],
-		:warning_offset => 	node[:base][:pagerduty][:warning_offset]
+		:auth_token => 	node[:base][:pagerduty][:courtesy][:auth_token],
+		:base_url => 	node[:base][:pagerduty][:courtesy][:base_url],
+		:schedules => 	node[:base][:pagerduty][:courtesy][:schedules],
+		:smtp_server => 	node[:base][:pagerduty][:courtesy][:smtp_server],
+		:smtp_from_address => 	node[:base][:pagerduty][:courtesy][:smtp_from_address],
+		:warning_offset => 	node[:base][:pagerduty][:courtesy][:warning_offset]
 	)
 end
 
