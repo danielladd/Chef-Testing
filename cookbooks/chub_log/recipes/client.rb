@@ -22,5 +22,5 @@ node.default.chub_nxlog.endpoint = node[:chub_log][:endpoint]
 node.default.chub_nxlog.endpoint_port = node[:chub_log][:endpoint_port]
 node.default.chub_nxlog.logstash_cert = node[:chub_log][:logstash_cert]
 
-include_recipe "chub_nxlog::client"
+include_recipe "chub_nxlog::default"
 

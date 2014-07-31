@@ -19,7 +19,7 @@
 path = String.new
 logFileArray = Array.new
 
-case node['platform_family']
+case node['platform']
 when "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
   node.default.chub_nxlog.config_directory = "/etc/nxlog" 
@@ -33,8 +33,8 @@ when "ubuntu"
     action :install
   end
   remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb" do
-    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
-    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
+    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}_#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
+    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}_#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
     notifies :upgrade, "apt_package[nxlog-ce]", :immediately
   end
   apt_package "nxlog-ce" do

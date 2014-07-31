@@ -1,5 +1,9 @@
 chub_log CHANGELOG
 ==================
+0.1.2
+-----
+- [Larry] - Adding client recipe
+
 0.1.1
 -----
 - [Larry] - Adding client recipe

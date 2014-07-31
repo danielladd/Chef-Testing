@@ -1,5 +1,13 @@
 chub_nxlog CHANGELOG
 ====================
+0.1.6
+-----
+- [Larry] - consistency is hard. quick package name fixes
+
+0.1.5
+-----
+- [Larry] - change to use platform vs platform_family
+
 0.1.4
 -----
 - [David] - set port number and host for nxlog endpoint
