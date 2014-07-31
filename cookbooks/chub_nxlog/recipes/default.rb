@@ -71,8 +71,8 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
   source      node[:chub_nxlog][:template_file]
   action      :create
   variables({
-    :endpoint => node[:chub_nxlog][:endpoint],
-    :port => node[:chub_nxlog][:endpoint_port],
+    :endpoint => node[:chub_log][:endpoint],
+    :port => 2352,
     :logfiles => logFileArray,
     :route_path => path,
   })
