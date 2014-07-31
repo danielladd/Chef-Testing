@@ -22,39 +22,41 @@ logFileArray = Array.new
 case node['platform_family']
 when "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
-  remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb"
+  node.default.chub_nxlog.config_directory = "/etc/nxlog" 
+  apt_package "libapr1" do
+    action :install
+  end
+  apt_package "libdbi1" do
+    action :install
+  end
+  apt_package "libperl5.14" do
+    action :install
+  end
+  remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb" do
     checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
     source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
-    notifies "apt_package[nxlog-ce]", :upgrade
+    notifies :upgrade, "apt_package[nxlog-ce]", :immediately
   end
-  apt_package "libapr1"
-    action :install
-  end
-  apt_package "libdbi1"
-    action :install
-  end
-  apt_package "libperl5.14"
-    action :install
-  end
-  apt_package "nxlog-ce"
+  apt_package "nxlog-ce" do
     source "#{Chef::Config[:file_cache_path]}/nxlog.deb"
     action :nothing
   end
 when "windows"
+  node.default.chub_nxlog.config_directory = "C:\\Program Files (x86)\\nxlog\\conf"
   node.default.chub_nxlog.root_path = "C:\\Program Files (x86)\\nxlog"
-  windows_package "NXLOG-CE"
+  windows_package "NXLOG-CE" do
     installer_type :msi
     source "#{Chef::Config[:file_cache_path]}/nxlog.msi"
     action :nothing
   end
-  remote_file "#{Chef::Config[:file_cache_path]}/nxlog.msi"
+  remote_file "#{Chef::Config[:file_cache_path]}/nxlog.msi" do
     checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"]
     source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"
-    notifies "windows_package[NXLOG-CE]", :install
+    notifies :install, "windows_package[NXLOG-CE]", :immediately
   end
 end
 
-node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
+node[:chub_log][:logfiles].each_with_index do |(logname,logfile),index|
   unless index == 0
     path << ","
   end
@@ -69,8 +71,8 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
   source      node[:chub_nxlog][:template_file]
   action      :create
   variables({
-    :endpoint => node[:chub_nxlog][:endpoint],
-    :port => node[:chub_nxlog][:endpoint_port],
+    :endpoint => node[:chub_log][:endpoint],
+    :port => 2353,
     :logfiles => logFileArray,
     :route_path => path,
   })
@@ -78,9 +80,6 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
 end
 
 directory "#{node[:chub_nxlog][:root_path]}/data" do
-  owner     "root"
-  group     "root"
-  mode      0755
   action    :create
 end
 
