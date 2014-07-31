@@ -22,11 +22,6 @@ logFileArray = Array.new
 case node['platform_family']
 when "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
-  remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb" do
-    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
-    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
-    notifies "apt_package[nxlog-ce]", :upgrade
-  end
   apt_package "libapr1" do
     action :install
   end
@@ -35,6 +30,11 @@ when "ubuntu"
   end
   apt_package "libperl5.14" do
     action :install
+  end
+  remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb" do
+    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
+    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
+    notifies :upgrade, "apt_package[nxlog-ce]", :immediately
   end
   apt_package "nxlog-ce" do
     source "#{Chef::Config[:file_cache_path]}/nxlog.deb"
@@ -50,7 +50,7 @@ when "windows"
   remote_file "#{Chef::Config[:file_cache_path]}/nxlog.msi" do
     checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"]
     source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"
-    notifies "windows_package[NXLOG-CE]", :install
+    notifies :install, "windows_package[NXLOG-CE]", :immediately
   end
 end
 
