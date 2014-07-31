@@ -16,3 +16,75 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+path = String.new
+logFileArray = Array.new
+
+case node['platform_family']
+when "ubuntu"
+  node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
+  remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb"
+    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
+    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
+    notifies "apt_package[nxlog-ce]", :upgrade
+  end
+  apt_package "libapr1"
+    action :install
+  end
+  apt_package "libdbi1"
+    action :install
+  end
+  apt_package "libperl5.14"
+    action :install
+  end
+  apt_package "nxlog-ce"
+    source "#{Chef::Config[:file_cache_path]}/nxlog.deb"
+    action :nothing
+  end
+when "windows"
+  node.default.chub_nxlog.root_path = "C:\\Program Files (x86)\\nxlog"
+  windows_package "NXLOG-CE"
+    installer_type :msi
+    source "#{Chef::Config[:file_cache_path]}/nxlog.msi"
+    action :nothing
+  end
+  remote_file "#{Chef::Config[:file_cache_path]}/nxlog.msi"
+    checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"]
+    source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}-#{node[:chub_nxlog][:package_version]}.msi"
+    notifies "windows_package[NXLOG-CE]", :install
+  end
+end
+
+node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
+  unless index == 0
+    path << ","
+  end
+    path << " #{logfile.type}"
+
+  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type] }
+
+end
+path << " => logstash"
+
+template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do 
+  source      node[:chub_nxlog][:template_file]
+  action      :create
+  variables({
+    :endpoint => node[:chub_nxlog][:endpoint],
+    :port => node[:chub_nxlog][:endpoint_port],
+    :logfiles => logFileArray,
+    :route_path => path,
+  })
+  notifies    :restart, "service[nxlog]", :delayed
+end
+
+directory "#{node[:chub_nxlog][:root_path]}/data" do
+  owner     "root"
+  group     "root"
+  mode      0755
+  action    :create
+end
+
+service "nxlog" do
+  action         [:enable, :start]
+  init_command    "/etc/init.d/nxlog"
+end

@@ -1,5 +1,6 @@
 name "rundeck_server"
 description "role for rundeck_server machines"
+run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]","recipe[chub_log::client]","role[rundeck_logs]"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
@@ -265,4 +266,3 @@ override_attributes(
     "rundeck-ssh" => "rundeck-ssh",
   }
 )
-run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]","recipe[chub_log::client]","role[rundeck_logs]"

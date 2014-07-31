@@ -2,7 +2,7 @@ name "rundeck_logs"
 description "role for the logstash server defining the rundeck logs and parsing rules"
 default_attributes(
   "chub_log" => {
-    "endpoint" => "LT-DEV-LZ",
+    "endpoint" => "lsdev.nexus.commercehub.com",
     "endpoint_port" => "2352",
     "logfiles" => {
       "rundeck_log" => {
@@ -25,7 +25,7 @@ default_attributes(
     "types" => {
       "rundeck_log" => {
         "name" => "rundeck_log",
-        "body" => "  grok {\n    match => [ \"message\", \"%{DATE:date} %{TIME:time} %{GREEDYDATA:thread} %{LOGLEVEL:level}  %{JAVACLASS:class} - %{GREEDYDATA:content}\" ]\n  }\n"
+        "body" => " multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s)|(^.+Stacktrace follows.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"(?m)%{DATE:date} %{TIME:time} %{GREEDYDATA:thread} %{LOGLEVEL:level}  %{JAVACLASS:class} - %{GREEDYDATA:content}\" ]\n  }\n"
       },
       "rundeck_service_log" => {
         "name" => "rundeck_service_log",
@@ -33,7 +33,7 @@ default_attributes(
       },
       "rundeck_audit_log" => {
         "name" => "rundeck_audit_log",
-        "body" => "  grok {\n    match => [ \"message\", \"%{DATE:date} %{TIME:time} - Evaluating Decision for: res<type:resource, kind:system> subject<Username:%{USER:username} Group:%{WORD:group}> action<%{WORD:action}> env<%{URI:env}>: authorized: %{WORD:authorized}: %{WORD}, reason: %{WORD:reason}, evaluations: %{GREEDYDATA:evaluation}\" ]\n  }\n"
+        "body" => "  grok {\n    match => [ \"message\", \"%{DATE:date} %{TIME:time} - Evaluating Decision for: res<%{GREEDYDATA:evaluate}> subject<Username:%{USER:username} Group:%{GREEDYDATA:group}> action<%{WORD:action}> env<%{URI:env}>: authorized: %{WORD:authorized}: %{WORD}, reason: %{WORD:reason}, evaluations: %{GREEDYDATA:evaluation}\" ]\n  }\n"
       },
       "rundeck_jobs_log" => {
         "name" => "rundeck_jobs_log",

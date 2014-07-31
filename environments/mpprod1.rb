@@ -1,7 +1,7 @@
 name "mpprod1"
 description "marketplace production environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 2.0.0"
+cookbook "chub-klerk", "= 3.0.0"
 cookbook "chub-buyspace", "= 0.7.1"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mdb01:27017", "mdb02:27017", "mdb03:27017" ],
@@ -134,9 +134,9 @@ default_attributes "chub-klerk" => {
     "sharePassword" => "MarketPlaceT0mcat"
   },
   "forSaleImport" => {
-    "pendingDir" => "/var/buyspace/data-transfer/forSale",
-    "inProgressDir" => "/var/buyspace/data-transfer/forSale/processing",
-    "doneDir" => "/var/buyspace/data-transfer/forSale/archived"
+    "pendingDir" => "/var/buyspace/data-transfer/productstream/forSale",
+    "inProgressDir" => "/var/buyspace/data-transfer/productstream/forSale/processing",
+    "doneDir" => "/var/buyspace/data-transfer/productstream/forSale/archived"
   },
   "files" => {
     "dailyBillingEventLocation" => '/var/buyspace/data-transfer/productstream/billing',
