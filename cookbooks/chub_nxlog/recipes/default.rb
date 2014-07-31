@@ -22,6 +22,7 @@ logFileArray = Array.new
 case node['platform_family']
 when "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
+  node.default.chub_nxlog.config_directory = "/etc/nxlog" 
   apt_package "libapr1" do
     action :install
   end
@@ -41,6 +42,7 @@ when "ubuntu"
     action :nothing
   end
 when "windows"
+  node.default.chub_nxlog.config_directory = "C:\\Program Files (x86)\\nxlog\\conf"
   node.default.chub_nxlog.root_path = "C:\\Program Files (x86)\\nxlog"
   windows_package "NXLOG-CE" do
     installer_type :msi
@@ -54,7 +56,7 @@ when "windows"
   end
 end
 
-node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
+node[:chub_log][:logfiles].each_with_index do |(logname,logfile),index|
   unless index == 0
     path << ","
   end
@@ -78,9 +80,6 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
 end
 
 directory "#{node[:chub_nxlog][:root_path]}/data" do
-  owner     "root"
-  group     "root"
-  mode      0755
   action    :create
 end
 

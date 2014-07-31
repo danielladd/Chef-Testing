@@ -1,8 +1,6 @@
 default[:chub_nxlog][:package_name] = "nxlog-ce"
 default[:chub_nxlog][:package_version] = "2.8.1248"
 default[:chub_nxlog][:template_file] = "nxlog.conf.erb"
-default[:chub_nxlog][:config_directory] = "/etc/nxlog/"
-default[:chub_nxlog][:root_path] = "/usr/lib/nxlog"
 default[:chub_nxlog][:logstash_cert] = "ls.crt"
 default[:chub_nxlog][:cafile] = "#{node[:chub_nxlog][:root_path]}/#{node[:chub_nxlog][:logstash_cert]}"
 default[:chub_nxlog][:checksum]["nxlog-ce-2.8.1248.msi"]="02c63c68227308071f0feb33c517524e"
