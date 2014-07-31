@@ -20,12 +20,12 @@
 # notify the recipient that they are on-call.
 
 include_recipe "cron"
-include_recipe "python::pip"
+include_recipe "python"
 
 # Attributes
-node.set[:base][:pagerduty][:courtesy][:schedules][:auth_token]	= 'zCNqqraNGpQBGdxjqcMu'
-node.set[:base][:pagerduty][:courtesy][:base_url]				= 'https://commercehub.pagerduty.com/api/v1/'
-node.set[:base][:pagerduty][:courtesy][:schedules]				= [
+node.default['base']['pagerduty']['courtesy']['schedules']['auth_token']	= 'zCNqqraNGpQBGdxjqcMu'
+node.default['base']['pagerduty']['courtesy']['base_url']				= 'https://commercehub.pagerduty.com/api/v1/'
+node.default['base']['pagerduty']['courtesy']['schedules']				= [
 																	'BuySpace_Engineers',
 																	'COMMS_OnCall',
 																	'CoreEngineers_Oncall',
@@ -42,9 +42,9 @@ node.set[:base][:pagerduty][:courtesy][:schedules]				= [
 																	'Shipping_and_Logistics_Team',
 																	'SSO'
 																	]
-node.set[:base][:pagerduty][:courtesy]["smtp_server"]		= 'mail.commercehub.com'
-node.set[:base][:pagerduty][:courtesy]["smtp_from_address"]	= 'pagerduty@commercehub.com'
-node.set[:base][:pagerduty][:courtesy]["warning_offset"]		= ''
+node.default['base']['pagerduty']['courtesy']['smtp_server']		= 'mail.commercehub.com'
+node.default['base']['pagerduty']['courtesy']['smtp_from_address']	= 'pagerduty@commercehub.com'
+node.default['base']['pagerduty']['courtesy']['warning_offset']		= ''
 
 
 # git "pagerduty_notifications" do
@@ -54,6 +54,16 @@ node.set[:base][:pagerduty][:courtesy]["warning_offset"]		= ''
 # 	destination '/opt/pagerduty_notifications'
 
 # end
+
+package_list = %w{
+	python-pip
+}
+
+package_list.each do |pkg|
+	package pkg do
+		action :install
+	end
+end
 
 directory "/opt/pagerduty_notifications" do
 	mode 554
@@ -69,13 +79,28 @@ template "/opt/pagerduty_notifications/pagerduty_warning.py" do
 	owner "root"
 	group "adm"
 	variables( 
-		:auth_token => 	node[:base][:pagerduty][:courtesy][:auth_token],
-		:base_url => 	node[:base][:pagerduty][:courtesy][:base_url],
-		:schedules => 	node[:base][:pagerduty][:courtesy][:schedules],
-		:smtp_server => 	node[:base][:pagerduty][:courtesy][:smtp_server],
-		:smtp_from_address => 	node[:base][:pagerduty][:courtesy][:smtp_from_address],
-		:warning_offset => 	node[:base][:pagerduty][:courtesy][:warning_offset]
+		:auth_token => 	node['base']['pagerduty']['courtesy']['auth_token'],
+		:base_url => 	node['base']['pagerduty']['courtesy']['base_url'],
+		:schedules => 	node['base']['pagerduty']['courtesy']['schedules'],
+		:smtp_server => 	node['base']['pagerduty']['courtesy']['smtp_server'],
+		:smtp_from_address => 	node['base']['pagerduty']['courtesy']['smtp_from_address'],
+		:warning_offset => 	node['base']['pagerduty']['courtesy']['warning_offset']
 	)
+end
+
+unless `which pip`
+	package 'python-pip' do
+		action :install
+	end
+else
+	output = `pip list`
+	unless output.include?("requests") 
+		execute "pip install requests" do
+			command "pip install requests"
+		end
+	# else
+	# 	Chef::Log.info "pip already installed"
+	end
 end
 
 output = `pip list`
