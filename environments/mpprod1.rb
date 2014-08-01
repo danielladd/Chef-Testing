@@ -40,7 +40,7 @@ default_attributes "chub-klerk" => {
   },
   "grails" => {
     "serverURL" => "https://www.buyspace.com",
-    "apiServerURL" => "http://api.commercehub.com"
+    "apiServerURL" => "http://api.buyspace.com"
   },
   "webServerUrl"=> "https://www.buyspace.com",
   "antivirus" => {

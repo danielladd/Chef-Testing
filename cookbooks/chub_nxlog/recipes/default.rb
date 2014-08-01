@@ -56,7 +56,7 @@ when "windows"
   end
 end
 
-node[:chub_log][:logfiles].each_with_index do |(logname,logfile),index|
+node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
   unless index == 0
     path << ","
   end
@@ -71,10 +71,11 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
   source      node[:chub_nxlog][:template_file]
   action      :create
   variables({
-    :endpoint => node[:chub_log][:endpoint],
+    :endpoint => node[:chub_nxlog][:endpoint],
     :port => 2352,
     :logfiles => logFileArray,
     :route_path => path,
+    :chef_environment => node.chef_environment
   })
   notifies    :restart, "service[nxlog]", :delayed
 end
