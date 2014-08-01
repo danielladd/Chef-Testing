@@ -15,6 +15,9 @@ LogFile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.log
     File "<%= log[:logfile] %>"
     Exec $chef_environment = "<%= @chef_environment %>"; $host = hostname(); $type = "<%= log[:logtype] %>"; $message = $raw_event; to_json();
     InputType LineBased
+    <% if platform_family?("windows") %>
+    CloseWhenIdle TRUE
+    <% end %>
 </Input>
 
 <% end %>
