@@ -6,4 +6,5 @@ description      'Installs/Configures chub_log'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.4'
 
-depends "chub_nxlog", "chub_logsearch_shipper"
+depends "chub_nxlog"
+depends "chub_logsearch_shipper"
