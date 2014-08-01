@@ -4,9 +4,10 @@ maintainer_email 'lzarou@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Sensu in the CommerceHub way'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.6'
+version          '0.1.8'
 
 depends "sensu"
+depends "rabbitmq", "2.4.0"
 depends "base"
 depends "partial_search"
 
