@@ -75,6 +75,7 @@ template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
     :port => 2352,
     :logfiles => logFileArray,
     :route_path => path,
+    :chef_environment => node.chef_environment
   })
   notifies    :restart, "service[nxlog]", :delayed
 end

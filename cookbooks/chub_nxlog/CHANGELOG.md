@@ -1,5 +1,9 @@
 chub_nxlog CHANGELOG
 ====================
+0.1.7
+-----
+- [David] - Add chefenvironment to default logs
+
 0.1.6
 -----
 - [Larry] - consistency is hard. quick package name fixes
