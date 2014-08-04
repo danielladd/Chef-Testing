@@ -66,6 +66,17 @@ end
   end
 end
 
+#Ensure all route directories exist, including "admin"
+routes = ["admin"].concat(node[:yui_combo][:routes])
+routes.each do |route|
+  directory "/var/combo/#{route}" do
+    owner user_name
+    group group_name
+    mode 0775
+    recursive true
+  end
+end
+
 #Install the combohandler
 npm_package "combohandler@0.3.8"
 
@@ -74,6 +85,13 @@ npm_package "combohandler@0.3.8"
   { #Upstart Script
     dest: "/etc/init/combo.conf",
     source: "combo.conf",
+    mode: 0644,
+    restart: true
+  },{ #up.js file used for monitoring and load-balancing
+    dest: "/var/combo/admin/up.js",
+    source: "up.js",
+    owner: user_name,
+    group: group_name,
     mode: 0644,
     restart: true
   },{ #Nginx configuration including caching path
@@ -102,13 +120,11 @@ npm_package "combohandler@0.3.8"
   end
 end
 
-#Create the routes file
-routes_json = Hash[node[:yui_combo][:routes].collect { |route|
-    ["/combo/#{route}", "/var/combo/#{route}"]
-}].to_json
-
+#Create the routes file 
 file "/etc/combo/routes.json" do
-  content routes_json
+  content Hash[routes.collect { |route|
+      ["/combo/#{route}", "/var/combo/#{route}"]
+  }].to_json
   owner user_name
   group group_name
   mode 0644
