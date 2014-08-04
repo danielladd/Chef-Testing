@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.19",
-  "chub_plaza" => "= 0.3.1",
+  "chub_plaza" => "= 0.3.2",
   "chub_sensu_sso" => "= 0.1.17",
   "chub_vault" => "= 0.4.0",
   "cron" => "= 1.2.6",
@@ -136,6 +136,11 @@ default_attributes(
       :disabled => false,
       :host => "mail.commercehub.com",
       :override_address => "sso-email-test@commercehub.com"
-    }
+    },
+    :applicationURLs => {
+      :buyspace => "https://mpqa2-buyspace.commercehub.com",
+      :productstream => "https://mpqa2-buyspace.commercehub.com/auth/login?targetUri=/?profile=productstream",
+      :orderstream => "https://test.commercehub.com"
+    }    
   }
 )

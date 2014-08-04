@@ -30,6 +30,11 @@ default_attributes(
     :hazelcast => {
       :group => "ssodev",
       :password => "password"
+    },
+    :applicationURLs => {
+      :buyspace => "https://mpqa2-buyspace.commercehub.com",
+      :productstream => "https://mpqa2-buyspace.commercehub.com/auth/login?targetUri=/?profile=productstream",
+      :orderstream => "https://test.commercehub.com"
     }
   }
 )

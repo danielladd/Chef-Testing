@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Plaza'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.1'
+version          '0.3.2'
 
 supports "ubuntu"
 depends "chub_java"
@@ -87,6 +87,21 @@ attribute "chub_plaza/mail/override_address",
     :display_name => "Mail override address",
     :description => "The address to use for all from and recipient addresses for sent mail",
     :required => "optional"
+
+attribute "chub_plaza/applicationURLs/buyspace",
+    :display_name => "Buyspace URL",
+    :description => "The URL for the buyspace applicaiton",
+    :required => "optional"
+
+attribute "chub_plaza/applicationURLs/productstream",
+    :display_name => "Productstream URL",
+    :description => "The URL for the productstream applicaiton",
+    :required => "optional"
+
+attribute "chub_plaza/applicationURLs/orderstream",
+    :display_name => "Orderstream URL",
+    :description => "The URL for the orderstream applicaiton",
+    :required => "optional"    
 
 attribute "chub_plaza/hazelcast/group", :required => "optional"
 attribute "chub_plaza/hazelcast/password", :required => "required"
