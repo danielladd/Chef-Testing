@@ -7,7 +7,15 @@ default_attributes(
     "map_retention" => "24h",
     "dev_repo_url" => "http://hg03:5000/dev"
   },
+  "elasticsearch" => {
+    "version" => "1.1.0",
+    "cluster" => {
+      "name" => "esdev1"
+    }
+  },
   "chub_logstash" => {
+    "endpoint" => "lsdev.nexus.commercehub.com",
+    "esgateway" => "esdev.nexus.commercehub.com",
     "env_crt" => "dev"
   }
 )
