@@ -1,13 +1,21 @@
 chub_log CHANGELOG
 ==================
+0.1.4
+-----
+- [David] - Add dependcy on chub_logsearch_shipper (for removal) -- Irony.
+0.1.3
+-----
+- [David] - Add removal of chub_logsearch_shipper on windows
 
-This file is used to list changes made in each version of the chub_log cookbook.
+0.1.2
+-----
+- [Larry] - Adding client recipe
+
+0.1.1
+-----
+- [Larry] - Adding client recipe
 
 0.1.0
 -----
-- [your_name] - Initial release of chub_log
+- Initial release of chub_log
 
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.

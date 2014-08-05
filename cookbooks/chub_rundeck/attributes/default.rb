@@ -1,8 +1,41 @@
-# WinRMPlugin
+default[:chub_rundeck][:rundeck_user] = "rundeck"
+default[:chub_rundeck][:rundeck_group] = "rundeck"
+default[:chub_rundeck][:resources] #intentially blank place holder
+
+
+## Path Things
+default[:chub_rundeck][:root_project_path] = "/var/rundeck/projects"
+default[:chub_rundeck][:rundeck_ssh_path] = "/var/lib/rundeck/.ssh"
+default[:chub_rundeck][:rundeck_config_path] = "/etc/rundeck"
+
+
+## Database Stuffs
+default[:chub_rundeck][:dbmaster] = "orchdb03"
+default[:chub_rundeck][:dbslave] = "orchdb02"
+default[:chub_rundeck][:db_name] = "rundeckdb"
+default[:chub_rundeck][:db_user] = "rundeckuser"
+default[:chub_rundeck][:db_pass] = "rundeck"
+
+default[:mysql][:database_to_replicate] = node[:chub_rundeck][:db_name]
+default[:mysql][:cluster_name] = "rundeckcluster"
+default[:mysql][:data_dir] = "/var/lib/mysql"
+default[:mysql][:log_bin] = "/var/log/mysql/mysql-bin.log"
+default[:mysql][:backup_root_path] = "/opt/mysql/backup"
+
+## Plugins
 default[:chub_rundeck][:winrm_plugin_url] = "http://artifactory01/artifactory/ThirdPartyProd/org/rundeck-plugins/rundeck-winrm-plugin/1.1/rundeck-winrm-plugin-1.1.jar"
+default[:chub_rundeck][:winrm_plugin_checksum] = "bfada6ae4215d9d44a4d1b5728bd3dde"
+
+# Proxy for nginx port forwarding
+default[:rundeck][:proxy][:hostname] = node[:fqdn]
+
+## Override default prop from rundeck to remove the admin.aclpolicy file
+## we manage the admin.aclpolicy locally
+override[:rundeck][:stub_config_files] = %w{ log4j.properties jaas-loginmodule.conf apitoken.aclpolicy }
 
 
-# Rundeck Properties SSH
+## Rundeck Properties SSH
+## TODO: This should probably move eventually
 default[:rundeck][:ssh][:private_key] = "
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEAu8tn02Hw6UBXkGhEiGC8//esPen0VQkdQWJkJ128Kc3J4GdD
@@ -32,8 +65,3 @@ arvJwEkijZIjDJBnhjfO8aCj5BcetSkNeRvTAqZwRCIgNErdx0N2hdWO9nWqEq8h
 7WI6y+O1aXP8EXmk5ONI4AgK0Uu4ALFOPmoF0VDtZH66Pq6YeaI+RA==
 -----END RSA PRIVATE KEY-----"
 
-
-default[:chub_rundeck][:resources]
-
-# Override default prop from rundeck to remove the admin.aclpolicy file
-override[:rundeck][:stub_config_files] = %w{ log4j.properties jaas-loginmodule.conf apitoken.aclpolicy }

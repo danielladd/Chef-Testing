@@ -9,13 +9,13 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.17",
-  "chub_census" => "= 0.1.4",
-  "chub_java" => "= 0.1.0",
-  "chub_openldap" => "= 1.12.16",
-  "chub_plaza" => "= 0.1.5",
-  "chub_sensu_sso" => "= 0.1.13",
-  "chub_vault" => "= 0.3.3",
+  "chub_castle" => "= 0.1.27",
+  "chub_census" => "= 0.1.9",
+  "chub_java" => "= 0.1.1",
+  "chub_openldap" => "= 1.12.21",
+  "chub_plaza" => "= 0.3.1",
+  "chub_sensu_sso" => "= 0.1.17",
+  "chub_vault" => "= 0.4.0",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -59,10 +59,10 @@ default_attributes(
       :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
     },
     :loadbalancer_urls => {
-      :vault => "https://ssoprod1-vault.commercehub.com:8443/api-docs",
-      :census => "https://ssoprod1-census.commercehub.com:8443/api-docs",
-      :castle => "https://castle.commercehub.com/login",
-      :plaza => "https://plaza.commercehub.com/buildInfo"
+      :vault => "https://ssoprod1-vault.commercehub.com:8443/ping",
+      :census => "https://ssoprod1-census.commercehub.com:8443/ping",
+      :castle => "https://apps.commercehub.com/account/ping",
+      :plaza => "https://apps.commercehub.com/user/ping"
     }
   },
   :openldap => {
@@ -73,7 +73,7 @@ default_attributes(
     :basedn => "dc=vault,dc=commercehub,dc=com"
   },
   :chub_vault => {
-    :app_url => "file:///var/vault/staged-vault.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssoprod1.current+=true",
     :ldap => {
       :read => {
         :host => "ssoprod1-ldap-read.commercehub.com",
@@ -91,11 +91,12 @@ default_attributes(
       :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-vault",
       :user => "sso_user",
       :password => "VBqgPyf6"
-    },
+    }
   },
   :chub_census => {
-    :app_url => "file:///var/census/staged-census.jar",
-    :plaza_url => "https://plaza.commercehub.com",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoprod1.current+=true",
+    :plaza_url => "https://apps.commercehub.com/user",
+    :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
     :database => {
       :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
       :user => "sso_user",
@@ -103,10 +104,12 @@ default_attributes(
     }
   },
   :chub_castle => {
-    :app_url => "file:///var/castle/staged-castle.war",
-    :domain => "castle.commercehub.com",
-    :default_service_url => "https://plaza.commercehub.com/shiro-cas",
-    :forgot_password_url => "https://plaza.commercehub.com/forgotPassword",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssoprod1.current+=true",
+    :app_context => "/account",
+    :domain => "apps.commercehub.com",
+    :default_service_url => "https://apps.commercehub.com/user/shiro-cas",
+    :forgot_password_url => "https://apps.commercehub.com/user/forgot-password",
+    :census_url => "https://ssoprod1-census.commercehub.com:8443",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
     :truststore_file => "dev-truststore.jks",
     :keystore_file => "dev-keystore.jks",
@@ -119,16 +122,21 @@ default_attributes(
     }
   },
   :chub_plaza => {
-    :app_url => "file:///var/plaza/staged-plaza.jar",
-    :cas_server_url => "https://castle.commercehub.com",
-    :cas_service_url => "https://plaza.commercehub.com/shiro-cas",
-    :cas_failure_url => "https://plaza.commercehub.com/",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssoprod1.current+=true",
+    :app_context => "/user",
+    :app_root_url => "https://apps.commercehub.com/user",
+    :cas_server_url => "https://apps.commercehub.com/account",
+    :cas_service_url => "https://apps.commercehub.com/user/shiro-cas",
+    :cas_failure_url => "https://apps.commercehub.com/user",
     :census_url => "https://ssoprod1-census.commercehub.com:8443",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
     :hazelcast => {
       :password => "ssoprod-pass",
       :multicast_group => "224.2.2.6",
       :multicast_port => 54330
+    },
+    :mail => {
+        :host => "prodmail.commercehub.com"
     }
   }
 )

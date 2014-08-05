@@ -1,3 +1,15 @@
+# 0.1.8
+
+Larry - locking rabbitmq version to 2.4.0 until properly tested
+
+# 0.1.7
+
+Larry - Adding rabbitmq recipe
+
+# 0.1.6
+
+Waldo - Grabbing the rabbitmqadmin script and making it available.
+
 # 0.1.5
 
 Larry - Update mailer.json to set admin_gui url. 

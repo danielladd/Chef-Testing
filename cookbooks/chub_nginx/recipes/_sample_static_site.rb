@@ -40,7 +40,7 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
@@ -95,6 +95,12 @@ git repo_path do
 	notifies :run, 'execute[fix_ownership]', "immediately"
 	notifies :run, 'execute[copy_site]', "immediately"
 	notifies :reload, "service[nginx]", :delayed
+end
+
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
 end
 
 nginx_site "#{site}"

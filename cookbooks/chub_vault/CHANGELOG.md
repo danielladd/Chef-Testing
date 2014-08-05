@@ -1,3 +1,7 @@
+# 0.4.0
+* Add support for archaius configuration
+* Bind against LDAP write pool, not read pool; to avoid replication delay for password resets
+
 # 0.3.5
 * Remove apt dependency (base cookbook should ensure apt is appropriately updated)
 * Remove hostsfile tweaks (base cookbook should provide those when needed)

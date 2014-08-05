@@ -11,6 +11,14 @@
 
 include_recipe "chub_logstash"
 
+cookbook_file "logstash.key" do
+  path "#{node[:chub_logstash][:cert_dir]}/logstash.key"
+  owner node[:chub_logstash][:user]
+  group "adm"
+  mode 00400
+  action :nothing
+end
+
 file "/var/log/logstash-indexer.out" do
   owner node[:chub_logstash][:user]
   group "adm"
@@ -49,7 +57,8 @@ template "/etc/indexer.conf" do
   variables({
     :clustername => node[:elasticsearch][:cluster][:name],
     :host => node[:chub_logstash][:esgateway],
-    :rules => node[:chub_log][:types]
+    :rules => node[:chub_log][:types],
+    :protocol => node[:chub_logstash][:protocol]
   })
   notifies :run, 'execute[stop_logstash]', :immediately
   notifies :run, 'execute[start_logstash]', :delayed
@@ -58,13 +67,14 @@ end
 link "currentversion" do
   link_type :symbolic
   target_file node[:chub_logstash][:base_dir]
-  to "/opt/logstash-1.4.1"
+  to "/opt/logstash-#{node[:chub_logstash][:version]}"
   action :nothing
-  notifies :create, "directory[/opt/logstash/ssl]", :immediately
+  notifies :create, "directory[#{node[:chub_logstash][:cert_dir]}]", :immediately
+  notifies :create, "cookbook_file[logstash.key]", :immediately
 end
 
 remote_file "#{Chef::Config[:file_cache_path]}/logstash.tar.gz" do
-  source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/logstash/#{node[:chub_logstash][:logstash_tar]}"
+  source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/logstash/logstash-#{node[:chub_logstash][:version]}.tar.gz"
   action :create
   notifies :run, 'execute[stop_logstash]', :immediately
   notifies :run, 'execute[extract_logstash]', :immediately

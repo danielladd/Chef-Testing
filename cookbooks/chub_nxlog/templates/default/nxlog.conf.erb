@@ -1,0 +1,34 @@
+Moduledir <%= node[:chub_nxlog][:root_path] %>/modules
+CacheDir <%= node[:chub_nxlog][:root_path] %>/data
+Pidfile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.pid
+SpoolDir <%= node[:chub_nxlog][:root_path] %>/data
+LogFile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.log
+
+<Extension json>
+  Module xm_json
+</Extension>
+
+<% if @logfiles %>
+<% @logfiles.each do |log| %>
+<Input <%= log[:logname] %>>
+    Module im_file
+    File "<%= log[:logfile] %>"
+    Exec $chef_environment = "<%= @chef_environment %>"; $host = hostname(); $type = "<%= log[:logtype] %>"; $message = $raw_event; to_json();
+    InputType LineBased
+    CloseWhenIdle <%= @close_when_idle %>
+</Input>
+
+<% end %>
+<% end %>
+
+<Output logstash>
+    Module      om_ssl
+    Host        <%= @endpoint %>
+    Port        <%= @port %>
+    AllowUntrusted TRUE
+</Output>
+
+<Route 1>
+    Path        <%= @route_path %>
+</Route>
+

@@ -1,23 +1,28 @@
 name "rundeck_server"
 description "role for rundeck_server machines"
+run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]","recipe[chub_log::client]","role[rundeck_logs]"
 default_attributes(
+  "sensu" => {
+      "rabbitmq" => {
+          "host" => "sensu01.nexus.commercehub.com"
+      }
+  },
   "rundeck" => {
+    "dbmaster" => "orchdb02",
+    "dbslave"  => "orchdb03",
     "admin" => {
       "password" => "securepassword1"
-  },
-  "authentication" => {
-    "file" => "jaas-ldap.conf",
-    "name" => "chubldap"
-  },
-  "ssh" => {
-    'timeout' => '0'
-  },
-  "proxy" => {
-     "hostname" => "orch01"
-  },
-  "chef" => {
-    "client_name" => "rundeck",
-    "client_key" => "-----BEGIN RSA PRIVATE KEY-----
+    },
+    "authentication" => {
+      "file" => "jaas-ldap.conf",
+      "name" => "chubldap"
+    },
+    "ssh" => {
+      'timeout' => '0'
+    },
+    "chef" => {
+      "client_name" => "rundeck",
+      "client_key" => "-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEAtPfnWCD9tlQf0BjN+HQDifBY8HE/IXD2zIPdtKAJakaX09az
 UaiCv6kY8uOKsJWsweEHOEMYHRIEnQ7EP4z01VR5wt2I32Qys4QRDyXojKGfuIJz
 Agkzuw6UFugx2LMB05ognklqZVxccAu/XMtqBzjk4UwjbvzaLrCW7jmWzS6PkjkA
@@ -25,7 +30,7 @@ Agkzuw6UFugx2LMB05ognklqZVxccAu/XMtqBzjk4UwjbvzaLrCW7jmWzS6PkjkA
 fwAUAFvI0IrhDFWGdefcEJ/GdTXWs/D8T2G0UYWsjdKTH/KAliPFBC6mrGH0incL
 F613amlhHTqt+H3pOT1QS0jAIUePYIWQVlAMxwIDAQABAoIBAFZDdbvEviwTnbaM
 nGI6qxUtxLeYxAck2gBTO3PGdbZ7QBRy27epI+pIqOPfI1VZg6hHpDFlijERTbGw
-QEwq3Op0Ajapc31JPgHkil02LMwcnw5M4JWv3UDliiIBPQGXEt/TMIlDZbw7crTW
+QEwq3Op0Ajapc31JPgHkil0k2LMwcnw5M4JWv3UDliiIBPQGXEt/TMIlDZbw7crTW
 ZLnPHROkQzZCHQHi9f4bn1afjQrwwaHBwtanAgbj0gBkR/+X1PfSzKmPagdHF1VX
 hp001hWg68JvtmR7HYWoKghFzM8Wb8x+aO2COrr5tUbZ6limIb6BdHJni0j9yCd1
 k0Q5vN332JXqJ33yDWRcHoiLEvXySz6CAFC65U4QVe6MXQMu9QEsD2EP4xdNBoXM
@@ -45,7 +50,7 @@ eub7aI6YSxFEDwFnLheZpu9vIPB+ghbRLTRM0ADZN6HqWdxwZCS39GDkkn11FMnD
 g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
 -----END RSA PRIVATE KEY-----
 "}
-},
+    },
   "chub_rundeck" => {
      "resources" => {
         "HornetQ" => [
@@ -111,6 +116,78 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "description" => "qa regression machine",
                 "tags" => "",
                 "hostname" => "qalzarou.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg11",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg11.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg12",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg12.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg13",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg13.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg14",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg14.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg15",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg15.nexus.commercehub.com",
+                "osArch" => "x86_64",
+                "osFamily" => "windows",
+                "osName" => "Windows Server 2012",
+                "osVersion" => "2012",
+                "username" => "qa_reg@nexus.commercehub.com",
+                "winrm" => true
+            },
+            {
+                "name" => "qareg16",
+                "description" => "qa regression machine",
+                "tags" => "",
+                "hostname" => "qareg16.nexus.commercehub.com",
                 "osArch" => "x86_64",
                 "osFamily" => "windows",
                 "osName" => "Windows Server 2012",
@@ -189,4 +266,3 @@ override_attributes(
     "rundeck-ssh" => "rundeck-ssh",
   }
 )
-run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]"

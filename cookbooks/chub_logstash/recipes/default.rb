@@ -29,23 +29,16 @@ unless platform_family?('windows')
 		mode 00700
 		action :create
 		recursive true
+		action :nothing
 		notifies :create, 'cookbook_file[logstash.crt]', :immediately
-		notifies :create, 'cookbook_file[logstash.key]', :immediately
 	end
 
 	cookbook_file "logstash.crt" do
 		path "#{node[:chub_logstash][:cert_dir]}/logstash.crt"
 		owner node[:chub_logstash][:user]
 		group "adm"
-		mode 00600
+		mode 00400
 		action :nothing
 	end
 
-	cookbook_file "logstash.key" do
-		path "#{node[:chub_logstash][:cert_dir]}/logstash.key"
-		owner node[:chub_logstash][:user]
-		group "adm"
-		mode 00600
-		action :nothing
-	end
 end

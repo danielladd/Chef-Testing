@@ -68,7 +68,6 @@ unless File.exists?("#{node[:chub_mc_app][:touchfile]}")
       group    "chub_#{node[:chub_mc_app][:app_name]}"
   end
 
-
   remote_file "#{node[:chub_mc_app][:staging_dir]}/#{node[:chub_mc_app][:app_name]}.jar" do
     source "#{node[:chub_mc_app][:jar_file_url]}"
     owner "chub_#{node[:chub_mc_app][:app_name]}"

@@ -17,7 +17,8 @@ default['chub-buyspace']['temp_dir']		= '/tmp/buyspace'
 default['chub-buyspace']['buyspace_conf']	= 'buyspace-config.groovy'
 default['chub-buyspace']['logging_conf']	= 'logging.properties'
 default['chub-buyspace']['staged_war_name']  = 'staged-buyspace.war'
-  
+default['chub-buyspace']['images_dir'] = '/var/buyspace/images'
+
 # These should be overridden
 default['chub-buyspace']['grails_env']		= 'local'
 
@@ -51,14 +52,20 @@ default['chub-buyspace']['antivirus']['hosts'] = ['vscan.commercehub.com']
 default['chub-buyspace']['antivirus']['enabled'] = false
 default['chub-buyspace']['antivirus']['port'] = 1344
   
+default['chub-buyspace']['log4j']['redis_server_host'] = 'mplogs01.nexus.commercehub.com'
+
 default['chub-buyspace']['beans']['shiroSecurityManager']['rememberMeManager'] = "null"
 default['chub-buyspace']['bestBuyMarketplace']['retailerId'] = '51247477c519e3a71e639634'
 default['chub-buyspace']['creSecure']['cardTokenValidationUrl'] = 'https://localhost/direct/services/validation'
 
+default['chub-buyspace']['environment_level'] = 'development'
+
+default['chub-buyspace']['files']['dailyBillingEventLocation'] = 'PLACEHOLDER'  
+
 default['chub-buyspace']['forSaleImport']['pendingDir'] = "PLACEHOLDER"
 default['chub-buyspace']['forSaleImport']['inProgressDir'] = "PLACEHOLDER"
 default['chub-buyspace']['forSaleImport']['doneDir'] = "PLACEHOLDER"
-  
+ 
 default['chub-buyspace']['grails']['serverURL'] = "https://localhost"
 default['chub-buyspace']['grails']['serverURLbyHostname'] = "http://localhost:8080"
 default['chub-buyspace']['grails']['apiServerURL'] = "http://localhost:8080"
@@ -66,17 +73,34 @@ default['chub-buyspace']['grails']['plugin']['excludes'] = "null"
   
 default['chub-buyspace']['hornetq']['host'] = 'localhost'
 default['chub-buyspace']['hornetq']['port'] = 5445
+   
+default['chub-buyspace']['cdn']['sharePath'] = "//mpqa02.nexus.commercehub.com/images_qa7"
+default['chub-buyspace']['cdn']['mountPath'] = "#{node['chub-buyspace']['images_dir']}/cdn"
+default['chub-buyspace']['cdn']['shareUser'] = "mpqatomcat"
+default['chub-buyspace']['cdn']['sharePassword'] = "MarketPl@ce"
+
+default['chub-buyspace']['imageDatastore1']['sharePath'] = "//mpqa02.nexus.commercehub.com/images_qa7/datastore/images1"
+default['chub-buyspace']['imageDatastore1']['mountPath'] = "#{node['chub-buyspace']['images_dir']}/datastore-1"
+default['chub-buyspace']['imageDatastore1']['shareUser'] = "mpqatomcat"
+default['chub-buyspace']['imageDatastore1']['sharePassword'] = "MarketPl@ce"
+
+default['chub-buyspace']['imageDatastore2']['sharePath'] = "//mpqa02.nexus.commercehub.com/images_qa7/datastore/images2"
+default['chub-buyspace']['imageDatastore2']['mountPath'] = "#{node['chub-buyspace']['images_dir']}/datastore-2"
+default['chub-buyspace']['imageDatastore2']['shareUser'] = "mpqatomcat"
+default['chub-buyspace']['imageDatastore2']['sharePassword'] = "MarketPl@ce"
+
+default['chub-buyspace']['dataTransfer']['sharePath'] = "//mpqa02.nexus.commercehub.com/images_qa7/datatransfer"
+default['chub-buyspace']['dataTransfer']['mountPath'] = "/var/buyspace/data-transfer"
+default['chub-buyspace']['dataTransfer']['shareUser'] = "mpqatomcat"
+default['chub-buyspace']['dataTransfer']['sharePassword'] = "MarketPl@ce"
   
-default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin/gm'
-default['chub-buyspace']['images']['baseDirectory'] = "/var/buyspace/images/"
-default['chub-buyspace']['images']['productBaseDirectory'] = "/var/buyspace/images/products"
+default['chub-buyspace']['images']['graphicsMagickHome'] = '/usr/bin'
+default['chub-buyspace']['images']['baseDirectory'] = "#{node['chub-buyspace']['cdn']['mountPath']}"
+default['chub-buyspace']['images']['productBaseDirectory'] = "#{node['chub-buyspace']['cdn']['mountPath']}/products"
+
 default['chub-buyspace']['images']['serverUrls'] = ['https://localhost']
-default['chub-buyspace']['images']['shareDirectory'] = "//mpqa02.nexus.commercehub.com/images_qa7"
-default['chub-buyspace']['images']['shareMount'] = "/var/buyspace/images/"
-default['chub-buyspace']['images']['shareUser'] = "mpqatomcat"
-default['chub-buyspace']['images']['sharePassword'] = "MarketPl@ce"
   
-default['chub-buyspace']['images']['datastoreDirectories'] = "/var/buyspace/images/image-datastore"
+default['chub-buyspace']['images']['datastoreDirectories'] = "/var/buyspace/images/datastore/images1"
 default['chub-buyspace']['images']['productImageAttachmentStrategy'] = 'local'
   
 default['chub-buyspace']['imageUploading']['amazon']['accessKey']	= 'PLACEHOLDER'

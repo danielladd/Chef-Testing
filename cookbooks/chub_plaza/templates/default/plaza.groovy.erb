@@ -1,3 +1,9 @@
+<% if node[:chub_plaza][:app_context] %>
+grails.app.context = "<%= node[:chub_plaza][:app_context] %>"
+<% end %>
+<% if node[:chub_plaza][:app_root_url] %>
+grails.serverURL = "<%= node[:chub_plaza][:app_root_url] %>"
+<% end %>
 security {
     shiro {
         cas {
@@ -7,11 +13,29 @@ security {
         }
     }
 }
+greenmail.disabled = <%= node[:chub_plaza][:greenmail][:disabled] %>
+grails.mail.disabled = <%= node[:chub_plaza][:mail][:disabled] %>
+grails.mail.host = "<%= node[:chub_plaza][:mail][:host] || (!node[:chub_plaza][:greenmail][:disabled] ? 'localhost' : 'UNCONFIGURED') %>"
+grails.mail.port = <%= node[:chub_plaza][:mail][:port] || (!node[:chub_plaza][:greenmail][:disabled] ? 3025 : 25) %>
+<% if node[:chub_plaza][:mail][:username] %>
+grails.mail.username = "<%= node[:chub_plaza][:mail][:username] %>"
+<% end %>
+<% if node[:chub_plaza][:mail][:password] %>
+grails.mail.password = "<%= node[:chub_plaza][:mail][:password] %>"
+<% end %>
+<% if node[:chub_plaza][:mail][:override_address] %>
+grails.mail.overrideAddress = "<%= node[:chub_plaza][:mail][:override_address] %>"
+<% end %>
 census {
     url = "<%= node[:chub_plaza][:census_url] %>"
 }
 vault {
     url = "<%= node[:chub_plaza][:vault_url] %>"
+}
+applicationURLs {
+    buyspace = "<%= node[:chub_plaza][:applicationURLs][:buyspace] %>"
+    productstream = "<%= node[:chub_plaza][:applicationURLs][:productstream] %>"
+    orderstream = "<%= node[:chub_plaza][:applicationURLs][:orderstream] %>"
 }
 <% if node[:graphite] -%>
 metrics {

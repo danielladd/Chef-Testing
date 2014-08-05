@@ -10,8 +10,8 @@ sprite {
     conductorApiUrl = '<%= node['chub-buyspace']['sprite']['conductorApiUrl'] %>'
     outputContainerPrefix = '<%= node['chub-buyspace']['sprite']['outputContainerPrefix'] %>'
     imageUrlTemplate = '<%= node['chub-buyspace']['sprite']['imageUrlTemplate'] %>'
-    productImageSpriteManifestWritingEnabled = '<%= node['chub-buyspace']['sprite']['productImageSpriteManifestWritingEnabled'] %>'
-    pendingSpriteManifestPostingEnabled = '<%= node['chub-buyspace']['sprite']['pendingSpriteManifestPostingEnabled'] %>'
+    productImageSpriteManifestWritingEnabled = <%= node['chub-buyspace']['sprite']['productImageSpriteManifestWritingEnabled'] %>
+    pendingSpriteManifestPostingEnabled = <%= node['chub-buyspace']['sprite']['pendingSpriteManifestPostingEnabled'] %>
 }
 
 channelProductExporter {
@@ -22,7 +22,7 @@ channelProductExporter {
         bucketName = '<%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['bucketName'] %>' 
         keyTemplate = '<%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['keyTemplate'] %>'
         use(groovy.time.TimeCategory) {
-             artifactUrlDuration = 1.day
+             artifactUrlDuration = <%= node['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['artifactUrlDuration'] %>
         }
     }
 }
@@ -44,7 +44,7 @@ useHubSpot = <%= node['chub-buyspace']['useGoogleAnalytics'] %>
 marketplace.gitRevision = System.currentTimeMillis()
 adminEmailAddress = 'support@buyspace.com'
 paymentFailureEmailAddress = 'paymentissues@buyspace.com'
-creSecure.cardTokenValidationUrl = 'https://sandbox.cresecure.net/direct/services/validation'
+creSecure.cardTokenValidationUrl = '<%= node['chub-buyspace']['creSecure']['cardTokenValidationUrl'] %>'
 
 marketplace.files.commerceHubRelationshipsFile = "/marketplace/rels.csv"
 bestBuyMarketplace.retailerId = '51247477c519e3a71e639634'
@@ -66,12 +66,12 @@ salesforce {
 vertx {
     enabled = <%= node['chub-buyspace']['vertx']['enabled'] %>
     hazelcastConfigFile = '<%= node['chub-buyspace']['vertx']['hazelcastConfigFile'] %>'
-    hostname = '<%= node['chub-buyspace']['vertx']['hostname'] %>'
+    hostname = '<%= node.name %>'
     port = <%= node['chub-buyspace']['vertx']['port'] %>
 }
 
 msExchangeApi {
-    <% if node.chef_environment != 'mpdev_alex' -%>
+    <% if node['chub-buyspace']['environment_level'] != 'production' -%>
        overrideAddress = '<%= node['chub-buyspace']['msExchangeApi']['overrideAddress'] %>'
     <% end -%>
     url = "<%= node['chub-buyspace']['msExchangeApi']['url'] %>"
@@ -89,14 +89,12 @@ hornetq {
 }
 
 mongo {
-    databaseName = '<%= node['chub-buyspace']['mongo']['databaseName'] %>'
+    databaseName = "<%= node['chub-buyspace']['mongo']['databaseName'] %>"
     replicas = <%= node['chub-buyspace']['mongo']['replicas'] %>
-    <% if node.chef_environment != 'mpdev_alex' -%>
     blobStore {
-        databaseName = '<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>'
+        databaseName = "<%= node['chub-buyspace']['mongo']['blobstoreDatabaseName'] %>"
         replicas = <%= node['chub-buyspace']['mongo']['blobstoreReplicas'] %>
     }
-    <% end -%>
 }
 
 images {
@@ -105,7 +103,7 @@ images {
     productBaseDirectory = "<%= node['chub-buyspace']['images']['productBaseDirectory'] %>"
     serverUrls = ['<%= node['chub-buyspace']['images']['serverUrls'] %>']
     datastoreDirectories = [<%= node['chub-buyspace']['images']['datastoreDirectories'] %>]
-    productImageAttachmentStrategy = "<%= node['chub-buyspace']['images']['productImageAttachmentStrategy'] %>"
+    productImageAttachmentStrategy = '<%= node['chub-buyspace']['images']['productImageAttachmentStrategy'] %>'
 }
 
 solr {
@@ -124,33 +122,46 @@ grails {
     }
 }
 
+<% if node['chub-buyspace']['environment_level'] != 'production' -%>
 paymentStrategy = 'mock'
 creSecure {
     baseFormBuilderUrl = "<%= node['chub-buyspace']['grails']['serverURL'] %>/cre/form.gsp"
 }
+<% end -%>
 
 taskScheduler.enabled = <%= node['chub-buyspace']['taskScheduler']['enabled'] %>
 
+<% if node['chub-buyspace']['environment_level'] != 'production' -%>
 dateConfig {
     enabled = true
     offsetMillis = 0
 }
+<% end -%>
 
 marketplace.logUsernames = true
 
 semantics3 {
-    apiKey = "<%= node['chub-buyspace']['semantics3']['apiKey'] %>"
-    apiSecret = "<%= node['chub-buyspace']['semantics3']['apiSecret'] %>"
+    apiKey = '<%= node['chub-buyspace']['semantics3']['apiKey'] %>'
+    apiSecret = '<%= node['chub-buyspace']['semantics3']['apiSecret'] %>'
 }
+
+<% if node['chub-buyspace']['environment_level'] == 'production' -%>
+sugar {
+    restUrl = "https://chub.sugarondemand.com/service/v2/rest.php"
+    username = "frankpny"
+    password = "f33df3aa9450daed583ce2756a5fc9f1"
+    uiUrl = "https://chub.sugarondemand.com/index.php?action=DetailView&module=Accounts&record="
+}
+<% end -%>
 
 log4j = {
     appenders {
-        rollingFile name: 'file', maxFileSize: '5MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
+        rollingFile name: 'file', maxFileSize: '2MB', file: "<%= node['chub-buyspace']['log_dir'] %>/buyspace-app.log", maxBackupIndex: 75
         'null' name: 'stacktrace'
         appender new com.commercehub.logging.log4j.redis.PooledRedisAppender(
             name: 'logstash',
-            layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields: 'env:mpqa1,app:marketplace'),
-            host: 'mplogs01.nexus.commercehub.com',
+            layout: new com.commercehub.logging.log4j.LogstashEventLayout(userFields: 'env:<%= node.chef_environment %>,app:marketplace'),
+            host: '<%= node['chub-buyspace']['log4j']['redis_server_host'] %>',  
             key: 'logstash',
             alwaysBatch: false,
             threshold: org.apache.log4j.Level.WARN,
@@ -205,6 +216,7 @@ antivirus {
     port = <%= node['chub-buyspace']['antivirus']['port'] %>
 }
 
+<% if node['chub-buyspace']['environment_level'] != 'production' -%>
 bestbuy {
     ingestor {
         username = 'chub.test1'
@@ -212,6 +224,10 @@ bestbuy {
         url = 'http://54.208.33.194/ingest-service/service'
     }
 }
+<% end -%>
+
+marketplace.files.dailyBillingEventLocation = '<%= node['chub-buyspace']['files']['dailyBillingEventLocation'] %>' 
+marketplace.files.hubPartnerStatisticsFile = '<%= node['chub-buyspace']['files']['hubPartnerStatisticsFile'] %>' 
 
 beans {
     shiroSecurityManager {
@@ -226,13 +242,4 @@ forSaleImport {
 }
 
 grails.plugin.excludes = {}
-
-<% if node.chef_environment == 'mpdev_alex' -%>
-sugar {
-    restUrl = "https://chub.sugarondemand.com/service/v2/rest.php"
-    username = "frankpny"
-    password = "f33df3aa9450daed583ce2756a5fc9f1"
-    uiUrl = "https://chub.sugarondemand.com/index.php?action=DetailView&module=Accounts&record="
-}
-<% end -%>
 

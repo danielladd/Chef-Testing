@@ -38,7 +38,7 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
@@ -109,6 +109,12 @@ else
 	file "#{site_path}/info.php" do
 		action :delete
 	end
+end
+
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
 end
 
 nginx_site "#{site}"
