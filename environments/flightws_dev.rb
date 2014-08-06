@@ -1,5 +1,5 @@
-name "flightws_test"
-description "A linux machine running flight WS (in test)"
+name "flightws_dev"
+description "A linux machine running flight WS (in dev)"
 cookbook_versions({
 	"chub_mc_webservice" => "= 0.1.0"
 })
