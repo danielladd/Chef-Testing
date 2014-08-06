@@ -22,7 +22,7 @@ node.normal[:chub_mc_webservice][:log_dir] = "/var/log/#{node[:chub_mc_webservic
 node.normal[:chub_mc_webservice][:deploy_dir] = "/opt/#{node[:chub_mc_webservice][:webservice]}"
 node.normal[:chub_mc_webservice][:staging_dir] = "/opt/#{node[:chub_mc_webservice][:webservice]}-staging"
 node.normal[:chub_mc_webservice][:touchfile] = "#{node[:chub_mc_webservice][:deploy_dir]}/deployed.txt"
-node.normal[:chub_mc_webservice][:webservice_name] = "flight_webservice"
+node.normal[:chub_mc_webservice][:webservice_name] = "netsuite_webservice"
 node.normal[:chub_mc_webservice][:config_file_name] =  "#{node[:chub_mc_webservice][:webservice_name]}_config.yml"
 node.normal[:chub_mc_webservice][:config_temp_dir] = "/tmp/#{node[:chub_mc_webservice][:webservice]}"
 
