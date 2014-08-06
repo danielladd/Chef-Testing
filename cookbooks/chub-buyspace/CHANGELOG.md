@@ -3,6 +3,10 @@ chub-buyspace CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.9.0
+-----
+- Andrew Blick - Added YUI combo configuration.
+
 0.4.1
 -----
 - Anton Beza - Updated adminEmailAddress.
