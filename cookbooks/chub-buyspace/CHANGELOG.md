@@ -3,6 +3,10 @@ chub-buyspace CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.10.0
+-----
+- Alex Heiss - First pass scripts to gracefully take down & bring up, a node.
+
 0.9.0
 -----
 - Andrew Blick - Added YUI combo configuration.

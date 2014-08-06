@@ -51,6 +51,27 @@ template "/etc/chadmin/check_up.sh" do
   mode 0770
 end
 
+template "/etc/chadmin/check_in_rotation.sh" do
+  source "check_up.sh.erb"
+  owner "chadmin"
+  group "chadmin"
+  mode 0770
+end
+
+template "/etc/chadmin/check_out_of_rotation.sh" do
+  source "check_up.sh.erb"
+  owner "chadmin"
+  group "chadmin"
+  mode 0770
+end
+
+template "/etc/chadmin/stand_down_node.sh" do
+  source "check_up.sh.erb"
+  owner "chadmin"
+  group "chadmin"
+  mode 0770
+end
+
 template "/etc/tomcat7/Catalina/localhost/static-images.xml" do
   source "static-images.xml.erb"
   owner "tomcat7"
