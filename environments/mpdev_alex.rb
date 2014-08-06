@@ -1,7 +1,7 @@
 name "mpdev_alex"
 description "alex dev environment"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 1.0.1"
+cookbook "chub-klerk", "= 3.0.0"
 cookbook "chub-buyspace", "= 0.7.1"
 default_attributes "chub-klerk" => {
     "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
@@ -38,10 +38,10 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "https://mpqa1-buyspace.commercehub.com",
-    "apiServerURL" => "http://mpqa1-api.commercehub.com"
+    "serverURL" => "http://mpalex.nexus.commercehub.com:8080",
+    "apiServerURL" => "http://mpalex.nexus.commercehub.com:8080"
   },
-  "webServerUrl"=> "https://mpqa1-buyspace.commercehub.com",
+  "webServerUrl"=> "http://mpalex.nexus.commercehub.com:8080",
   "antivirus" => {
     "hosts" => "['10.10.40.80']",
     "enabled" => true,
