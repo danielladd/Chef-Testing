@@ -74,6 +74,7 @@ end
         mode: 0644,
         restart: true
     },{
+        #if this location or file name changes, you must update the location in the default.rb attributes file
         dest: "/etc/oddrest/orgDataDir.properties",
         source: "orgDataDir.properties.erb",
         group: group_name,
