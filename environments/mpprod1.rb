@@ -22,7 +22,7 @@ default_attributes "chub-klerk" => {
   "mongo" => {
     "databaseName" => "marketplaceProd",
     "replicas" => ['mdb01.commercehub.com', 'mdb02.commercehub.com', 'mdb03.commercehub.com'],
-    "blobstoreDatabaseName" => "marketplaceProd",
+    "blobstoreDatabaseName" => "marketplaceProd_blobStore",
     "blobstoreReplicas" => ['mdb01.commercehub.com', 'mdb02.commercehub.com', 'mdb03.commercehub.com']
   },
   "solr" => {
