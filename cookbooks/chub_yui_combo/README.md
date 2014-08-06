@@ -31,6 +31,11 @@ Include `yui_combo` in your node's `run_list`:
 }
 ```
 
+### Downloading YUI releases
+To download a YUI release (e.g. 3.16.0) and install it so that it can be served by the combo server, execute the following command:
+
+`sudo /usr/local/bin/download_yui.sh 3.16.0`
+
 ## Contributing
 
 1. Fork the repository on Github
