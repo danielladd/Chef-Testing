@@ -46,10 +46,10 @@ default_attributes "chub-buyspace" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "http://mpdev1wapp1.nexus.commercehub.com:8080/",
-    "apiServerURL" => "http://mpdev1wapp1.nexus.commercehub.com:8080/"
+    "serverURL" => "http://mpdev1wapp1.nexus.commercehub.com:8080",
+    "apiServerURL" => "http://mpdev1wapp1.nexus.commercehub.com:8080"
   },
-  "webServerUrl"=> "http://mpdev1wapp1.nexus.commercehub.com:8080/",
+  "webServerUrl"=> "http://mpdev1wapp1.nexus.commercehub.com:8080",
   "antivirus" => {
     "hosts" => "['10.10.40.80']",
     "enabled" => true,
