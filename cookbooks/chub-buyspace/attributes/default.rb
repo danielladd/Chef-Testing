@@ -41,6 +41,9 @@ default['chub-buyspace']['msExchangeApi']['overrideAddress'] = 'productstream-te
 default['chub-buyspace']['paymentFailureEmailAddress'] = 'testing@localhost.com'
 
 # The rest is alphabetical
+default['chub-buyspace']['census']['url'] = 'https://ssoint1-census.nexus.commercehub.com:8443'
+default['chub-buyspace']['census']['buyspaceAndProductStreamApplicationId'] = 'buyspaceandproductstream-dev'
+
 default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['accessKey'] = 'PLACEHOLDER'
 default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['secretKey'] = 'PLACEHOLDER'
 default['chub-buyspace']['channelProductExporter']['imageUrlStrategy']['bucketName'] = 'PLACEHOLDER'
@@ -118,7 +121,9 @@ default['chub-buyspace']['mongo']['databaseName'] = "marketplaceTest"
 #default['chub-buyspace']['mongo']['replicas'] = ['localhost']
 default['chub-buyspace']['mongo']['blobstoreDatabaseName'] = "marketplaceTest"
 #default['chub-buyspace']['mongo']['blobstoreReplicas'] = ['localhost']
-  
+
+default['chub-buyspace']['plaza']['url'] = 'https://ssoint1-apps.nexus.commercehub.com/user'
+
 default['chub-buyspace']['salesforce']['url'] = 'https://localhost'
 default['chub-buyspace']['salesforce']['apiUrl'] = "node['chub-buyspace']['salesforce']['url']/services/data/v24.0"
 default['chub-buyspace']['salesforce']['clientId'] = 'PLACEHOLDER'
@@ -128,6 +133,12 @@ default['chub-buyspace']['salesforce']['httpClient']['totalConnections'] = 100
 default['chub-buyspace']['salesforce']['password'] = 'PLACEHOLDER'
 default['chub-buyspace']['salesforce']['tokenUrl'] = 'https://localhost/services/oauth2/token'
 default['chub-buyspace']['salesforce']['username'] = 'buyspace@buyspace.com'
+
+default['chub-buyspace']['security']['shiro']['authc']['required'] = false
+default['chub-buyspace']['security']['shiro']['realm'] = 'mongodb'
+default['chub-buyspace']['security']['shiro']['cas']['serverUrl'] = 'https://ssoint1-apps.nexus.commercehub.com/account'
+default['chub-buyspace']['security']['shiro']['cas']['serviceUrl'] = 'http://localhost:8080/shiro-cas'
+default['chub-buyspace']['security']['shiro']['cas']['failureUrl'] = 'http://localhost:8080/auth/fail'
 
 default['chub-buyspace']['semantics3']['apiKey'] = 'PLACEHOLDER'
 default['chub-buyspace']['semantics3']['apiSecret'] = 'PLACEHOLDER'
@@ -144,7 +155,9 @@ default['chub-buyspace']['sugar']['uiUrl'] = 'https://localhost/index.php?action
 default['chub-buyspace']['taskScheduler']['enabled'] = true
 default['chub-buyspace']['useGoogleAnalytics'] = false
 default['chub-buyspace']['useHubSpot'] = false
-  
+
+default['chub-buyspace']['vault']['url'] = 'https://ssoint1-vault.nexus.commercehub.com:8443'
+
 default['chub-buyspace']['vertx']['enabled'] = false
 default['chub-buyspace']['vertx']['hazelcastConfigFile'] = '/marketplace/hazelcast/cluster.xml'
 default['chub-buyspace']['vertx']['hostname'] = 'localhost'

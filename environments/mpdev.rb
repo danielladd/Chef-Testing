@@ -1,65 +1,86 @@
-name "mpqa2"
-description "marketplace qa environment 2"
+name "mpdev"
+description "dev environment"
 cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 3.0.0"
 cookbook "chub-buyspace", "= 0.8.0"
 default_attributes "chub-klerk" => {
-    "mongo_addresses" => [ "mpqa2db1:27017", "mpqa2db2:27017", "mpqa2db3:27017" ],
-    "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa2_klerk_quartz;user=devusr01;password=usrdev",
-    "hazelcast_group_name" => "mpqa2_klerk",
-    "hazelcast_group_password" => "mpqa2_klerk",
+    "mongo_addresses" => [ "mpqa03:27777", "mpqa05:27777" ],
+    "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa1_klerk_quartz;user=devusr01;password=usrdev",
+    "hazelcast_group_name" => "mpqa1_klerk",
+    "hazelcast_group_password" => "mpqa1_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "product_data_event_endpoints" => {
-        "productstream" => "http://mpqa2-api.commercehub.com/klerk/productDataEvents"
+        "productstream" => "http://mpqa1-api.commercehub.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
-    "sprite_conductor_url" => "http://mpqa2sc1.nexus.commercehub.com:8060/sprite-conductor",
-    "sprite_output_container_prefix" => "mpqa2-",
-    "jms_provider_url" => "jnp://mpqa2db2.nexus.commercehub.com:1099"
+    "sprite_conductor_url" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
+    "sprite_output_container_prefix" => "mpqa1-",
+    "jms_provider_url" => "jnp://mpqa03.nexus.commercehub.com:7099"
 },
 "chub-buyspace" => {
   "mongo" => {
-    "databaseName" => "marketplaceProd",
-    "replicas" => ['mpqa2db1.nexus.commercehub.com', 'mpqa2db2.nexus.commercehub.com', 'mpqa2db3.nexus.commercehub.com'],
-    "blobstoreDatabaseName" => "marketplaceProd",
-    "blobstoreReplicas" => ['mpqa2db1.nexus.commercehub.com', 'mpqa2db2.nexus.commercehub.com', 'mpqa2db3.nexus.commercehub.com']
+    "databaseName" => "marketplaceProd_91212bak",
+    "replicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777'],
+    "blobstoreDatabaseName" => "marketplaceProd_91212bak_blobStore",
+    "blobstoreReplicas" => ['mpqa05.nexus.commercehub.com:27777', 'mpqa03.nexus.commercehub.com:27777']
+  },
+  "security" => {
+    "shiro" => {
+      "authc" => {
+        "required" => false
+      },
+      "realm" => "mongodb",
+      "cas" => {
+        "serverUrl" => "https://ssoint1-apps.nexus.commercehub.com/account",
+        "serviceUrl" => "http://mpdev1wapp1.commercehub.com:8080/shiro-cas",
+        "failureUrl" => "http://mpdev1wapp1.commercehub.com:8080/auth/fail"
+      }
+    }
+  },
+  "census" => {
+    "url" => "https://ssoint1-census.nexus.commercehub.com:8443",
+    "buyspaceAndProductStreamApplicationId" => "buyspaceandproductstream-dev"
+  },
+  "plaza" => {
+    "url" => "https://ssoint1-apps.nexus.commercehub.com/user"
+  },
+  "vault" => {
+    "url" => "https://ssoint1-vault.nexus.commercehub.com:8443"
   },
   "solr" => {
-    "url" => "http://mpqa2db1/solr/"
+    "url" => "http://mpqa03:7070/solr/"
   },
   "klerk" => {
-    "url" => "http://mpqa2-klerk.commercehub.com:8090"
+    "url" => "http://mpqa1-klerk.commercehub.com:8090"
   },
   "hornetq" => {
-    "host" => "mpqa2db2.nexus.commercehub.com",
-    "port" => 5445
+    "host" => "mpqa03.nexus.commercehub.com",
+    "port" => 7447
   },
   "taskScheduler" => {
     "enabled" => false
   },
   "grails" => {
-     "serverURL" => "https://mpqa2-buyspace.commercehub.com",
-     "apiServerURL" => "http://mpqa2-api.commercehub.com"
-     #"serverURL" => "http://mpqa2wapp1:8080",
-     #"apiServerURL" => "http://mpqa2api1:8080"
+    "serverURL" => "http://mpdev1wapp1.commercehub.com:8080/",
+    "apiServerURL" => "http://mpqa1-api.commercehub.com"
   },
-  "webServerUrl"=> "https://mpqa2-buyspace.commercehub.com",
+  "webServerUrl"=> "http://mpdev1wapp1.commercehub.com:8080/",
   "antivirus" => {
-    "hosts" => "['qa-scanengine.commercehub.com']",
+    "hosts" => "['10.10.40.80']",
     "enabled" => true,
     "port" => 1344
   },
   "sprite" => {
-      "conductorApiUrl" => "http://mpqa2sc1.nexus.commercehub.com:8060/sprite-conductor",
-      "outputContainerPrefix" => "mpqa2-",
-      "imageUrlTemplate" => "https://d1dck2g5brplz4.cloudfront.net/mpqa2-watermarked/${resourceId}-watermark-${size}-${size}.jpg"
+      "conductorApiUrl" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
+      "outputContainerPrefix" => "mpqa1-",
+      "imageUrlTemplate" => "https://d172c2gjqice63.cloudfront.net/mpqa1-watermarked/${resourceId}-watermark-${size}-${size}.jpg"
   },
   "imageUploading" => {
     "amazon" => {
-      "accessKey" => "AKIAJF6XZOGR4SWDDORQ",
-      "secretKey" => "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",
-      "bucket" => "commercehub-sprite-mpqa2-uploaded",
+      "accessKey" => "AKIAIR3QJXR63XPHWPRA",
+      "secretKey" => "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",
+      "bucket" => "commercehub-sprite-mpqa1-uploaded",
       "duration" => "1.day"
     } 
   },
@@ -83,7 +104,7 @@ default_attributes "chub-klerk" => {
   "vertex" => {
     "enabled" => false,
     "hazelcastConfigFile" => "/marketplace/hazelcast/cluster.xml",
-    "hostname" => "mpqa2wapp1",
+    "hostname" => "mpqa01",
     "port" => 25500
   },
   "msExchangeApi" => {
@@ -97,8 +118,8 @@ default_attributes "chub-klerk" => {
     "imageUrlStrategy" => {
       "accessKey" => "AKIAIJPXRBZOL4RUMINA",
       "secretKey" => "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",
-      "bucketName" => "commercehub-sprite-mpqa2-master",
-      "keyTemplate" => "mpqa2-master/${resourceId}",
+      "bucketName" => "commercehub-sprite-mpqa1-master",
+      "keyTemplate" => "mpqa1-master/${resourceId}",
       "artifactUrlDuration" => "1.day"
     }
   },
@@ -144,8 +165,8 @@ default_attributes "chub-klerk" => {
       "datastoreDirectories" => "'/var/buyspace/images/datastore-1', '/var/buyspace/images/datastore-2'",
       "baseDirectory" => '/var/buyspace/images/cdn',
       "productBaseDirectory" => "/var/buyspace/images/cdn/products" ,
-      "serverUrls" => "https://mpqa2-buyspace.commercehub.com/static-images"
-  },
+      "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+  },  
 },
 'tomcat' => {
   'base_version' => 7,
