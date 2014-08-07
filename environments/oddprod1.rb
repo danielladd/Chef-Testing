@@ -1,5 +1,5 @@
-name "oddqa1"
-description 'For the SLM QA1 Nodes'
+name "oddprod1"
+description 'For the SLM PROD1 Nodes'
 cookbook_versions({
   "chub_apartment"=>"= 0.1.0",
   "chub_oddrest"=>"= 0.1.0",
@@ -9,13 +9,13 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://oddqa1-rest.nexus.commercehub.com"
+      :baseUrl => "http://odddev1-rest.nexus.commercehub.com"
     },
     :apartment => {
-      :baseUrl => "http://oddqa1-apartment.nexus.commercehub.com:8080"
+      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "http://oddqa1-rolodex.nexus.commercehub.com"
+      :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
@@ -26,14 +26,14 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "oddqa1_orderstream"
+            :name => "odddev1_orderstream"
         }
     }
   },
   :chub_tattler => {
     :db => {
       :server => "SQLVM03",
-      :name => "tattlerqa1_tat",
+      :name => "tattlerdev1_tat",
       :userName => "devusr01",
       :pass => "usrdev"
     }
@@ -46,7 +46,7 @@ default_attributes(
     :db => {
       :server => "SQLVM03",
       :port => "1433",
-      :name => "oddqa1_chub",
+      :name => "odddev1_chub",
       :userName => "devusr01",
       :pass => "usrdev"
     }

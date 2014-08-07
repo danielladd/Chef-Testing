@@ -15,6 +15,12 @@ service_name    = "oddrest"
 group_name      = service_name
 user_name       = service_name
 
+# This is where you will store a copy of your key on the chef-client
+secret = Chef::EncryptedDataBagItem.load_secret("/etc/chef/encrypted_data_bag_secret")
+ 
+# This decrypts the data bag contents of "odd_passwords->node.chef_environment" and uses the key defined at variable "secret"
+db_keys = Chef::EncryptedDataBagItem.load("odd_passwords", node.chef_environment, secret)
+
 group group_name do
     action :create
     system true
@@ -83,6 +89,11 @@ end
     }
 ].each do |data|
     template data[:dest] do
+        variables(:name => db_keys['name'],
+                  :pass => db_keys['pass'],
+                  :server => db_keys['server'],
+                  :userName => db_keys['userName'])
+
         source data[:source]
         owner data[:owner] || "root"
         group data[:group] || "root"
