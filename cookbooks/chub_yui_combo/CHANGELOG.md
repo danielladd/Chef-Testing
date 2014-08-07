@@ -1,3 +1,6 @@
+# 0.5.1
+- Removed 'sudo' from script to clear the nginx cache
+
 # 0.5.0
 - Added a script to clear the nginx cache
 
