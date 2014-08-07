@@ -1,14 +1,24 @@
 name "mc_catalogofcontrols_test"
 description "Mission Control CatalogofControls Test Environment"
 cookbook_versions({
-	"chub_mc_app" => "= 0.1.0",
+	"chub_mc_app" => "= 0.2.0",
 	"chub_mc_logs" => "= 0.1.0"
 })
 default_attributes( 
 	"chub_mc_app" => {
 		"port" => "9400",
 		"app_name" => "catalogofcontrols",
-		"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/catalogofcontrols/0.1/catalogofcontrolstest.jar"
+		"config_vars" => {
+			"useBridge" => "true",
+			"disableRecompile" => "false",
+			"enableReload" => "false",
+			"mcHost" => "testmissioncontrol",
+			"appHost" => "testmissioncontrol/catalogofcontrols",
+			"authService" => "devmcauth",
+			"appMachine1" => "tmccatalog01",
+			"appMachine2" => "tmccatalog02"
+		},
+		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/catalogofcontrols/%5BRELEASE%5D/catalogofcontrols-%5BRELEASE%5D.jar"
 	},
 	"chub_mc_logs" => {
 		"mc_resource" => "catalogofcontrols",

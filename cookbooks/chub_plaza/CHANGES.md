@@ -1,3 +1,6 @@
+#0.3.2
+* Configure top nav bar urls
+
 #0.3.1
 * Fix greenmail config
 

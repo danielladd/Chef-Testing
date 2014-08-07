@@ -36,7 +36,8 @@ function with_backoff {
   return $exitCode
 }
 
+echo "Connecting, and waiting for a response from the server on this node."
 with_backoff curl 'http://localhost:8090/up.html' 
-
+echo "Server responded!  Sleeping for 30s to allow time for this node to be picked up for rotation."
 #Loadbalancer set to health check cycles of 5 seconds, with 16 continuous seconds up saying node is good.
 sleep 30

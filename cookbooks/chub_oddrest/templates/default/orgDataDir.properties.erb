@@ -1,11 +1,11 @@
 orgDataDir.database.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
 # When configuring your application, please specify a more detailed applicationName property value
-orgDataDir.database.url=jdbc:sqlserver://<%= node[:chub_oddrest][:db][:server] %>;databaseName=<%= node[:chub_oddrest][:db][:name] %>;integratedSecurity=false;trustServerCertificate=true;authenticationScheme=JavaKerberos;applicationName=oddservice
+orgDataDir.database.url=jdbc:sqlserver://<%= @server %>;databaseName=<%= @name %>;integratedSecurity=false;trustServerCertificate=true;authenticationScheme=JavaKerberos;applicationName=oddservice
 
 # Leave blank to use Windows Authentication (requires native library on path)
 # See http://coyote/mediawiki/index.php/Microsoft_JDBC_Driver
-orgDataDir.database.user=<%= node[:chub_oddrest][:db][:userName] %>
-orgDataDir.database.password=<%= node[:chub_oddrest][:db][:pass] %>
+orgDataDir.database.user=<%= @userName %>
+orgDataDir.database.password=<%= @pass %>
 
 # Should be false in production
 orgDataDir.showSql=<%= node[:chub_oddrest][:db][:showSql] %>

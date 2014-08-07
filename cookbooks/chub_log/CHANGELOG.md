@@ -1,5 +1,12 @@
 chub_log CHANGELOG
 ==================
+0.1.4
+-----
+- [David] - Add dependcy on chub_logsearch_shipper (for removal) -- Irony.
+0.1.3
+-----
+- [David] - Add removal of chub_logsearch_shipper on windows
+
 0.1.2
 -----
 - [Larry] - Adding client recipe

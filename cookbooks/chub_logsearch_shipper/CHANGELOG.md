@@ -2,6 +2,9 @@ chub_logsearch_shipper CHANGELOG
 ================================
 
 This file is used to list changes made in each version of the chub_logsearch_shipper cookbook.
+0.1.2
+-----
+- [David] add remove recipe
 
 0.1.0
 -----

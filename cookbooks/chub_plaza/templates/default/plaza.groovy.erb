@@ -32,6 +32,11 @@ census {
 vault {
     url = "<%= node[:chub_plaza][:vault_url] %>"
 }
+applicationURLs {
+    buyspace = "<%= node[:chub_plaza][:applicationURLs][:buyspace] %>"
+    productstream = "<%= node[:chub_plaza][:applicationURLs][:productstream] %>"
+    orderstream = "<%= node[:chub_plaza][:applicationURLs][:orderstream] %>"
+}
 <% if node[:graphite] -%>
 metrics {
     <% if node[:graphite][:host] -%>
