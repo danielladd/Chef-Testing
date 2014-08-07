@@ -2,3 +2,4 @@
 
 # Vagrant Stuff
 /cookbooks/*/.vagrant
+.kitchen/

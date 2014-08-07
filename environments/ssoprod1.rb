@@ -77,7 +77,7 @@ default_attributes(
     :ldap => {
       :read => {
         :host => "ssoprod1-ldap-read.commercehub.com",
-        :password => "search"
+        :password => "rootpw"
       },
       :write => {
         :host => "ssoprod1-ldap-write.commercehub.com",
