@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: redisio
-# Resource::uninstall
+# Recipe:: _install_prereqs
 #
 # Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
 #
@@ -17,12 +17,18 @@
 # limitations under the License.
 #
 
-actions :run, :nothing
-
-attribute :servers, :kind_of => Array, :default => nil
-
-def initialize(name, run_context=nil)
-  super
-  @action = :nothing
+case node.platform
+when 'debian','ubuntu'
+  %w[tar].each do |pkg|
+    package pkg do
+      action :install
+    end
+  end
+when 'redhat','centos','fedora','scientific','suse','amazon'
+  %w[tar].each do |pkg|
+    package pkg do
+      action :install
+      end
+  end
 end
 

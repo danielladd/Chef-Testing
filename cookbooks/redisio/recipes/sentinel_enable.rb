@@ -1,8 +1,9 @@
 #
 # Cookbook Name:: redisio
-# Recipe:: uninstall
+# Recipe:: sentinel_enable
 #
 # Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
+#
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +20,10 @@
 
 redis = node['redisio']
 
-redisio_uninstall "redis-servers" do
-  servers redis['servers']
-  action :run
+redis['sentinels'].each do |current_sentinel|
+  sentinel_name = current_sentinel['name']
+  resource = resources("service[redis_sentinel_#{sentinel_name}]")
+  resource.action Array(resource.action)
+  resource.action << :start
+  resource.action << :enable
 end
