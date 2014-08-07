@@ -1,8 +1,19 @@
+# platform
+if platform_family?("windows")
+  default.sensu.admin_user = "Administrator"
+  default.sensu.directory = 'C:\etc\sensu'
+  default.sensu.log_directory = 'C:\var\log\sensu'
+  default.sensu.windows.dism_source = nil
+  default.sensu.windows.package_options = nil
+else
+  default.sensu.admin_user = "root"
+  default.sensu.directory = "/etc/sensu"
+  default.sensu.log_directory = "/var/log/sensu"
+end
+
 # installation
-default.sensu.version = "0.12.3-1"
+default.sensu.version = "0.13.0-1"
 default.sensu.use_unstable_repo = false
-default.sensu.directory = "/etc/sensu"
-default.sensu.log_directory = "/var/log/sensu"
 default.sensu.log_level = "info"
 default.sensu.use_ssl = true
 default.sensu.use_embedded_ruby = false
@@ -28,9 +39,3 @@ default.sensu.redis.port = 6379
 default.sensu.api.host = "localhost"
 default.sensu.api.bind = "0.0.0.0"
 default.sensu.api.port = 4567
-
-# dashboard
-default.sensu.dashboard.bind = "0.0.0.0"
-default.sensu.dashboard.port = 8080
-default.sensu.dashboard.user = "admin"
-default.sensu.dashboard.password = "secret"
