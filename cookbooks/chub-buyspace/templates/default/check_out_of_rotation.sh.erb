@@ -38,7 +38,7 @@ function with_backoff {
 
 counter=0
 response=0
-max_retry=500
+max_retry=60
 while [ $response = 200 ] &&  [ $counter -le $max_retry ]; do
   sleep 1
   counter=$((counter + 1))
@@ -49,7 +49,7 @@ counter=$((counter - 1))
 
 if [[ $counter == $max_retry ]]
 then
-  exit -1
+  exit 0
 fi
 
 exit 0

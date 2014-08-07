@@ -134,7 +134,7 @@ default['chub-buyspace']['salesforce']['password'] = 'PLACEHOLDER'
 default['chub-buyspace']['salesforce']['tokenUrl'] = 'https://localhost/services/oauth2/token'
 default['chub-buyspace']['salesforce']['username'] = 'buyspace@buyspace.com'
 
-default['chub-buyspace']['security']['shiro']['authc']['required'] = false
+default['chub-buyspace']['security']['shiro']['authc']['required'] = true
 default['chub-buyspace']['security']['shiro']['realm'] = 'mongodb'
 default['chub-buyspace']['security']['shiro']['cas']['serverUrl'] = 'https://ssoint1-apps.nexus.commercehub.com/account'
 default['chub-buyspace']['security']['shiro']['cas']['serviceUrl'] = 'http://localhost:8080/shiro-cas'

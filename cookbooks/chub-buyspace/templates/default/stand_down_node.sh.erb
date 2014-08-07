@@ -33,5 +33,5 @@ function with_backoff {
 
 echo "Standing down node."
 with_backoff curl 'http://localhost:8080/systemManagement/standby'
-echo "Sleeping for a 30s to allow balancer to take out." 1>&2
+echo "Sleeping for a 30s to allow balancer to take out."
 sleep 30
