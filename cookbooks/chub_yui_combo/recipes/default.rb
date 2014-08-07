@@ -114,6 +114,11 @@ npm_package "combohandler@0.3.8"
     source: "download_yui.sh",
     mode: 0755,
     restart: false
+  },{ #Script for clearing the Nginx cache
+    dest: "/usr/local/bin/clear_nginx_cache.sh",
+    source: "clear_nginx_cache.sh",
+    mode: 0755,
+    restart: false
   }
 ].each do |data|
   #Default to notifying the combo service unless the data specifies otherwise.

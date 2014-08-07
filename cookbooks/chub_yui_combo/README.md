@@ -34,7 +34,12 @@ Include `yui_combo` in your node's `run_list`:
 ### Downloading YUI releases
 To download a YUI release (e.g. 3.16.0) and install it so that it can be served by the combo server, execute the following command:
 
-`sudo /usr/local/bin/download_yui.sh 3.16.0`
+`sudo download_yui.sh 3.16.0`
+
+### Clearing the nginx cache
+To clear nginx's cache, execute the following command:
+
+`sudo clear_nginx_cache.sh`
 
 ## Contributing
 

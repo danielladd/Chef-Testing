@@ -1,3 +1,6 @@
+# 0.5.0
+- Added a script to clear the nginx cache
+
 # 0.4.0
 - Added a script to download YUI releases
 
