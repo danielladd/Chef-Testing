@@ -62,10 +62,10 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "http://mpdev1wapp1.commercehub.com:8080/",
-    "apiServerURL" => "http://mpqa1-api.commercehub.com"
+    "serverURL" => "http://mpdev1wapp1.commercehub.com:8080",
+    "apiServerURL" => "http://mpdev1wapp1.commercehub.com:8080"
   },
-  "webServerUrl"=> "http://mpdev1wapp1.commercehub.com:8080/",
+  "webServerUrl"=> "http://mpdev1wapp1.commercehub.com:8080",
   "antivirus" => {
     "hosts" => "['10.10.40.80']",
     "enabled" => true,
