@@ -1,3 +1,6 @@
+#0.1.18
+* Lock sensu cookbook to version 0.8.0 so that we dont break on the new version.
+
 #0.1.17
 * Support new format of castle health check URL
 
