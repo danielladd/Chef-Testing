@@ -165,7 +165,7 @@ default['chub-buyspace']['vertx']['port'] = 25500
   
 default['chub-buyspace']['webServerUrl'] = 'http://localhost:8080'
 
-default['chub-buyspace']['yui']['seedUrl'] = 'PLACEHOLDER'
-default['chub-buyspace']['yui']['comboBase'] = 'PLACEHOLDER'
-default['chub-buyspace']['yui']['filter'] = 'min'
-default['chub-buyspace']['yui']['combine'] = true
+default['chub-buyspace']['yui']['seedUrl'] = ''
+default['chub-buyspace']['yui']['comboBase'] = ''
+default['chub-buyspace']['yui']['filter'] = 'raw'
+default['chub-buyspace']['yui']['combine'] = false
