@@ -11,3 +11,9 @@ default[:chub_sensu][:root_plugin_path] = '/etc/sensu/plugins'
 default[:chub_sensu][:root_handler_path] = '/etc/sensu/handlers'
 default[:chub_sensu][:root_handler_config_path] = '/etc/sensu/conf.d/handlers'
 default[:chub_sensu][:admin_gui_url] = "http://sensu01:8888"
+
+
+# Redis Sentinel
+default[:sensu][:redis][:quorum_count] = 1
+default[:chub_sensu][:redis][:check_redis_root] = "/opt/check_redis_master"
+default[:chub_sensu][:redis][:check_redis_file] = "redis-role.sh"
