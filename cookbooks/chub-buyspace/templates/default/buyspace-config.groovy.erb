@@ -2,6 +2,31 @@ import groovy.time.TimeCategory
 
 webServerUrl = "<%= node['chub-buyspace']['webServerUrl'] %>"
 
+security {
+    shiro.authc.required = <%= node['chub-buyspace']['security']['shiro']['authc']['required'] %>
+    shiro.realm = "<%= node['chub-buyspace']['security']['shiro']['realm'] %>"
+    shiro {
+        cas {
+            serverUrl = "<%= node['chub-buyspace']['security']['shiro']['cas']['serverUrl'] %>"
+            serviceUrl = "<%= node['chub-buyspace']['security']['shiro']['cas']['serviceUrl'] %>"
+            failureUrl = "<%= node['chub-buyspace']['security']['shiro']['cas']['failureUrl'] %>"
+        }
+    }
+}
+
+census {
+    url = "<%= node['chub-buyspace']['census']['url'] %>"
+    buyspaceAndProductStreamApplicationId = "<%= node['chub-buyspace']['census']['buyspaceAndProductStreamApplicationId'] %>"
+}
+
+plaza {
+    url = "<%= node['chub-buyspace']['plaza']['url'] %>"
+}
+
+vault {
+    url = "<%= node['chub-buyspace']['vault']['url'] %>"
+}
+
 klerk {
     url = '<%= node['chub-buyspace']['klerk']['url'] %>'
 }
@@ -242,5 +267,13 @@ forSaleImport {
 }
 
 grails.plugin.excludes = {}
+
+yui {
+    seedUrl = '<%= node['chub-buyspace']['yui']['seedUrl'] %>'
+    comboBase = '<%= node['chub-buyspace']['yui']['comboBase'] %>'
+    filter = '<%= node['chub-buyspace']['yui']['filter'] %>'
+    combine = <%= node['chub-buyspace']['yui']['combine'] %>
+}
+
 
 
