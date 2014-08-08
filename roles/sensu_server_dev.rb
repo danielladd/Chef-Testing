@@ -9,6 +9,7 @@ default_attributes "chub_sensu" => {
             "scm_team" => "mercurial-admin@commercehub.com",
             "platform_team" => "jlazzara@commercehub.com,mmiller@commercehub.com",
             "missioncontrol_team" => "BLaviolette@commercehub.com,CMcCormick@commercehub.com,CCucinella@commercehub.com,JLane@commercehub.com,LKulzer@commercehub.com,MBreen@commercehub.com,MBouchard@commercehub.com,SVonDuhn@commercehub.com,ZHarvey@commercehub.com",
+            "mc_platform_team" => "BLaviolette@commercehub.com,CCucinella@commercehub.com,LKulzer@commercehub.com,ZHarvey@commercehub.com",
             "rundeck_mysql_master" => "pipeline@commercehub.com",
             "rundeck_mysql_slave" => "pipeline@commercehub.com"
         }

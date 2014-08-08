@@ -16,3 +16,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+node.normal[:graphite][:web][:debug]	= "True"
+
+include_recipe 'graphite'
+
+# This can be removed when this pull request is accepted:
+#	https://github.com/hw-cookbooks/graphite/pull/171
+if node['graphite']['web']['ldap']['SERVER'].length > 0
+	package 'python-ldap' do
+		action :install
+	end
+end

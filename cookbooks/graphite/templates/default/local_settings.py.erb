@@ -12,15 +12,15 @@
 TIME_ZONE = '<%= @timezone %>'
 
 # Override this to provide documentation specific to your Graphite deployment
-#DOCUMENTATION_URL = "http://graphite.readthedocs.org/"
+DOCUMENTATION_URL = "http://graphite.readthedocs.org/"
 
 # Logging
-#LOG_RENDERING_PERFORMANCE = True
-#LOG_CACHE_PERFORMANCE = True
-#LOG_METRIC_ACCESS = True
+LOG_RENDERING_PERFORMANCE = True
+LOG_CACHE_PERFORMANCE = True
+LOG_METRIC_ACCESS = True
 
 # Enable full debug page display on exceptions (Internal Server Error pages)
-#DEBUG = True
+DEBUG = <%= @debug %>
 
 # If using RRD files and rrdcached, set to the address or socket of the daemon
 #FLUSHRRDCACHED = 'unix:/var/run/rrdcached.sock'
@@ -34,40 +34,41 @@ TIME_ZONE = '<%= @timezone %>'
 # You should not use the loopback address (127.0.0.1) here if using clustering
 # as every webapp in the cluster should use the exact same values to prevent
 # unneeded cache misses. Set to [] to disable caching of images and fetched data
-<% unless @memcache_hosts.empty? %>
-MEMCACHE_HOSTS = ['<%= @memcache_hosts.join("', '") %>']
-<% end %>
+MEMCACHE_HOSTS = [ <%= @memcached_hosts.map do |server|
+  "\"#{server}\""
+end.join(', ') %> ]
+
 #DEFAULT_CACHE_DURATION = 60 # Cache images and data for 1 minute
 
 
 #####################################
 # Filesystem Paths #
 #####################################
-# Change only GRAPHITE_ROOT if your install is merely shifted from <%= @home %>
+# Change only GRAPHITE_ROOT if your install is merely shifted from /opt/graphite
 # to somewhere else
-#GRAPHITE_ROOT = '<%= @home %>'
+GRAPHITE_ROOT = '<%= @base_dir %>'
 
-# Most installs done outside of a separate tree such as <%= @home %> will only
+# Most installs done outside of a separate tree such as /opt/graphite will only
 # need to change these three settings. Note that the default settings for each
 # of these is relative to GRAPHITE_ROOT
-#CONF_DIR = '<%= @home %>/conf'
-#STORAGE_DIR = '<%= @home %>/storage'
-#CONTENT_DIR = '<%= @home %>/webapp/content'
+CONF_DIR = '<%= @base_dir %>/conf'
+STORAGE_DIR = '<%= @storage_dir %>'
+CONTENT_DIR = '<%= @doc_root %>/content'
 
 # To further or fully customize the paths, modify the following. Note that the
 # default settings for each of these are relative to CONF_DIR and STORAGE_DIR
 #
 ## Webapp config files
-#DASHBOARD_CONF = '<%= @home %>/conf/dashboard.conf'
-#GRAPHTEMPLATES_CONF = '<%= @home %>/conf/graphTemplates.conf'
+DASHBOARD_CONF = '<%= @base_dir %>/conf/dashboard.conf'
+GRAPHTEMPLATES_CONF = '<%= @base_dir %>/conf/graphTemplates.conf'
 
 ## Data directories
 # NOTE: If any directory is unreadable in DATA_DIRS it will break metric browsing
-WHISPER_DIR = '<%= @whisper_dir %>'
-#RRD_DIR = '/opt/graphite/storage/rrd'
-#DATA_DIRS = [WHISPER_DIR, RRD_DIR] # Default: set from the above variables
-#LOG_DIR = '<%= @home %>/storage/log/webapp'
-#INDEX_FILE = '<%= @home %>/storage/index'  # Search index file
+WHISPER_DIR = '<%= @storage_dir %>/whisper'
+RRD_DIR = '<%= @storage_dir %>/rrd'
+DATA_DIRS = [WHISPER_DIR, RRD_DIR] # Default: set from the above variables
+LOG_DIR = '<%= @storage_dir %>/log/webapp'
+INDEX_FILE = '<%= @storage_dir %>/index'  # Search index file
 
 
 #####################################
@@ -75,12 +76,13 @@ WHISPER_DIR = '<%= @whisper_dir %>'
 #####################################
 # This is used for emailing rendered Graphs
 # Default backend is SMTP
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'localhost'
-#EMAIL_PORT = 25
-#EMAIL_HOST_USER = ''
-#EMAIL_HOST_PASSWORD = ''
-#EMAIL_USE_TLS = False
+EMAIL_BACKEND = '<%= @email['BACKEND'] %>'
+EMAIL_HOST = '<%= @email['HOST'] %>'
+EMAIL_PORT = <%= @email['PORT'] %>
+EMAIL_HOST_USER = '<%= @email['HOST_USER'] %>'
+EMAIL_HOST_PASSWORD = '<%= @email['HOST_PASSWORD'] %>'
+EMAIL_USE_TLS = <%= (@email['USE_TLS'] == true) ? "True" : "False" %>
+
 # To drop emails on the floor, enable the Dummy backend:
 #EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 
@@ -112,22 +114,20 @@ WHISPER_DIR = '<%= @whisper_dir %>'
 
 ## REMOTE_USER authentication. See: https://docs.djangoproject.com/en/dev/howto/auth-remote-user/
 #USE_REMOTE_USER_AUTHENTICATION = True
-
+<% if @remote_user_auth -%>
+USE_REMOTE_USER_AUTHENTICATION = True
+<% end -%>
 # Override the URL for the login link (e.g. for django_openid_auth)
-#LOGIN_URL = '/account/login'
+LOGIN_URL = '<%= @login_url %>'
 
+<% if @ldap['SERVER'] != "" && @ldap['BASE_USER'] != "" && @ldap['BASE_PASS'] != "" && @ldap['SEARCH_BASE'] != "" -%>
 USE_LDAP_AUTH = True
-LDAP_SERVER = "nexus.commercehub.com"
-#LDAP_SERVER = "nexusdc02.nexus.commercehub.com"
-LDAP_PORT = 389
-#LDAP_PORT = 636
-#LDAP_URI = "ldaps://nexus.commercehub.com:636"
-LDAP_SEARCH_BASE = "OU=staff,DC=nexus,DC=commercehub,DC=com"
-LDAP_BASE_USER = "CN=service-graphite,OU=graphite,OU=applications,DC=nexus,DC=commercehub,DC=com"
-LDAP_BASE_PASS = 'CH$rvGr@p'
-LDAP_USER_QUERY = "(sAMAccountName=%s)"
-
-
+LDAP_SERVER = '<%= @ldap['SERVER'] %>'
+LDAP_BASE_USER = '<%= @ldap['BASE_USER'] %>'
+LDAP_BASE_PASS = '<%= @ldap['BASE_PASS'] %>'
+LDAP_USER_QUERY = '<%= @ldap['USER_QUERY'] %>'
+LDAP_SEARCH_BASE = '<%= @ldap['SEARCH_BASE'] %>'
+<% end -%>
 
 ##########################
 # Database Configuration #
@@ -154,16 +154,15 @@ LDAP_USER_QUERY = "(sAMAccountName=%s)"
 # specification as the old database specification style is removed in 1.4
 DATABASES = {
     'default': {
-        'NAME': '<%= @home %>/storage/graphite.db',
-        'ENGINE': 'django.db.backends.sqlite3',
-        'USER': '<%= @mysql_username %>',
-        'PASSWORD': '<%= @mysql_password %>',
-        'HOST': '<%= @mysql_server %>',
-        'PORT': '<%= @mysql_port %>'
-
+        'NAME': '<%= @database['NAME'] %>',
+        'ENGINE': '<%= @database['ENGINE'] %>',
+        'USER': '<%= @database['USER'] %>',
+        'PASSWORD': '<%= @database['PASSWORD'] %>',
+        'HOST': '<%= @database['HOST'] %>',
+        'PORT': '<%= @database['PORT'] %>'
     }
 }
-#
+
 # Users still on Django 1.1 must use the old method instead:
 #DATABASE_ENGINE = 'django.db.backends.mysql'
 #DATABASE_NAME = 'graphite'      # Or path to the database file if using sqlite3
@@ -182,7 +181,13 @@ DATABASES = {
 # remote server in the cluster. These servers must each have local access to
 # metric data. Note that the first server to return a match for a query will be
 # used.
+<% if @cluster_servers.length > 0 -%>
+CLUSTER_SERVERS = [ <%= @cluster_servers.map do |server|
+  "\"#{server}\""
+end.join(', ') %> ]
+<% else -%>
 #CLUSTER_SERVERS = ["10.0.2.2:80", "10.0.2.3:80"]
+<% end -%>
 
 ## These are timeout values (in seconds) for requests to remote webapps
 #REMOTE_STORE_FETCH_TIMEOUT = 6   # Timeout to fetch series data
@@ -205,7 +210,13 @@ DATABASES = {
 # and a common scheme is to use 7102 for instance b, 7202 for instance c, etc.
 #
 # You *should* use 127.0.0.1 here in most cases
+<% if @carbonlink_hosts.length > 0 -%>
+CARBONLINK_HOSTS = [ <%= @carbonlink_hosts.map do |server|
+  "\"#{server}\""
+end.join(', ') %> ]
+<% else -%>
 #CARBONLINK_HOSTS = ["127.0.0.1:7002:a", "127.0.0.1:7102:b", "127.0.0.1:7202:c"]
+<% end -%>
 #CARBONLINK_TIMEOUT = 1.0
 
 #####################################
@@ -214,3 +225,4 @@ DATABASES = {
 # Uncomment the following line for direct access to Django settings such as
 # MIDDLEWARE_CLASSES or APPS
 #from graphite.app_settings import *
+

@@ -7,81 +7,81 @@ environments {
     
     development {
         dataSource {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_sftp"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
             logSql = false
         }
         dataSource_broadcaster {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_ftg_vlt"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
             logSql = false
         }
         dataSource_pf {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_pathfinder"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
             logSql = false
         }
         dataSource_chub {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
             logSql = false
         }
     }
     
     test {
         dataSource {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_sftp"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
             logSql = false
         }
         dataSource_broadcaster {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_ftg_vlt"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
             logSql = false
         }
         dataSource_pf {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_pathfinder"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
             logSql = false
         }
         dataSource_chub {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
             logSql = false
         }
     }
 
     production {
         dataSource {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_sftp"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
             logSql = false
         }
         dataSource_broadcaster {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_ftg_vlt"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
             logSql = false
         }
         dataSource_pf {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02_pathfinder"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
             logSql = false
         }
         dataSource_chub {
-            url = "jdbc:sqlserver://sqlvm82:1433;databaseName=qaftg02"
-            username = 'regusr01'
-            password = 'usrreg'
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
             logSql = false
         }
     }

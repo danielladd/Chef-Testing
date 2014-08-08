@@ -77,6 +77,9 @@ routes.each do |route|
   end
 end
 
+#Install unzip
+package "unzip"
+
 #Install the combohandler
 npm_package "combohandler@0.3.8"
 
@@ -106,6 +109,16 @@ npm_package "combohandler@0.3.8"
     mode: 0644,
     restart: true,
     service: "service[nginx]"
+  },{ #Script for downloading YUI releases
+    dest: "/usr/local/bin/download_yui.sh",
+    source: "download_yui.sh",
+    mode: 0755,
+    restart: false
+  },{ #Script for clearing the Nginx cache
+    dest: "/usr/local/bin/clear_nginx_cache.sh",
+    source: "clear_nginx_cache.sh",
+    mode: 0755,
+    restart: false
   }
 ].each do |data|
   #Default to notifying the combo service unless the data specifies otherwise.

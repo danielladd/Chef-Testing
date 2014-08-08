@@ -6,7 +6,7 @@ cookbook_versions({
 default_attributes(
     "chub_mc_webservice" => {
    		"jar_file_name" => "flight-service-standalone.jar",
-		"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/flightws/0.1/flight-service-standalone.jar",
+		"jar_file_url" => "http://artifactory01/artifactory/inteng-snapshot/com/commercehub/flightws/0.1/flight-service-standalone.jar",
 		"flight_config" => {
 			"setupDatabase" =>{
 				"serverName" => "sqlisdemo",
