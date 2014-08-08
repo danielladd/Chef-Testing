@@ -1,5 +1,5 @@
 name "mc_flightcontrol_local"
-description "Mission Control FlightControl Development Environment"
+description "Mission Control FlightControl Local Environment"
 cookbook_versions({
 	"chub_mc_app" => "= 0.2.0",
 	"chub_mc_logs" => "= 0.1.0"
@@ -12,10 +12,11 @@ default_attributes(
 			"useBridge" => "true",
 			"disableRecompile" => "false",
 			"enableReload" => "true",
-			"mcHost" => "localhost",
-			"appHost" => "localhost",
+			"mcHost" => "lmchost01",
+			"appHost" => "lmcapp01",
 			"authService" => "devmcauth",
-			"pgenServiceHost" => "localhost"
+			"pgenServiceHost" => "localhost",
+			"isLocal" => "true"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/flightcontrol/%5BRELEASE%5D/flightcontrol-%5BRELEASE%5D.jar"
 	},
