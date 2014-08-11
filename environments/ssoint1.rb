@@ -51,9 +51,9 @@ default_attributes(
       :host => "ssoint1sensu.nexus.commercehub.com"
     }
   },
-#  :graphite => {
-#    :host => "stats02.nexus.commercehub.com"
-#  },
+  :graphite => {
+    :host => "stats02.nexus.commercehub.com"
+  },
   :chub_sensu_sso => {
     :pagerduty => {
       :api_key => "3f602c6a12c6479abdfca394c9ce1ddc"
