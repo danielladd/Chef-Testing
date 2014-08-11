@@ -15,12 +15,12 @@ if Chef::Config[:solo]
   quorum_count = node.sensu.redis.quorum_count
 else
   masters = search(:node, "role:sensu_redis_master").first
-  master_node = { :address => masters.fqdn, :port => masters.sensu.redis.master.port }
+  master_node = { :address => masters.ipaddress, :port => masters.redisio.servers[0].port }
 
   quorum_cout = search(:node, "role:sensu_redis_sentinel").count
 end
 
-log "Master Node #{master_node[:address]}"  do
+log "Master Node -> #{master_node[:address]} and Quorum Count -> #{quorum_count}"  do
     level :info
 end
 
