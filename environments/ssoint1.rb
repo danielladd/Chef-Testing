@@ -77,7 +77,7 @@ default_attributes(
     :ldap => {
       :read => {
         :host => "ssoint1-ldap-read.nexus.commercehub.com",
-        :password => "rootpw"
+        :password => "search"
       },
       :write => {
         :host => "ssoint1-ldap-write.nexus.commercehub.com",
