@@ -8,9 +8,3 @@
 #
 
 include_recipe "chub_sensu::client"
-
-sensu_client node.name do
-    address node[:ipaddress]
-    subscriptions node[:roles] + ["pipeline_team"]
-end
-

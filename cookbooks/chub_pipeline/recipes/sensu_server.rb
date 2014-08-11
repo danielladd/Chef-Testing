@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "chub_sensu::server"
-
 handlerList = ["email"]
 
 ## PagerDuty Handler

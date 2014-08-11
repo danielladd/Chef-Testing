@@ -1,3 +1,7 @@
+# 0.1.4
+
+* Removed include of sensu_server recipes. 
+
 # 0.1.2
 
 * Remove pipeline_pagerduty handler from default handler list
