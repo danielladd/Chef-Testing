@@ -7,4 +7,4 @@ default_attributes(
       }
   }
 )
-run_list "recipe[chub_mc_app::sensu_client]"
+run_list "recipe[chub_mc_app::sensu_client_platform]"

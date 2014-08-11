@@ -1,3 +1,6 @@
+# 0.4.1
+* Change read and write bind user to readrole and writerole. Removes the admin user from the write binding. 
+
 # 0.4.0
 * Add support for archaius configuration
 * Bind against LDAP write pool, not read pool; to avoid replication delay for password resets

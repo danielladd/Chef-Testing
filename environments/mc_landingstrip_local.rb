@@ -1,5 +1,5 @@
-name "mc_landingstrip_test"
-description "Mission Control LandingStrip Test Environment"
+name "mc_landingstrip_local"
+description "Mission Control LandingStrip Local Environment"
 cookbook_versions({
 	"chub_mc_app" => "= 0.2.0",
 	"chub_mc_logs" => "= 0.1.0"
@@ -12,12 +12,11 @@ default_attributes(
 			"useBridge" => "true",
 			"disableRecompile" => "false",
 			"enableReload" => "false",
-			"mcHost" => "testmissioncontrol",
-			"appHost" => "testmissioncontrol",
+			"mcHost" => "lmchost01",
+			"appHost" => "lmchost01",
 			"authService" => "devmcauth",
-			"appMachine1" => "tmchost01",
-			"appMachine2" => "tmchost02",
-			"mongoHost" => "testmcmongo01"
+			"mongoHost" => "localmcmongo01",
+			"isLocal" => "true"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/landingstrip/%5BRELEASE%5D/landingstrip-%5BRELEASE%5D.jar"
 	},

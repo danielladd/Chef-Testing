@@ -15,7 +15,7 @@ cookbook_versions({
   "chub_openldap" => "= 1.12.21",
   "chub_plaza" => "= 0.3.2",
   "chub_sensu_sso" => "= 0.1.18",
-  "chub_vault" => "= 0.4.0",
+  "chub_vault" => "= 0.4.1",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -77,11 +77,11 @@ default_attributes(
     :ldap => {
       :read => {
         :host => "ssoqa1-ldap-read.nexus.commercehub.com",
-        :password => "search"
+        :password => "readpw"
       },
       :write => {
         :host => "ssoqa1-ldap-write.nexus.commercehub.com",
-        :password => "rootpw"
+        :password => "writepw"
       }
     },
     :database => {
