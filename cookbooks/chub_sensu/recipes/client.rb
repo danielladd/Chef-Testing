@@ -52,4 +52,9 @@ remote_file "#{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb" do
     mode 0755
 end
 
+remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-http.rb" do
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/http/check-http.rb"
+    mode 0755
+end
+
 include_recipe "sensu::client_service"
