@@ -152,7 +152,7 @@ sensu_check "check-castle-health" do
 end
 
 sensu_check "check-plaza-health" do
-    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200 --response-bytes 5000"
+    command "/usr/bin/ruby1.9.3 /etc/sensu/plugins/check-http.rb --url http://localhost:8081/healthcheck --response-code 200"
     handlers ["default"]
     subscribers ["plaza"]
     interval 60
