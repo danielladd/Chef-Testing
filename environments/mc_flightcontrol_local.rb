@@ -1,7 +1,7 @@
 name "mc_flightcontrol_local"
 description "Mission Control FlightControl Local Environment"
 cookbook_versions({
-	"chub_mc_app" => "= 0.2.0",
+	"chub_mc_app" => "= 0.2.1",
 	"chub_mc_logs" => "= 0.1.0"
 })
 default_attributes( 
