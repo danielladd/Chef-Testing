@@ -35,10 +35,10 @@ when "ubuntu"
   remote_file "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb" do
     checksum node[:chub_nxlog][:checksum]["#{node[:chub_nxlog][:package_name]}_#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"]
     source "http://artifactory01.nexus.commercehub.com/artifactory/ext-distribution-local/nxlog/#{node[:chub_nxlog][:package_name]}_#{node[:chub_nxlog][:package_version]}_amd64.ubuntu.deb"
-    notifies :upgrade, "apt_package[nxlog-ce]", :immediately
+    notifies :install, "dpkg_package[nxlog-ce]", :immediately
   end
-  apt_package "nxlog-ce" do
-    source "#{Chef::Config[:file_cache_path]}/nxlog.deb"
+  dpkg_package "nxlog-ce" do
+    source "#{Chef::Config[:file_cache_path]}/nxlog-ce.deb"
     action :nothing
   end
 when "windows"
