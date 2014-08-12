@@ -2,6 +2,12 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v4.0.0
+------
+- Generate `klerk.yml` using Klerk's refactored Mongo configuration properties
+  - Replace `mongo_addresses` attribute with `mongo_uri`; the value is expected to be a [standard MongoDB connection string][1].
+  - Add new `blobstore_mongo_uri` attribute; the value is expected to be a [standard MongoDB connection string][1].
+
 v3.0.0
 ------
 - Update klerk.yml template to support Klerk's upgrade to Dropwizard 0.7.x
@@ -49,3 +55,4 @@ v0.10.2
 -------
 - Update java cookbook version constraint to 1.19.2
 
+[1]: http://docs.mongodb.org/manual/reference/connection-string/ "MongoDB Connection String URI Format"
