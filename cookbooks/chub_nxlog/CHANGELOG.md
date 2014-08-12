@@ -1,5 +1,9 @@
 chub_nxlog CHANGELOG
 ====================
+0.1.9
+-----
+- [Larry] - Introducing Json support
+
 0.1.8
 -----
 - [Larry] - Fix broken linux deployment, switch to dpkg instead of apt_package

@@ -62,7 +62,7 @@ node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
   end
     path << " #{logfile.type}"
 
-  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type] }
+  logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type], :format => logfile[:format] }
 
 end
 path << " => logstash"
