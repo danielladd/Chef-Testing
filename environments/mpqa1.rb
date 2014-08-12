@@ -44,7 +44,7 @@ default_attributes "chub-klerk" => {
   },
   "webServerUrl"=> "https://mpqa1-buyspace.commercehub.com",
   "antivirus" => {
-    "hosts" => "['10.10.40.80']",
+    "hosts" => "['qa-scanengine.commercehub.com']",
     "enabled" => true,
     "port" => 1344
   },
