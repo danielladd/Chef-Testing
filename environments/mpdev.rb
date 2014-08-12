@@ -67,7 +67,7 @@ default_attributes "chub-klerk" => {
   },
   "webServerUrl"=> "http://mpdev1wapp1.commercehub.com:8080",
   "antivirus" => {
-    "hosts" => "['10.10.40.80']",
+    "hosts" => "['qa-scanengine.commercehub.com']",
     "enabled" => true,
     "port" => 1344
   },

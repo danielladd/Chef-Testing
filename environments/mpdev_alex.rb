@@ -43,7 +43,7 @@ default_attributes "chub-klerk" => {
   },
   "webServerUrl"=> "http://mpalex.nexus.commercehub.com:8080",
   "antivirus" => {
-    "hosts" => "['10.10.40.80']",
+    "hosts" => "['qa-scanengine.commercehub.com']",
     "enabled" => true,
     "port" => 1344
   },
@@ -169,4 +169,3 @@ default_attributes "chub-klerk" => {
 #      'rememberMeManager' => 'null'
 #    }
 #  }
-  
