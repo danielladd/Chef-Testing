@@ -6,8 +6,8 @@ default_attributes(
     "endpoint_port" => "2352",
     "logfiles" => {
       "jenkins_log" => {
-        "path" => 'D:\\ci01\\jenkins.err.log',
-        "type" => "jenkins.err.log"
+        "path" => 'D:\\ci\\jenkins.err.log',
+        "type" => "jenkins_err_log"
       }
     },
   },
