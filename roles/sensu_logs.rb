@@ -7,11 +7,13 @@ default_attributes(
     "logfiles" => {
       "sensu_server_log" => {
         "path" => '/var/log/sensu/sensu-server.log',
-        "type" => "sensu_server_log"
+        "type" => "sensu_server_log",
+        "format" => "json"
       },
       "sensu_api_log" => {
         "path" => '/var/log/sensu/sensu-api.log',
-        "type" => "rundeck_service_log"
+        "type" => "sensu_api_log",
+        "format" => "json"
       },
       "sensu_dashboard_log" => {
         "path" => '/var/log/uchiwa.log',
