@@ -60,7 +60,7 @@ node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
   unless index == 0
     path << ","
   end
-    path << " #{logfile.logname}"
+    path << " #{logname}"
 
   logFileArray << { :logname => logname, :logfile => logfile[:path], :logtype => logfile[:type] }
 
