@@ -28,10 +28,6 @@ default_attributes(
             :id => "DSM",
             :name => "odddev1_orderstream"
         }
-    },
-    :graphite => {
-      :host => "stats02.nexus.commercehub.com",
-      :port => "2003"
     }
   },
   :chub_tattler => {

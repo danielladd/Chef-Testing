@@ -19,5 +19,3 @@ default[:chub_oddrest][:db][:maxStatementsPerConnection] = 15
 default[:chub_oddrest][:db][:acquireRetryAttempts] = 5
 default[:chub_oddrest][:db][:acquireRetryDelay] = 1000
 default[:chub_oddrest][:db][:numHelperThreads] = 3
-default[:slm][:graphite][:host] = "stats02.nexus.commercehub.com"
-default[:slm][:graphite][:port] = 2003
