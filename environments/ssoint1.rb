@@ -92,7 +92,7 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoint1.current+=true",
-    :plaza_url => "https://ssoint1-apps.nexus.commercehub.com",
+    :plaza_url => "https://ssoint1-apps.nexus.commercehub.com/user",
     :vault_url => "https://ssoint1-vault.nexus.commercehub.com:8443",
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoint1-census",

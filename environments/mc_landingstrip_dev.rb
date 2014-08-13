@@ -1,7 +1,7 @@
 name "mc_landingstrip_dev"
 description "Mission Control LandingStrip Development Environment"
 cookbook_versions({
-	"chub_mc_app" => "= 0.2.0",
+	"chub_mc_app" => "= 0.2.1",
 	"chub_mc_logs" => "= 0.1.0"
 })
 default_attributes( 
@@ -15,8 +15,7 @@ default_attributes(
 			"mcHost" => "devmissioncontrol",
 			"appHost" => "devmissioncontrol",
 			"authService" => "devmcauth",
-			"appMachine1" => "dmchost01",
-			"appMachine2" => "dmchost02",
+			"appMachineNames" => "\"dmchost01;dmchost02\"",
 			"mongoHost" => "devmcmongo01"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/landingstrip/%5BRELEASE%5D/landingstrip-%5BRELEASE%5D.jar"

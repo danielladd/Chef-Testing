@@ -1,5 +1,9 @@
 chub_nxlog CHANGELOG
 ====================
+0.1.10 
+-----
+- [Larry] - Introducing Json support
+
 0.1.9
 -----
 - [David] - Change route paths from using 'type' to using 'name' identifier to de consistent with <Input ...> module naming
