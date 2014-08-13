@@ -33,3 +33,5 @@ default[:chub_apartment][:db][:testWhileIdle] = false
 default[:chub_apartment][:db][:timeBetweenEvictionRunsMillis] = -1
 default[:chub_apartment][:db][:numTestsPerEvictionRun] = 3
 default[:chub_apartment][:db][:minEvictableIdleTimeMillis] = 1800000
+default[:slm][:graphite][:host] = "stats02.nexus.commercehub.com"
+default[:slm][:graphite][:port] = 2003
