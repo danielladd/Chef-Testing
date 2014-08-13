@@ -29,10 +29,10 @@ default_attributes(
             :name => "odddev1_orderstream"
         }
     },
-	:graphite => {
-		:host => "stats02.nexus.commercehub.com",
-		:port => 2003
-	}
+    :graphite => {
+      :host => "stats02.nexus.commercehub.com",
+      :port => "2003"
+    }
   },
   :chub_tattler => {
     :db => {
