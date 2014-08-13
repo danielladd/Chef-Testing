@@ -27,6 +27,9 @@ end
     gem_package gem_name do
         action :install
         options "--no-rdoc --no-ri"
+        if gem_name == "mail" 
+            version "2.5.4"
+        end
     end
 end
 
@@ -50,3 +53,7 @@ if node[:chub_sensu].attribute?(:email)
     end
 end
 
+sensu_handler "default" do
+    type "set"
+    handlers ["email"]
+end

@@ -1,3 +1,11 @@
+# 0.1.12
+
+Larry - Including default handler for mail keepalives.
+
+# 0.1.11
+
+Larry - Setting mail gem to use proper required version 2.5.4
+
 # 0.1.8
 
 Larry - locking rabbitmq version to 2.4.0 until properly tested

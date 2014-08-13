@@ -10,7 +10,7 @@ default[:chub_sensu][:root_sensu_community_plugins_repo_url] = "https://git.nexu
 default[:chub_sensu][:root_plugin_path] = '/etc/sensu/plugins'
 default[:chub_sensu][:root_handler_path] = '/etc/sensu/handlers'
 default[:chub_sensu][:root_handler_config_path] = '/etc/sensu/conf.d/handlers'
-default[:chub_sensu][:admin_gui_url] = "http://sensu01:8888"
+default[:chub_sensu][:admin_gui_url] = "http://monapp01:3000"
 
 
 # Redis Sentinel
