@@ -37,13 +37,13 @@ yui {
     url = "<%= node[:chub_rolodex][:yui][:url] %>"
 }
 
-<% if node[:graphite] -%>
+<% if node[:slm][:graphite] -%>
 metrics {
-    <% if node[:graphite][:host] -%>
-    graphiteHost = "<%= node[:graphite][:host] %>"
+    <% if node[:slm][:graphite][:host] -%>
+    graphiteHost = "<%= node[:slm][:graphite][:host] %>"
     <% end -%>
-    <% if node[:graphite][:port] -%>
-    graphitePort = <%= node[:graphite][:port] %>
+    <% if node[:slm][:graphite][:port] -%>
+    graphitePort = <%= node[:slm][:graphite][:port] %>
     <% end -%>
     <% if node.chef_environment != "_default" -%>
     environment = "<%= node.chef_environment %>"

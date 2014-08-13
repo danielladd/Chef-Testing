@@ -14,3 +14,6 @@ default[:slm][:ordersteam][:app][:name] = "odddev1_orderstream"
 default[:chub_rolodex][:yui][:filter] = "min"
 default[:chub_rolodex][:yui][:combine] = true
 default[:chub_rolodex][:yui][:url] = "http://yuicombo1.nexus.commercehub.com:3000"
+
+default[:slm][:graphite][:host] = "stats02.nexus.commercehub.com"
+default[:slm][:graphite][:port] = 2003
