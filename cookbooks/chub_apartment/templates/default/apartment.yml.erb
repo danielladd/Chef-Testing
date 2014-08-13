@@ -2,21 +2,6 @@ server:
   applicationConnectors:
     - type: http
       port: 8080
-	  
-<% if node[:slm][:graphite] -%>
-metrics:
-  reporters:
-    - type: hub-graphite
-	<% if node[:slm][:graphite][:host] -%>
-      host: <%= node[:slm][:graphite][:host] %>
-	<% end -%>
-	<% if node[:slm][:graphite][:port] -%>
-      port: <%= node[:slm][:graphite][:port] %>
-    <% end -%>
-    <% if node.chef_environment != "_default" -%>
-	  environment: "<%= node.chef_environment %>"
-    <% end -%>
-<% end -%>
 
 logging:
 
