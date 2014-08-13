@@ -10,5 +10,11 @@ default_attributes(
         "type" => "jenkins_err_log"
       }
     },
-  },
+    "types" => {
+      "" => {
+        "name" => "jenkins_err_log",
+        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIMESTAMP_ISO8601:time} %{LOGLEVEL:loglevel} \\(%{JAVACLASS:classname}:%{INT:linenumber}\\) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+      }
+    }
+  }
 )
