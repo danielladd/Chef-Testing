@@ -1,5 +1,6 @@
 **Please read the changelog when upgrading from the 1.x series to the 2.x series**
 
+![cookbook version](http://img.shields.io/badge/cookbook%20version-2.2.1-blue.svg)
 Description
 ===========
 
@@ -19,13 +20,19 @@ Platforms
 * Debian, Ubuntu
 * CentOS, Red Hat, Fedora, Scientific Linux
 
+Testing
+-------
+This cookbook is tested with test-kitchen and serverspec.  Run `bundle install` to install required gems.
+
+* knife cookbook test redisio -o ../
+* kitchen test
+
 Tested on:
 
-* Ubuntu 10.10, 12.04
-* Debian 6.0
-* Fedora 16
-* Scientific Linux 6.2
-* Centos 6.2, 6.3
+* Ubuntu 12.04
+* Debian 6.0.8
+* Fedora 20 `(Currently Failing)`
+* Centos 6.4
 
 Usage
 =====
@@ -266,6 +273,7 @@ Available options and their defaults
 'unixoscket'             => nil - The location of the unix socket to use,
 'unixsocketperm'         => nil - The permissions of the unix socket,
 'timeout'                => '0',
+'keepalive'              => '0',
 'loglevel'               => 'verbose',
 'logfile'                => nil,
 'syslogenabled'         => 'yes',
@@ -279,8 +287,8 @@ Available options and their defaults
 'requirepass'            => nil,
 'maxclients'             => '10000',
 'maxmemory'              => nil, - This allows the use of percentages, you must append % to the number.
-'maxmemorypolicy'        => 'volatile-lru',
-'maxmemorysamples'       => '3',
+'maxmemorypolicy'        => nil,
+'maxmemorysamples'       => nil,
 'appendfsync'            => 'everysec',
 'noappendfsynconrewrite' => 'no',
 'aofrewritepercentage'   => '100',
