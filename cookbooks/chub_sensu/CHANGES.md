@@ -1,3 +1,7 @@
+# 0.1.13
+
+Larry - Fix broken quorum count
+
 # 0.1.12
 
 Larry - Including default handler for mail keepalives.

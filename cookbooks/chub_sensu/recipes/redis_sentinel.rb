@@ -17,7 +17,7 @@ else
   masters = search(:node, "role:sensu_redis_master").first
   master_node = { :address => masters.ipaddress, :port => masters.redisio.servers[0].port }
 
-  quorum_cout = search(:node, "role:sensu_redis_sentinel").count
+  quorum_count = search(:node, "role:sensu_redis_sentinel").count
 end
 
 log "Master Node -> #{master_node[:address]} and Quorum Count -> #{quorum_count}"  do
