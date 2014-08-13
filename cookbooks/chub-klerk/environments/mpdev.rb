@@ -1,7 +1,7 @@
 name "mpdev"
 default_attributes(
     "chub-klerk" => {
-        "app_url" => "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar",
+        "app_url" => "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-all.jar",
         "mongo_uri" => "mongodb://192.168.33.1:27017/?maxPoolSize=50",
         "blobstore_mongo_uri" => "mongodb://192.168.33.1:27017/?maxPoolSize=50",
         "quartz_database_url" => "jdbc:h2:data/quartz;MVCC=TRUE",
