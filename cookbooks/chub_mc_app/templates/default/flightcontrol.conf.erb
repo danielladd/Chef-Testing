@@ -1,4 +1,0 @@
-exec java -DuseBridge=<%= node[:chub_mc_app][:config_vars][:useBridge]%> -DdisableRecompile=<%= node[:chub_mc_app][:config_vars][:disableRecompile]%> -DenableReload=<%= node[:chub_mc_app][:config_vars][:enableReload]%> -DmcHost=<%= node[:chub_mc_app][:config_vars][:mcHost]%> -DappHost=<%= node[:chub_mc_app][:config_vars][:appHost]%> -DappMachineNames="<%= node[:chub_mc_app][:config_vars][:appMachine1]%>;<%= node[:chub_mc_app][:config_vars][:appMachine2]%>" -DauthService=<%= node[:chub_mc_app][:config_vars][:authService]%> -DmongoHost=<%= node[:chub_mc_app][:config_vars][:pgenServiceHost] %> -DpgenServiceHost=<%= node[:chub_mc_app][:config_vars][:pgenServiceHost] %> -jar <%= node[:chub_mc_app][:deploy_dir] %>/<%= node[:chub_mc_app][:app_name] %>.jar context=<%= node[:chub_mc_app][:app_name] %> port=<%= node[:chub_mc_app][:port] %>
-respawn
-start on runlevel [2345]
-stop on runlevel [016]

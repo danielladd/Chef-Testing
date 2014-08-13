@@ -10,7 +10,7 @@ default_attributes "chub-klerk" => {
     "hazelcast_group_password" => "mpqa1_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
     "product_data_event_endpoints" => {
-        "productstream" => "http://mpqa1-api.commercehub.com/klerk/productDataEvents"
+        "productstream" => "http://mpqa1-api.nexus.commercehub.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
@@ -29,7 +29,7 @@ default_attributes "chub-klerk" => {
     "url" => "http://mpqa03:7070/solr/"
   },
   "klerk" => {
-    "url" => "http://mpqa1-klerk.commercehub.com:8090"
+    "url" => "http://mpqa1-klerk.nexus.commercehub.com:8090"
   },
   "hornetq" => {
     "host" => "mpqa03.nexus.commercehub.com",
@@ -39,10 +39,10 @@ default_attributes "chub-klerk" => {
     "enabled" => false
   },
   "grails" => {
-    "serverURL" => "https://mpqa1-buyspace.commercehub.com",
-    "apiServerURL" => "http://mpqa1-api.commercehub.com"
+    "serverURL" => "https://mpqa1-buyspace.nexus.commercehub.com",
+    "apiServerURL" => "http://mpqa1-api.nexus.commercehub.com"
   },
-  "webServerUrl"=> "https://mpqa1-buyspace.commercehub.com",
+  "webServerUrl"=> "https://mpqa1-buyspace.nexus.commercehub.com",
   "antivirus" => {
     "hosts" => "['qa-scanengine.commercehub.com']",
     "enabled" => true,
@@ -142,7 +142,7 @@ default_attributes "chub-klerk" => {
       "datastoreDirectories" => "'/var/buyspace/images/datastore-1', '/var/buyspace/images/datastore-2'",
       "baseDirectory" => '/var/buyspace/images/cdn',
       "productBaseDirectory" => "/var/buyspace/images/cdn/products" ,
-      "serverUrls" => "https://mpqa1-buyspace.commercehub.com/static-images"
+      "serverUrls" => "https://mpqa1-buyspace.nexus.commercehub.com/static-images"
   },  
 },
 'tomcat' => {
