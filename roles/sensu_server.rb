@@ -30,7 +30,8 @@ override_attributes(
     "bcarr" => "bcarr",
     "dcross" => "dcross"
   },
-  "uchiwa" => { 
+  "uchiwa" => {
+    "version" => "0.2.1-1",
     "settings" => {
         "user" => "",
         "pass" => ""
