@@ -3,6 +3,13 @@ server:
     - type: http
       port: 8080
 
+metrics:
+  reporters:
+    - type: hub-graphite
+      host: "<%= node[:slm][:graphite][:host] %>"
+      port: <%= node[:slm][:graphite][:port] %>
+      environment: "<%= node.chef_environment %>"
+
 logging:
 
   # Permit DEBUG, INFO, WARN and ERROR messages to be logged by appenders.
