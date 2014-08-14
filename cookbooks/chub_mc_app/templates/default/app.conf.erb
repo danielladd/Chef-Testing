@@ -1,4 +1,5 @@
-exec java<% node[:chub_mc_app][:config_vars].each do |key, value| -%><% unless value.empty? -%> -D<%= key %>=<%= value %><% end %><% end %> -jar <%= node[:chub_mc_app][:deploy_dir] %>/<%= node[:chub_mc_app][:app_name] %>.jar context=<%= node[:chub_mc_app][:app_name] %> port=<%= node[:chub_mc_app][:port] %>
+chdir <%= node[:chub_mc_app][:work_dir] %>
+exec java -XX:MaxPermSize=128m -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9010 -Dcom.sun.management.jmxremote.local.only=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false<% node[:chub_mc_app][:config_vars].each do |key, value| -%><% unless value.empty? -%> -D<%= key %>=<%= value %><% end %><% end %> -jar <%= node[:chub_mc_app][:deploy_dir] %>/<%= node[:chub_mc_app][:app_name] %>.jar context=<%= node[:chub_mc_app][:app_name] %> port=<%= node[:chub_mc_app][:port] %>
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

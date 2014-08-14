@@ -56,6 +56,13 @@ unless File.exists?("#{node[:chub_mc_app][:touchfile]}")
     mode 0777
   end
 
+ directory node[:chub_mc_app][:work_dir] do
+    action :create
+    owner "chub_#{node[:chub_mc_app][:app_name]}"
+    group "chub_#{node[:chub_mc_app][:app_name]}"
+    mode 0777
+  end
+
   service "#{node[:chub_mc_app][:app_name]}" do
       provider Chef::Provider::Service::Upstart
       action [ "disable", "stop" ]
@@ -92,10 +99,10 @@ unless File.exists?("#{node[:chub_mc_app][:touchfile]}")
 
   template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
       source "app.conf.erb"
-      owner "chub_#{node[:chub_mc_app][:app_name]}"
-      group "chub_#{node[:chub_mc_app][:app_name]}"
+      owner "root"
+      group "root"
       mode 0644
-  	action :create
+    notifies "restart", "service[#{node[:chub_mc_app][:app_name]}]"
   end
 
   service "#{node[:chub_mc_app][:app_name]}" do
