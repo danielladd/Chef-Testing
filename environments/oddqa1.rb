@@ -39,6 +39,13 @@ default_attributes(
     }
   },
   :chub_oddrest => {
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
+    :db => {
+      :server => "SQLVM03",
+      :name => "oddqa1_odd",
+      :userName => "devusr01",
+      :pass => "usrdev"
+    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
   },
   :chub_apartment => {
