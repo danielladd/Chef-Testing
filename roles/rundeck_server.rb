@@ -235,7 +235,7 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
             },
             {
                 "name" => "albersnonprod01",
-                "description" => "albers dev machine",
+                "description" => "albers non-prod machine",
                 "tags" => "",
                 "hostname" => "albersnonprod01.nexus.commercehub.com",
                 "osArch" => "x86_64",
@@ -247,7 +247,7 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
             },
             {
                 "name" => "albersnonprod02",
-                "description" => "albers dev machine",
+                "description" => "albers non-prod machine",
                 "tags" => "",
                 "hostname" => "albersnonprod02.nexus.commercehub.com",
                 "osArch" => "x86_64",
@@ -257,6 +257,31 @@ g9GYROLuvP1jps8rDgaikJ0uWWSZbu88VmqN1IOAJ7a2IYv9NOEY
                 "username" => "qa_reg@nexus.commercehub.com",
                 "winrm" => true
             },
+		{
+		"name" => "albersnonprod03",
+		"description" => "albers non-prod machine",
+		"tags" => "",
+		"hostname" => "albersnonprod03.nexus.commercehub.com",
+		"osArch" => "x86_64",
+		"osFamily" => "windows",
+		"osName" => "Windows Server 2012",
+		"osVersion" => "2012",
+		"username" => "qa_reg@nexus.commercehub.com",
+		"winrm" => true
+		},
+		{
+		"name" => "albersnonprod04",
+		"description" => "albers non-prod machine",
+		"tags" => "",
+		"hostname" => "albersnonprod04.nexus.commercehub.com",
+		"osArch" => "x86_64",
+		"osFamily" => "windows",
+		"osName" => "Windows Server 2012",
+		"osVersion" => "2012",
+		"username" => "qa_reg@nexus.commercehub.com",
+		"winrm" => true
+		},
+
         ]
     }
   },
