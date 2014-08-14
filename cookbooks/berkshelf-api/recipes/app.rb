@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: berkshelf
+# Cookbook Name:: berkshelf-api-server
 # Recipe:: app
 #
 # Copyright (C) 2013-2014 Jamie Winsor
@@ -22,11 +22,13 @@ include_recipe "runit"
 
 chef_gem "bundler"
 
-user node[:berkshelf_api][:owner] do
-  home node[:berkshelf_api][:home]
-end
-
 group node[:berkshelf_api][:group]
+
+user node[:berkshelf_api][:owner] do
+  gid node[:berkshelf_api][:group]
+  home node[:berkshelf_api][:home]
+  system true
+end
 
 directory node[:berkshelf_api][:home] do
   owner node[:berkshelf_api][:owner]

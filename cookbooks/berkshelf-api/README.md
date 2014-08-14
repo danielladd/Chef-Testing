@@ -1,9 +1,11 @@
-# berkshelf-api-cookbook
+# berkshelf-api-server cookbook
 
 Installs/Configures a berkshelf-api server
 
 ## Supported Platforms
 
+  * Redhat
+  * CentOS
   * Ubuntu
 
 ## Attributes
@@ -65,7 +67,7 @@ Installs/Configures a berkshelf-api server
   </tr>
   <tr>
     <td><tt>[:berkshelf_api][:host]</tt></td>
-    <td>Integer</td>
+    <td>String</td>
     <td>Proxy's hostname</td>
     <td><tt>{fqdn}</tt></td>
   </tr>
@@ -85,15 +87,15 @@ Installs/Configures a berkshelf-api server
 
 ## Usage
 
-### berkshelf::default
+### berkshelf-api-server::default
 
 Installs the Berkshelf API server and HTTP Proxy on your node
 
-### berkshelf::app
+### berkshelf-api-server::app
 
 Installs and configures a Berkshelf API server on your node
 
-### berkshelf::http_proxy
+### berkshelf-api-server::http_proxy
 
 Installs and configures an HTTP proxy for the Berkshelf API server on your node
 

@@ -1,0 +1,15 @@
+.vagrant
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+/cookbooks
+pkg/
+.ruby-version
+
+# Bundler
+Gemfile.lock
+bin/*
+.bundle/*
