@@ -1,5 +1,8 @@
 name "berkshelf_api"
 description "role defining a berkshelf api server."
+run_list *%w[
+    recipe[chub_berkshelf_api::default]
+]
 #TODO: Should this live in databag?
 default_attributes "berkshelf_api" => {
     "config" => {
@@ -15,4 +18,3 @@ default_attributes "berkshelf_api" => {
       ]
     },
   }
-run_list "recipe[chub_berkshelf_api::default]"
