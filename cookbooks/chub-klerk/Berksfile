@@ -1,0 +1,5 @@
+source "http://berks01:26200"
+
+metadata
+
+cookbook "base"
