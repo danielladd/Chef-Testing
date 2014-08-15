@@ -1,6 +1,6 @@
 name "logstash_dev"
 description "a logstash server running in dev"
-run_list "recipe[java]", "role[albers]", "recipe[chub_logstash]", "recipe[chub_logstash::server]"
+run_list "recipe[java]", "recipe[chub_logstash]", "recipe[chub_logstash::server]", "role[albers]", "role[chef_logs]", "role[rundeck_logs]"
 default_attributes(
   "java" => {
     "install_flavor" => "oracle",
