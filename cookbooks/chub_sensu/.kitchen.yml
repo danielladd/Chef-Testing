@@ -14,9 +14,24 @@ platforms:
 
 suites:
   - name: server
-    provisioner:
-      client_rb:
-        environment: ssodev
     run_list:
-      - recipe[chub_sensu_sso::server]
+      - recipe[chub_sensu::client]
+      - recipe[chub_sensu::rabbitmq]
+      - recipe[chub_sensu::redis_master]
+      - recipe[chub_sensu::redis_sentinel]
+      - recipe[chub_sensu::server_distributed]
     attributes:
+        uchiwa: {
+            api: [
+                {
+                name: "Sensu",
+                host: "localhost",
+                ssl:  false,
+                port: 4567,
+                user: "",
+                pass: "",
+                path: "",
+                timeout: 5000
+                }
+            ]
+        }
