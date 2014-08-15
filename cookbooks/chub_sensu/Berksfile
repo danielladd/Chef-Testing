@@ -1,4 +1,4 @@
-chef_api :config
+source "http://berks01:26200"
 
 metadata
 
@@ -6,4 +6,10 @@ metadata
 #site :opscode
 
 cookbook "sensu"
-cookbook 'chub_pipeline', path: '../chub_pipeline'
+cookbook "rabbitmq"
+cookbook "redisio"
+cookbook "base"
+cookbook "partial_search"
+cookbook "xinetd"
+cookbook "uchiwa"
+cookbook "sensu-admin"
