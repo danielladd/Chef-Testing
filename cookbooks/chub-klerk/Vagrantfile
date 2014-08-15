@@ -2,42 +2,44 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-
-  config.vm.provider :virtualbox do |vb|
-    vb.name = config.vm.hostname
-  end
-
-  config.hostmanager.enabled = true
-  config.hostmanager.manage_host = true
-  config.hostmanager.ignore_private_ip = false
-  config.hostmanager.include_offline = true
-
-  config.vm.define "klerk.vagrant.dev" do |node|
-    node.vm.hostname = "klerk.vagrant.dev"
-    node.vm.network :private_network, ip: "192.168.33.60"
-  end
-
   if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.auto_detect = true
-    config.cache.scope = :box
+      config.cache.auto_detect = true
+      config.cache.scope = :box
   end
 
-  config.omnibus.chef_version = :latest
+  if Vagrant.has_plugin?("vagrant-hostmanager")
+      config.hostmanager.enabled = true
+      config.hostmanager.manage_host = true
+      config.hostmanager.ignore_private_ip = false
+      config.hostmanager.include_offline = true
+  end
 
-  config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = "../../cookbooks"
-    chef.environments_path = "environments"
-    chef.roles_path = "../../roles"
-    chef.environment = "mpdev"
-    chef.json = {
-      "instance_role" => "vagrant"
-    }
-    chef.run_list = [
-      "role[base]",
-      "recipe[chub-klerk]"
-    ]
+# Vagrant-berkshelf does not support multi-machine VMs
+  if Vagrant.has_plugin?("vagrant-berkshelf")
+    config.berkshelf.berksfile_path = "./Berksfile"
+    config.berkshelf.enabled = true
+  end
+
+  config.vm.define "klerk" do |klerk|
+      klerk.vm.box = "precise64"
+      klerk.vm.box_url = "http://files.vagrantup.com/precise64.box"
+
+      klerk.vm.hostname = "klerk"
+      klerk.vm.network :private_network, ip: "192.168.24.132"
+      klerk.hostmanager.aliases = %w(server alias)
+
+      klerk.omnibus.chef_version = :latest
+      klerk.vm.provision "chef_solo" do |chef|
+          chef.cookbooks_path = "../../cookbooks"
+          chef.environments_path = "environments"
+          chef.roles_path = "../../roles"
+          chef.data_bags_path = "../../data_bags"
+          chef.environment = 'mpdev'
+          chef.json = {
+              'instance_role' => 'vagrant',
+          }
+          chef.add_role "base"
+          chef.add_recipe "chub-klerk"
+      end
   end
 end
-
