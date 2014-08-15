@@ -61,20 +61,34 @@ end
     end
 end
 
-template "/etc/oddrest/oddrest.yaml" do
-    source "oddrest.yml.erb"
-    owner "root"
-    group group_name
-    mode 0640
-    notifies "restart", "service[oddrest]"
-end
-
-template "/etc/init/oddrest.conf" do
-    source "oddrest.conf.erb"
-    owner "root"
-    group "root"
-    mode 0644
-    notifies "restart", "service[oddrest]"
+[
+    {
+        dest: "/etc/oddrest/oddrest.yaml",
+        source: "oddrest.yml.erb",
+        group: group_name,
+        mode: 0640,
+        restart: true
+    },{
+        dest: "/etc/init/oddrest.conf",
+        source: "oddrest.conf.erb",
+        mode: 0644,
+        restart: true
+    },{
+        #if this location or file name changes, you must update the location in the default.rb attributes file
+        dest: "/etc/oddrest/orgDataDir.properties",
+        source: "orgDataDir.properties.erb",
+        group: group_name,
+        mode: 0640,
+        restart: true
+    }
+].each do |data|
+    template data[:dest] do
+        source data[:source]
+        owner data[:owner] || "root"
+        group data[:group] || "root"
+        mode data[:mode]
+        notifies "restart", "service[oddrest]" if data[:restart]
+    end
 end
 
 #This is just a hack until we get the jar deployed to Artifactory.

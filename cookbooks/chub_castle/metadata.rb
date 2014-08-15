@@ -4,17 +4,20 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.23'
+version          '0.1.27'
 
 supports "ubuntu"
-depends "apt"
 depends "chub_java"
-depends "hostsfile"
 
 attribute "chub_castle/app_url",
     :display_name => "Castle application URL",
     :description => "URL from which to obtain the application WAR; can use a remote URL",
     :default => "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war",
+    :required => "optional"
+
+attribute "chub_castle/app_context",
+    :display_name => "Application context",
+    :description => "The path under which the application will be deployed (used in URLs)",
     :required => "optional"
 
 attribute "chub_castle/java_heap_size",
@@ -60,6 +63,11 @@ attribute "chub_castle/default_service_url",
 attribute "chub_castle/forgot_password_url",
     :display_name => "Forgot password URL",
     :description => "URL for users who forgot their password",
+    :required => "required"
+
+attribute "chub_castle/census_url",
+    :display_name => "Census Server URL",
+    :description => "Census server for Castle to connect to",
     :required => "required"
 
 attribute "chub_castle/vault_url",

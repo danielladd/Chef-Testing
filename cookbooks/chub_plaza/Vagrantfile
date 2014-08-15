@@ -4,12 +4,10 @@
 Vagrant.configure("2") do |config|
 
   config.vm.hostname = "plaza.vagrant.dev"
-  config.vm.box = "precise64"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box = "boxer/ubuntu-14.04-basic"
   config.vm.network :private_network, ip: "192.168.24.126"
+  config.vm.network :forwarded_port, host: 8080, guest: 8080
   config.vm.provider :virtualbox do |vb|
-    # Use VBoxManage to customize the VM. For example to change memory:
-    # vb.customize ["modifyvm", :id, "--memory", "1024"]
     vb.name = config.vm.hostname
   end
 
@@ -20,7 +18,6 @@ Vagrant.configure("2") do |config|
   config.hostmanager.include_offline = true
 
   config.vm.provision :chef_solo do |chef|
-    chef.data_bags_path = "data_bags"
     chef.roles_path = "roles"
     chef.environments_path = "environments"
     chef.environment = "ssodev"

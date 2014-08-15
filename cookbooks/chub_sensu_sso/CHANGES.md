@@ -1,3 +1,12 @@
+#0.1.19
+* Don't include health check response body in plaza health check to try to work around an issue where they don't go to pager duty.
+
+#0.1.18
+* Lock sensu cookbook to version 0.8.0 so that we dont break on the new version.
+
+#0.1.17
+* Support new format of castle health check URL
+
 #0.1.16
 * Changed openldap replication check to tolerate 4 failures instead of 2
 

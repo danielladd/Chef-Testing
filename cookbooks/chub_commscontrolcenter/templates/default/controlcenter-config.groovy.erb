@@ -1,0 +1,140 @@
+def logFile ="/var/log/commscontrolcenter/commscontrolcenter.log"
+def stacktraceFile = "/var/log/commscontrolcenter/commscontrolcenter-stacktrace.log"
+
+
+// environment specific settings
+environments {
+    
+    development {
+        dataSource {
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_broadcaster {
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_pf {
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_chub {
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
+            logSql = false
+        }
+    }
+    
+    test {
+        dataSource {
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_broadcaster {
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_pf {
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_chub {
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
+            logSql = false
+        }
+    }
+
+    production {
+        dataSource {
+            url = "jdbc:sqlserver://<%= node[:sftp][:db][:server] %>:1433;databaseName=<%= node[:sftp][:db][:name] %>"
+            username = '<%= node[:sftp][:db][:userName] %>'
+            password = '<%= node[:sftp][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_broadcaster {
+            url = "jdbc:sqlserver://<%= node[:vltrader][:db][:server] %>:1433;databaseName=<%= node[:vltrader][:db][:name] %>"
+            username = '<%= node[:vltrader][:db][:userName] %>'
+            password = '<%= node[:vltrader][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_pf {
+            url = "jdbc:sqlserver://<%= node[:pathfinder][:db][:server] %>:1433;databaseName=<%= node[:pathfinder][:db][:name] %>"
+            username = '<%= node[:pathfinder][:db][:userName] %>'
+            password = '<%= node[:pathfinder][:db][:pass] %>'
+            logSql = false
+        }
+        dataSource_chub {
+            url = "jdbc:sqlserver://<%= node[:hub][:db][:server] %>:1433;databaseName=<%= node[:hub][:db][:name] %>"
+            username = '<%= node[:hub][:db][:userName] %>'
+            password = '<%= node[:hub][:db][:pass] %>'
+            logSql = false
+        }
+    }
+}
+
+
+
+
+// log4j configuration
+log4j = {
+
+    root {
+        warn()
+    }
+
+
+    error 'org.codehaus.groovy.grails.web.servlet',        // controllers
+            'org.codehaus.groovy.grails.web.pages',          // GSP
+            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
+            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+            'org.codehaus.groovy.grails.web.mapping',        // URL mapping
+            'org.codehaus.groovy.grails.commons',            // core / classloading
+            'org.codehaus.groovy.grails.plugins',            // plugins
+            'org.codehaus.groovy.grails.orm.hibernate',      // hibernate integration
+            'org.springframework',
+            'org.hibernate',
+            'net.sf.ehcache.hibernate'
+
+    info "grails.app.controllers", "grails.app.domain", "grails.app.i18n",
+            "grails.app.services", "grails.app.views"
+
+    warn "grails.app.conf"
+
+    appenders {
+
+        console name:'stdout',
+                layout:pattern(conversionPattern: '%d{dd-MM-yyyy HH:mm:ss,SSS} %5p %c{2} - %m%n')
+
+        rollingFile name: "rollingFileAppender",
+                maxFileSize: "10240KB",
+                file:logFile,
+                maxBackupIndex:10,
+                layout:pattern(conversionPattern: '%d{dd-MM-yyyy HH:mm:ss,SSS} %5p %c{2} - %m%n')
+
+        rollingFile name: "stacktrace",
+                maxFileSize: "10240KB",
+                file: stacktraceFile
+
+
+    }
+	
+	root {
+        warn  "rollingFileAppender", "stdout"
+    }
+  
+}

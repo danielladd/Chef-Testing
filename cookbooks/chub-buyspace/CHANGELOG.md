@@ -3,6 +3,26 @@ chub-buyspace CHANGELOG
 
 This file is used to list changes made in each version of the chub-buyspace cookbook.
 
+0.10.1
+------
+- Andrew Blick - Fixed issue where an environment without YUI config would not properly default to using a local YUI installation.
+
+0.10.0
+-----
+- Alex Heiss - First pass scripts to gracefully take down & bring up, a node.
+
+0.9.0
+-----
+- Andrew Blick - Added YUI combo configuration.
+
+0.4.1
+-----
+- Anton Beza - Updated adminEmailAddress.
+
+0.4.0
+-----
+- Andrew Blick - Added "for sale" import configuration.
+
 0.2.0
 -----
 - H. "Waldo" Grunenwald - Changing dependency from java to chub_java. Updating the Vagrantfile to current guidelines. Minor cleanup.

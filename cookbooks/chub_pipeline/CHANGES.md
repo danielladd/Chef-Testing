@@ -1,3 +1,11 @@
+# 0.1.4
+
+* Removed include of sensu_server recipes. 
+
+# 0.1.2
+
+* Remove pipeline_pagerduty handler from default handler list
+
 # 0.1.2
 
 * Updates to readme and quick bug fix for graphite handler and vmstat check

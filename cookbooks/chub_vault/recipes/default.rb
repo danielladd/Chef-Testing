@@ -7,18 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "apt"
 include_recipe "chub_java::oracle8"
-
-# Host file tweaks needed for remote JMX to work
-hostsfile_entry '127.0.1.1' do
-  action    :remove
-end
-hostsfile_entry node[:ipaddress] do
-  hostname  node[:fqdn]
-  aliases   [node[:hostname]]
-  action    :create
-end
 
 group "vault" do
     action :create
@@ -73,6 +62,14 @@ template "/etc/vault/vault.yaml" do
     group "vault"
     mode 0640
     notifies "restart", "service[vault]"
+end
+
+template "/etc/vault/archaius.properties" do
+    source "archaius.properties.erb"
+    owner "root"
+    group "vault"
+    mode 0640
+    # Intentionally does not notify; this file is reloaded without requiring an application restart
 end
 
 template "/etc/init/vault.conf" do

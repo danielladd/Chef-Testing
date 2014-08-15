@@ -1,8 +1,21 @@
 base CHANGELOG
 ==============
-0.1.17
+
+0.1.21
 ----
-- Larry - Adding in hostfile resource to remove '127.0.1.1' entry pointing to local system hostname
+- Waldo - Reverting the attribute namespaces to strings instead of symbols in the pagerduty_courtesy recipe because the interpreter is being inexplicably stupid and life is too short.
+
+0.1.20
+----
+- Waldo - Renamed the Pagerduty Courtesy notification (confusion led to old mistake), and added the new PagerDuty Users report
+
+0.1.19
+----
+- Larry - Updated base_linux recipe to add unique true for hostfile editing
+
+0.1.18
+----
+- Waldo - Updated the Pagerduty Courtesy Notification to include new Schedules.
 
 0.1.16
 ----

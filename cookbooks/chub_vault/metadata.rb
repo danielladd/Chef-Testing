@@ -4,12 +4,10 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.3.4'
+version          '0.4.1'
 
 supports "ubuntu"
-depends "apt"
 depends "chub_java"
-depends "hostsfile"
 
 attribute "chub_vault/app_url",
     :display_name => "Vault application URL",
@@ -86,6 +84,11 @@ attribute "chub_vault/java_heap_size",
     :description => "Heap size with which to run the Vault JVM",
     :required => "optional",
     :default => "1G"
+
+attribute "chub_vault/archaius_config",
+    :display_name => "Archaius configuration",
+    :type => "hash",
+    :required => "optional"
 
 attribute "graphite/host", :required => "recommended"
 attribute "graphite/port", :required => "optional"

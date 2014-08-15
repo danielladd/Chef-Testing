@@ -10,14 +10,22 @@ default_attributes(
   "chub_log" => {
     "logfiles" => {
       "albers" => {
-        "path" => 'c:\Albers\logs\albers.log',
+        "path" => 'c:\Albers\logs\albers.*.log',
         "type" => "albers"
+      },
+      "wrapper" => {
+        "path" => 'c:\Albers\logs\wrapper.log',
+        "type" => "wrapper"
       }
     },
     "types" => {
       "albers" => {
         "name" => "albers",
-        "body" => "  multiline {\n          pattern => \"(^.+Exception: .+)|(^\\s+at .+)|(^\\s+... \d+ more)|(^\\s*Caused by:.+)\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"(?<tanukiprefix>[a-zA-Z0-9\\s]+)\\| %{TIME:time} \\[%{JAVACLASS:actorname}-dispatcher-%{INT:threadno}\\] %{LOGLEVEL:loglevel}  %{JAVACLASS:classname} - %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:time} %{LOGLEVEL:loglevel} \\(%{JAVACLASS:classname}:%{INT:linenumber}\\) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+      },
+      "wrapper" => {
+        "name" => "wrapper",
+        "body" => "  multiline {\n          pattern => \"^[^|]* | \\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:time} | %{GREEDYDATA:albersmessage}\" ]\n  }\n"      
       }
     }
   }

@@ -1,16 +1,44 @@
+security {
+    shiro {
+        cas {
+            serverUrl = "<%= node[:slm][:sso][:castle] %>"
+            serviceUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/shiro-cas"
+            failureUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/application/invalidSession"
+            //loginUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/application/invalidSession"
+        }
+    }
+}
+
+rolodex {
+    url = "<%= node[:slm][:rolodex][:baseUrl] %>"
+    ordersteam {
+        app {
+            id = "<%= node[:slm][:ordersteam][:app][:id] %>"
+            name = "<%= node[:slm][:ordersteam][:app][:name] %>"
+        }
+    }
+}
 oddrest {
-    url = "<%= node[:chub_rolodex][:oddrest_url] %>"
+    url = "<%= node[:slm][:odd_service][:baseUrl] %>"
 }
-<% if node[:graphite] -%>
+apartment {
+    url = "<%= node[:slm][:apartment][:baseUrl] %>"
+}
+sso {
+    vault_url = "<%= node[:slm][:sso][:vault] %>"
+    census_url = "<%= node[:slm][:sso][:census] %>"
+    castle_url = "<%= node[:slm][:sso][:castle] %>"
+    plaza_url = "<%= node[:slm][:sso][:plaza] %>"
+}
+
+yui {
+    filter = "<%= node[:chub_rolodex][:yui][:filter] %>"
+    combine = <%= node[:chub_rolodex][:yui][:combine] %>
+    url = "<%= node[:chub_rolodex][:yui][:url] %>"
+}
+
 metrics {
-    <% if node[:graphite][:host] -%>
-    graphiteHost = "<%= node[:graphite][:host] %>"
-    <% end -%>
-    <% if node[:graphite][:port] -%>
-    graphitePort = <%= node[:graphite][:port] %>
-    <% end -%>
-    <% if node.chef_environment != "_default" -%>
+    graphiteHost = "<%= node[:slm][:graphite][:host] %>"
+    graphitePort = <%= node[:slm][:graphite][:port] %>
     environment = "<%= node.chef_environment %>"
-    <% end -%>
 }
-<% end -%>

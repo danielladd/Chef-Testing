@@ -1,5 +1,6 @@
 {
   "mailer": {
+    "admin_gui": "<%= node[:chub_sensu][:admin_gui_url] %>",
     "mail_from": "<%= node[:chub_sensu][:email][:sender] %>",
     "mail_to": "<%= node[:chub_sensu][:email][:recipient] %>",
     "smtp_address": "<%= node[:chub_sensu][:email][:smtp_server] %>",

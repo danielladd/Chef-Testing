@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 include_recipe "chub_java::oracle7"
+include_recipe "tomcat"
 
 group "chub_mc_authservice" do
     action :create
@@ -40,29 +41,6 @@ group "chub_mc_authservice" do
     members ["chub_mc_authservice", "chadmin"]
 end
 
-unless File.exists?("#{node[:chub_mc_authservice][:touchfile]}")
-
-directory node[:chub_mc_authservice][:deploy_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-directory node[:chub_mc_authservice][:staging_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
-directory node[:chub_mc_authservice][:config_dir] do
-  action :create
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  mode 0777
-end
-
 directory node[:chub_mc_authservice][:log_dir] do
   action :create
   owner "chub_mc_authservice"
@@ -70,56 +48,105 @@ directory node[:chub_mc_authservice][:log_dir] do
   mode 0777
 end
 
-service "mc_authservice" do
+directory node[:chub_mc_authservice][:deploy_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+#because we're overriding the tomcat config_dir in the role we will need to create our new directory (/etc/authservice)
+directory node[:chub_mc_authservice][:config_dir] do
+  action :create
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  mode 0777
+end
+
+unless File.exists?("#{node[:chub_mc_authservice][:touchfile]}")
+
+service "tomcat7" do
     provider Chef::Provider::Service::Upstart
     action [ "disable", "stop" ]
 end
 
-remote_file "#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
-  source "#{node[:chub_mc_authservice][:jar_file_url]}"
-  owner "chub_mc_authservice"
-  group "chub_mc_authservice"
-  action :create	# This should pull the file down forcefully
+#delete deployed app folder
+directory "#{node[:tomcat][:webapp_dir]}/[:chub_mc_authservice][:app_name]}" do
+    action   :delete
+    mode     "0755"
+    owner    "chub_mc_authservice"
+    group    "chub_mc_authservice"
+    recursive true
 end
 
-file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}" do
+#delete war file
+file "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war" do
     action   :delete
     mode     "0755"
     owner    "chub_mc_authservice"
     group    "chub_mc_authservice"
 end
 
-remote_file "Copy deploy jar file from staging" do 
-  path "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
-  source "file://#{node[:chub_mc_authservice][:staging_dir]}/#{node[:chub_mc_authservice][:jar_file_name]}"
+#delete keystore file
+file "#{node[:chub_mc_authservice][:config_dir]}/mcauth.jks" do
+	action :delete
+end
+
+#delete cas.properties file
+file "#{node[:chub_mc_authservice][:config_dir]}/#{node[:chub_mc_authservice][:cas_properties]}" do
+	action :delete
+end
+
+#delete log4j.xml file
+file "#{node[:chub_mc_authservice][:config_dir]}/log4j.xml" do
+	action :delete
+end
+
+#download war file into tomcat webapps dir
+remote_file "Get the war file from bamboo" do 
+  path "#{node[:tomcat][:webapp_dir]}/#{node[:chub_mc_authservice][:app_name]}.war"
+  source "#{node[:chub_mc_authservice][:war_file_url]}"
   owner 'chub_mc_authservice'
   group 'chub_mc_authservice'
   mode 0755
 end
 
-file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
-	action :delete
-end
-
-remote_file "#{node[:chub_mc_authservice][:deploy_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" do
+#download keystore file into config_dir
+remote_file "get the keystore" do
+  path "#{node[:chub_mc_authservice][:config_dir]}/#{node[:chub_mc_authservice][:keystore_file]}" 
   source "#{node[:chub_mc_authservice][:keystore_file_url]}"
   owner "chub_mc_authservice"
   group "chub_mc_authservice"
   action :create	# This should pull the file down forcefully
 end
 
-template "/etc/init/mc_authservice.conf" do
-    source "mc_authservice.conf.erb"
-    owner "chub_mc_authservice"
-    group "chub_mc_authservice"
-    mode 0644
-    notifies "restart", "service[mc_authservice]", :delayed
+#download cas.properties file into config_dir
+remote_file "#{node[:chub_mc_authservice][:config_dir]}/#{node[:chub_mc_authservice][:cas_properties]}" do
+  source "#{node[:chub_mc_authservice][:cas_properties_file_url]}"
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  action :create	# This should pull the file down forcefully
 end
 
-service "mc_authservice" do
-    provider Chef::Provider::Service::Upstart
-    action [ "enable", "start" ]
+#download log4j.xml file and place it into 
+remote_file "#{node[:chub_mc_authservice][:config_dir]}/log4j.xml" do
+  source "#{node[:chub_mc_authservice][:log4j_xml_url]}"
+  owner "chub_mc_authservice"
+  group "chub_mc_authservice"
+  action :create	# This should pull the file down forcefully
 end
+
+  template "#{node[:tomcat][:config_dir]}/server.xml" do
+      source "server.xml.erb"
+    owner "chub_mc_authservice"
+      group "chub_mc_authservice"
+      mode 0644
+    action :create
+  end
+
+# service "tomcat7" do
+#     provider Chef::Provider::Service::Upstart
+#     action [ "enable", "start" ]
+# end
 
 file node[:chub_mc_authservice][:touchfile] do
     action   :create

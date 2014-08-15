@@ -1,0 +1,37 @@
+# Retries a command a configurable number of times with backoff.
+#
+# The retry count is given by ATTEMPTS (default 5), the initial backoff
+# timeout is given by TIMEOUT in seconds (default 1.)
+#
+# Successive backoffs double the timeout.
+function with_backoff {
+  local max_attempts=${ATTEMPTS-2}
+  local timeout=${TIMEOUT-1}
+  local attempt=0
+  local exitCode=0
+
+  while [[ $attempt < $max_attempts ]]
+  do
+    set +e
+    "$@"
+    exitCode=$?
+    set -e
+
+    if [[ $exitCode == 0 ]]
+    then
+      break
+    fi
+
+    echo "Failure! Retrying in $timeout.." 1>&2
+    sleep $timeout
+    attempt=$(( attempt + 1 ))
+    timeout=$(( timeout * 2 ))
+  done
+
+  return 0
+}
+
+echo "Standing down node."
+with_backoff curl 'http://localhost:8080/systemManagement/standby'
+echo "Sleeping for a 30s to allow balancer to take out."
+sleep 30

@@ -7,10 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-unless Chef::Config[:solo]
-    node.default[:sensu][:rabbitmq][:host] = "sensu01.nexus.commercehub.com"
-end
-
 if !node.attribute?(:sensu) or !node[:sensu].attribute?(:rabbitmq) or !node[:sensu][:rabbitmq].attribute?(:host)
     Chef::Application.fatal!("RabbitMQ Host not provided, service will error out on start.  Please provide a node[:rabbitmq][:host] or you will feel pain")
 end
@@ -53,6 +49,11 @@ end
 
 remote_file "#{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb" do
     source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/system/vmstat-metrics.rb"
+    mode 0755
+end
+
+remote_file "#{node[:chub_sensu][:root_plugin_path]}/check-http.rb" do
+    source "#{node[:chub_sensu][:root_sensu_community_plugins_repo_url]}/plugins/http/check-http.rb"
     mode 0755
 end
 

@@ -1,3 +1,17 @@
+# 0.1.27
+* Add census url to the configs for new dependencies on the census server
+
+# 0.1.26
+* Remove support for chub_castle/root_url attribute
+* Add support for chub_castle/app_context attribute
+
+# 0.1.25
+* Add support for chub_castle/root_url attribute
+
+# 0.1.24
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+
 # 0.1.23
 * Increase ST/TGT timouts
 

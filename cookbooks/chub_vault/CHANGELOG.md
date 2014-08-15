@@ -1,3 +1,14 @@
+# 0.4.1
+* Change read and write bind user to readrole and writerole. Removes the admin user from the write binding. 
+
+# 0.4.0
+* Add support for archaius configuration
+* Bind against LDAP write pool, not read pool; to avoid replication delay for password resets
+
+# 0.3.5
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+
 # 0.3.4
 * Make vault group append
 * Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant

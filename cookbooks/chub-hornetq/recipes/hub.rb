@@ -59,7 +59,7 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
   end
 
   service "hornetq" do
-    init_command "su rundeck-ssh /etc/init.d/hornetq"
+    init_command "/etc/init.d/hornetq"
     action [ :stop ]
     only_if { ::File.exists?("/etc/init.d/hornetq") }
   end
@@ -143,13 +143,8 @@ unless File.exists?("#{node['chub-hornetq']['touchfile']}")
     to "#{node['chub-hornetq']['app_dir']}/logs"
   end
 
-  #file "/etc/init.d/hornetq" do
-  #  group "minions"
-  #  action :touch
-  #end 
-
   service "hornetq" do
-    init_command "/etc/init.d/hornetq"
+    #init_command "/etc/init.d/hornetq"
     action [ :start ]
   end
 

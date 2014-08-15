@@ -21,7 +21,7 @@
 # # Change These
 site		= "corpsite"
 http_index	= "homepage.html"
-repo		= "http://mpgit03.nexus.commercehub.com/marketing/commercehub-corporate-website.git"
+repo		= "https://git.nexus.commercehub.com/marketing/commercehub-corporate-website.git"
 
 # # Derivitive Variables
 # # Don't Change These
@@ -38,7 +38,7 @@ include_recipe "chub_nginx"
 
 execute "copy_site" do
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
@@ -86,7 +86,7 @@ end
 
 git repo_path do
 	repository repo
-	additional_remotes["gitlab"] = repo
+	#additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"
@@ -109,6 +109,12 @@ else
 	file "#{site_path}/info.php" do
 		action :delete
 	end
+end
+
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
 end
 
 nginx_site "#{site}"

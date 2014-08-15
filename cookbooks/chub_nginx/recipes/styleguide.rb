@@ -21,7 +21,7 @@
 # # Change These
 site		= "styleguide"
 http_index	= "index.html"
-repo		= "http://mpgit03.nexus.commercehub.com/jason/ch-style-guide.git"
+repo		= "https://git.nexus.commercehub.com/ux/ch-style-guide.git"
 
 # # Derivitive Variables
 # # Don't Change These
@@ -37,8 +37,9 @@ node.normal[:nginx][:keepalive_timeout]	= 3
 include_recipe "chub_nginx"
 
 execute "copy_site" do
+	# This may need revisiting: https://wiki.opscode.com/display/chef/Evaluate+and+Run+Resources+at+Compile+Time;jsessionid=996B67A5129809DDFF8915B72D6A018F
 	cwd repo_path
-	command "rsync -a --delete --exclude='.git/' --exclude='README*' ./ #{site_path}"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path}"
 	action :nothing
 end
 
@@ -86,13 +87,13 @@ end
 
 git repo_path do
 	repository repo
-	additional_remotes["gitlab"] = repo
+	#additional_remotes["gitlab"] = repo
 	action :sync
 	reference "master"
 	user "www-data"
 	group "www-data"
-	notifies :run, 'execute[fix_ownership]', "immediately"
-	notifies :run, 'execute[copy_site]', "immediately"
+	notifies :run, 'execute[fix_ownership]', :immediately
+	notifies :run, 'execute[copy_site]', :immediately
 	notifies :reload, "service[nginx]", :delayed
 end
 
@@ -109,6 +110,12 @@ else
 	file "#{site_path}/info.php" do
 		action :delete
 	end
+end
+
+cron "#{site}_repo_sync" do
+	action :create
+	minute "*/3"
+	command "rsync -art --delete --delete-excluded --exclude='.git/' --exclude='README*' #{repo_path}/ #{site_path} && chown -R www-data:www-data #{repo_path}"
 end
 
 nginx_site "#{site}"

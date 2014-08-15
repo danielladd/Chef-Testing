@@ -1,73 +1,89 @@
-python_pip "carbon" do
-  version node["graphite"]["version"]
-  options %Q{--install-option="--prefix=#{node['graphite']['home']}" --install-option="--install-lib=#{node['graphite']['home']}/lib"}
-  action :install
+#
+# Cookbook Name:: graphite
+# Recipe:: carbon
+#
+# Copyright 2011, Heavy Water Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+package 'python-twisted'
+package 'python-simplejson'
+
+if node['graphite']['carbon']['enable_amqp']
+
+  python_pip 'txamqp' do
+    action :install
+  end
+
+  amqp_password = node['graphite']['carbon']['amqp_password']
+  if node['graphite']['encrypted_data_bag']['name']
+    data_bag_name = node['graphite']['encrypted_data_bag']['name']
+    data_bag_item = Chef::EncryptedDataBagItem.load(data_bag_name, 'graphite')
+    amqp_password = data_bag_item['amqp_password']
+  else
+    Chef::Log.warn 'This recipe uses encrypted data bags for carbon AMQP password but no encrypted data bag name is specified - fallback to node attribute.'
+  end
+
 end
 
-python_pip "zope.interface" do
-  action :install
+# sadly, have to pin Twisted to known good version
+# install before carbon so it's used
+python_pip 'Twisted' do
+  version lazy { node['graphite']['twisted_version'] }
 end
 
-template "#{node['graphite']['home']}/conf/carbon.conf" do
-  mode "0644"
-  source "carbon.conf.erb"
-  owner node["apache"]["user"]
-  group node["apache"]["group"]
+python_pip 'carbon' do
+  package_name lazy {
+    node['graphite']['package_names']['carbon'][node['graphite']['install_type']]
+  }
+  version lazy {
+    node['graphite']['install_type'] == 'package' ? node['graphite']['version'] : nil
+  }
+end
+
+directory "#{node['graphite']['base_dir']}/conf" do
+  owner node['graphite']['user_account']
+  group node['graphite']['group_account']
+  recursive true
+end
+
+template "#{node['graphite']['base_dir']}/conf/carbon.conf" do
+  owner node['graphite']['user_account']
+  group node['graphite']['group_account']
+  carbon_options = node['graphite']['carbon'].dup
+  carbon_options['amqp_password'] = amqp_password unless amqp_password.nil?
   variables(
-    :whisper_dir                => node["graphite"]["carbon"]["whisper_dir"],
-    :line_receiver_interface    => node["graphite"]["carbon"]["line_receiver_interface"],
-    :pickle_receiver_interface  => node["graphite"]["carbon"]["pickle_receiver_interface"],
-    :cache_query_interface      => node["graphite"]["carbon"]["cache_query_interface"],
-    :log_updates                => node["graphite"]["carbon"]["log_updates"],
-    :max_cache_size             => node["graphite"]["carbon"]["max_cache_size"],
-    :max_creates_per_minute     => node["graphite"]["carbon"]["max_creates_per_minute"],
-    :max_updates_per_second     => node["graphite"]["carbon"]["max_updates_per_second"]
+    :storage_dir => node['graphite']['storage_dir'],
+    :carbon_options => carbon_options
   )
-  notifies :restart, "service[carbon-cache]"
 end
 
-template "#{node['graphite']['home']}/conf/storage-schemas.conf" do
-  mode "0644"
-  source "storage-schemas.conf.erb"
-  owner node["apache"]["user"]
-  group node["apache"]["group"]
-  notifies :restart, "service[carbon-cache]"
+directory node['graphite']['storage_dir'] do
+  owner node['graphite']['user_account']
+  group node['graphite']['group_account']
+  recursive true
 end
 
-template "#{node['graphite']['home']}/conf/storage-aggregation.conf" do
-  mode "0644"
-  source "storage-aggregation.conf.erb"
-  owner node["apache"]["user"]
-  group node["apache"]["group"]
-  notifies :restart, "service[carbon-cache]"
-end
-
-execute "chown" do
-  command "chown -R #{node["apache"]["user"]}:#{node["apache"]["group"]} #{node['graphite']['home']}/storage"
-  only_if do
-    f = File.stat("#{node['graphite']['home']}/storage")
-    f.uid == 0 && f.gid == 0
+%w{ log whisper rrd }.each do |dir|
+  directory "#{node['graphite']['storage_dir']}/#{dir}" do
+    owner node['graphite']['user_account']
+    group node['graphite']['group_account']
   end
 end
 
-template "/etc/init/carbon-cache.conf" do
-  mode "0644"
-  source "carbon-cache.conf.erb"
-  variables(
-    :home => node["graphite"]["home"],
-    :version => node["graphite"]["version"]
-  )
-end
-
-logrotate_app "carbon" do
-  cookbook "logrotate"
-  path "#{node['graphite']['home']}/storage/log/carbon-cache/carbon-cache-a/*.log"
-  frequency "daily"
-  rotate 3
-  create "644 root root"
-end
-
-service "carbon-cache" do
-  provider Chef::Provider::Service::Upstart
-  action [ :enable, :start ]
+directory "#{node['graphite']['base_dir']}/lib/twisted/plugins/" do
+  owner node['graphite']['user_account']
+  group node['graphite']['group_account']
+  recursive true
 end

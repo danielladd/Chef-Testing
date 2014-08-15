@@ -1,8 +1,17 @@
-# Deployments may sometimes need to trigger a run of chef-client.
-# In some contexts, such as a Bamboo deployment plan, it is easiest if using sudo for this command doesn't require re-authenticating.
-# TODO: further discussion on making this part of the base configuration?
+#
+# Cookbook Name:: chub-klerk
+# Recipe:: default
+#
+# Copyright (C) 2014 CommerceHub
+#
+# All rights reserved - Do Not Redistribute
+#
+
 include_recipe "sudo"
 
+# Deployments may sometimes need to trigger a run of chef-client.
+# In some contexts, such as a Bamboo deployment plan, it is easiest if using sudo for this command doesn't require re-authenticating.
+# TODO: With chef-kick in place, is this still needed?
 sudo "chef-client" do
     group "sudo"
     runas "root"
@@ -17,17 +26,7 @@ sudo "admin" do
     commands ["ALL"]
 end
 
-hostsfile_entry '127.0.1.1' do
-  action    :remove
-end
-
-hostsfile_entry node['ipaddress'] do
-  hostname  node['fqdn']
-  aliases   [node['hostname']]
-  action    :create
-end
-
-include_recipe "chub_java::oracle7"
+include_recipe "chub_java::oracle8"
 
 group "klerk" do
     action :create
@@ -78,9 +77,10 @@ end
 template "/etc/opt/klerk/klerk.yml" do
     source "klerk.yml.erb"
     variables({
-        "mongo_addresses" => node["chub-klerk"]["mongo_addresses"],
+        "mongo_uri" => node["chub-klerk"]["mongo_uri"],
         "klerk_database_name" => node["chub-klerk"]["klerk_database_name"],
         "blobstore_database_name" => node["chub-klerk"]["blobstore_database_name"],
+        "blobstore_mongo_uri" => node["chub-klerk"]["blobstore_mongo_uri"],
         "quartz_database_url" => node["chub-klerk"]["quartz_database_url"],
         "hazelcast_group_name" => node["chub-klerk"]["hazelcast_group_name"],
         "hazelcast_group_password" => node["chub-klerk"]["hazelcast_group_password"],
@@ -101,7 +101,6 @@ end
 template "/etc/init/klerk.conf" do
     source "klerk.conf.erb"
     variables({
-        "java_perm_gen_size" => node["chub-klerk"]["java_perm_gen_size"],
         "java_heap_size" => node["chub-klerk"]["java_heap_size"]
     })
     owner "root"
@@ -109,14 +108,6 @@ template "/etc/init/klerk.conf" do
     mode 0644
     notifies "restart", "service[klerk]"
 end
-
-# remote_file "/var/opt/klerk/staged-klerk-app.jar" do
-#     source "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-shadow.jar"
-#     action :create_if_missing
-#     owner "klerk"
-#     group "klerk"
-#     mode 0440
-# end
 
 remote_file "/opt/klerk/klerk-app.jar" do
     source node["chub-klerk"]["app_url"]
@@ -131,4 +122,3 @@ service "klerk" do
     provider Chef::Provider::Service::Upstart
     action [ "enable", "start" ]
 end
-

@@ -1,3 +1,10 @@
+# 0.1.9
+* Remove apt dependency (base cookbook should ensure apt is appropriately updated)
+* Remove hostsfile tweaks (base cookbook should provide those when needed)
+
+# 0.1.8
+* Add Vault application endpoint URL 
+
 # 0.1.7
 * Make census group append
 * Update Berksfile/Vagrantfile to work with latest versions of Berkshelf/Vagrant

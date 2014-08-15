@@ -7,8 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "chub_sensu::server"
-
 handlerList = ["email"]
 
 ## PagerDuty Handler
@@ -21,15 +19,13 @@ if node[:chub_pipeline].attribute?(:pagerduty) and node[:chub_pipeline][:pagerdu
     template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
         source "pagerduty.json.erb"
         mode 0644
-        variables(:api_key => node[:chub_pipeline][:pagerduty_pipeline][:api_key])
+        variables(:api_key => node[:chub_pipeline][:pagerduty][:api_key])
     end
 
     sensu_handler "pagerduty_pipeline" do
         type "pipe"
-        command "/usr/bin/rub1.y9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
+        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
     end
-
-    handlerList << "pagerduty_pipeline"
 end
 
 
