@@ -10,8 +10,9 @@ server:
 metrics:
   reporters:
     - type: hub-graphite
-      host: stats02.nexus.commercehub.com
-      environment: ssodev
+      host: "<%= node[:slm][:graphite][:host] %>"
+      port: <%= node[:slm][:graphite][:port] %>
+      environment: "<%= node.chef_environment %>"
 
 logging:
   level: INFO
