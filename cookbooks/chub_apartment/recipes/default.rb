@@ -102,6 +102,11 @@ end
         source: "sh.script.erb",
         mode: 0775,
         restart: true
+    },{
+        dest: "/etc/security/limits.conf",
+        source: "limits.conf.erb",
+        mode: 0775,
+        restart: true
     }
 ].each do |data|
     template data[:dest] do
