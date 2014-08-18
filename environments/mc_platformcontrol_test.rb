@@ -1,7 +1,7 @@
 name "mc_platformcontrol_test"
 description "Mission Control PlatformControl Test Environment"
 cookbook_versions({
-	"chub_mc_app" => "= 0.2.1",
+	"chub_mc_app" => "= 0.2.2",
 	"chub_mc_logs" => "= 0.1.0"
 })
 default_attributes( 
@@ -14,8 +14,7 @@ default_attributes(
 			"enableReload" => "false",
 			"mcHost" => "testmissioncontrol",
 			"appHost" => "testmissioncontrol/platformcontrol",
-			"authService" => "devmcauth",
-			"appMachineNames" => "\"tmcplatctrl01;tmcplatctrl02\""
+			"authService" => "devmcauth"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/platformcontrol/%5BRELEASE%5D/platformcontrol-%5BRELEASE%5D.jar"
 	},

@@ -1,7 +1,7 @@
 name "mc_landingstrip_local"
 description "Mission Control LandingStrip Local Environment"
 cookbook_versions({
-	"chub_mc_app" => "= 0.2.1",
+	"chub_mc_app" => "= 0.2.2",
 	"chub_mc_logs" => "= 0.1.0"
 })
 default_attributes( 
