@@ -9,3 +9,4 @@ version          '0.1.1'
 supports "ubuntu"
 depends "apt"
 depends "chub_java"
+depends "chub_sensu"
