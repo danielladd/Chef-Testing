@@ -5,6 +5,7 @@ run_list *%w[
     recipe[chub_rundeck::sensu_server]
 	recipe[chub_apartment::sensu_server]
 	recipe[chub_oddrest::sensu_server]
+	recipe[chub_rolodex::sensu_server]
 ]
 
 #TODO: Should this live in databag?
@@ -19,7 +20,8 @@ default_attributes "chub_sensu" => {
             "rundeck_mysql_master" => "pipeline@commercehub.com",
             "rundeck_mysql_slave" => "pipeline@commercehub.com",
 			"apartment" => "rolodex@commercehub.com",
-			"oddrest" => "rolodex@commercehub.com"
+			"oddrest" => "rolodex@commercehub.com",
+			"rolodex" => "rolodex@commercehub.com"
         }
     }
 },
@@ -30,6 +32,12 @@ default_attributes "chub_sensu" => {
 	}
 },
 "oddrest" => {
+	"graphite" => {
+		"host" => "stats02.nexus.commercehub.com",
+		"port" => 2003
+	}
+},
+"rolodex" => {
 	"graphite" => {
 		"host" => "stats02.nexus.commercehub.com",
 		"port" => 2003
