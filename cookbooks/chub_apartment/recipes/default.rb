@@ -78,44 +78,47 @@ end
         dest: "/etc/apartment/apartment.yaml",
         source: "apartment.yml.erb",
         group: group_name,
-        mode: 0774,
-        restart: true
+        mode: 0774
     },{
         dest: "/etc/apartment/apartment.properties",
         source: "apartment.properties.erb",
         group: group_name,
-        mode: 0774,
-        restart: true
+        mode: 0774
     },{
         dest: "/etc/apartment/system.properties",
         source: "system.properties.erb",
         group: group_name,
-        mode: 0774,
-        restart: true
+        mode: 0774
     },{
         dest: "/opt/apartment/conf/wrapper.conf",
         source: "wrapper.conf.erb",
-        mode: 0776,
-        restart: true
+        mode: 0776
     },{
         dest: "/opt/apartment/bin/apartment",
         source: "sh.script.erb",
-        mode: 0775,
-        restart: true
+        mode: 0775
     },{
         dest: "/etc/security/limits.conf",
         source: "limits.conf.erb",
-        mode: 0775,
-        restart: true
+        mode: 0775
+    },{
+        dest: "/etc/sysctl.conf",
+        source: "sysctl.conf.erb",
+        mode: 0775
     }
 ].each do |data|
     template data[:dest] do
         source data[:source]
         owner data[:owner] || "root"
         group data[:group] || "root"
-        mode data[:mode]
-        notifies "restart", "service[apartment]" if data[:restart]
+        mode data[:mode]		
     end
+end
+
+execute "reload_and_restart" do
+	command "sysctl -p /etc/sysctl.conf"
+	action :run
+	notifies "restart", "service[apartment]"
 end
 
 cookbook_file "/opt/apartment/bin/wrapper" do
