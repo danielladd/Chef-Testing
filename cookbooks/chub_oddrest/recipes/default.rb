@@ -66,20 +66,25 @@ end
         dest: "/etc/oddrest/oddrest.yaml",
         source: "oddrest.yml.erb",
         group: group_name,
-        mode: 0640,
-        restart: true
+        mode: 0640
     },{
         dest: "/etc/init/oddrest.conf",
         source: "oddrest.conf.erb",
-        mode: 0644,
-        restart: true
+        mode: 0644
     },{
         #if this location or file name changes, you must update the location in the default.rb attributes file
         dest: "/etc/oddrest/orgDataDir.properties",
         source: "orgDataDir.properties.erb",
         group: group_name,
-        mode: 0640,
-        restart: true
+        mode: 0640
+    },{
+        dest: "/etc/security/limits.conf",
+        source: "limits.conf.erb",
+        mode: 0775
+    },{
+        dest: "/etc/sysctl.conf",
+        source: "sysctl.conf.erb",
+        mode: 0775
     }
 ].each do |data|
     template data[:dest] do
@@ -87,8 +92,13 @@ end
         owner data[:owner] || "root"
         group data[:group] || "root"
         mode data[:mode]
-        notifies "restart", "service[oddrest]" if data[:restart]
     end
+end
+
+execute "reload_and_restart" do
+	command "sysctl -p /etc/sysctl.conf"
+	action :run
+	notifies "restart", "service[oddrest]"
 end
 
 #This is just a hack until we get the jar deployed to Artifactory.
