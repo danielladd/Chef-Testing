@@ -29,7 +29,7 @@ default_attributes(
 			},
 			"apartment_wrapper" => {
 				"name" => "apartment_wrapper",
-				"body" => "  multiline {\n          pattern => \"^[^|]* | \\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:time} | %{GREEDYDATA:apartmentmessage}\" ]\n  }\n"      
+				"body" => "filter {\n	multiline {\n		pattern => \"^[^|]* | \\s\"\n		what => \"previous\"\n	}\n	date {\n		match => [ \"logdate\", \"YYYY/dd/MM HH:mm:ss\" ]\n		target => \"@timestamp\"\n	}\n	grok {\n		match => [ \"raw_log\", \"%{LOGLEVEL:loglevel} | %{GREEDYDATA:wrapper_component} | %{logdate} | %{GREEDYDATA:apartment_message}\" ]\n	}\n}"
 			}
 		}
 	}
