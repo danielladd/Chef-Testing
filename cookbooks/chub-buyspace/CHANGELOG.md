@@ -15,6 +15,10 @@ This file is used to list changes made in each version of the chub-buyspace cook
 -----
 - Andrew Blick - Added YUI combo configuration.
 
+0.8.0
+-----
+- Dave "Jazz" Jaskolka - Added SSO configuration.
+
 0.4.1
 -----
 - Anton Beza - Updated adminEmailAddress.

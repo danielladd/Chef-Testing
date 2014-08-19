@@ -2,7 +2,7 @@ name "mpqa2"
 description "marketplace qa environment 2"
 cookbook "base", "= 0.1.16"
 cookbook "chub-klerk", "= 4.0.0"
-cookbook "chub-buyspace", "= 0.7.2"
+cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
     "mongo_uri" => "mongodb://mpqa2db1.nexus.commercehub.com:27017,mpqa2db2.nexus.commercehub.com:27017,mpqa2db3.nexus.commercehub.com:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
     "blobstore_mongo_uri" => "mongodb://mpqa2db1.nexus.commercehub.com:27017,mpqa2db2.nexus.commercehub.com:27017,mpqa2db3.nexus.commercehub.com:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
@@ -25,6 +25,29 @@ default_attributes "chub-klerk" => {
     "replicas" => ['mpqa2db1.nexus.commercehub.com', 'mpqa2db2.nexus.commercehub.com', 'mpqa2db3.nexus.commercehub.com'],
     "blobstoreDatabaseName" => "marketplaceProd",
     "blobstoreReplicas" => ['mpqa2db1.nexus.commercehub.com', 'mpqa2db2.nexus.commercehub.com', 'mpqa2db3.nexus.commercehub.com']
+  },
+  "security" => {
+    "shiro" => {
+      "authc" => {
+        "required" => false
+      },
+      "realm" => "mongodb",
+      "cas" => {
+        "serverUrl" => "https://ssoint1-apps.nexus.commercehub.com/account",
+        "serviceUrl" => "https://mpqa2-buyspace.nexus.commercehub.com/shiro-cas",
+        "failureUrl" => "https://mpqa1-buyspace.nexus.commercehub.com/auth/fail"
+      }
+    }
+  },
+  "census" => {
+    "url" => "https://ssoint1-census.nexus.commercehub.com:8443",
+    "buyspaceAndProductStreamApplicationId" => "buyspaceandproductstream-qa2"
+  },
+  "plaza" => {
+    "url" => "https://ssoint1-apps.nexus.commercehub.com/user"
+  },
+  "vault" => {
+    "url" => "https://ssoint1-vault.nexus.commercehub.com:8443"
   },
   "solr" => {
     "url" => "http://mpqa2db1.nexus.commercehub.com/solr/"
