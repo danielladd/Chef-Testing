@@ -35,7 +35,7 @@ default_attributes "chub-klerk" => {
       "cas" => {
         "serverUrl" => "https://ssoint1-apps.nexus.commercehub.com/account",
         "serviceUrl" => "https://mpqa2-buyspace.nexus.commercehub.com/shiro-cas",
-        "failureUrl" => "https://mpqa1-buyspace.nexus.commercehub.com/auth/fail"
+        "failureUrl" => "https://mpqa2-buyspace.nexus.commercehub.com/auth/fail"
       }
     }
   },
