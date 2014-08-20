@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "4.0.0"
+version "4.1.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -70,6 +70,14 @@ attribute "chub-klerk/sprite_conductor_url",
 
 attribute "chub-klerk/sprite_output_container_prefix",
     "display_name" => "Sprite Output Container Prefix"
+
+attribute "chub-klerk/sprite_notification_id",
+    "display_name" => "Sprite notification ID",
+    "description" => "The notification id to include in Sprite manifests sent to the Sprite Conductor"
+
+attribute "chub-klerk/sprite_manifest_update_notification_endpoint",
+    "display_name" => "Sprite manifest Update notification endpoint",
+    "description" => "The JMS endpoint to listen to for Sprite manifest updates"
 
 attribute "chub-klerk/jms_provider_url",
     "display_name" => "JMS Provider URL"

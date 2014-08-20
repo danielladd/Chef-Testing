@@ -2,6 +2,10 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v4.1.0
+------
+- Add Sprite configuration attributes `notification_id` and `manifest_update_notification_endpoint` to facilitate Klerk listening for Sprite manifest updates messages sent from Sprite Conductor
+
 v4.0.0
 ------
 - Generate `klerk.yml` using Klerk's refactored Mongo configuration properties

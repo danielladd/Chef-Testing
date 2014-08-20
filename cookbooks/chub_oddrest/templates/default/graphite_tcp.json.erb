@@ -1,0 +1,12 @@
+{
+  "handlers": {
+    "graphite_tcp_oddrest": {
+      "type": "tcp",
+      "socket": {
+        "host": "<%= @graphite_host %>",
+        "port": <%= @graphite_port %>
+      },
+      "mutator": "only_check_output"
+    }
+  }
+}

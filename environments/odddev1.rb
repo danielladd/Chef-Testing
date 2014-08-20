@@ -15,7 +15,7 @@ default_attributes(
       :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com"
+      :baseUrl => "https://odddev1-rolodex.nexus.commercehub.com"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
@@ -67,7 +67,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "http://yuicombo1.nexus.commercehub.com:3000"
+      :url => "https://odd-yui-combo.nexus.commercehub.com"
     }
   }
 )

@@ -67,19 +67,16 @@ end
         dest: "/etc/rolodex/rolodex.yaml",
         source: "rolodex.yaml.erb",
         group: group_name,
-        mode: 0640,
-        restart: true
+        mode: 0640
     },{
         dest: "/etc/init/rolodex.conf",
         source: "rolodex.conf.erb",
-        mode: 0644,
-        restart: true
+        mode: 0644
     },{
         dest: "/etc/rolodex/rolodex.groovy",
         source: "rolodex.groovy.erb",
         group: group_name,
-        mode: 0640,
-        restart: true
+        mode: 0640
     }
 ].each do |data|
     template data[:dest] do
@@ -87,8 +84,13 @@ end
         owner data[:owner] || "root"
         group data[:group] || "root"
         mode data[:mode]
-        notifies "restart", "service[rolodex]" if data[:restart]
     end
+end
+
+execute "reload_and_restart" do
+	command "sysctl -p /etc/sysctl.conf"
+	action :run
+	notifies "restart", "service[rolodex]"
 end
 
 remote_file "/opt/rolodex/rolodex.jar" do

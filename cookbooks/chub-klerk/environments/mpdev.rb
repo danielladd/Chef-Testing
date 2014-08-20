@@ -16,6 +16,8 @@ default_attributes(
         "jms_provider_url" => "jnp://192.168.33.1:1099",
         "sprite_conductor_url" => "http://192.168.33.1:8060/sprite-conductor",
         "sprite_output_container_prefix" => "mpdev-",
+        "sprite_notification_id" => "klerk",
+        "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue",
         "java_heap_size" => "256m"
     }
 )

@@ -97,13 +97,23 @@ unless File.exists?("#{node[:chub_mc_app][:touchfile]}")
     mode 0755
   end
 
-  template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
+  if node[:chub_mc_app][:jmx_on]
+    template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
+      source "appjmx.conf.erb"
+      owner "root"
+      group "root"
+      mode 0644
+      notifies "restart", "service[#{node[:chub_mc_app][:app_name]}]"
+    end
+  else
+      template "/etc/init/#{node[:chub_mc_app][:app_name]}.conf" do
       source "app.conf.erb"
       owner "root"
       group "root"
       mode 0644
-    notifies "restart", "service[#{node[:chub_mc_app][:app_name]}]"
-  end
+      notifies "restart", "service[#{node[:chub_mc_app][:app_name]}]"
+    end
+  end #end condition 
 
   service "#{node[:chub_mc_app][:app_name]}" do
       provider Chef::Provider::Service::Upstart

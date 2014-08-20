@@ -3,7 +3,7 @@ default[:chub_rolodex][:java_heap_size] = "512M"
 
 default[:slm][:odd_service][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com"
 default[:slm][:apartment][:baseUrl] = "http://odddev1-apartment.nexus.commercehub.com"
-default[:slm][:rolodex][:baseUrl] = "http://odddev1-rolodex.nexus.commercehub.com"
+default[:slm][:rolodex][:baseUrl] = "https://odddev1-rolodex.nexus.commercehub.com"
 default[:slm][:sso][:vault] = "https://ssoint1-vault.nexus.commercehub.com:8080"
 default[:slm][:sso][:census] = "https://ssoint1-census.nexus.commercehub.com:8080"
 default[:slm][:sso][:castle] = "https://ssoint1-apps.nexus.commercehub.com/account"

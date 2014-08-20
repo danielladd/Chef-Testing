@@ -3,15 +3,15 @@
 # Recipe:: redis_sentinel
 #
 # Copyright (C) 2014 CommerceHub
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
 master_node = Hash.new
-if Chef::Config[:solo]
+if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   #Define your data as attributes in vagrant
   master_node = { :address => node.sensu.redis.master.address, :port => node.sensu.redis.master.port }
-  
+
   quorum_count = node.sensu.redis.quorum_count
 else
   masters = search(:node, "role:sensu_redis_master").first
