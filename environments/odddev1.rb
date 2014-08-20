@@ -67,7 +67,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "http://yuicombo1.nexus.commercehub.com:3000"
+      :url => "https://odd-yui-combo.nexus.commercehub.com"
     }
   }
 )

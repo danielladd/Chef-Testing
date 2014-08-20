@@ -15,12 +15,23 @@ platforms:
 suites:
   - name: server
     run_list:
-      - recipe[chub_sensu::client]
       - recipe[chub_sensu::rabbitmq]
       - recipe[chub_sensu::redis_master]
       - recipe[chub_sensu::redis_sentinel]
       - recipe[chub_sensu::server_distributed]
+      - recipe[chub_sensu::client]
     attributes:
+        chub_sensu: {
+            test_run: true
+            }
+        sensu: {
+            redis: {
+                master: {
+                    address: "localhost",
+                    port: "6379",
+                    }
+                }
+            }
         uchiwa: {
             api: [
                 {
