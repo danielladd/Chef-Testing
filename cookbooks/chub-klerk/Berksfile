@@ -1,4 +1,4 @@
-source "http://berks01:26200"
+source "http://berks01.nexus.commercehub.com:26200"
 
 metadata
 
