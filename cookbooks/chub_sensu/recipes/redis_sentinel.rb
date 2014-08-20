@@ -8,7 +8,7 @@
 #
 
 master_node = Hash.new
-if Chef::Config[:solo] or node[:chub_sensu][:test_instance] == true
+if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   #Define your data as attributes in vagrant
   master_node = { :address => node.sensu.redis.master.address, :port => node.sensu.redis.master.port }
 

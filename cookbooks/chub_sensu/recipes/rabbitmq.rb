@@ -9,7 +9,7 @@
 
 cluster_disk_nodes = Array.new
 
-if Chef::Config[:solo] or node[:chub_sensu][:test_instance] == true
+if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   # Define the nodes in the cluster_disk_nodes attribute in your vagrant
 else
   nodes = search(:node, "role:sensu_mq")

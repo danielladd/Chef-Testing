@@ -22,7 +22,7 @@ suites:
       - recipe[chub_sensu::client]
     attributes:
         chub_sensu: {
-            test_instance: true,
+            test_run: true,
             }
         sensu: {
             redis: {
