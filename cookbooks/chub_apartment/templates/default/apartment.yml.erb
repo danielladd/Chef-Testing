@@ -16,12 +16,7 @@ logging:
   level: DEBUG
 
   appenders:
-    # Log warnings and errors to stderr
-    - type: console
-      threshold: WARN
-      target: stderr
-
-    # Log info, warnings and errors to our apps' main log.
+    # Log info, warnings, and errors to our apps' main log.
     # Rolled over daily and retained for 5 days.
     - type: file
       threshold: INFO
