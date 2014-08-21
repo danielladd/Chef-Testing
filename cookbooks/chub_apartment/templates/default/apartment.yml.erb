@@ -3,31 +3,39 @@ server:
     - type: http
       port: 8080
 
+  requestLog:
+    appenders:
+      - type: file
+        threshold: ALL
+        currentLogFilename: ../logs/requests.log
+        archivedLogFilenamePattern: ../logs/requests-%d.log.gz
+        archivedFileCount: 5
+
 metrics:
   reporters:
     - type: hub-graphite
       host: "<%= node[:slm][:graphite][:host] %>"
       port: <%= node[:slm][:graphite][:port] %>
       environment: "<%= node.chef_environment %>"
-
 logging:
-
   # Permit DEBUG, INFO, WARN and ERROR messages to be logged by appenders.
   level: DEBUG
+  loggers:
+    io.dropwizard: INFO
 
   appenders:
-    # Log info, warnings, and errors to our apps' main log.
+    # Log info, warnings and errors to our apps' main log.
     # Rolled over daily and retained for 5 days.
     - type: file
       threshold: INFO
-      currentLogFilename: ./logs/apartment.log
-      archivedLogFilenamePattern: ./logs/apartment-%d.log.gz
-      archivedFileCount: 30
+      currentLogFilename: ../logs/apartment.log
+      archivedLogFilenamePattern: ../logs/apartment-%d.log.gz
+      archivedFileCount: 5
 
     # Log debug messages, info, warnings and errors to our apps' debug log.
     # Rolled over hourly and retained for 6 hours
     - type: file
       threshold: DEBUG
-      currentLogFilename: ./logs/debug.log
-      archivedLogFilenamePattern: ./logs/debug-%d{yyyy-MM-dd-hh}.log.gz
+      currentLogFilename: ../logs/debug.log
+      archivedLogFilenamePattern: ../logs/debug-%d{yyyy-MM-dd-hh}.log.gz
       archivedFileCount: 6
