@@ -1,0 +1,10 @@
+name             'chub_hubot'
+maintainer       'Larry Zarou'
+maintainer_email 'lzarou@commercehub.com'
+license          ''
+description      'Installs/Configures hubot for commercehub'
+long_description 'Installs/Configures hubot for commercehub'
+version          '0.1.0'
+
+depends 'hubot'
+depends 'npm'
