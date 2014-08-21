@@ -1,5 +1,11 @@
+# 0.5.0
+* Add baseDn configuration
+
+# 0.4.2
+* Remove invalid pass as it is no longer required in the healthcheck
+
 # 0.4.1
-* Change read and write bind user to readrole and writerole. Removes the admin user from the write binding. 
+* Change read and write bind user to readrole and writerole. Removes the admin user from the write binding.
 
 # 0.4.0
 * Add support for archaius configuration
