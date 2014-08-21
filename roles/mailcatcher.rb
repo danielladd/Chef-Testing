@@ -6,5 +6,6 @@ run_list *%w[
 
 default_attributes "mailcatcher" => {
     "smtp-ip" => "0.0.0.0",
+    "smtp-port" => 25,
     "http-ip" => "0.0.0.0"
 }
