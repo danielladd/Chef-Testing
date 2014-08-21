@@ -15,7 +15,7 @@ cookbook_versions({
   "chub_openldap" => "= 1.12.21",
   "chub_plaza" => "= 0.3.1",
   "chub_sensu_sso" => "= 0.1.19",
-  "chub_vault" => "= 0.4.0",
+  "chub_vault" => "= 0.5.0",
   "cron" => "= 1.2.6",
   "dmg" => "= 2.1.4",
   "erlang" => "= 1.5.0",
@@ -77,11 +77,11 @@ default_attributes(
     :ldap => {
       :read => {
         :host => "ssoprod1-ldap-read.commercehub.com",
-        :password => "search"
+        :password => "adminRead1234"
       },
       :write => {
         :host => "ssoprod1-ldap-write.commercehub.com",
-        :password => "rootpw"
+        :password => "adminWrite1234"
       },
       :healthcheck => {
         :guid => "fd9a39e4-b36c-11e3-92cf-080027c2a6f5"
