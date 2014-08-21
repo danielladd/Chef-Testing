@@ -77,11 +77,11 @@ default_attributes(
     :ldap => {
       :read => {
         :host => "ssoprod1-ldap-read.commercehub.com",
-        :password => "search"
+        :password => "adminRead1234"
       },
       :write => {
         :host => "ssoprod1-ldap-write.commercehub.com",
-        :password => "rootpw"
+        :password => "adminWrite1234"
       },
       :healthcheck => {
         :guid => "fd9a39e4-b36c-11e3-92cf-080027c2a6f5"
