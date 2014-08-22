@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "4.1.0"
+version "5.0.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -35,10 +35,6 @@ attribute "chub-klerk/blobstore_database_name",
 attribute "chub-klerk/blobstore_mongo_uri",
     "display_name" => "Klerk blob store MongoDB connection string URI",
     "description" => "The connection string URI to connect Klerk to MongoDB for blob storage"
-
-attribute "chub-klerk/quartz_database_url",
-    "display_name" => "Klerk Quartz database URL",
-    "description" => "The JDBC URL for the Quartz database"
 
 attribute "chub-klerk/java_heap_size",
     "display_name" => "Klerk Java heap size",

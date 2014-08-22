@@ -11,10 +11,6 @@ blobStore:
   provider: gridfs
   uri: <%= @blobstore_mongo_uri %>
 
-scheduler:
-  databaseUrl: <%= @quartz_database_url %>
-  threadCount: 5
-
 hazelcast:
   groupName: <%= @hazelcast_group_name %>
   groupPassword: <%= @hazelcast_group_password %>
