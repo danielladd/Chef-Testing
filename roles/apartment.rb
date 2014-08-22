@@ -12,32 +12,19 @@ default_attributes(
 		}
 	},
 	"chub_log" => {
+		"endpoint" => "10.10.80.111",
 		"logfiles" => {
 			"apartment" => {
 				"path" => "/opt/apartment/logs/apartment.log",
 				"type" => "apartment"
 			},
-			"wrapper" => {
+			"apartment_wrapper" => {
 				"path" => "/opt/apartment/logs/wrapper.log",
-				"type" => "wrapper"
+				"type" => "apartment_wrapper"
 			},
-			"requests" => {
+			"apartment_requests" => {
 				"path" => "/opt/apartment/logs/requests.log",
-				"type" => "requests"
-			}
-		},
-		"types" => {
-			"apartment" => {
-				"name" => "apartment",
-				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"%{LOGLEVEL:loglevel}\s*\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\] %{JAVACLASS}: %{GREEDYDATA:message}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY/MM/dd HH:mm:ss\" ]\n}"
-			},
-			"wrapper" => {
-				"name" => "apartment wrapper",
-				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"((?<loglevel>%{LOGLEVEL}|STATUS)) (\s*\|\s*) (?<logwriter>[a-zA-Z0-9\s]*) (\s*\|\s*) (?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME}) (\s*\|\s*) %{GREEDYDATA:message}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY/MM/dd HH:mm:ss\" ]\n}"
-			},
-			"requests" => {
-				"name" => "apartment requests",
-				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"(%{IPORHOST:clientip} (?:%{USER:ident}|-)  (?:%{USER:ident}|-)  \[%{HTTPDATE:logdate}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} - %{QS:referrer} %{QS:agent} (?:%{NUMBER:bytes}|-))\" ]\n}\ndate {\n	match => [ \"logdate\", \"dd/MMM/YYYY:HH:mm:ss Z\"]\n    locale => \"en\"\n}"
+				"type" => "apartment_requests"
 			}
 		}
 	}
