@@ -16,6 +16,10 @@ describe service('sensu-client') do
  it { should be_running }
 end
 
+describe port(4567) do
+  it { should be_listening }
+end
+
 describe file('/etc/sensu/config.json') do
   it { should be_file }
   it { should contain(/.*"host": "localhost"/).from(/.*rabbitmq/).to(/.*redis/) }
@@ -25,7 +29,6 @@ describe file('/etc/sensu/config.json') do
   it { should contain(/.*"host": "localhost"/).from(/.*api/).to(/^}/) }
   it { should contain(/.*"port": 4567/).from(/.*api/).to(/^}/) }
 end
-
 
 # Uchiwa Sensu Dashboard
 describe service('uchiwa') do
