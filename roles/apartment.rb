@@ -14,22 +14,30 @@ default_attributes(
 	"chub_log" => {
 		"logfiles" => {
 			"apartment" => {
-				"path" => "/opt/apartment/bin/logs/apartment.log",
+				"path" => "/opt/apartment/logs/apartment.log",
 				"type" => "apartment"
 			},
-			"apartment_wrapper" => {
+			"wrapper" => {
 				"path" => "/opt/apartment/logs/wrapper.log",
-				"type" => "apartment_wrapper"
+				"type" => "wrapper"
+			},
+			"requests" => {
+				"path" => "/opt/apartment/logs/requests.log",
+				"type" => "requests"
 			}
 		},
 		"types" => {
 			"apartment" => {
 				"name" => "apartment",
-				"body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:time} %{LOGLEVEL:loglevel} \\(%{JAVACLASS:classname}:%{INT:linenumber}\\) %{GREEDYDATA:apartmentmessage}\" ]\n  }\n"
+				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"%{LOGLEVEL:loglevel}\s*\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\] %{JAVACLASS}: %{GREEDYDATA:message}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY/MM/dd HH:mm:ss\" ]\n}"
 			},
-			"apartment_wrapper" => {
-				"name" => "apartment_wrapper",
-				"body" => "multiline {\n		pattern => \"^[^|]* | \\s\"\n		what => \"previous\"\n	}\n	date {\n		match => [ \"logdate\", \"YYYY/dd/MM HH:mm:ss\" ]\n		target => \"@timestamp\"\n	}\n	grok {\n		match => [ \"raw_log\", \"%{LOGLEVEL:loglevel} | %{wrapper_component} | %{logdate} | %{GREEDYDATA:apartment_message}\" ]\n	}"
+			"wrapper" => {
+				"name" => "apartment wrapper",
+				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"((?<loglevel>%{LOGLEVEL}|STATUS)) (\s*\|\s*) (?<logwriter>[a-zA-Z0-9\s]*) (\s*\|\s*) (?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME}) (\s*\|\s*) %{GREEDYDATA:message}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY/MM/dd HH:mm:ss\" ]\n}"
+			},
+			"requests" => {
+				"name" => "apartment requests",
+				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"raw_log\", \"(%{IPORHOST:clientip} (?:%{USER:ident}|-)  (?:%{USER:ident}|-)  \[%{HTTPDATE:logdate}\] \"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\" %{NUMBER:response} - %{QS:referrer} %{QS:agent} (?:%{NUMBER:bytes}|-))\" ]\n}\ndate {\n	match => [ \"logdate\", \"dd/MMM/YYYY:HH:mm:ss Z\"]\n    locale => \"en\"\n}"
 			}
 		}
 	}

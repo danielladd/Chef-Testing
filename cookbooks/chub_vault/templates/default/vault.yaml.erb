@@ -4,10 +4,10 @@
 
 archaiusConfig: /etc/vault/archaius.properties
 
+baseDn: <%= node[:chub_vault][:ldap][:base_dn] %>
 userOrgUnitDn: <%= node[:chub_vault][:ldap][:user_ou] %>,<%= node[:chub_vault][:ldap][:base_dn] %>
 testUsername: <%= node[:chub_vault][:ldap][:healthcheck][:username] %>
 testValidPassword: <%= node[:chub_vault][:ldap][:healthcheck][:valid_password] %>
-testInvalidPassword: <%= node[:chub_vault][:ldap][:healthcheck][:invalid_password] %>
 testGUID: <%= node[:chub_vault][:ldap][:healthcheck][:guid] %>
 
 ldapBind:

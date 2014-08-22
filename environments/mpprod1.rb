@@ -1,10 +1,11 @@
 name "mpprod1"
 description "marketplace production environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 3.0.0"
-cookbook "chub-buyspace", "= 0.7.2"
+cookbook "chub-klerk", "= 4.0.0"
+cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
-    "mongo_addresses" => [ "mdb01:27017", "mdb02:27017", "mdb03:27017" ],
+    "mongo_uri" => "mongodb://mdb01:27017,mdb02:27017,mdb03:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
+    "blobstore_mongo_uri" => "mongodb://mdb01:27017,mdb02:27017,mdb03:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
     "quartz_database_url" => "jdbc:jtds:sqlserver://sqlps/Klerk_Quartz;user=Klerk_Admin;password=KAdminuser01!",
     "hazelcast_group_name" => "mpprod1_klerk",
     "hazelcast_group_password" => "dbYsD3PVD9HEpGbQ",
@@ -13,17 +14,41 @@ default_attributes "chub-klerk" => {
         "productstream" => "http://api.buyspace.com/klerk/productDataEvents"
     },
     "product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventQueue",
-	"dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
-	"jms_provider_url" => "jnp://mq01.commercehub.com:1099",  
+	  "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
+	  "jms_provider_url" => "jnp://mq01.commercehub.com:1099",  
     "sprite_conductor_url" => "http://sprite.buyspace.com/sprite-conductor",
     "sprite_output_container_prefix" => "mpprod1-"
-},"chub-buyspace" => {
+},
+"chub-buyspace" => {
   "grails_env" => "prod",
   "mongo" => {
     "databaseName" => "marketplaceProd",
     "replicas" => ['mdb01.commercehub.com', 'mdb02.commercehub.com', 'mdb03.commercehub.com'],
     "blobstoreDatabaseName" => "marketplaceProd_blobStore",
     "blobstoreReplicas" => ['mdb01.commercehub.com', 'mdb02.commercehub.com', 'mdb03.commercehub.com']
+  },
+  "security" => {
+    "shiro" => {
+      "authc" => {
+        "required" => false
+      },
+      "realm" => "mongodb",
+      "cas" => {
+        "serverUrl" => "https://apps.commercehub.com/account",
+        "serviceUrl" => "https://www.buyspace.com/shiro-cas",
+        "failureUrl" => "https://www.buyspace.com/auth/fail"
+      }
+    }
+  },
+  "census" => {
+    "url" => "https://ssoprod1-census.commercehub.com:8443",
+    "buyspaceAndProductStreamApplicationId" => "buyspaceandproductstream-prod"
+  },
+  "plaza" => {
+    "url" => "https://apps.commercehub.com/user"
+  },
+  "vault" => {
+    "url" => "https://ssoprod1-vault.commercehub.com:8443"
   },
   "solr" => {
     "url" => "http://search01.commercehub.com:8080/solr/"
