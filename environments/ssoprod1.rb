@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.1.9",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.21",
-  "chub_plaza" => "= 0.3.1",
+  "chub_plaza" => "= 0.3.2",
   "chub_sensu_sso" => "= 0.1.19",
   "chub_vault" => "= 0.5.0",
   "cron" => "= 1.2.6",
@@ -137,6 +137,11 @@ default_attributes(
     },
     :mail => {
         :host => "prodmail.commercehub.com"
+    },
+    :applicationURLs => {
+      :buyspace => "https://www.buyspace.com",
+      :productstream => "http://productstream.commercehub.com",
+      :orderstream => "https://dsm.commercehub.com/dsm"
     }
   }
 )

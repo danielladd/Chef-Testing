@@ -136,8 +136,8 @@ default_attributes(
       :disabled => false
     },
     :applicationURLs => {
-      :buyspace => "https://mpqa2-buyspace.commercehub.com",
-      :productstream => "https://mpqa2-buyspace.commercehub.com/auth/login?targetUri=/?profile=productstream",
+      :buyspace => "https://mpqa2-buyspace.nexus.commercehub.com",
+      :productstream => "https://mpqa2-buyspace.nexus.commercehub.com/auth/login?targetUri=/?profile=productstream",
       :orderstream => "https://test.commercehub.com"
     }
   }
