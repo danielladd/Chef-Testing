@@ -4,7 +4,7 @@ run_list "recipe[base::users]","recipe[nginx]","recipe[chub_rundeck::server]","r
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
-          "host" => "monmq01.nexus.commercehub.com"
+          "host" => "monmq.nexus.commercehub.com"
       }
   },
   "rundeck" => {

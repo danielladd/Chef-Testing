@@ -3,7 +3,7 @@ description "role for rundeck_db_master machines"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
-          "host" => "monmq01.nexus.commercehub.com"
+          "host" => "monmq.nexus.commercehub.com"
       }
   },
   "mysql" => {
@@ -14,5 +14,3 @@ default_attributes(
   },
 )
 run_list "recipe[base::users]","recipe[chub_rundeck::mysql_master]"
-
-

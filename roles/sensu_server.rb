@@ -12,13 +12,13 @@ run_list *%w[
 #TODO: Should this live in databag?
 default_attributes "sensu" => {
     "rabbitmq" => {
-        "host" => "monmq01"
+        "host" => "monmq.nexus.commercehub.com"
     },
     "redis" => {
-        "host" => "monredis01"
+        "host" => "monredis.nexus.commercehub.com"
     },
     "api" => {
-        "host" => "monapp01"
+        "host" => "monapp.nexus.commercehub.com"
     }
 }
 
@@ -37,9 +37,9 @@ override_attributes(
         "pass" => ""
     },
     "api" => [
-        { 
+        {
         "name" => "Sensu",
-        "host" => "monapp01",
+        "host" => "monapp.nexus.commercehub.com",
         "ssl" => false,
         "port" => 4567,
         "user" => "",
