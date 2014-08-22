@@ -12,7 +12,7 @@ default_attributes(
 		}
 	},
 	"chub_log" => {
-		"endpoint" => "10.10.80.111",
+		"endpoint" => "10.10.99.16",
 		"logfiles" => {
 			"apartment" => {
 				"path" => "/opt/apartment/logs/apartment.log",
