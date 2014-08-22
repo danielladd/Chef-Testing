@@ -23,7 +23,7 @@ node.default.rabbitmq.cluster_disk_nodes = cluster_disk_nodes
 include_recipe 'sensu::rabbitmq'
 
 rabbitmq_policy "ha-all" do
-  pattern "^.*mq.*"
+  pattern "^.*"
   params ({ "ha-mode" => "all" })
   priority 1
   action :set
