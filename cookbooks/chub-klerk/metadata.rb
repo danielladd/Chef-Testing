@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "4.1.0"
+version "5.0.0"
 supports "ubuntu"
 
 depends "sudo"
