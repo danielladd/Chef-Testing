@@ -6,7 +6,7 @@ default_attributes(
     "endpoint_port" => "2352",
     "logfiles" => {
       "*.log" => {
-        "path" => 'C:\\Program Files\\Bamboo\\logs\\*.log',
+        "path" => 'C:/Program Files/Bamboo/logs/*.log',
         "type" => "bamboo_log"
       }
     },

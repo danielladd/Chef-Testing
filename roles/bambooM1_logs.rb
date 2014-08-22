@@ -5,15 +5,19 @@ default_attributes(
     "endpoint" => "PC-DEV-BC.nexus.commercehub.com",
     "endpoint_port" => "2352",
     "logfiles" => {
-      "*.log" => {
-        "path" => 'D:\\bambooM1\\logs\\atlassian-bamboo.log',
+      "atlassian-bamboo.log" => {
+        "path" => 'D:/bambooM1/logs/atlassian-bamboo.log',
+        "type" => "bamboo_log"
+      },
+      "test.log" => {
+        "path" => 'D:/bambooM1/logs/test.log',
         "type" => "bamboo_log"
       }
     },
     "types" => {
       "bamboo_log" => {
         "name" => "bamboo_log",
-        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIMESTAMP_ISO8601:time} %{LOGLEVEL:loglevel} \\(%{JAVACLASS:classname}:%{INT:linenumber}\\) %{GREEDYDATA:albersmessage}\" ]\n  }\n"
+        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:timestamp},\\d+ %{LOGLEVEL:level} \\[(?<name>[^\\]]+)\] \\[(?<class>[^\\]]+)\\] (?<payload>(.|\\s)+)\" ]\n  }\n"
       }
     }
   }
