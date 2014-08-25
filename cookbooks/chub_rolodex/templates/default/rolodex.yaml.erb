@@ -7,9 +7,12 @@ http:
   adminPort: 8081
   requestLog:
     file:
-      currentLogFilename: /var/log/rolodex/rolodex-requests.log
-
+      currentLogFilename: /var/log/rolodex/requests.log
+      archivedLogFilenamePattern: /var/log/rolodex/requests-%d.log.gz
+      archivedFileCount: 5
 logging:
   rootLevel: INFO
   file:
     currentLogFilename: /var/log/rolodex/rolodex.log
+    archivedLogFilenamePattern: /var/log/rolodex/rolodex-%d.log.gz
+    archivedFileCount: 5

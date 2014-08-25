@@ -3,7 +3,7 @@ description "role for rundeck_db_master machines"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
-          "host" => "monmq.nexus.commercehub.com"
+          "host" => "monmq01.nexus.commercehub.com"
       }
   },
   "mysql" => {

@@ -15,16 +15,20 @@ default_attributes(
 		"endpoint" => "10.10.99.16",
 		"logfiles" => {
 			"apartment" => {
-				"path" => "/opt/apartment/logs/apartment.log",
+				"path" => "/var/log/apartment/apartment.log",
 				"type" => "apartment"
 			},
 			"apartment_wrapper" => {
-				"path" => "/opt/apartment/logs/wrapper.log",
+				"path" => "/var/log/apartment/wrapper.log",
 				"type" => "apartment_wrapper"
 			},
 			"apartment_requests" => {
-				"path" => "/opt/apartment/logs/requests.log",
+				"path" => "/var/log/apartment/requests.log",
 				"type" => "apartment_requests"
+			},
+			"apartment_syslog" => {
+				"path" => "/var/log/syslog",
+				"type" => "apartment_syslog"
 			}
 		}
 	}

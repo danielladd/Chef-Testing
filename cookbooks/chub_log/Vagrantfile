@@ -4,12 +4,12 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "precise64"
     config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-
+=begin  You can remove this begin and end of comment for better performance on most non-windows boxes.  However, the cache will fail on 'vagrant up' on Windwos desktops.
     if Vagrant.has_plugin?("vagrant-cachier")
         config.cache.auto_detect = true
         config.cache.scope = :box
     end
-
+=end
     if Vagrant.has_plugin?("vagrant-hostmanager")
         config.hostmanager.enabled = true
         config.hostmanager.manage_host = true
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
           chef.cookbooks_path = "../../cookbooks"
           chef.environments_path = "../../environments"
           chef.roles_path = "../../roles"
-          chef.data_bags_path = " ../../data_bags"
+          chef.data_bags_path = "../../data_bags"
           chef.environment = 'dev'
           chef.json = {
             'instance_role' => 'vagrant',
@@ -41,6 +41,7 @@ Vagrant.configure("2") do |config|
            }
          }
            chef.add_role("base")
+           chef.add_role("bambooM1_logs")
            chef.add_role("logstash_dev")
            chef.add_recipe 'git'
          end
