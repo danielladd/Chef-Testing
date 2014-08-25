@@ -1,7 +1,7 @@
 name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 4.0.0"
+cookbook "chub-klerk", "= 4.1.0"
 cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
     "mongo_uri" => "mongodb://mpqa03.nexus.commercehub.com:27777,mpqa05.nexus.commercehub.com:27777/?maxPoolSize=50&maxIdleTimeMS=300000",
@@ -17,6 +17,8 @@ default_attributes "chub-klerk" => {
     "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
     "sprite_conductor_url" => "http://mpqa05.nexus.commercehub.com:8080/sprite-conductor",
     "sprite_output_container_prefix" => "mpqa1-",
+    "sprite_notification_id" => "klerk",
+    "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue",
     "jms_provider_url" => "jnp://mpqa03.nexus.commercehub.com:7099"
 },
 "chub-buyspace" => {
