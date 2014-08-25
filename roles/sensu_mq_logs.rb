@@ -19,7 +19,7 @@ default_attributes(
     "types" => {
       "rabbitmq_log" => {
         "name" => "rabbitmq_log",
-        "body" => " multiline {\n          pattern => \"=.*\"\n          what => \"previous\"\n          negate => \"true\"\n        }\n  grok {\n    match => [ \"message\", \"(?m)=%{GREEDYDATA:log_level}==== %{GREEDYDATA:timestamp} ===\\n%{GREEDYDATA:log_message}\" ]\n  }\n"
+        "body" => " multiline {\n          pattern => \"^=.*\"\n          what => \"previous\"\n          negate => \"true\"\n        }\n  grok {\n    match => [ \"message\", \"(?m)=%{GREEDYDATA:log_level}==== %{GREEDYDATA:timestamp} ===\\n%{GREEDYDATA:log_message}\" ]\n  }\n"
       }
     }
   }
