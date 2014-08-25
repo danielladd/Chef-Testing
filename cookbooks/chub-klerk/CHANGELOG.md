@@ -2,6 +2,10 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v5.1.0
+------
+- Add support for configuration of logstash logging appender
+
 v5.0.0
 ------
 - Remove `quartz_database_url` and related scheduler configuration from `klerk.yml` as Quartz has been removed from Klerk
