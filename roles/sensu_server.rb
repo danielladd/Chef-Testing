@@ -12,7 +12,7 @@ run_list *%w[
 #TODO: Should this live in databag?
 default_attributes "sensu" => {
     "rabbitmq" => {
-        "host" => "monmq01.nexus.commercehub.com"
+        "host" => "monmq.nexus.commercehub.com"
     },
     "redis" => {
         "host" => "monredis.nexus.commercehub.com"
