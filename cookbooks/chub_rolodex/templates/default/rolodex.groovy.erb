@@ -18,12 +18,15 @@ rolodex {
         }
     }
 }
+
 oddrest {
     url = "<%= node[:slm][:odd_service][:baseUrl] %>"
 }
+
 apartment {
     url = "<%= node[:slm][:apartment][:baseUrl] %>"
 }
+
 sso {
     vault_url = "<%= node[:slm][:sso][:vault] %>"
     census_url = "<%= node[:slm][:sso][:census] %>"
@@ -41,4 +44,11 @@ metrics {
     graphiteHost = "<%= node[:slm][:graphite][:host] %>"
     graphitePort = <%= node[:slm][:graphite][:port] %>
     environment = "<%= node.chef_environment %>"
+}
+
+grails {
+    mail {
+        host = "<%= node[:chub_rolodex][:mail_server] %>"
+        grails.mail.default.from = "customersupport@commercehub.com"
+    }
 }

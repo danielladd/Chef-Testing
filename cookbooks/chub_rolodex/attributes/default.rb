@@ -1,5 +1,6 @@
 default[:chub_rolodex][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar"
 default[:chub_rolodex][:java_heap_size] = "512M"
+default[:chub_rolodex][:mail_server]
 
 default[:slm][:odd_service][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com"
 default[:slm][:apartment][:baseUrl] = "http://odddev1-apartment.nexus.commercehub.com"
