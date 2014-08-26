@@ -3,7 +3,7 @@ description "role for pipeline team machines"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
-          "host" => "monmq01.nexus.commercehub.com"
+          "host" => "monmq.nexus.commercehub.com"
       }
   },
   "chub_pipeline" => {
