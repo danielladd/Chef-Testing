@@ -51,7 +51,7 @@ end
         mode:   0770
     },{
         dir:    "/var/log/oddrest",
-        mode:   0770
+        mode:   0775
     }
 ].each do |data|
     directory data[:dir] do
