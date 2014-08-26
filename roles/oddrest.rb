@@ -8,11 +8,11 @@ run_list *%w[
 default_attributes(
 	"sensu" => {
 		"rabbitmq" => {
-			"host" => "monmq01.nexus.commercehub.com"
+			"host" => "monmq.nexus.commercehub.com"
 		}
 	},
 	"chub_log" => {
-		"endpoint" => "10.10.99.16",
+		"endpoint" => "10.10.80.111",
 		"logfiles" => {
 			"oddrest" => {
 				"path" => "/var/log/oddrest/oddrest.log",
