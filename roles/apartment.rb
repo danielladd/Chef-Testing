@@ -12,7 +12,7 @@ default_attributes(
 		}
 	},
 	"chub_log" => {
-		"endpoint" => "10.10.80.111",
+		"endpoint" => "lsdev.nexus.commercehub.com",
 		"logfiles" => {
 			"apartment" => {
 				"path" => "/var/log/apartment/apartment.log",

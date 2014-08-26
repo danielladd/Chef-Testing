@@ -8,6 +8,8 @@ run_list *%w[
     role[chef_logs]
     role[rundeck_logs]
     role[sensu_mq_logs]
+	role[apartment_log]
+	role[oddrest_log]
 ]
 
 default_attributes(
