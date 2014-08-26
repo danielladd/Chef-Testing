@@ -12,7 +12,7 @@ cluster_disk_nodes = Array.new
 if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   # Define the nodes in the cluster_disk_nodes attribute in your vagrant
 else
-  nodes = search(:node, "role:sensu_mq")
+  nodes = search(:node, "role:sensu_mq").sort
   nodes.each  do |node|
       cluster_disk_nodes << "rabbit@#{node[:hostname]}"
   end
@@ -23,8 +23,9 @@ node.default.rabbitmq.cluster_disk_nodes = cluster_disk_nodes
 include_recipe 'sensu::rabbitmq'
 
 rabbitmq_policy "ha-all" do
-  pattern "^.*"
-  params ({ "ha-mode" => "all" })
+  vhost node.sensu.rabbitmq.vhost
+  pattern ".*"
+  params ({ "ha-mode" => "all", "ha-sync-mode" => "automatic" })
   priority 1
   action :set
 end

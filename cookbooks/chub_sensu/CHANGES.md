@@ -1,3 +1,7 @@
+# 0.1.15
+
+Larry - Fix chef searching to sort results before writing to config
+
 # 0.1.13
 
 Larry - Fix broken quorum count
@@ -24,7 +28,7 @@ Waldo - Grabbing the rabbitmqadmin script and making it available.
 
 # 0.1.5
 
-Larry - Update mailer.json to set admin_gui url. 
+Larry - Update mailer.json to set admin_gui url.
 
 # 0.1.4
 
@@ -44,4 +48,4 @@ Larry - Update mailer.json to set admin_gui url.
 
 # 0.1.0
 
-* Initial version 
+* Initial version
