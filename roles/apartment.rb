@@ -8,18 +8,18 @@ run_list *%w[
 default_attributes(
 	"sensu" => {
 		"rabbitmq" => {
-			"host" => "monmq01.nexus.commercehub.com"
+			"host" => "monmq.nexus.commercehub.com"
 		}
 	},
 	"chub_log" => {
-		"endpoint" => "10.10.99.16",
+		"endpoint" => "10.10.80.111",
 		"logfiles" => {
 			"apartment" => {
 				"path" => "/var/log/apartment/apartment.log",
 				"type" => "apartment"
 			},
 			"apartment_wrapper" => {
-				"path" => "/var/log/apartment/wrapper.log",
+				"path" => "/opt/apartment/logs/wrapper.log",
 				"type" => "apartment_wrapper"
 			},
 			"apartment_requests" => {

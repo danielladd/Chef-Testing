@@ -5,11 +5,11 @@ default_attributes(
 		"types" => {
 			"rolodex" => {
 				"name" => "rolodex",
-				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"message\", \"%{LOGLEVEL:loglevel}\\s*\\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\\] (?<classname>%{JAVACLASS}|[^\\s]+): %{GREEDYDATA:message}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY-MM-dd HH:mm:ss,SSS\" ]\n    locale => \"en\"\n}"
+				"body" => "multiline {\n	pattern => \"^%{LOGLEVEL:loglevel}\\s\"\n	what => \"previous\"\n	negate => true\n}\ngrok {\n	match => [ \"message\", \"(?m)%{LOGLEVEL:loglevel}\\s*\\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\\] (?<classname>%{JAVACLASS}|[^\\s]+): %{GREEDYDATA:content}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY-MM-dd HH:mm:ss,SSS\" ]\n    target => [\"@timestamp\"]\n}"
 			},
 			"rolodex_requests" => {
 				"name" => "rolodex_requests",
-				"body" => "multiline {\n	pattern => \"^[^|]* | \\s\"\n	what => \"previous\"\n}\ngrok {\n	match => [ \"message\", \"%{IPORHOST:clientip} (?:%{USER:ident}|-) (?:%{USER:ident}|-) \\[%{HTTPDATE:timestamp}\\] \\\"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\\\" %{NUMBER:response} (?:%{NUMBER}|-) (?:%{NUMBER}|-) (?:%{NUMBER:bytes}|-)\" ]\n}\ndate {\n	match => [ \"logdate\", \"dd/MMM/YYYY:HH:mm:ss Z\"]\n    locale => \"en\"\n}"
+				"body" => "grok {\n	match => [ \"message\", \"%{IPORHOST:clientip} (?:%{USER:ident}|-) (?:%{USER:ident}|-) \\[%{HTTPDATE:logdate}\\] \\\"(?:%{WORD:verb} %{NOTSPACE:request}(?: HTTP/%{NUMBER:httpversion})?|%{DATA:rawrequest})\\\" %{NUMBER:response} (?:%{NUMBER}|-) (?:%{NUMBER}|-) (?:%{NUMBER:bytes}|-)\" ]\n}\ndate {\n	match => [ \"logdate\", \"dd/MMM/YYYY:HH:mm:ss Z\"]\n    target => [\"@timestamp\"]\n}"
 			},
 			"rolodex_syslog" => {
 				"name" => "rolodex_syslog",
