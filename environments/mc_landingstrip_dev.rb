@@ -16,6 +16,7 @@ default_attributes(
 			"enableReload" => "false",
 			"mcHost" => "devmissioncontrol",
 			"appHost" => "devmissioncontrol",
+			"server.port" => "9100",
 			"authService" => "devmcauth",
 			"mongoHost" => "devmcmongo01"
 		},
