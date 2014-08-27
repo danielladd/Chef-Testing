@@ -1,12 +1,11 @@
 name "mpqa1"
 description "marketplace qa environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 4.1.0"
+cookbook "chub-klerk", "= 5.0.0"
 cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
     "mongo_uri" => "mongodb://mpqa03.nexus.commercehub.com:27777,mpqa05.nexus.commercehub.com:27777/?maxPoolSize=50&maxIdleTimeMS=300000",
     "blobstore_mongo_uri" => "mongodb://mpqa03.nexus.commercehub.com:27777,mpqa05.nexus.commercehub.com:27777/?maxPoolSize=50&maxIdleTimeMS=300000",
-    "quartz_database_url" => "jdbc:jtds:sqlserver://sqlvm81/mpqa1_klerk_quartz;user=devusr01;password=usrdev",
     "hazelcast_group_name" => "mpqa1_klerk",
     "hazelcast_group_password" => "mpqa1_klerk",
     "antivirus_hosts" => [ "qa-scanengine.commercehub.com" ],
