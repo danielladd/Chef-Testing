@@ -1,7 +1,7 @@
 name "mpprod1"
 description "marketplace production environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 4.0.0"
+cookbook "chub-klerk", "= 4.1.0"
 cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
     "mongo_uri" => "mongodb://mdb01:27017,mdb02:27017,mdb03:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
@@ -17,7 +17,9 @@ default_attributes "chub-klerk" => {
 	  "dead_product_data_application_metadata_update_job_finished_event_endpoint" => "jms:queue:KlerkProductDataApplicationMetadataUpdateJobFinishedEventDLQ",
 	  "jms_provider_url" => "jnp://mq01.commercehub.com:1099",  
     "sprite_conductor_url" => "http://sprite.buyspace.com/sprite-conductor",
-    "sprite_output_container_prefix" => "mpprod1-"
+    "sprite_output_container_prefix" => "mpprod1-",
+    "sprite_notification_id" => "klerk",
+    "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue"
 },
 "chub-buyspace" => {
   "grails_env" => "prod",
