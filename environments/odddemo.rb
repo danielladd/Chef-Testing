@@ -1,5 +1,5 @@
-name "odddev1"
-description 'For the SLM Dev1 Nodes'
+name "odddemo"
+description 'For the SLM Demo Nodes'
 cookbook_versions({
   "chub_apartment"=>"= 0.1.0",
   "chub_oddrest"=>"= 0.1.0",
