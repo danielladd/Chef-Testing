@@ -10,7 +10,7 @@
 handlerList = ["email"]
 
 ## PagerDuty Handler
-if node[:chub_oddrest].attribute?(:pagerduty) and node[:chub_oddrest][:pagerduty].attribute?(:api_key)
+if node[:oddrest].attribute?(:pagerduty) and node[:oddrest][:pagerduty].attribute?(:api_key)
     remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
         source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
         mode 0755
@@ -19,7 +19,7 @@ if node[:chub_oddrest].attribute?(:pagerduty) and node[:chub_oddrest][:pagerduty
     template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
         source "pagerduty.json.erb"
         mode 0644
-        variables(:api_key => node[:chub_oddrest][:pagerduty][:api_key])
+        variables(:api_key => node[:oddrest][:pagerduty][:api_key])
     end
 
     sensu_handler "pagerduty_oddrest" do
