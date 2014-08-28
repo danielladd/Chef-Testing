@@ -3,7 +3,7 @@ description "role for Mission Control team machines"
 default_attributes(
   "sensu" => {
       "rabbitmq" => {
-          "host" => "sensu01.nexus.commercehub.com"
+          "host" => "monmq.nexus.commercehub.com"
       }
   }
 )

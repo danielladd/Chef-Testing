@@ -6,6 +6,7 @@ run_list *%w[
 	recipe[chub_apartment::sensu_server]
 	recipe[chub_oddrest::sensu_server]
 	recipe[chub_rolodex::sensu_server]
+	recipe[chub_mc_app::sensu_server]
 ]
 
 #TODO: Should this live in databag?
@@ -26,18 +27,27 @@ default_attributes "chub_sensu" => {
     }
 },
 "apartment" => {
+	"pagerduty" => {
+		"api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+    },
 	"graphite" => {
 		"host" => "stats02.nexus.commercehub.com",
 		"port" => 2003
 	}
 },
 "oddrest" => {
+	"pagerduty" => {
+		"api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+    },
 	"graphite" => {
 		"host" => "stats02.nexus.commercehub.com",
 		"port" => 2003
 	}
 },
 "rolodex" => {
+	"pagerduty" => {
+		"api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+    },
 	"graphite" => {
 		"host" => "stats02.nexus.commercehub.com",
 		"port" => 2003

@@ -5,7 +5,7 @@ default_attributes(
 		"types" => {
 			"apartment" => {
 				"name" => "apartment",
-				"body" => "multiline {\n	pattern => \"^%{LOGLEVEL:loglevel}\\s\"\n	what => \"previous\"\n	negate => true\n}\ngrok {\n	match => [ \"message\", \"(?m)%{LOGLEVEL:loglevel}\\s*\\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\\] %{JAVACLASS:classname}: %{GREEDYDATA:content}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY-MM-dd HH:mm:ss,SSS\" ]\n    target => [\"@timestamp\"]\n}"
+				"body" => "multiline {\n	pattern => \"^%{LOGLEVEL:loglevel}\\s\"\n	what => \"previous\"\n	negate => true\n}\ngrok {\n	match => [ \"message\", \"(?m)%{LOGLEVEL:loglevel}\\s*\\[(?<logdate>%{YEAR}[/-]%{MONTHNUM}[/-]%{MONTHDAY} %{TIME})\\] %{JAVACLASS:classname}: %{GREEDYDATA:content}\" ]\n}\ndate {\n	match => [ \"logdate\", \"YYYY-MM-dd HH:mm:ss,SSS\" ]\n    target => [\"@timestamp\"]\n	timezone => \"UTC\"\n}"
 			},
 			"apartment_wrapper" => {
 				"name" => "apartment_wrapper",
