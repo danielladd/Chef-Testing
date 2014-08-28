@@ -6,6 +6,7 @@ run_list *%w[
 	recipe[chub_apartment::sensu_server]
 	recipe[chub_oddrest::sensu_server]
 	recipe[chub_rolodex::sensu_server]
+	recipe[chub_mc_app::sensu_server]
 ]
 
 #TODO: Should this live in databag?
