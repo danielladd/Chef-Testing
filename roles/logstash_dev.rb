@@ -1,6 +1,18 @@
 name "logstash_dev"
 description "a logstash server running in dev"
-run_list "recipe[java]", "recipe[chub_logstash]", "recipe[chub_logstash::server]", "role[albers]", "role[chef_logs]", "role[rundeck_logs]"
+run_list *%w[
+    recipe[java]
+    recipe[chub_logstash]
+    recipe[chub_logstash::server]
+    role[albers]
+    role[chef_logs]
+    role[rundeck_logs]
+    role[sensu_mq_logs]
+	role[apartment_log]
+	role[oddrest_log]
+	role[rolodex_log]
+]
+
 default_attributes(
   "java" => {
     "install_flavor" => "oracle",
@@ -16,4 +28,3 @@ default_attributes(
   "chub_logstash" => {
     "logstash_tar" => "logstash-1.4.1.tar.gz"
   })
-

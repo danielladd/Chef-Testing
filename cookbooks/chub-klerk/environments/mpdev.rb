@@ -17,7 +17,15 @@ default_attributes(
         "sprite_output_container_prefix" => "mpdev-",
         "sprite_notification_id" => "klerk",
         "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue",
-        "java_heap_size" => "256m"
+        "java_heap_size" => "256m",
+        "logstash_appender" => {
+            "host" => "mplogs01.nexus.commercehub.com",
+            "key" => "logstash",
+            "layout" => {
+                "host" => "vagrant",
+                "userFields" => "app:klerk,env:vagrant"
+            }
+        }
     }
 )
 

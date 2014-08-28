@@ -17,7 +17,7 @@ default_attributes(
     "types" => {
       "bamboo_log" => {
         "name" => "bamboo_log",
-        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"raw_log\", \"%{TIMESTAMP_ISO8601:timestamp},\\d+ %{LOGLEVEL:level} \\[(?<name>[^\\]]+)\] \\[(?<class>[^\\]]+)\\] (?<payload>(.|\\s)+)\" ]\n  }\n"
+        "body" => "  multiline {\n          pattern => \"^\\s\"\n          what => \"previous\"\n        }\n  grok {\n    match => [ \"message\", \"%{TIMESTAMP_ISO8601:timestamp},\\d+ %{LOGLEVEL:level} \\[(?<name>[^\\]]+)\] \\[(?<class>[^\\]]+)\\] (?<payload>(.|\\s)+)\" ]\n  }\n"
       }
     }
   }

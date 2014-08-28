@@ -14,6 +14,7 @@ default_attributes(
 			"enableReload" => "false",
 			"mcHost" => "devmissioncontrol",
 			"appHost" => "devmissioncontrol/flightcontrol",
+			"server.port" => "9200",
 			"authService" => "devmcauth",
 			"pgenServiceHost" => "dmcflightws01"
 		},

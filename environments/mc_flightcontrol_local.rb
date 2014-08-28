@@ -13,7 +13,9 @@ default_attributes(
 			"disableRecompile" => "false",
 			"enableReload" => "true",
 			"mcHost" => "lmchost01",
+			"mcHostPort" => "9100",
 			"appHost" => "lmcapp01",
+			"server.port" => "9200",
 			"authService" => "devmcauth",
 			"pgenServiceHost" => "localhost",
 			"isLocal" => "true"

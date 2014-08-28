@@ -7,8 +7,8 @@ server:
     appenders:
       - type: file
         threshold: ALL
-        currentLogFilename: ../logs/requests.log
-        archivedLogFilenamePattern: ../logs/requests-%d.log.gz
+        currentLogFilename: /var/log/apartment/requests.log
+        archivedLogFilenamePattern: /var/log/apartment/requests-%d.log.gz
         archivedFileCount: 5
 
 metrics:
@@ -28,14 +28,14 @@ logging:
     # Rolled over daily and retained for 5 days.
     - type: file
       threshold: INFO
-      currentLogFilename: ../logs/apartment.log
-      archivedLogFilenamePattern: ../logs/apartment-%d.log.gz
+      currentLogFilename: /var/log/apartment/apartment.log
+      archivedLogFilenamePattern: /var/log/apartment/apartment-%d.log.gz
       archivedFileCount: 5
 
     # Log debug messages, info, warnings and errors to our apps' debug log.
     # Rolled over hourly and retained for 6 hours
     - type: file
       threshold: DEBUG
-      currentLogFilename: ../logs/debug.log
-      archivedLogFilenamePattern: ../logs/debug-%d{yyyy-MM-dd-hh}.log.gz
+      currentLogFilename: /var/log/apartment/debug.log
+      archivedLogFilenamePattern: /var/log/apartment/debug-%d{yyyy-MM-dd-hh}.log.gz
       archivedFileCount: 6

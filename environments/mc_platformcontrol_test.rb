@@ -14,7 +14,9 @@ default_attributes(
 			"enableReload" => "false",
 			"mcHost" => "testmissioncontrol",
 			"appHost" => "testmissioncontrol/platformcontrol",
-			"authService" => "devmcauth"
+			"server.port" => "9300",
+			"authService" => "devmcauth",
+			"wsHost" => "http://tmcplatformws01:8080"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/platformcontrol/%5BRELEASE%5D/platformcontrol-%5BRELEASE%5D.jar"
 	},
