@@ -6,6 +6,7 @@ http:
   port: 8080
   adminPort: 8081
   requestLog:
+    timeZone: UTC
     console:
       enabled: false
     file:
@@ -13,7 +14,7 @@ http:
       threshold: Level.ALL
       currentLogFilename: /var/log/rolodex/requests.log
       archive: true
-      archivedLogFilenamePattern: /var/log/rolodex/requests-%d.log.gz
+      archivedLogFilenamePattern: /var/log/rolodex/requests-%d{yyyy-MM-dd-hh}.log.gz
       archivedFileCount: 5
 logging:
   rootLevel: INFO
@@ -23,5 +24,5 @@ logging:
     enabled: true
     currentLogFilename: /var/log/rolodex/rolodex.log
     archive: true
-    archivedLogFilenamePattern: /var/log/rolodex/rolodex-%d.log.gz
+    archivedLogFilenamePattern: /var/log/rolodex/rolodex-%d{yyyy-MM-dd-hh}.log.gz
     archivedFileCount: 5
