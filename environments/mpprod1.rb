@@ -1,12 +1,11 @@
 name "mpprod1"
 description "marketplace production environment 1"
 cookbook "base", "= 0.1.16"
-cookbook "chub-klerk", "= 4.1.0"
+cookbook "chub-klerk", "= 5.1.0"
 cookbook "chub-buyspace", "= 0.10.1"
 default_attributes "chub-klerk" => {
     "mongo_uri" => "mongodb://mdb01:27017,mdb02:27017,mdb03:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
     "blobstore_mongo_uri" => "mongodb://mdb01:27017,mdb02:27017,mdb03:27017/?maxPoolSize=50&maxIdleTimeMS=300000",
-    "quartz_database_url" => "jdbc:jtds:sqlserver://sqlps/Klerk_Quartz;user=Klerk_Admin;password=KAdminuser01!",
     "hazelcast_group_name" => "mpprod1_klerk",
     "hazelcast_group_password" => "dbYsD3PVD9HEpGbQ",
     "antivirus_hosts" => [ "vscan.commercehub.com" ],
