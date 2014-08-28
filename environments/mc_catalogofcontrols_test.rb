@@ -14,6 +14,7 @@ default_attributes(
 			"enableReload" => "false",
 			"mcHost" => "testmissioncontrol",
 			"appHost" => "testmissioncontrol/catalogofcontrols",
+			"server.port" => "9400",
 			"authService" => "devmcauth"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/catalogofcontrols/%5BRELEASE%5D/catalogofcontrols-%5BRELEASE%5D.jar"

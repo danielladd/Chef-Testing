@@ -13,7 +13,9 @@ default_attributes(
 			"disableRecompile" => "false",
 			"enableReload" => "false",
 			"mcHost" => "lmchost01",
+			"mcHostPort" => "9100",
 			"appHost" => "lmchost01",
+			"server.port" => "9100",
 			"authService" => "devmcauth",
 			"mongoHost" => "localmcmongo01",
 			"isLocal" => "true"

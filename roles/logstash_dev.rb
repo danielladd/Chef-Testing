@@ -10,6 +10,7 @@ run_list *%w[
     role[sensu_mq_logs]
 	role[apartment_log]
 	role[oddrest_log]
+	role[rolodex_log]
 ]
 
 default_attributes(

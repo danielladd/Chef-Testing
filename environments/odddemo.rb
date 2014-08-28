@@ -1,24 +1,21 @@
-name "odddev1"
-description 'For the SLM Dev1 Nodes'
+name "odddemo"
+description 'For the SLM Demo Nodes'
 cookbook_versions({
   "chub_apartment"=>"= 0.1.0",
   "chub_oddrest"=>"= 0.1.0",
   "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0",
-  "chub_log"=>"= 0.1.4",
-  "chub_nxlog"=>"= 0.1.11",
-  "chub_logsearch_shipper"=>"= 0.1.2"
+  "chub_tattler"=>"= 0.3.0"
 })
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://odddev1-rest.nexus.commercehub.com"
+      :baseUrl => "http://demo-odd.nexus.commercehub.com"
     },
     :apartment => {
-      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080"
+      :baseUrl => "http://demo-apartment.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "https://odddev1-rolodex.nexus.commercehub.com"
+      :baseUrl => "https://demo-rolodex.nexus.commercehub.com"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
@@ -29,7 +26,7 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "odddev1_orderstream"
+            :name => "demo_orderstream"
         }
     },
     :graphite => {
@@ -39,47 +36,38 @@ default_attributes(
   },
   :chub_tattler => {
     :db => {
-      :server => "SQLVM03",
+      :server => "sqlisdemo",
       :name => "tattlerdev1_tat",
-      :userName => "devusr01",
-      :pass => "usrdev"
+      :userName => "isdemo",
+      :pass => "isrocksondemo"
     }
   },
   :chub_oddrest => {
-	:pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
-      :server => "SQLVM03",
-      :name => "odddev1_odd",
-      :userName => "devusr01",
-      :pass => "usrdev"
+      :server => "sqlisdemo",
+      :name => "HubODS",
+      :userName => "isdemo",
+      :pass => "isrocksondemo"
     },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
   },
   :chub_apartment => {
-    :pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
-      :server => "SQLVM03",
+      :server => "sqlisdemo",
       :port => "1433",
-      :name => "odddev1_chub",
-      :userName => "devusr01",
-      :pass => "usrdev"
+      :name => "chub",
+      :userName => "isdemo",
+      :pass => "isrocksondemo"
     }
   },
   :chub_rolodex => {
-    :pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar",
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "https://odd-yui-combo.nexus.commercehub.com"
+      :url => "//demo-yui.nexus.commercehub.com"
     }
   }
 )

@@ -17,7 +17,7 @@ default_attributes(
 			},
 			"apartment_syslog" => {
 				"name" => "apartment_syslog",
-				"body" => "grok {\n	match => [ \"message\", \"%{SYSLOGLINE}\" ]\n}"
+				"body" => "grok {\n	match => [ \"message\", \"%{SYSLOGTIMESTAMP:syslog_timestamp} %{SYSLOGHOST:syslog_hostname} %{DATA:program}(?:\\[%{POSINT:pid}\\])?: %{GREEDYDATA:content}\" ]\n}\nsyslog_pri { }\ndate {\n	match => [ \"syslog_timestamp\", \"MMM  d HH:mm:ss\", \"MMM dd HH:mm:ss\" ]\n	timezone => \"America/New_York\"\n}"
 			}
 		}
 	}
