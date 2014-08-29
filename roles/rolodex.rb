@@ -15,11 +15,11 @@ default_attributes(
 		"endpoint" => "lsdev.nexus.commercehub.com",
 		"logfiles" => {
 			"rolodex" => {
-				"path" => "/var/log/rolodex/rolodex.log",
+				"path" => "/var/log/upstart/rolodex_file.log",
 				"type" => "rolodex"
 			},
 			"rolodex_requests" => {
-				"path" => "/var/log/rolodex/requests.log",
+				"path" => "/var/log/upstart/rolodex_requests.log",
 				"type" => "rolodex_requests"
 			},
 			"rolodex_syslog" => {

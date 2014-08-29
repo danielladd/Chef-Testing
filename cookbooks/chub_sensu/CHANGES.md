@@ -1,3 +1,7 @@
+# 0.1.18
+
+Larry - Allow cookbook to use FQDN over ip address
+
 # 0.1.15
 
 Larry - Fix chef searching to sort results before writing to config

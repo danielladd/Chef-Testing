@@ -43,9 +43,6 @@ default_attributes(
     }
   },
   :chub_oddrest => {
-	:pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
@@ -56,9 +53,6 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
   },
   :chub_apartment => {
-    :pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
@@ -69,9 +63,6 @@ default_attributes(
     }
   },
   :chub_rolodex => {
-    :pagerduty => {
-      :api_key => "726a0e6e51c045faaf74c5ab8b3e2628"
-    },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar",
     :yui => {
       :filter => "min",

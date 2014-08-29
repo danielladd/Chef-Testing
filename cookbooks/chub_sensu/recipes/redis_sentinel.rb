@@ -15,7 +15,7 @@ if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   quorum_count = node.sensu.redis.quorum_count
 else
   masters = search(:node, "role:sensu_redis_master").first
-  master_node = { :address => masters.ipaddress, :port => masters.redisio.servers[0].port }
+  master_node = { :address => masters.fqdn, :port => masters.redisio.servers[0].port }
 
   quorum_count = search(:node, "role:sensu_redis_sentinel").count
 end
@@ -30,8 +30,8 @@ node.default[:redisio][:sentinels] = [
         "master_ip" => "#{master_node[:address]}",
         "master_port" => "#{master_node[:port]}",
         "quorum_count" => "#{quorum_count}",
-        "failover-timeout" => "5000",
-        "down-after-milliseconds" => "60000"
+        "failover-timeout" => "2000",
+        "down-after-milliseconds" => "1400"
     }
 ]
 

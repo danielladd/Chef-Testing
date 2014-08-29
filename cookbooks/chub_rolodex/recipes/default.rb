@@ -50,7 +50,7 @@ end
         dir:    "/var/rolodex",
         mode:   0770
     },{
-        dir:    "/var/log/rolodex",
+        dir:    "/var/log/upstart",
         mode:   0775
     }
 ].each do |data|
