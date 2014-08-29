@@ -7,5 +7,13 @@ default_attributes(
       "url" => "http://artifactory01.nexus.commercehub.com/artifactory/java-distributions/jdk/7u51-b13/jdk-7u51-windows-x64.exe",
       "home" => 'C:\Program Files\Java\jdk1.7.0_51'
     }
+  },
+  chub_log => {
+    logfiles => {
+      "steward" => {
+         path=>"c:\null.txt",
+         type => "noop"
+      }
+    }
   }
 )
