@@ -18,7 +18,24 @@ default_attributes "chub-klerk" => {
     "sprite_conductor_url" => "http://sprite.buyspace.com/sprite-conductor",
     "sprite_output_container_prefix" => "mpprod1-",
     "sprite_notification_id" => "klerk",
-    "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue"
+    "sprite_manifest_update_notification_endpoint" => "jms:queue:KlerkSPRITEManifestUpdateNotificationQueue",
+    "logstash_appender" => {
+        "host" => "mplogs02.nexus.commercehub.com",
+        "key" => "logstash",
+        "threshold" => "INFO",
+        "pool" => {
+            "maxTotal" => "10",
+            "maxIdle" => "5",
+            "minIdle" => "1",
+            "testOnBorrow" => "true",
+            "testOnReturn" => "true",
+            "testWhileIdle" => "true",
+            "blockWhenExhausted" => "false"
+        },
+        "layout" => {
+            "userFields" => "app:klerk,env:mpprod1"
+        }
+    }
 },
 "chub-buyspace" => {
   "grails_env" => "prod",
