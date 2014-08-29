@@ -8,11 +8,11 @@ default_attributes(
       "home" => 'C:\Program Files\Java\jdk1.7.0_51'
     }
   },
-  chub_log => {
-    logfiles => {
+  "chub_log" => {
+    "logfiles" => {
       "steward" => {
-         path=>"c:\null.txt",
-         type => "noop"
+         "path"=>"c:\null.txt",
+         "type" => "noop"
       }
     }
   }
