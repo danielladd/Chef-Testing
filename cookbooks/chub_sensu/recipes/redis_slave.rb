@@ -14,7 +14,7 @@ if Chef::Config[:solo] or node[:chub_sensu][:test_run] == true
   master_node = { :address => node.sensu.redis.master.address, :port => node.sensu.redis.master.port }
 else
   anode = search(:node, "role:sensu_redis_master").first
-  master_node = { :address => anode.ipaddress, :port => anode.redisio.servers[0].port }
+  master_node = { :address => anode.fqdn, :port => anode.redisio.servers[0].port }
 end
 
 log "Master Address -> #{master_node[:address]} Port -> #{master_node[:port]} " do
