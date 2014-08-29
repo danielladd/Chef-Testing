@@ -2,7 +2,7 @@ name "jenkins"
 description "Basic Jenkins Server"
 default_attributes(
   "chub_log" => {
-    "endpoint" => "lsVCenter2.nexus.commercehub.com",
+    "endpoint" => "lsdev.nexus.commercehub.com",
     "endpoint_port" => "2352",
     "logfiles" => {
       "jenkins_log" => {
