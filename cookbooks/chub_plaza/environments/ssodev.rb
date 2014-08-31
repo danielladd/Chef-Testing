@@ -9,11 +9,12 @@ default_attributes(
     :host => "stats02.nexus.commercehub.com"
   },
   :chub_plaza => {
-    :app_context => "/secure/portal",
-    :app_root_url => "http://plaza.vagrant.dev:8080/secure/portal",
-    :cas_server_url => "https://ssodev1-castle.nexus.commercehub.com",
-    :cas_service_url => "http://plaza.vagrant.dev:8080/secure/portal/shiro-cas",
-    :cas_failure_url => "http://plaza.vagrant.dev:8080/secure/portal",
+    :app_url => "file:///vagrant/plaza.jar",
+    :app_context => "/user",
+    :app_root_url => "http://plaza.vagrant.dev:8080/user",
+    :cas_server_url => "https://ssodev1-apps.nexus.commercehub.com/account",
+    :cas_service_url => "http://plaza.vagrant.dev:8080/user/shiro-cas",
+    :cas_failure_url => "http://plaza.vagrant.dev:8080/user",
     :greenmail => {
       :disabled => false
     },

@@ -90,17 +90,17 @@ attribute "chub_plaza/mail/override_address",
 
 attribute "chub_plaza/applicationURLs/buyspace",
     :display_name => "Buyspace URL",
-    :description => "The URL for the buyspace applicaiton",
+    :description => "The URL for the buyspace application",
     :required => "optional"
 
 attribute "chub_plaza/applicationURLs/productstream",
     :display_name => "Productstream URL",
-    :description => "The URL for the productstream applicaiton",
+    :description => "The URL for the productstream application",
     :required => "optional"
 
 attribute "chub_plaza/applicationURLs/orderstream",
     :display_name => "Orderstream URL",
-    :description => "The URL for the orderstream applicaiton",
+    :description => "The URL for the orderstream application",
     :required => "optional"    
 
 attribute "chub_plaza/hazelcast/group", :required => "optional"
