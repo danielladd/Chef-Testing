@@ -14,6 +14,7 @@ run_list *%w[
     role[jenkins_logs]
     role[bamboo01_logs]
     role[bambooM1_logs]
+    role[artifactory_logs]
 ]
 
 default_attributes(
