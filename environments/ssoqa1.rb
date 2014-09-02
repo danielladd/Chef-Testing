@@ -94,6 +94,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoqa1.current+=true",
     :plaza_url => "https://ssoqa1-apps.nexus.commercehub.com/user",
     :vault_url => "https://ssoqa1-vault.nexus.commercehub.com:8443",
+    :profileUpdateNotificationUrls => ["https://ssoqa1-vault.nexus.commercehub.com:8443/person/receiveUpdate"],
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoqa1-census",
       :user => "devusr01",

@@ -97,6 +97,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoprod1.current+=true",
     :plaza_url => "https://apps.commercehub.com/user",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
+    :profileUpdateNotificationUrls => ["https://ssoprod1-vault.nexus.commercehub.com:8443/person/receiveUpdate"],
     :database => {
       :url => "jdbc:sqlserver://sqlsso.commercehub.com;databaseName=sso-census",
       :user => "sso_user",
