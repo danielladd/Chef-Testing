@@ -4,6 +4,14 @@
 
 plazaUrl: <%= node[:chub_census][:plaza_url] %>
 vaultUrl: <%= node[:chub_census][:vault_url] %>
+profileUpdateNotificationUrls: <%= node[:chub_census][:profileUpdateNotificationUrls] %>
+
+authentication:
+  activeDirectory:
+    domain: <%= node[:chub_census][:authentication][:activedirectory][:domain] %>
+    domainController: <%= node[:chub_census][:authentication][:activedirectory][:domain_controller] %>
+    requiredGroups: <%= node[:chub_census][:authentication][:activedirectory][:required_groups] %>
+  cachePolicy: <%= node[:chub_census][:authentication][:cache_policy] %>
 
 <% if node[:graphite] -%>
 metrics:
@@ -42,3 +50,4 @@ logging:
     - type: file
       currentLogFilename: /var/log/census/census.log
       archivedLogFilenamePattern: /var/log/census/census-%d.log.gz
+      logFormat: "%-5p [%d{ISO8601}] [%X{username:-unknown}|%X{cti-correlation-id:-N/A}] %c: %m%n%rEx"

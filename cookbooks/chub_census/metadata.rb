@@ -4,7 +4,7 @@ maintainer_email 'ktitus@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_census'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.9'
+version          '0.2.0'
 
 supports "ubuntu"
 depends "chub_java"
@@ -25,6 +25,11 @@ attribute "chub_census/database/url", :required => "required"
 attribute "chub_census/database/user", :required => "required"
 attribute "chub_census/database/password", :required => "required"
 
+attribute "chub_census/authentication/activedirectory/domain", :required => "optional"
+attribute "chub_census/authentication/activedirectory/domain_controller", :required => "optional"
+attribute "chub_census/authentication/activedirectory/required_groups", :required => "optional"
+attribute "chub_census/authentication/cache_policy", :required => "optional"
+
 attribute "graphite/host", :required => "recommended"
 attribute "graphite/port", :required => "optional"
 
@@ -37,3 +42,6 @@ attribute "vault/url",
     :display_name => "Vault application URL",
     :description => "URL endpoint of the Vault application",
     :required => "required"    
+
+attribute "profileUpdateNotificationUrls", :required => "optional", :default => []
+	

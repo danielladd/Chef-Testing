@@ -1,4 +1,4 @@
-default[:chub_castle][:app_url] = "http://mpbamboo.nexus.commercehub.com/browse/SSO-CAS/latestSuccessful/artifact/shared/castle.war/castle.war"
+default[:chub_castle][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war"
 default[:chub_castle][:java_heap_size] = "512M"
 default[:chub_castle][:keystore_file] = "keystore.jks"
 default[:chub_castle][:truststore_file] = "truststore.jks"

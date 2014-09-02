@@ -4,6 +4,13 @@
 
 archaiusConfig: /etc/vault/archaius.properties
 
+authentication:
+  activeDirectory:
+    domain: <%= node[:chub_vault][:authentication][:activedirectory][:domain] %>
+    domainController: <%= node[:chub_vault][:authentication][:activedirectory][:domain_controller] %>
+    requiredGroups: <%= node[:chub_vault][:authentication][:activedirectory][:required_groups] %>
+  cachePolicy: <%= node[:chub_vault][:authentication][:cache_policy] %>
+
 baseDn: <%= node[:chub_vault][:ldap][:base_dn] %>
 userOrgUnitDn: <%= node[:chub_vault][:ldap][:user_ou] %>,<%= node[:chub_vault][:ldap][:base_dn] %>
 testUsername: <%= node[:chub_vault][:ldap][:healthcheck][:username] %>
@@ -63,3 +70,4 @@ logging:
     - type: file
       currentLogFilename: /var/log/vault/vault.log
       archivedLogFilenamePattern: /var/log/vault/vault-%d.log.gz
+      logFormat: "%-5p [%d{ISO8601}] [%X{username:-unknown}|%X{cti-correlation-id:-N/A}] %c: %m%n%rEx"

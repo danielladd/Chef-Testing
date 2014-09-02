@@ -1,3 +1,7 @@
+# 0.2.0
+* Add profile update notification URLs
+* Add authentication support
+
 # 0.1.9
 * Remove apt dependency (base cookbook should ensure apt is appropriately updated)
 * Remove hostsfile tweaks (base cookbook should provide those when needed)

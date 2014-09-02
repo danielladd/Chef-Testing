@@ -9,6 +9,11 @@ default_attributes(
     :host => "stats02.nexus.commercehub.com"
   },
   :chub_vault => {
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["Domain Users"]
+      }
+    },
     :ldap => {
       :read => {
         :host => "ssodev1-ldap-read.nexus.commercehub.com",
