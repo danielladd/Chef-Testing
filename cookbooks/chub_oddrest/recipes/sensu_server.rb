@@ -26,6 +26,7 @@ if node[:oddrest].attribute?(:pagerduty) and node[:oddrest][:pagerduty].attribut
         type "pipe"
         command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
     end
+	handlerList << "pagerduty_oddrest"
 end
 
 
