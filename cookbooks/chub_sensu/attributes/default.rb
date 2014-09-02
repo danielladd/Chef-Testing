@@ -17,3 +17,5 @@ default[:chub_sensu][:admin_gui_url] = "http://monapp01:3000"
 default[:sensu][:redis][:quorum_count] = 1
 default[:chub_sensu][:redis][:check_redis_root] = "/opt/check_redis_master"
 default[:chub_sensu][:redis][:check_redis_file] = "redis-role.sh"
+
+default[:sensu][:rabbitmq][:heartbeat] = 120
