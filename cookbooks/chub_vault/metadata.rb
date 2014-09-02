@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures Vault'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.5.0'
+version          '0.6.0'
 
 supports "ubuntu"
 depends "chub_java"
@@ -62,6 +62,11 @@ attribute "chub_vault/ldap/write/password",
 attribute "chub_vault/ldap/healthcheck/username", :required => "optional"
 attribute "chub_vault/ldap/healthcheck/valid_password", :required => "optional"
 attribute "chub_vault/ldap/healthcheck/guid", :required => "optional"
+
+attribute "chub_vault/authentication/activedirectory/domain", :required => "optional"
+attribute "chub_vault/authentication/activedirectory/domain_controller", :required => "optional"
+attribute "chub_vault/authentication/activedirectory/required_groups", :required => "optional"
+attribute "chub_vault/authentication/cache_policy", :required => "optional"
 
 attribute "chub_vault/database/url",
     :display_name => "Database URL",

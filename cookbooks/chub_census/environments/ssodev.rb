@@ -9,12 +9,18 @@ default_attributes(
     :host => "stats02.nexus.commercehub.com"
   },
   :chub_census => {
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["Domain Users"]
+      }
+    },
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssodev-census",
       :user => "devusr01",
       :password => "usrdev",
     },
     :plaza_url => "https://ssodev1-plaza.nexus.commercehub.com",
-    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443"
+    :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
+    :profileUpdateNotificationUrls => []
   }
 )

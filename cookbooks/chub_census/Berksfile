@@ -1,4 +1,3 @@
-source 'https://api.berkshelf.com'
+# TODO: use http://berksapi.nexus.commercehub.com when it's up
+source 'http://berks01:26200'
 metadata
-
-cookbook "chub_java", git: "git@git.nexus.commercehub.com:chef/chub_java.git"

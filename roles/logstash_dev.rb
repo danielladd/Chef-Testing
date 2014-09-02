@@ -8,9 +8,12 @@ run_list *%w[
     role[chef_logs]
     role[rundeck_logs]
     role[sensu_mq_logs]
-	role[apartment_log]
-	role[oddrest_log]
-	role[rolodex_log]
+    role[apartment_log]
+    role[oddrest_log]
+    role[rolodex_log]
+    role[jenkins_logs]
+    role[bamboo01_logs]
+    role[bambooM1_logs]
 ]
 
 default_attributes(

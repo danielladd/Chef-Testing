@@ -9,13 +9,13 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://oddqa1-rest.nexus.commercehub.com"
+      :baseUrl => "http://oddqa1rest1.nexus.commercehub.com:8080"
     },
     :apartment => {
-      :baseUrl => "http://oddqa1-apartment.nexus.commercehub.com:8080"
+      :baseUrl => "http://oddqa1apartment1.nexus.commercehub.com:8080"
     },
     :rolodex => {
-      :baseUrl => "http://oddqa1-rolodex.nexus.commercehub.com"
+      :baseUrl => "http://oddqa1rolodex1.nexus.commercehub.com:8080"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
