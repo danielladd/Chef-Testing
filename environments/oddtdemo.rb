@@ -9,10 +9,14 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://demo-odd.nexus.commercehub.com"
+      :baseUrl => "http://demo-odd.nexus.commercehub.com",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :apartment => {
-      :baseUrl => "http://tdemo-apartment.nexus.commercehub.com:8080"
+      :baseUrl => "http://demo-apartment.nexus.commercehub.com:8080",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :rolodex => {
       :baseUrl => "https://tdemo-rolodex.nexus.commercehub.com"
@@ -26,7 +30,7 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "tdemo_orderstream"
+            :name => "orderstream_demo_test "
         }
     },
     :graphite => {
@@ -45,9 +49,9 @@ default_attributes(
   :chub_oddrest => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
-      :server => "sqlisdemo",
+      :server => "sqlietest01",
       :name => "HubODS",
-      :userName => "isdemo",
+      :userName => "iedemo",
       :pass => "isrocksondemo"
     },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
@@ -55,10 +59,10 @@ default_attributes(
   :chub_apartment => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
-      :server => "sqlisdemo",
+      :server => "sqlietest01",
       :port => "1433",
-      :name => "chub",
-      :userName => "isdemo",
+      :name => "tdorderstream",
+      :userName => "iedemo",
       :pass => "isrocksondemo"
     }
   },
@@ -67,7 +71,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "//demo-yui.nexus.commercehub.com"
+      :url => "//odd-yui-combo.nexus.commercehub.com"
     }
   }
 )
