@@ -18,7 +18,9 @@ default_attributes(
 			"appHost" => "devmissioncontrol",
 			"server.port" => "9100",
 			"authService" => "devmcauth",
-			"mongoHost" => "devmcmongo01"
+			"mongoHost" => "devmcmongo01",
+			"connmanHost" => "http://democonnmgr03:18080/connmgr",
+			"csdashHost" => "http://csdashtest:8080"
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/landingstrip/%5BRELEASE%5D/landingstrip-%5BRELEASE%5D.jar"
 	},

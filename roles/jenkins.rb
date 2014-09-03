@@ -2,8 +2,6 @@ name "jenkins"
 description "Basic Jenkins Server"
 default_attributes(
   "chub_log" => {
-    "endpoint" => "lsdev.nexus.commercehub.com",
-    "endpoint_port" => "2352",
     "logfiles" => {
       "jenkins_log" => {
         "path" => 'D:/ci/jenkins.err.log',
