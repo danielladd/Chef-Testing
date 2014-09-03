@@ -36,11 +36,7 @@ default_attributes(
     :graphite => {
         :host => "stats02.nexus.commercehub.com",
         :port => "2003"
-    },
-	:hazelcast => {
-		:group => "demo-rolodex",
-		:password => "password"
-	}
+    }
   },
   :chub_tattler => {
     :db => {
@@ -76,6 +72,11 @@ default_attributes(
       :filter => "min",
       :combine => true,
       :url => "//odd-yui-combo.nexus.commercehub.com"
+    },
+	:hazelcast => {
+      :password => "slmdemo-pass",
+      :multicast_group => "224.2.3.8",
+      :multicast_port => 54429
     }
   }
 )

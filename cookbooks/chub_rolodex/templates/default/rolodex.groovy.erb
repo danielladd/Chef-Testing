@@ -47,8 +47,23 @@ metrics {
 }
 
 hazelcast {
-    group = "<%= node[:slm][:hazelcast][:group] %>"
-    password = "<%= node[:slm][:hazelcast][:password] %>"
+    group = "<%= node[:chub_rolodex][:hazelcast][:group] %>"
+    password = "<%= node[:chub_rolodex][:hazelcast][:password] %>"
+    <% if node[:chub_rolodex][:hazelcast][:network_port] -%>
+    networkPort = <%= node[:chub_rolodex][:hazelcast][:network_port] %>
+    <% end -%>
+    <% if node[:chub_rolodex][:hazelcast][:multicast_group] -%>
+    multicastGroup = "<%= node[:chub_rolodex][:hazelcast][:multicast_group] %>"
+    <% end -%>
+    <% if node[:chub_rolodex][:hazelcast][:multicast_port] -%>
+    multicastPort = <%= node[:chub_rolodex][:hazelcast][:multicast_port] %>
+    <% end -%>
+    <% if node[:chub_rolodex][:hazelcast][:backup_count] -%>
+    backupCount = <%= node[:chub_rolodex][:hazelcast][:backup_count] %>
+    <% end -%>
+    <% if node[:chub_rolodex][:hazelcast][:minimum_member_count] -%>
+    minimumMemberCount = "<%= node[:chub_rolodex][:hazelcast][:minimum_member_count] %>"
+    <% end -%>
 }
 
 grails {
