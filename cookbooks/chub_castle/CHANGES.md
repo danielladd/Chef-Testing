@@ -1,3 +1,6 @@
+# 0.2.0
+* Add optional support for service authentication
+
 # 0.1.27
 * Add census url to the configs for new dependencies on the census server
 
