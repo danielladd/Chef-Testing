@@ -19,9 +19,7 @@ default_attributes(
 	  :admin_port => "8081"
     },
     :rolodex => {
-      :baseUrl => "https://demo-rolodex.nexus.commercehub.com",
-	  :port => "8080",
-	  :admin_port => "8081"
+      :baseUrl => "https://demo-rolodex.nexus.commercehub.com"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
@@ -32,7 +30,7 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "demo_orderstream"
+            :name => "orderstream_demo"
         }
     },
     :graphite => {
@@ -44,16 +42,16 @@ default_attributes(
     :db => {
       :server => "sqlisdemo",
       :name => "tattlerdev1_tat",
-      :userName => "isdemo",
+      :userName => "iedemo",
       :pass => "isrocksondemo"
     }
   },
   :chub_oddrest => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
-      :server => "sqlisdemo",
+      :server => "sqlietest01",
       :name => "HubODS",
-      :userName => "isdemo",
+      :userName => "iedemo",
       :pass => "isrocksondemo"
     },
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
@@ -61,10 +59,10 @@ default_attributes(
   :chub_apartment => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
     :db => {
-      :server => "sqlisdemo",
+      :server => "sqlietest01",
       :port => "1433",
-      :name => "chub",
-      :userName => "isdemo",
+      :name => "demoorderstream",
+      :userName => "iedemo",
       :pass => "isrocksondemo"
     }
   },
@@ -73,7 +71,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "//demo-yui.nexus.commercehub.com"
+      :url => "//odd-yui-combo.nexus.commercehub.com"
     }
   }
 )
