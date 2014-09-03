@@ -22,7 +22,7 @@ logFileArray = Array.new
 case node['platform']
 when "ubuntu"
   node.default.chub_nxlog.root_path = "/usr/lib/nxlog"
-  node.default.chub_nxlog.config_directory = "/etc/nxlog" 
+  node.default.chub_nxlog.config_directory = "/etc/nxlog"
   apt_package "libapr1" do
     action :install
   end
@@ -67,7 +67,7 @@ node[:chub_nxlog][:logfiles].each_with_index do |(logname,logfile),index|
 end
 path << " => logstash"
 
-template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do 
+template "#{node[:chub_nxlog][:config_directory]}/nxlog.conf" do
   source      node[:chub_nxlog][:template_file]
   action      :create
   variables({

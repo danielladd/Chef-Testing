@@ -77,6 +77,11 @@ end
         source: "rolodex.groovy.erb",
         group: group_name,
         mode: 0640
+    },{
+        dest: "/etc/sysctl.conf",
+        source: "sysctl.conf.erb",
+        group: group_name,
+        mode: 0640
     }
 ].each do |data|
     template data[:dest] do

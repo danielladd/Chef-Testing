@@ -9,13 +9,19 @@ cookbook_versions({
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://odddev1-rest.nexus.commercehub.com"
+      :baseUrl => "http://odddev1-rest.nexus.commercehub.com",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :apartment => {
-      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080"
+      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :rolodex => {
-      :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com"
+      :baseUrl => "http://odddev1-rolodex.nexus.commercehub.com",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",

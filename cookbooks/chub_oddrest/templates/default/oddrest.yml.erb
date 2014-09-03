@@ -5,7 +5,10 @@ defaultName: Stranger
 server:
   applicationConnectors:
     - type: http
-      port: 8080
+      port: <%= node[:slm][:odd_service][:port] %>
+  adminConnectors:
+    - type: http
+      port: <%= node[:slm][:odd_service][:admin_port] %>
   requestLog:
     appenders:
       - type: file
