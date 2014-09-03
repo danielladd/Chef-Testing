@@ -11,7 +11,7 @@ default_attributes(
   "chub_log" => {
     "logfiles" => {
       "steward" => {
-         "path"=>"c:\null.txt",
+         "path"=>"c:\\null.txt",
          "type" => "noop"
       }
     }

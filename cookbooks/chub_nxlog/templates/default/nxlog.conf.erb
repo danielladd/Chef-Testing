@@ -8,6 +8,13 @@ LogFile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.log
   Module xm_json
 </Extension>
 
+<% if node[:platform].eql?("windows") %>
+<Input eventlog>
+  Module im_msvistalog
+  Exec $chef_environment = "<%= @chef_environment %>"; $host = hostname(); $type = "windowseventlog"; to_json(); 
+</Input>
+
+<% end %>
 <% if @logfiles %>
 <% @logfiles.each do |log| %>
 <Input <%= log[:logname] %>>
@@ -29,5 +36,9 @@ LogFile <%= node[:chub_nxlog][:root_path] %>/data/nxlog.log
 </Output>
 
 <Route 1>
+<% if node[:platform].eql?("windows") %>
+    Path	eventlog, <%= @route_path %>
+<% else %>
     Path        <%= @route_path %>
+<% end %>
 </Route>
