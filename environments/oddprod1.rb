@@ -38,7 +38,11 @@ default_attributes(
     :graphite => {
         :host => "stats02.nexus.commercehub.com",
         :port => "2003"
-    }
+    },
+	:hazelcast => {
+		:group => "prod-rolodex",
+		:password => "password"
+	}
   },
   :chub_tattler => {
     :db => {

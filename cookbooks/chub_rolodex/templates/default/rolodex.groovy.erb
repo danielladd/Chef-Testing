@@ -46,6 +46,11 @@ metrics {
     environment = "<%= node.chef_environment %>"
 }
 
+hazelcast {
+    group = "<%= node[:slm][:hazelcast][:group] %>"
+    password = "<%= node[:slm][:hazelcast][:password] %>"
+}
+
 grails {
     mail {
         host = "<%= node[:chub_rolodex][:mail_server] %>"
