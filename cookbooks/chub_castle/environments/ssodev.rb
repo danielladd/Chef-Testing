@@ -10,6 +10,8 @@ default_attributes(
   },
   :chub_castle => {
     :app_context => "/secure/auth",
+    #:service_username => "bad",
+    #:service_password => "bad",
     :domain => "ssodev1-castle.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-plaza.nexus.commercehub.com/shiro-cas",
     :forgot_password_url => "https://ssodev1-plaza.nexus.commercehub.com/forgotPassword",

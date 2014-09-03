@@ -3,6 +3,12 @@ castle.domain=<%= node[:chub_castle][:domain] %>
 <% if node[:chub_castle][:app_context] %>
 application.context=<%= node[:chub_castle][:app_context] %>
 <% end %>
+<% if node[:chub_castle][:service_username] %>
+service.username=<%= node[:chub_castle][:service_username] %>
+<% end %>
+<% if node[:chub_castle][:service_password] %>
+service.password=<%= node[:chub_castle][:service_password] %>
+<% end %>
 defaultService.url=<%= node[:chub_castle][:default_service_url] %>
 forgotPassword.url=<%= node[:chub_castle][:forgot_password_url] %>
 census.url=<%= node[:chub_castle][:census_url] %>

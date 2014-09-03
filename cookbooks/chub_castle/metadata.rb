@@ -4,7 +4,7 @@ maintainer_email 'dcarr@commercehub.com'
 license          'All rights reserved'
 description      'Installs/Configures chub_castle'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.27'
+version          '0.2.0'
 
 supports "ubuntu"
 depends "chub_java"
@@ -19,6 +19,9 @@ attribute "chub_castle/app_context",
     :display_name => "Application context",
     :description => "The path under which the application will be deployed (used in URLs)",
     :required => "optional"
+
+attribute "chub_castle/service_username", :required => "optional"
+attribute "chub_castle/service_password", :required => "optional"
 
 attribute "chub_castle/java_heap_size",
     :display_name => "Castle Java heap size",
