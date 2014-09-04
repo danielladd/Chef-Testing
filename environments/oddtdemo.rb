@@ -72,6 +72,11 @@ default_attributes(
       :filter => "min",
       :combine => true,
       :url => "//odd-yui-combo.nexus.commercehub.com"
+    },
+	:hazelcast => {
+      :password => "slmdemo-pass",
+      :multicast_group => "224.2.3.8",
+      :multicast_port => 54429
     }
   }
 )

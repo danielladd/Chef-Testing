@@ -38,7 +38,11 @@ default_attributes(
     :graphite => {
         :host => "stats02.nexus.commercehub.com",
         :port => "2003"
-    }
+    },
+	:hazelcast => {
+		:group => "qa2-rolodex",
+		:password => "password"
+	}
   },
   :chub_tattler => {
     :db => {
@@ -74,6 +78,11 @@ default_attributes(
       :filter => "min",
       :combine => true,
       :url => "http://yuicombo1.nexus.commercehub.com:3000"
+    },
+	:hazelcast => {
+      :password => "slmqa2-pass",
+      :multicast_group => "224.2.3.7",
+      :multicast_port => 54431
     }
   }
 )

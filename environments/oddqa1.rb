@@ -74,6 +74,11 @@ default_attributes(
       :filter => "min",
       :combine => true,
       :url => "http://yuicombo1.nexus.commercehub.com:3000"
+    },
+	:hazelcast => {
+      :password => "slmqa1-pass",
+      :multicast_group => "224.2.3.5",
+      :multicast_port => 54429
     }
   }
 )
