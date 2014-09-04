@@ -1,9 +1,9 @@
 default[:chub_boncode][:installer] = "BonCode-Installer"
 default[:chub_boncode][:site_settings] = "BonCode-OrderStream-Settings"
-default[:chub_boncode][:site_settings][:site_root] = "C:\inetpub\orderstream"
-default[:chub_boncode][:site_settings][:site_root_bin_directory] = "C:\inetpub\orderstream"
-default[:chub_boncode][:install_location] = "D:\software"
 default[:chub_boncode][:version] = "v1014"
+default[:chub_boncode][:site_settings][:site_root] = "C:/inetpub/orderstream"
+default[:chub_boncode][:install_location] = "D:/software"
+
 default[:chub_boncode][:settings][:tomcatAjpPort] = "18009"
 default[:chub_boncode][:settings][:hostname] = "localhost"
 default[:chub_boncode][:settings][:customErros] = "Off"

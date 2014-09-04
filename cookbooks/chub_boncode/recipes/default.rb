@@ -23,25 +23,25 @@ directory node[:chub_boncode][:site_settings][:site_root] do
     action :create_if_missing
 end
 
-directory "#{node[:chub_boncode][:site_settings][:site_root]}\BIN" do
+directory "#{node[:chub_boncode][:site_settings][:site_root]}/bin" do
     action :create_if_missing
 end
 
-template "#{node[:chub_boncode][:site_settings][:site_root]}\BIN\BonCodeAJP13.settings" do
+template "#{node[:chub_boncode][:site_settings][:site_root]}/bin/BonCodeAJP13.settings" do
     source "BonCodeSite.settings.erb"
   	action :create
 end
 
-template "#{node[:chub_boncode][:site_settings][:site_root]}\web.config" do
+template "#{node[:chub_boncode][:site_settings][:site_root]}/web.config" do
     source "web.config.erb"
   	action :create
 end
 
-cookbook_file "#{node[:chub_boncode][:install_location]}\Unzip.ps1" do
+cookbook_file "#{node[:chub_boncode][:install_location]}/Unzip.ps1" do
 	source "Unzip.ps1"
 end
 
-cookbook_file "#{node[:chub_boncode][:install_location]}\BonCodeAjp13_#{node[:chub_boncode][:version]}.zip" do
+cookbook_file "#{node[:chub_boncode][:install_location]}/BonCodeAjp13_#{node[:chub_boncode][:version]}.zip" do
 	source "AJP13_#{node[:chub_boncode][:version]}.zip"
 end
 
@@ -51,7 +51,7 @@ powershell "AJP Unzip" do
 	EOH
 end 
 
-template "#{node[:chub_boncode][:install_location]}\installer.settings" do
+template "#{node[:chub_boncode][:install_location]}/installer.settings" do
     source "installer.settings.erb"
   	action :create
 end
@@ -63,7 +63,7 @@ windows_package "Install BonCode" do
   action :action 
 end
 
-template "C:\windows\BonCodeAJP13.settings" do
+template "C:/windows/BonCodeAJP13.settings" do
     source "BonCodeRoot.settings.erb"
   	action :create
 end
