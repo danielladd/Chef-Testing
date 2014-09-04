@@ -13,7 +13,7 @@ cookbook_versions({
   "chub_census" => "= 0.2.0",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.21",
-  "chub_plaza" => "= 0.3.2",
+  "chub_plaza" => "= 0.4.0",
   "chub_sensu_sso" => "= 0.1.19",
   "chub_vault" => "= 0.6.0",
   "cron" => "= 1.2.6",
@@ -134,6 +134,8 @@ default_attributes(
   :chub_plaza => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssodev1.current+=true",
     :app_context => "/user",
+    :service_username => "plaza_open",
+    :service_password => "@ccess2All",
     :root_url => "https://ssodev1-apps.nexus.commercehub.com/user",
     :cas_server_url => "https://ssodev1-apps.nexus.commercehub.com/account",
     :cas_service_url => "https://ssodev1-apps.nexus.commercehub.com/user/shiro-cas",

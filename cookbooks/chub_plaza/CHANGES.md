@@ -1,3 +1,6 @@
+# 0.4.0
+* Add optional support for service authentication
+
 #0.3.2
 * Configure top nav bar urls
 
