@@ -18,3 +18,6 @@ default[:chub_rolodex][:yui][:url] = "http://yuicombo1.nexus.commercehub.com:300
 
 default[:slm][:graphite][:host] = "stats02.nexus.commercehub.com"
 default[:slm][:graphite][:port] = "2003"
+
+default[:chub_rolodex][:hazelcast][:group] = "rolodex"
+default[:chub_rolodex][:hazelcast][:password] = "rolodex"
