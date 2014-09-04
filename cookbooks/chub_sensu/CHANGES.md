@@ -1,3 +1,7 @@
+# 0.1.20
+
+Larry - Moving redis log into log instead of syslog.
+
 # 0.1.19
 
 Larry - Addition of service upgrade recipe

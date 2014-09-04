@@ -2,6 +2,7 @@ name "pipeline_team"
 description "role for pipeline team machines"
 default_attributes(
   "sensu" => {
+      "init_style" => "runit",
       "rabbitmq" => {
           "host" => "monmq.nexus.commercehub.com"
       }
