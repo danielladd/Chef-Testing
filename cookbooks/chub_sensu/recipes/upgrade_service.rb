@@ -33,13 +33,6 @@ execute "cleanup" do
   action :run
 end
 
-if not Chef::Config[:solo] then
-    ruby_block "Remove recipe from run-list" do
-        block do
-            node.run_list.remove("recipe[chub_sensu::upgrade_service]")
-        end
-        only_if { node.run_list.include?("recipe[chub_sensu::upgrade_service]") }
-    end
-end
+
 
 node.default[:sensu][:init_style] = "runit"
