@@ -113,6 +113,8 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
+    :service_username => "castle_open",
+    :service_password => "@ccess2All",
     :app_context => "/account",
     :domain => "ssodev1-apps.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-apps.nexus.commercehub.com/user/shiro-cas",
