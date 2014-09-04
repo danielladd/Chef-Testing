@@ -11,6 +11,7 @@ run_list *%w[
 
 #TODO: Should this live in databag?
 default_attributes "sensu" => {
+    "init_style" => "runit",
     "rabbitmq" => {
         "host" => "monmq.nexus.commercehub.com"
     },

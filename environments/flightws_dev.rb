@@ -30,7 +30,28 @@ default_attributes(
 				"templateSourcePath" => "//morpheus/autoproc$/plg_templates_prod/templates.jar",
 				"autoprocRootPath" => "//dorderstream/autoprocess/partners", 
 				"ftpRootPath" => "//dorderstream/autoprocess/partners/ftptest"
-			}
+			},
+
+
+
+			# "swaggerConfiguration": {
+   #      		"version": "1.0.0",
+   #      		"basePath": "http://localhost:8080"
+   #  		},
+   #  		"logging": {
+   #      		"appenders": [
+   #          		{
+   #              "type": "file",
+   #              "currentLogFilename": ".\\flightws.log",
+   #              "archivedLogFilenamePattern": ".\\flightws-%d.log.gz",
+   #              "archivedFileCount": "7",
+   #              "timeZone": "US/Eastern"
+   #          			}
+   #      		]
+   #  }
+
+
+
 		}
 	}
 )

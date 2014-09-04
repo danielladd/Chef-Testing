@@ -12,6 +12,8 @@ default_attributes(
     :app_url => "file:///vagrant/plaza.jar",
     :app_context => "/user",
     :app_root_url => "http://plaza.vagrant.dev:8080/user",
+    :service_username => "plaza_open",
+    :service_password => "@ccess2All",
     :cas_server_url => "https://ssodev1-apps.nexus.commercehub.com/account",
     :cas_service_url => "http://plaza.vagrant.dev:8080/user/shiro-cas",
     :cas_failure_url => "http://plaza.vagrant.dev:8080/user",

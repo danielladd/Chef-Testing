@@ -4,6 +4,12 @@ grails.app.context = "<%= node[:chub_plaza][:app_context] %>"
 <% if node[:chub_plaza][:app_root_url] %>
 grails.serverURL = "<%= node[:chub_plaza][:app_root_url] %>"
 <% end %>
+<% if node[:chub_plaza][:service_username] %>
+serviceUsername = "<%= node[:chub_plaza][:service_username] %>"
+<% end %>
+<% if node[:chub_plaza][:service_password] %>
+servicePassword = "<%= node[:chub_plaza][:service_password] %>"
+<% end %>
 security {
     shiro {
         cas {
