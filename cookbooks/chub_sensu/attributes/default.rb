@@ -20,3 +20,5 @@ default[:chub_sensu][:redis][:check_redis_file] = "redis-role.sh"
 
 default[:sensu][:rabbitmq][:heartbeat] = 120
 default[:sensu][:init_style] = "runit"
+
+default[:redisio][:default_settings][:logfile] = "/var/log/redis.log"

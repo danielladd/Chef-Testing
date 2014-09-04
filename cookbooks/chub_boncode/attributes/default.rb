@@ -1,0 +1,22 @@
+default[:chub_boncode][:site_root] = "c:/inetpub/orderstream"
+default[:chub_boncode][:install_location] = "d:/software"
+default[:chub_boncode][:version] = "v1014"
+
+default[:chub_boncode][:settings][:tomcatAjpPort] = "18009"
+default[:chub_boncode][:settings][:hostname] = "localhost"
+default[:chub_boncode][:settings][:customErros] = "Off"
+default[:chub_boncode][:settings][:execTimeout] = "7200"
+default[:chub_boncode][:settings][:customErros] = "Off"
+default[:chub_boncode][:settings][:version] = "v1014"
+default[:chub_boncode][:settings][:packetSize] = "Of65536f"
+default[:chub_boncode][:settings][:enableHttpStatusCodes] = "False"
+default[:chub_boncode][:settings][:enableHeaderDataSupport] = "True"
+default[:chub_boncode][:settings][:enableRemoteAdmin] = "False"
+default[:chub_boncode][:settings][:allowEmptyHeaders] = "True"
+default[:chub_boncode][:settings][:maxConnections] = "500"
+default[:chub_boncode][:settings][:fulshThreshold] = "0"
+default[:chub_boncode][:settings][:writeTimeOut] = "30000"
+default[:chub_boncode][:settings][:logDir] = "d:\log"
+default[:chub_boncode][:settings][:logLevel] = "2"
+
+

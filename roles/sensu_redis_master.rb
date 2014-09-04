@@ -6,6 +6,7 @@ default_attributes("redisio" => {
     }
 },
 "sensu" => {
+  "init_style" => "runit",
   'redis' => {
       'port' => '6379'
   }
