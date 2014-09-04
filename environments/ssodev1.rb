@@ -74,6 +74,11 @@ default_attributes(
   },
   :chub_vault => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["role_vault_all_open"]
+      }
+    },
     :ldap => {
       :read => {
         :host => "ssodev1-ldap-read.nexus.commercehub.com",
@@ -92,6 +97,11 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssodev1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["role_census_all_open"]
+      }
+    },
     :plaza_url => "https://ssodev1-apps.nexus.commercehub.com/user",
     :vault_url => "https://ssodev1-vault.nexus.commercehub.com:8443",
     :profileUpdateNotificationUrls => ["https://ssodev1-vault.nexus.commercehub.com:8443/person/receiveUpdate"],
