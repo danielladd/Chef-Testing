@@ -1,15 +1,15 @@
 <Settings>
-    <Server><%= scope['boncode::params::host'] %></Server>
-    <Port><%= scope['boncode::params::port'] %></Port>
-    <PacketSize><%= scope['boncode::params::packetSize']%></PacketSize>
-    <EnableHTTPStatusCodes><%= scope['boncode::params::enableHTTPStatusCodes'] %></EnableHTTPStatusCodes>
-    <EnableHeaderDataSupport><%= scope['boncode::params::enableHeaderDataSupport'] %></EnableHeaderDataSupport>
-    <EnableRemoteAdmin><%= scope['boncode::params::enableRemoteAdmin'] %></EnableRemoteAdmin>
-    <AllowEmptyHeaders><%= scope['boncode::params::allowEmptyHeaders'] %></AllowEmptyHeaders>
-    <MaxConnections><%= scope['boncode::params::maxConnections'] %></MaxConnections>
-    <FlushThreshold><%= scope['boncode::params::flushThreshold'] %></FlushThreshold>
-    <WriteTimeOut><%= scope['boncode::params::writeTimeOut'] %></WriteTimeOut>
-    <LogLevel><%= scope['boncode::params::logLevel'] %></LogLevel>
-    <LogDir><%= scope['boncode::params::logDir'] %></LogDir>
+    <Server><%= node[:chub_boncode][:settings][:hostname] %></Server>
+    <Port><%= node[:chub_boncode][:settings][:tomcatAjpPort] %></Port>
+    <PacketSize><%= node[:chub_boncode][:settings][:packetSize]%></PacketSize>
+    <EnableHTTPStatusCodes><%= node[:chub_boncode][:settings][:enableHTTPStatusCodes] %></EnableHTTPStatusCodes>
+    <EnableHeaderDataSupport><%= node[:chub_boncode][:settings][:enableHeaderDataSupport] %></EnableHeaderDataSupport>
+    <EnableRemoteAdmin><%= node[:chub_boncode][:settings][:enableRemoteAdmin] %></EnableRemoteAdmin>
+    <AllowEmptyHeaders><%= node[:chub_boncode][:settings][:allowEmptyHeaders] %></AllowEmptyHeaders>
+    <MaxConnections><%= node[:chub_boncode][:settings][:maxConnections] %></MaxConnections>
+    <FlushThreshold><%= node[:chub_boncode][:settings][:flushThreshold] %></FlushThreshold>
+    <WriteTimeOut><%= node[:chub_boncode][:settings][:writeTimeOut] %></WriteTimeOut>
+    <LogLevel><%= node[:chub_boncode][:settings][:logLevel] %></LogLevel>
+    <LogDir><%= node[:chub_boncode][:settings][:logDir] %></LogDir>
 </Settings>
 

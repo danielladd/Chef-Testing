@@ -19,20 +19,24 @@
 
 include_recipe "windows"
 
-directory node[:chub_boncode][:site_settings][:site_root] do
-    action :create_if_missing
+directory "#{node[:chub_boncode][:install_location]}" do
+    action :create
 end
 
-directory "#{node[:chub_boncode][:site_settings][:site_root]}/bin" do
-    action :create_if_missing
+directory "#{node[:chub_boncode][:site_root]}" do
+    action :create
 end
 
-template "#{node[:chub_boncode][:site_settings][:site_root]}/bin/BonCodeAJP13.settings" do
+directory "#{node[:chub_boncode][:site_root]}/bin" do
+    action :create
+end
+
+template "#{node[:chub_boncode][:site_root]}/bin/BonCodeAJP13.settings" do
     source "BonCodeSite.settings.erb"
   	action :create
 end
 
-template "#{node[:chub_boncode][:site_settings][:site_root]}/web.config" do
+template "#{node[:chub_boncode][:site_root]}/web.config" do
     source "web.config.erb"
   	action :create
 end
@@ -45,8 +49,8 @@ cookbook_file "#{node[:chub_boncode][:install_location]}/BonCodeAjp13_#{node[:ch
 	source "AJP13_#{node[:chub_boncode][:version]}.zip"
 end
 
-powershell "AJP Unzip" do
-	code  <<-EOH
+windows_batch "AJP Unzip" do
+	code <<-EOH
 	node[:chub_boncode][:install_location]\\Unzip.ps1 -InstallDir node[:chub_boncode][:install_location] -Version node[:chub_boncode][:version]
 	EOH
 end 
@@ -60,7 +64,7 @@ windows_package "Install BonCode" do
   source "#{node[:chub_boncode][:install_location]}/Boncode/#{node[:chub_boncode][:version]}/Connector_Setup.exe"
   installer_type :msi 
   options "/VERYSILENT /SUPPRESSMSGBOXES /LOG /SP- /NOCANCEL /NORESTART"
-  action :action 
+  action :install 
 end
 
 template "C:/windows/BonCodeAJP13.settings" do
