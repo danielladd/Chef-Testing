@@ -9,11 +9,11 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.27",
+  "chub_castle" => "= 0.2.0",
   "chub_census" => "= 0.2.0",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.21",
-  "chub_plaza" => "= 0.3.2",
+  "chub_plaza" => "= 0.4.0",
   "chub_sensu_sso" => "= 0.1.19",
   "chub_vault" => "= 0.6.0",
   "cron" => "= 1.2.6",
@@ -74,6 +74,11 @@ default_attributes(
   },
   :chub_vault => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssoint1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["role_vault_all_open"]
+      }
+    },
     :ldap => {
       :read => {
         :host => "ssoint1-ldap-read.nexus.commercehub.com",
@@ -92,9 +97,14 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoint1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => ["role_census_all_open"]
+      }
+    },
     :plaza_url => "https://ssoint1-apps.nexus.commercehub.com/user",
     :vault_url => "https://ssoint1-vault.nexus.commercehub.com:8443",
-    :profileUpdateNotificationUrls => ["https://ssoint1-vault.nexus.commercehub.com:8443/person/receiveUpdate"],
+    :profileUpdateNotificationUrls => ["https://ssoint1-vault.nexus.commercehub.com:8443/person/receiveUpdate", "https://oddqa1-rolodex.nexus.commercehub.com/backdoorApi/sync/user", "https://odddev1-rolodex.nexus.commercehub.com/backdoorApi/sync/user", "https://tdemo-rolodex.nexus.commercehub.com/backdoorApi/sync/user", "https://demo-rolodex.nexus.commercehub.com/backdoorApi/sync/user"],
     :database => {
       :url => "jdbc:sqlserver://sqlvm81.nexus.commercehub.com;databaseName=ssoint1-census",
       :user => "devusr01",
@@ -104,6 +114,8 @@ default_attributes(
   :chub_castle => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssoint1.current+=true",
     :app_context => "/account",
+    :service_username => "castle_open",
+    :service_password => "@ccess2All",
     :domain => "ssoint1-apps.nexus.commercehub.com",
     :default_service_url => "https://ssoint1-apps.nexus.commercehub.com/user/shiro-cas",
     :forgot_password_url => "https://ssoint1-apps.nexus.commercehub.com/user/forgot-password",
@@ -122,6 +134,8 @@ default_attributes(
   :chub_plaza => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/plaza/%5BRELEASE%5D/plaza-%5BRELEASE%5D.jar;env.ssoint1.current+=true",
     :app_context => "/user",
+    :service_username => "plaza_open",
+    :service_password => "@ccess2All",
     :root_url => "https://ssoint1-apps.nexus.commercehub.com/user",
     :cas_server_url => "https://ssoint1-apps.nexus.commercehub.com/account",
     :cas_service_url => "https://ssoint1-apps.nexus.commercehub.com/user/shiro-cas",
