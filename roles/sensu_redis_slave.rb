@@ -1,5 +1,10 @@
 name "sensu_redis_slave"
 description "role defining a sensu redis slave node"
+run_list *%w[
+    recipe[chub_sensu::redis_slave]
+    recipe[chub_log::client]
+    role[sensu_redis_logs]
+    ]
 default_attributes("redisio" => {
     "sentinel" => {
         "manage_config" => false
@@ -11,4 +16,3 @@ default_attributes("redisio" => {
       'port' => '6379'
   }
 })
-run_list "recipe[chub_sensu::redis_slave]"
