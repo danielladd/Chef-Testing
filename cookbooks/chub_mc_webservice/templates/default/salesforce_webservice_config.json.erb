@@ -8,7 +8,7 @@
   }
       , "swaggerConfiguration": {
         "version": "1.0.0",
-        "basePath": "http://localhost:8080"
+        "basePath": "http://<%= node[:chub_mc_webservice][:salesforce_config][:swaggerConfiguration][:hostname] %>:8080"
     }
     , "logging": {
         "level": "INFO",

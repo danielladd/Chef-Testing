@@ -15,6 +15,10 @@ default_attributes(
 				"username" => "sfintegration@commercehub.com.IntPro1",
 				"password" => "c7ZX#ZfppEh7"
 			},
+		"swaggerConfiuguration" => {
+			"hostname" => "dmcsfws01"
 		},
-	}
+								},
+		},
+	
 )
