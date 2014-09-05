@@ -1,4 +1,4 @@
-name "odddev_single_machine"
+name "odd_all_in_one"
 description 'For the SLM Dev1 Nodes'
 
 default_attributes(
