@@ -23,7 +23,7 @@ node.normal[:chub_mc_webservice][:deploy_dir] = "/opt/#{node[:chub_mc_webservice
 node.normal[:chub_mc_webservice][:staging_dir] = "/opt/#{node[:chub_mc_webservice][:webservice]}-staging"
 node.normal[:chub_mc_webservice][:touchfile] = "#{node[:chub_mc_webservice][:deploy_dir]}/deployed.txt"
 node.normal[:chub_mc_webservice][:webservice_name] = "salesforce_webservice"
-node.normal[:chub_mc_webservice][:config_file_name] =  "#{node[:chub_mc_webservice][:webservice_name]}_config.yml"
+node.normal[:chub_mc_webservice][:config_file_name] =  "#{node[:chub_mc_webservice][:webservice_name]}_config.json"
 node.normal[:chub_mc_webservice][:config_temp_dir] = "/tmp/#{node[:chub_mc_webservice][:webservice]}"
 
 directory node[:chub_mc_webservice][:config_temp_dir] do
@@ -35,7 +35,7 @@ end
 
 #create config file
 template "#{node[:chub_mc_webservice][:config_temp_dir]}/#{node[:chub_mc_webservice][:config_file_name]}" do
-  source "#{node[:chub_mc_webservice][:webservice_name]}_config.yml.erb"
+  source "#{node[:chub_mc_webservice][:webservice_name]}_config.json.erb"
   owner "root"
   group "root"
   mode 0644
