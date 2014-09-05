@@ -49,17 +49,16 @@ default_attributes(
     }
   },
   :chub_oddrest => {
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar;env.oddprod1.current+=true",
     :db => {
       :server => "SQLVM03",
       :name => "odddev1_odd",
       :userName => "devusr01",
       :pass => "usrdev"
-    },
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar"
+    }
   },
   :chub_apartment => {
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar;env.oddprod1.current+=true",
     :db => {
       :server => "SQLVM03",
       :port => "1433",
@@ -69,7 +68,7 @@ default_attributes(
     }
   },
   :chub_rolodex => {
-    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar",
+    :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar;env.oddprod1.current+=true",
     :yui => {
       :filter => "min",
       :combine => true,

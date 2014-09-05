@@ -22,3 +22,4 @@ default[:sensu][:rabbitmq][:heartbeat] = 120
 default[:sensu][:init_style] = "runit"
 
 default[:redisio][:default_settings][:logfile] = "/var/log/redis.log"
+default[:redisio][:sentinel_defaults][:logfile] = "/var/log/redis_sentinel.log"
