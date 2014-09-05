@@ -1,0 +1,30 @@
+{
+  "salesforceClient": {
+    "host": "<%= node[:chub_mc_webservice][:salesforce_config][:salesforceClient][:host] %>",
+    "clientId": "<%= node[:chub_mc_webservice][:salesforce_config][:salesforceClient][:clientId] %>",
+    "clientSecret": "<%= node[:chub_mc_webservice][:salesforce_config][:salesforceClient][:clientSecret] %>",
+    "username": "<%= node[:chub_mc_webservice][:salesforce_config][:salesforceClient][:username] %>",
+    "password": "<%= node[:chub_mc_webservice][:salesforce_config][:salesforceClient][:password] %>"
+  }
+      , "swaggerConfiguration": {
+        "version": "1.0.0",
+        "basePath": "http://<%= node[:chub_mc_webservice][:salesforce_config][:swaggerConfiguration][:hostname] %>:8080"
+    }
+    , "logging": {
+        "level": "INFO",
+        "loggers": {
+            "com.commercehub.crm.salesforce":"DEBUG"
+        },
+    "appenders": [
+        {
+            "type": "file",
+            "currentLogFilename": "/var/logs/salesforcews/salesforcews.log",
+            "archivedLogFilenamePattern": "/var/logs/salesforcews/salesforcews-%d.log.gz",
+            "archivedFileCount": "7",
+            "timeZone": "US/Eastern",
+            "logFormat": "%p [%date] %logger{15} %message%n"
+        }
+    ]
+}
+}
+

@@ -4,7 +4,10 @@ cookbook_versions({
   "chub_apartment"=>"= 0.1.0",
   "chub_oddrest"=>"= 0.1.0",
   "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0"
+  "chub_tattler"=>"= 0.3.0",
+  "chub_log"=>"= 0.1.5",
+  "chub_nxlog"=>"= 0.1.14",
+  "chub_sensu"=>"= 0.1.20"
 })
 default_attributes(
   :slm => {
