@@ -1,14 +1,14 @@
 name "artifactory_alerts"
 description "role for artifactory machines to define admin users and alerts"
 default_attributes(
-  "keepalive" => {
-     "thresholds" => {
-       "warning" => 300,
-       "critical" => 1200
-   }
-  },
   "sensu" => {
     "init_style" => "runit",  
+    "keepalive" => {
+       "thresholds" => {
+         "warning" => 300,
+         "critical" => 1200
+     }
+    },
     "rabbitmq" => {
        "host" => "monmq.nexus.commercehub.com"
     }

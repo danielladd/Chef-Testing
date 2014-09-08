@@ -7,5 +7,6 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe "chub_sensu::client"
+include_recipe "chub_artifactory::client"
+#include_recipe "chub_sensu::client"
 
