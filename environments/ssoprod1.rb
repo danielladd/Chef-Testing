@@ -62,7 +62,8 @@ default_attributes(
       :vault => "https://ssoprod1-vault.commercehub.com:8443/ping",
       :census => "https://ssoprod1-census.commercehub.com:8443/ping",
       :castle => "https://apps.commercehub.com/account/ping",
-      :plaza => "https://apps.commercehub.com/user/ping"
+      :plaza => "https://apps.commercehub.com/user/ping",
+      :steward => "https://ssoprod1-steward.commercehub.com/ping"
     }
   },
   :openldap => {
