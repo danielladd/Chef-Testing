@@ -62,7 +62,8 @@ default_attributes(
       :vault => "https://ssodev1-vault.nexus.commercehub.com:8443/ping",
       :census => "https://ssodev1-census.nexus.commercehub.com:8443/ping",
       :castle => "https://ssodev1-apps.nexus.commercehub.com/account/ping",
-      :plaza => "https://ssodev1-apps.nexus.commercehub.com/user/ping"
+      :plaza => "https://ssodev1-apps.nexus.commercehub.com/user/ping",
+      :steward => "https://ssodev1-steward.nexus.commercehub.com/ping"
     }
   },
   :openldap => {
