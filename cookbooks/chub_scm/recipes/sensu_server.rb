@@ -3,7 +3,7 @@
 # Recipe:: server
 #
 # Copyright (C) 2014 CommerceHub
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
