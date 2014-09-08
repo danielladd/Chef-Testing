@@ -14,7 +14,6 @@ default_attributes(
 	  :admin_port => "8091"
     },
     :rolodex => {
-      :baseUrl => "http://localhost:8080",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
