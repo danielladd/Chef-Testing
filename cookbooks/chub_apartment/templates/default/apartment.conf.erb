@@ -1,0 +1,7 @@
+setuid apartment
+setgid apartment
+chdir /var/apartment
+exec java -server -d64 -Xms<%= node[:chub_apartment][:java_heap_size] %> -Xmx<%= node[:chub_apartment][:java_heap_size] %> -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=<%= node[:chub_apartment][:jmxremote_port] %> -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -DorgDataDirOverride.config=/etc/oddrest/override.properties -DorgDataDir.config=<%= node[:chub_apartment][:properties_location] %> -jar /opt/apartment/apartment.jar server /etc/apartment/apartment.yaml
+respawn
+start on runlevel [2345]
+stop on runlevel [016]
