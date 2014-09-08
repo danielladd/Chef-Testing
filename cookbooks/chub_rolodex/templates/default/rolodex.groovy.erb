@@ -13,12 +13,7 @@ security {
 }
 
 rolodex {
-	<% if node[:slm][:rolodex][:baseUrl] -%>
     url = "<%= node[:slm][:rolodex][:baseUrl] %>"
-	<% else -%>
-	url = "http://<%= node['fqdn'] %>:<%= node[:slm][:rolodex][:port] %>"
-    <% end -%>
-	
     ordersteam {
         app {
             id = "<%= node[:slm][:ordersteam][:app][:id] %>"

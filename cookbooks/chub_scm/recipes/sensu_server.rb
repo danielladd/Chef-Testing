@@ -3,7 +3,7 @@
 # Recipe:: server
 #
 # Copyright (C) 2014 CommerceHub
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
@@ -26,7 +26,7 @@ if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
     sensu_check "scm_vmstat_metrics" do
         command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/vmstat-metrics.rb --scheme hosts.:::name:::"
         handlers ["graphite_tcp_scm"]
-        subscribers ["scm_team"]
+        subscribers ["rhodecode"]
         type "metric"
         interval 60
     end
@@ -34,7 +34,7 @@ end
 
 
 ## SCM Handler
-sensu_handler "scm_team" do
+sensu_handler "rhodecode" do
     type "set"
     handlers handlerList
 end
@@ -43,30 +43,30 @@ end
 # Checks
 sensu_check "scm_check_disk" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-disk.rb"
-    handlers ["scm_team"]
-    subscribers ["scm_team"]
+    handlers ["rhodecode"]
+    subscribers ["rhodecode"]
     interval 60
 end
 
 sensu_check "scm_check_cpu" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-cpu.rb -c 90 -w 70"
-    handlers ["scm_team"]
-    subscribers ["scm_team"]
+    handlers ["rhodecode"]
+    subscribers ["rhodecode"]
     interval 60
     additional(:occurrences => 2)
 end
 
 sensu_check "scm_check_ram" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-ram.rb -c 5 -w 10"
-    handlers ["scm_team"]
-    subscribers ["scm_team"]
+    handlers ["rhodecode"]
+    subscribers ["rhodecode"]
     interval 60
     additional(:occurrences => 2)
 end
 
 sensu_check "scm_check_proc" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-procs.rb -p rhodecode -C 1"
-    handlers ["scm_team"]
-    subscribers ["scm_team"]
+    handlers ["rhodecode"]
+    subscribers ["rhodecode"]
     interval 60
 end
