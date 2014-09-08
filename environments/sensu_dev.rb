@@ -1,17 +1,17 @@
-name "sensu_dev"
-description "Sensu Development Env"
+name 'sensu_dev'
+description 'Sensu Development Env'
 default_attributes(
   sensu: {
-    init_stye: "runit",
+    init_stye: 'runit',
     rabbitmq: {
-      host: "monmq.nexus.commercehub.com"
+      host: 'monmq.nexus.commercehub.com'
     },
     redis: {
-      host: "monredis.nexus.commercehub.com",
+      host: 'monredis.nexus.commercehub.com',
       port: '6379'
     },
     api: {
-      host: "monapp.nexus.commercehub.com"
+      host: 'monapp.nexus.commercehub.com'
     }
   },
   redisio: {
@@ -24,20 +24,20 @@ default_attributes(
     erlang_cookie: 'c00k1e'
   },
   uchiwa: {
-    version: "0.2.1-1",
+    version: '0.2.1-1',
     settings: {
-      user: "",
-      pass: ""
+      user: '',
+      pass: ''
   },
   api: [
       {
-      name: "Sensu",
-      host: "monapp.nexus.commercehub.com",
+      name: 'Sensu',
+      host: 'monapp.nexus.commercehub.com',
       ssl: false,
       port: 4567,
-      user: "",
-      pass: "",
-      path: "",
+      user: '',
+      pass: '',
+      path: '',
       timeout: 5000
       }
     ]
