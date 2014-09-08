@@ -3,12 +3,12 @@ description 'For the SLM Demo Nodes'
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://demo-odd.nexus.commercehub.com",
+      :baseUrl => "http://demoodd01.nexus.commercehub.com",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
     :apartment => {
-      :baseUrl => "http://demo-apartment.nexus.commercehub.com:8080",
+      :baseUrl => "http://demoapart01.nexus.commercehub.com:8080",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
