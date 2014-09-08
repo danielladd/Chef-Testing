@@ -18,7 +18,11 @@ default_attributes(
     sentinel: {
       mange_config: false
     }
-  }
+  },
+  rabbitmq: {
+    cluster: true,
+    erlang_cookie: 'c00k1e'
+  },
   uchiwa: {
     version: "0.2.1-1",
     settings: {
