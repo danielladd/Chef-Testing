@@ -1,7 +1,7 @@
 setuid rolodex
 setgid rolodex
 chdir /var/rolodex
-exec java -server -d64 -Xms<%= node[:chub_rolodex][:java_heap_size] %> -Xmx<%= node[:chub_rolodex][:java_heap_size] %> -XX:PermSize=<%= node[:chub_rolodex][:java_starting_perm_size] %> -XX:MaxPermSize=<%= node[:chub_rolodex][:java_max_perm_size] %> -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=6006 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /opt/rolodex/rolodex.jar /etc/rolodex/rolodex.yaml
+exec java -server -d64 -Xms<%= node[:chub_rolodex][:java_heap_size] %> -Xmx<%= node[:chub_rolodex][:java_heap_size] %> -XX:PermSize=<%= node[:chub_rolodex][:java_starting_perm_size] %> -XX:MaxPermSize=<%= node[:chub_rolodex][:java_max_perm_size] %> -Djava.net.preferIPv4Stack=true -Dcom.sun.management.jmxremote.port=<%= node[:chub_rolodex][:jmxremote_port] %> -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -jar /opt/rolodex/rolodex.jar /etc/rolodex/rolodex.yaml
 respawn
 start on runlevel [2345]
 stop on runlevel [016]

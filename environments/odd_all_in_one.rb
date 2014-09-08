@@ -1,19 +1,20 @@
-name "odddev1"
+name "odd_all_in_one"
 description 'For the SLM Dev1 Nodes'
+
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://odddev1-rest.nexus.commercehub.com",
-	  :port => "8080",
-	  :admin_port => "8081"
+      :baseUrl => "http://localhost:8070",
+	  :port => "8070",
+	  :admin_port => "8071"
     },
     :apartment => {
-      :baseUrl => "http://odddev1-apartment.nexus.commercehub.com:8080",
-	  :port => "8080",
-	  :admin_port => "8081"
+      :baseUrl => "http://localhost:8090",
+	  :port => "8090",
+	  :admin_port => "8091"
     },
     :rolodex => {
-      :baseUrl => "https://odddev1-rolodex.nexus.commercehub.com",
+      :baseUrl => "http://localhost:8080",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
@@ -67,12 +68,13 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "//odd-yui-combo.nexus.commercehub.com"
+      :url => "https://odd-yui-combo.nexus.commercehub.com"
     },
 	:hazelcast => {
-      :password => "slmdev-pass",
-      :multicast_group => "224.2.3.4",
-      :multicast_port => 54428
-    }
+      :password => "allinone",
+      :multicast_group => "224.2.3.6",
+      :multicast_port => 54434
+    },
+	:jmxremote_port => 12001
   }
 )
