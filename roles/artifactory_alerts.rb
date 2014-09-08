@@ -2,9 +2,16 @@ name "artifactory_alerts"
 description "role for artifactory machines to define admin users and alerts"
 default_attributes(
   "sensu" => {
-      "rabbitmq" => {
-          "host" => "monmq.nexus.commercehub.com"
-      }
+    "init_style" => "runit",  
+    "keepalive" => {
+       "thresholds" => {
+         "warning" => 300,
+         "critical" => 1200
+     }
+    },
+    "rabbitmq" => {
+       "host" => "monmq.nexus.commercehub.com"
+    }
   }
 )
 override_attributes(
@@ -29,5 +36,5 @@ override_attributes(
     "tkostell" => "tkostell"
   }
 )
-run_list "recipe[chub_sensu::client]","recipe[base::users]"
+run_list "recipe[chub_artifactory::sensu_client]","recipe[base::users]"
 

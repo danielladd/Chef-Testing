@@ -1,11 +1,5 @@
 name "oddtdemo"
 description 'For the SLM TDemo Nodes'
-cookbook_versions({
-  "chub_apartment"=>"= 0.1.0",
-  "chub_oddrest"=>"= 0.1.0",
-  "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0"
-})
 default_attributes(
   :slm => {
     :odd_service => {

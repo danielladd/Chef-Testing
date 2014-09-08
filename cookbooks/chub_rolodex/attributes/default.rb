@@ -1,10 +1,10 @@
 default[:chub_rolodex][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar"
 default[:chub_rolodex][:java_heap_size] = "512M"
+default[:chub_rolodex][:jmxremote_port] = 12000
+default[:chub_rolodex][:java_starting_perm_size] = "128M"
+default[:chub_rolodex][:java_max_perm_size] = "1024M"
 default[:chub_rolodex][:mail_server] = "mailcatcher01"
 
-default[:slm][:odd_service][:baseUrl] = "http://odddev1-rest.nexus.commercehub.com"
-default[:slm][:apartment][:baseUrl] = "http://odddev1-apartment.nexus.commercehub.com"
-default[:slm][:rolodex][:baseUrl] = "https://odddev1-rolodex.nexus.commercehub.com"
 default[:slm][:sso][:vault] = "https://ssoint1-vault.nexus.commercehub.com:8080"
 default[:slm][:sso][:census] = "https://ssoint1-census.nexus.commercehub.com:8080"
 default[:slm][:sso][:castle] = "https://ssoint1-apps.nexus.commercehub.com/account"

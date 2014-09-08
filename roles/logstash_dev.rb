@@ -15,6 +15,7 @@ run_list *%w[
     role[bamboo01_logs]
     role[bambooM1_logs]
     role[artifactory_logs]
+    role[sensu_redis_logs]
 ]
 
 default_attributes(

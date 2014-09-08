@@ -1,19 +1,19 @@
-name "oddqa1"
-description 'For the SLM QA1 Nodes'
+name "odd_all_in_one"
+description 'For the SLM Dev1 Nodes'
+
 default_attributes(
   :slm => {
     :odd_service => {
-      :baseUrl => "http://oddqa1rest1.nexus.commercehub.com:8080",
-	  :port => "8080",
-	  :admin_port => "8081"
+      :baseUrl => "http://localhost:8070",
+	  :port => "8070",
+	  :admin_port => "8071"
     },
     :apartment => {
-      :baseUrl => "http://oddqa1apartment1.nexus.commercehub.com:8080",
-	  :port => "8080",
-	  :admin_port => "8081"
+      :baseUrl => "http://localhost:8090",
+	  :port => "8090",
+	  :admin_port => "8091"
     },
     :rolodex => {
-      :baseUrl => "http://oddqa1rolodex1.nexus.commercehub.com:8080",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
@@ -26,7 +26,7 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "oddqa1_orderstream"
+            :name => "odddev1_orderstream"
         }
     },
     :graphite => {
@@ -37,7 +37,7 @@ default_attributes(
   :chub_tattler => {
     :db => {
       :server => "SQLVM03",
-      :name => "tattlerqa1_tat",
+      :name => "tattlerdev1_tat",
       :userName => "devusr01",
       :pass => "usrdev"
     }
@@ -46,7 +46,7 @@ default_attributes(
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/oddservice/%5BRELEASE%5D/oddservice-%5BRELEASE%5D.jar",
     :db => {
       :server => "SQLVM03",
-      :name => "oddqa1_odd",
+      :name => "odddev1_odd",
       :userName => "devusr01",
       :pass => "usrdev"
     },
@@ -57,7 +57,7 @@ default_attributes(
     :db => {
       :server => "SQLVM03",
       :port => "1433",
-      :name => "oddqa1_chub",
+      :name => "odddev1_chub",
       :userName => "devusr01",
       :pass => "usrdev"
     }
@@ -67,12 +67,13 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "http://yuicombo1.nexus.commercehub.com:3000"
+      :url => "https://odd-yui-combo.nexus.commercehub.com"
     },
 	:hazelcast => {
-      :password => "slmqa1-pass",
-      :multicast_group => "224.2.3.5",
-      :multicast_port => 54429
-    }
+      :password => "allinone",
+      :multicast_group => "224.2.3.6",
+      :multicast_port => 54434
+    },
+	:jmxremote_port => 12001
   }
 )
