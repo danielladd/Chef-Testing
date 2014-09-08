@@ -67,7 +67,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "https://odd-yui-combo.nexus.commercehub.com"
+      :url => "//odd-yui-combo.nexus.commercehub.com"
     },
 	:hazelcast => {
       :password => "slmdev-pass",
