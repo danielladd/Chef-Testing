@@ -23,6 +23,12 @@ default_attributes(
     cluster: true,
     erlang_cookie: 'c00k1e'
   },
+  chub_log: {
+    endpoint: 'lsdev.nexus.commercehub.com',
+    endpoint_port: '2352'
+  }
+)
+override_attributes(
   uchiwa: {
     version: '0.2.1-1',
     settings: {
@@ -31,19 +37,15 @@ default_attributes(
   },
   api: [
       {
-      name: 'Sensu',
-      host: 'monapp.nexus.commercehub.com',
-      ssl: false,
-      port: 4567,
-      user: '',
-      pass: '',
-      path: '',
-      timeout: 5000
+        name: 'Sensu',
+        host: 'monapp.nexus.commercehub.com',
+        ssl: false,
+        port: 4567,
+        user: '',
+        pass: '',
+        path: '',
+        timeout: 5000
       }
     ]
-  },
-  chub_log: {
-    endpoint: 'lsdev.nexus.commercehub.com',
-    endpoint_port: '2352'
   }
 )
