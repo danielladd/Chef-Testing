@@ -3,7 +3,10 @@ default_attributes(
     "chub-klerk" => {
         "app_url" => "http://mpbamboo.nexus.commercehub.com/browse/BS-KLER/latestSuccessful/artifact/shared/app.jar/klerk-app-0.0.1-SNAPSHOT-all.jar",
         "mongo_uri" => "mongodb://192.168.33.1:27017/?maxPoolSize=50",
-        "blobstore_mongo_uri" => "mongodb://192.168.33.1:27017/?maxPoolSize=50",
+        "blobstore_container_name" => "files.ablick.dev.productstream.commercehub.com",
+        "blobstore_context_type" => "aws-s3",
+        "blobstore_aws_s3_access_key_id" => "AKIAIFCLEESXI27JGU4Q",
+        "blobstore_aws_s3_secret_key" => "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",
         "hazelcast_group_name" => "mpdev_klerk",
         "hazelcast_group_password" => "seYsD3123f2HEpb5",
         "antivirus_hosts" => [ "qascanengine.nexus.commercehub.com" ],
