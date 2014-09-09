@@ -8,7 +8,7 @@ default_attributes(
 	  :admin_port => "8081"
     },
     :apartment => {
-      :baseUrl => "http://demo-apartment.nexus.commercehub.com:8080",
+      :baseUrl => "http://tdemo-apartment.nexus.commercehub.com:8080",
 	  :port => "8080",
 	  :admin_port => "8081"
     },
