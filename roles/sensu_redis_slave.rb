@@ -5,14 +5,3 @@ run_list *%w[
     recipe[chub_log::client]
     role[sensu_redis_logs]
     ]
-default_attributes("redisio" => {
-    "sentinel" => {
-        "manage_config" => false
-    }
-},
-"sensu" => {
-  "init_style" => "runit",
-  'redis' => {
-      'port' => '6379'
-  }
-})

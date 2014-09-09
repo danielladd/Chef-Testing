@@ -1,11 +1,7 @@
 name "sensu_redis_logs"
 description "role defining a sensu redis logs"
-run_list *%w[
-]
 default_attributes(
   "chub_log" => {
-    "endpoint" => "lsdev.nexus.commercehub.com",
-    "endpoint_port" => "2352",
     "logfiles" => {
       "redis_log" => {
         "path" => '/var/log/redis*.log',

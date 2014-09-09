@@ -60,7 +60,8 @@ default_attributes(
       :name => "odddev1_chub",
       :userName => "devusr01",
       :pass => "usrdev"
-    }
+    },
+	:jmxremote_port => 12002
   },
   :chub_rolodex => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/rolodex/%5BRELEASE%5D/rolodex-%5BRELEASE%5D.jar",

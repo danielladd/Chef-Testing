@@ -2,6 +2,12 @@ chub-klerk Cookbook CHANGELOG
 =======================
 This file is used to list changes made in each version of the chub-klerk cookbook.
 
+v6.0.0
+------
+- Change the format for configuring blobstores
+- Add  `blobstore_container_name`, `blobstore_context_type`, `blobstore_aws_s3_access_key_id`, and `blobstore_aws_s3_secret_key` attributes to support new blobstore configuration and using an AWS S3 blobstore
+- Remove `blobstore_database_name` and `blobstore_mongo_uri` attributes that were used for the previous blobstore configuration
+
 v5.1.0
 ------
 - Add support for configuration of logstash logging appender
