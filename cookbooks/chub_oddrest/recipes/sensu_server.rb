@@ -9,26 +9,6 @@
 
 handlerList = ["email"]
 
-## PagerDuty Handler
-if node[:oddrest].attribute?(:pagerduty) and node[:oddrest][:pagerduty].attribute?(:api_key)
-    remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
-        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
-        mode 0755
-    end
-
-    template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
-        source "pagerduty.json.erb"
-        mode 0644
-        variables(:api_key => node[:oddrest][:pagerduty][:api_key])
-    end
-
-    sensu_handler "pagerduty_oddrest" do
-        type "pipe"
-        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-    end
-	handlerList << "pagerduty_oddrest"
-end
-
 
 #TODO: Does this need to key off of other properties, more team specific properties
 if node.attribute?(:oddrest) and node[:oddrest].attribute?(:graphite) and node[:oddrest][:graphite].attribute?(:host)
