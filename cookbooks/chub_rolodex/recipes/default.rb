@@ -71,6 +71,7 @@ end
     },{
         dest: "/etc/init/rolodex.conf",
         source: "rolodex.conf.erb",
+        group: "root",
         mode: 0644
     },{
         dest: "/etc/rolodex/rolodex.groovy",

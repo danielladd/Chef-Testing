@@ -50,7 +50,7 @@ default_attributes "chub-klerk" => {
       "authc" => {
         "required" => false
       },
-      "realm" => "mongodb",
+      "realm" => "sso",
       "cas" => {
         "serverUrl" => "https://apps.commercehub.com/account",
         "serviceUrl" => "https://www.buyspace.com/shiro-cas",

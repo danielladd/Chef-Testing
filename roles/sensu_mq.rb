@@ -5,12 +5,3 @@ run_list *%w[
     recipe[chub_log::client]
     role[sensu_mq_logs]
 ]
-default_attributes(
-  "sensu" => {
-    "init_style" => "runit",
-  },
-  "rabbitmq" => {
-    "cluster" => true,
-    "erlang_cookie" => "c00k1e"
-  },
-)

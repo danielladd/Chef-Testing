@@ -1,14 +1,5 @@
 name "odddev1"
 description 'For the SLM Dev1 Nodes'
-cookbook_versions({
-  "chub_apartment"=>"= 0.1.0",
-  "chub_oddrest"=>"= 0.1.0",
-  "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0",
-  "chub_log"=>"= 0.1.4",
-  "chub_nxlog"=>"= 0.1.11",
-  "chub_logsearch_shipper"=>"= 0.1.2"
-})
 default_attributes(
   :slm => {
     :odd_service => {
@@ -76,7 +67,7 @@ default_attributes(
     :yui => {
       :filter => "min",
       :combine => true,
-      :url => "https://odd-yui-combo.nexus.commercehub.com"
+      :url => "//odd-yui-combo.nexus.commercehub.com"
     },
 	:hazelcast => {
       :password => "slmdev-pass",

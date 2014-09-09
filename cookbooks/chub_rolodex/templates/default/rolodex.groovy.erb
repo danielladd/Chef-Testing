@@ -5,6 +5,9 @@ security {
             serviceUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/shiro-cas"
             failureUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/application/invalidSession"
             //loginUrl = "<%= node[:slm][:rolodex][:baseUrl] %>/application/invalidSession"
+			singleSignOut {
+                disabled = true
+            }
         }
     }
 }

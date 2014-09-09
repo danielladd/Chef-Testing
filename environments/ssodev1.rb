@@ -62,7 +62,8 @@ default_attributes(
       :vault => "https://ssodev1-vault.nexus.commercehub.com:8443/ping",
       :census => "https://ssodev1-census.nexus.commercehub.com:8443/ping",
       :castle => "https://ssodev1-apps.nexus.commercehub.com/account/ping",
-      :plaza => "https://ssodev1-apps.nexus.commercehub.com/user/ping"
+      :plaza => "https://ssodev1-apps.nexus.commercehub.com/user/ping",
+      :steward => "https://ssodev1-steward.nexus.commercehub.com/ping"
     }
   },
   :openldap => {
@@ -113,9 +114,9 @@ default_attributes(
   },
   :chub_castle => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/castle/%5BRELEASE%5D/castle-%5BRELEASE%5D.war;env.ssodev1.current+=true",
+    :app_context => "/account",
     :service_username => "castle_open",
     :service_password => "@ccess2All",
-    :app_context => "/account",
     :domain => "ssodev1-apps.nexus.commercehub.com",
     :default_service_url => "https://ssodev1-apps.nexus.commercehub.com/user/shiro-cas",
     :forgot_password_url => "https://ssodev1-apps.nexus.commercehub.com/user/forgot-password",

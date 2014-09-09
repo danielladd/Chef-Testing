@@ -7,6 +7,8 @@ run_list *%w[
     recipe[chub_oddrest::sensu_server]
     recipe[chub_rolodex::sensu_server]
     recipe[chub_mc_app::sensu_server]
+    recipe[chub_artifactory::sensu_server]
+    recipe[chub_scm::sensu_server]
 ]
 
 #TODO: Should this live in databag?
@@ -15,11 +17,11 @@ default_attributes "chub_sensu" => {
         "recipient" => "noreply@commercehub.com",
         "subscriptions_mail_to" => {
             "pipeline_team" => "pipeline@commercehub.com",
-            "scm_team" => "mercurial-admin@commercehub.com",
+            "rhodecode" => "mercurial-admin@commercehub.com",
             "platform_team" => "jlazzara@commercehub.com,mmiller@commercehub.com",
             "missioncontrol_team" => "CCucinella@commercehub.com,LKulzer@commercehub.com",
             "artifactory_prod" => "artifactory_admins@commercehub.com",
-            "artifactory_test" => "bcarr@commercehub.com",
+            "artifactory_alerts" => "bcarr@commercehub.com",
             "rundeck_mysql_master" => "pipeline@commercehub.com",
             "rundeck_mysql_slave" => "pipeline@commercehub.com",
             "apartment" => "rolodex@commercehub.com",

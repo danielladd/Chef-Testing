@@ -1,6 +1,6 @@
 name "chub-klerk"
 description "Installs and configures the Klerk application"
-version "5.1.0"
+version "6.0.0"
 supports "ubuntu"
 
 depends "sudo"
@@ -27,14 +27,21 @@ attribute "chub-klerk/klerk_database_name",
     "description" => "The name of the Klerk database",
     "default" => "klerk"
 
-attribute "chub-klerk/blobstore_database_name",
-    "display_name" => "Klerk blob store database name",
-    "description" => "The name of the Klerk blob store database",
-    "default" => "klerk_blobStore"
+attribute "chub-klerk/blobstore_container_name",
+    "display_name" => "Blobstore Container Name",
+    "description" => "The name of the blobstore container"
 
-attribute "chub-klerk/blobstore_mongo_uri",
-    "display_name" => "Klerk blob store MongoDB connection string URI",
-    "description" => "The connection string URI to connect Klerk to MongoDB for blob storage"
+attribute "chub-klerk/blobstore_context_type",
+    "display_name" => "Blobstore Context Type",
+    "description" => "The type of the blobstore context"
+
+attribute "chub-klerk/blobstore_aws_s3_access_key_id",
+    "display_name" => "Blobstore AWS S3 Access Key ID",
+    "description" => "The access key ID of the AWS user with permission to access the S3 bucket used for the blobstore"
+
+attribute "chub-klerk/blobstore_aws_s3_secret_key",
+    "display_name" => "Blobstore AWS S3 Secret Key",
+    "description" => "The secret key of the AWS user with permission to access the S3 bucket used for the blobstore"
 
 attribute "chub-klerk/java_heap_size",
     "display_name" => "Klerk Java heap size",

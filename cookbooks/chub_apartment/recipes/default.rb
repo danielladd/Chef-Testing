@@ -50,18 +50,6 @@ end
         dir:    "/var/apartment",
         mode:   0770
     },{
-        dir:    "/opt/apartment/conf",
-        mode:   0775
-    },{
-        dir:    "/opt/apartment/bin",
-        mode:   0776
-    },{
-        dir:    "/opt/apartment/logs",
-        mode:   0775
-    },{
-        dir:    "/opt/apartment/lib",
-        mode:   0775
-    },{
         dir:    "/var/log/apartment",
         mode:   0775
     }
@@ -80,6 +68,10 @@ end
         group: group_name,
         mode: 0774
     },{
+        dest: "/etc/init/apartment.conf",
+        source: "apartment.conf.erb",
+        mode: 0644
+    },{
         dest: "/etc/apartment/apartment.properties",
         source: "apartment.properties.erb",
         group: group_name,
@@ -89,14 +81,6 @@ end
         source: "system.properties.erb",
         group: group_name,
         mode: 0774
-    },{
-        dest: "/opt/apartment/conf/wrapper.conf",
-        source: "wrapper.conf.erb",
-        mode: 0776
-    },{
-        dest: "/opt/apartment/bin/apartment",
-        source: "sh.script.erb",
-        mode: 0775
     },{
         dest: "/etc/security/limits.conf",
         source: "limits.conf.erb",
@@ -115,32 +99,19 @@ end
     end
 end
 
+if File.exist?("/opt/apartment/bin/apartment")
+	execute "stop_tanuki" do
+		command "/opt/apartment/bin/apartment stop"
+		action :run
+	end
+end
+
 execute "reload_and_restart" do
 	command "sysctl -p /etc/sysctl.conf"
 	action :run
 	notifies "restart", "service[apartment]"
 end
 
-cookbook_file "/opt/apartment/bin/wrapper" do
-  source "wrapper"
-  owner user_name
-  group group_name
-  mode 0775
-end
-
-cookbook_file "/opt/apartment/lib/wrapper.jar" do
-  source "wrapper.jar"
-  owner user_name
-  group group_name
-  mode 0775
-end
-
-cookbook_file "/opt/apartment/lib/libwrapper.so" do
-  source "libwrapper.so"
-  owner user_name
-  group group_name
-  mode 0775
-end
 
 #This is just a hack until we get the jar deployed to Artifactory.
 remote_file "/opt/apartment/apartment.jar" do
@@ -152,8 +123,6 @@ remote_file "/opt/apartment/apartment.jar" do
 end
 
 service service_name do
-  supports :restart => true, :start => true
-  restart_command "/opt/apartment/bin/apartment restart"
-  start_command "/opt/apartment/bin/apartment start"
-  action [ :start ]
+    provider Chef::Provider::Service::Upstart
+    action [ "enable", "start" ]
 end
