@@ -1,0 +1,20 @@
+{
+  "pagerduty": {
+    "api_key": "<%= @api_key %>",
+    <% if @keys %>
+    <% @keys.sort.each_with_index do |(pduty,key_obj), index| %>
+      "<%= pduty %>":{
+        <% if key_obj[:api_key] %>
+        "api_key": "<%= key_obj['api_key'] %>"
+    }<% if @keys.length-1 != index %>,<% end %>
+      <% end %>
+    <% end %>
+    <% end %>
+  },
+  "handlers": {
+    "pagerduty": {
+      "command": "/etc/sensu/handlers/pagerduty.rb",
+      "type": "pipe"
+    }
+  }
+}
