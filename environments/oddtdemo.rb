@@ -57,7 +57,7 @@ default_attributes(
     :db => {
       :server => "sqlietest01",
       :port => "1433",
-      :name => "tdorderstream",
+      :name => "tdemoorderstream",
       :userName => "iedemo",
       :pass => "isrocksondemo"
     }
