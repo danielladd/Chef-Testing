@@ -13,7 +13,9 @@ default_attributes(
 	  :admin_port => "8081"
     },
     :rolodex => {
-      :baseUrl => "https://tdemo-rolodex.nexus.commercehub.com"
+      :baseUrl => "https://tdemo-rolodex.nexus.commercehub.com",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",
@@ -24,7 +26,7 @@ default_attributes(
     :ordersteam => {
         :app => {
             :id => "DSM",
-            :name => "orderstream_demo_test "
+            :name => "orderstream_demo_test"
         }
     },
     :graphite => {
