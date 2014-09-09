@@ -28,7 +28,7 @@ default_attributes "chub_sensu" => {
             "oddrest" => "rolodex@commercehub.com",
             "rolodex" => "rolodex@commercehub.com"
         }
-    }
+    },
     "pagerduty" => {
       "api_key" => "",
       "keys" => {
