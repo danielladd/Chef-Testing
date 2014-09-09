@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-handlerList = ["email"]
+handlerList = ["email", "pagerduty"]
 
 
 #TODO: Does this need to key off of other properties, more team specific properties
@@ -46,6 +46,7 @@ sensu_check "apartment_check_disk" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
+	additional(:pager_team => "apartment")
 end
 
 sensu_check "apartment_check_cpu" do
@@ -53,7 +54,7 @@ sensu_check "apartment_check_cpu" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "apartment")
 end
 
 sensu_check "apartment_check_ram" do
@@ -61,5 +62,5 @@ sensu_check "apartment_check_ram" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "apartment")
 end

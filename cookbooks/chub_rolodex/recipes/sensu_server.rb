@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-handlerList = ["email"]
+handlerList = ["email", "pagerduty"]
 
 #TODO: Does this need to key off of other properties, more team specific properties
 if node.attribute?(:rolodex) and node[:rolodex].attribute?(:graphite) and node[:rolodex][:graphite].attribute?(:host)
@@ -45,6 +45,7 @@ sensu_check "rolodex_check_disk" do
     handlers ["rolodex"]
     subscribers ["rolodex"]
     interval 60
+	additional(:pager_team => "rolodex")
 end
 
 sensu_check "rolodex_check_cpu" do
@@ -52,7 +53,7 @@ sensu_check "rolodex_check_cpu" do
     handlers ["rolodex"]
     subscribers ["rolodex"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "rolodex")
 end
 
 sensu_check "rolodex_check_ram" do
@@ -60,5 +61,5 @@ sensu_check "rolodex_check_ram" do
     handlers ["rolodex"]
     subscribers ["rolodex"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "rolodex")
 end
