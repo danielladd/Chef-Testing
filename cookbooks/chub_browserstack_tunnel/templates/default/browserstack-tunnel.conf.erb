@@ -1,7 +1,7 @@
 setuid browserstack
 setgid browserstack
 chdir /var/browserstack-tunnel
-exec /opt/browserstack-tunnel/BrowserStackLocal <%= node[:chub_browserstack_tunnel][:api_key] %>
+exec /opt/browserstack-tunnel/BrowserStackLocal <%= node[:chub_browserstack_tunnel][:api_key] %> -only <% node[:chub_browserstack_tunnel][:services].to_enum.with_index(1) do |service, index| %><%= service.host %>,<%= service.port %>,<%= service.ssl ? 1 : 0 %><% if(index < node[:chub_browserstack_tunnel][:services].length) %>,<% end %><% end %>
 respawn
 start on runlevel [2345]
 stop on runlevel [016]
