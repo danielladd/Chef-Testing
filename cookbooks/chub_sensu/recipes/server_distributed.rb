@@ -60,6 +60,11 @@ if node[:chub_sensu].attribute?(:pagerduty)
         mode 0755
     end
 
+    sensu_handler "pagerduty" do
+        type "pipe"
+        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
+    end
+
     template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
         source "pagerduty.json.erb"
         mode 0644
@@ -69,10 +74,6 @@ if node[:chub_sensu].attribute?(:pagerduty)
         )
     end
 
-    sensu_handler "pagerduty" do
-        type "pipe"
-        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-    end
 end
 
 

@@ -3,31 +3,11 @@
 # Recipe:: server
 #
 # Copyright (C) 2014 CommerceHub
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
 handlerList = ["email"]
-
-## PagerDuty Handler
-if node[:chub_pipeline].attribute?(:pagerduty) and node[:chub_pipeline][:pagerduty].attribute?(:api_key)
-    remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
-        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
-        mode 0755
-    end
-
-    template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
-        source "pagerduty.json.erb"
-        mode 0644
-        variables(:api_key => node[:chub_pipeline][:pagerduty][:api_key])
-    end
-
-    sensu_handler "pagerduty_pipeline" do
-        type "pipe"
-        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-    end
-end
-
 
 #TODO: Does this need to key off of other properties, more team specific properties
 if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
