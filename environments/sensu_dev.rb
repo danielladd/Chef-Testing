@@ -30,7 +30,7 @@ default_attributes(
 )
 override_attributes(
   uchiwa: {
-    version: '0.2.1-1',
+    version: '0.2.3-1',
     settings: {
       user: '',
       pass: ''
