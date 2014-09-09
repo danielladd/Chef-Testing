@@ -29,6 +29,23 @@ default_attributes "chub_sensu" => {
             "rolodex" => "rolodex@commercehub.com"
         }
     }
+    "pagerduty" => {
+      "api_key" => "",
+      "keys" => {
+        "apartment" => {
+          "api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+        },
+        "oddrest" => {
+          "api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+        },
+        "rolodex" => {
+          "api_key" => "726a0e6e51c045faaf74c5ab8b3e2628"
+        },
+        "pipeline_team" => {
+          "api_key" => "0e7c4f5662144f9991def44c23b41146"
+        },
+      }
+    }
 },
 "apartment" => {
     "pagerduty" => {

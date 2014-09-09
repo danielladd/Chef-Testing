@@ -3,7 +3,7 @@
 # Recipe:: server_distributed
 #
 # Copyright (C) 2014 CommerceHub
-# 
+#
 # All rights reserved - Do Not Redistribute
 #
 
@@ -27,7 +27,7 @@ end
     gem_package gem_name do
         action :install
         options "--no-rdoc --no-ri"
-        if gem_name == "mail" 
+        if gem_name == "mail"
             version "2.5.4"
         end
     end
@@ -52,6 +52,29 @@ if node[:chub_sensu].attribute?(:email)
         command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/mailer.rb"
     end
 end
+
+## PagerDuty Handler
+if node[:chub_sensu].attribute?(:pagerduty)
+    remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
+        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
+        mode 0755
+    end
+
+    template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
+        source "pagerduty.json.erb"
+        mode 0644
+        variables(
+          :api_key => node[:chub_sensu][:pagerduty][:api_key],
+          :keys => node[:chub_sensu][:pagerduty][:keys]
+        )
+    end
+
+    sensu_handler "pagerduty" do
+        type "pipe"
+        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
+    end
+end
+
 
 sensu_handler "default" do
     type "set"
