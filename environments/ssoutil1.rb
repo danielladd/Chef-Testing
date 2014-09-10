@@ -18,6 +18,6 @@ default_attributes(
     :title => "SSO Environments",
     :prefix => "sso",
     :environment_names => ["ssodev1", "ssoqa1", "ssoint1", "ssoprod1"],
-    :role_names => ["castle", "census", "ldap", "monitor", "plaza", "vault"]
+    :role_names => ["castle", "census", "ldap", "monitor", "plaza", "vault", "steward"]
   }
 )
