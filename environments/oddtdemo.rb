@@ -75,9 +75,9 @@ default_attributes(
       :multicast_port => 54429
     },
 	:activedirectory => {
-	  :server_url => "ldaps://ldap.commercehub.com:636",
-	  :domain => "commercehub.com",
-	  :requiredGroups => "[\"role_rolodex_all_test\"]"
+	  :server_url => "ldaps://ldap.nexus.commercehub:636",
+	  :domain => "nexus.commercehub.com",
+	  :requiredGroups => "[\"role_rolodex_all_open\"]"
 	}
   }
 )
