@@ -71,6 +71,11 @@ default_attributes(
       :password => "slmdemo-pass",
       :multicast_group => "224.2.3.8",
       :multicast_port => 54429
-    }
+    },
+	:activedirectory => {
+	  :server_url => "ldaps://ldap.commercehub.com:636",
+	  :domain => "commercehub.com",
+	  :requiredGroups => "[\"role_rolodex_all_test\"]"
+	}
   }
 )
