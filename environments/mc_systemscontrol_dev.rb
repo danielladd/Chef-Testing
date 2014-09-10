@@ -15,7 +15,8 @@ default_attributes(
 			"mcHost" => "devmissioncontrol",
 			"appHost" => "devmissioncontrol/systemscontrol",
 			"server.port" => "9500",
-			"authService" => "devmcauth"
+			"authService" => "devmcauth",
+			"anaxConf" => "\"/opt/systemscontrol/anaximander.conf\""
 		},
 		"jar_file_url" => "http://artifactory01.nexus.commercehub.com/artifactory/inteng-snapshot/com/commercehub/systemscontrol/%5BRELEASE%5D/systemscontrol-%5BRELEASE%5D.jar"
 	},

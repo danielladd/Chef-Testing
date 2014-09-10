@@ -1,11 +1,5 @@
 name "odddemo"
 description 'For the SLM Demo Nodes'
-cookbook_versions({
-  "chub_apartment"=>"= 0.1.0",
-  "chub_oddrest"=>"= 0.1.0",
-  "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0"
-})
 default_attributes(
   :slm => {
     :odd_service => {
@@ -19,7 +13,9 @@ default_attributes(
 	  :admin_port => "8081"
     },
     :rolodex => {
-      :baseUrl => "https://demo-rolodex.nexus.commercehub.com"
+      :baseUrl => "https://demo-rolodex.nexus.commercehub.com",
+	  :port => "8080",
+	  :admin_port => "8081"
     },
     :sso => {
       :vault => "https://ssoint1-vault.nexus.commercehub.com:8443",

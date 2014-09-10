@@ -75,3 +75,17 @@ grails {
         grails.mail.default.from = "customersupport@commercehub.com"
     }
 }
+
+<% if node[:chub_rolodex][:activedirectory] -%>
+activedirectory{
+	<% if node[:chub_rolodex][:activedirectory][:server_url] -%>
+	server.url = "<%= node[:chub_rolodex][:activedirectory][:server_url] %>"
+	<% end -%>
+	<% if node[:chub_rolodex][:activedirectory][:domain] -%>
+	domain = "<%= node[:chub_rolodex][:activedirectory][:domain] %>"
+	<% end -%>
+	<% if node[:chub_rolodex][:activedirectory][:requiredGroups] -%>
+	requiredGroups = <%= node[:chub_rolodex][:activedirectory][:requiredGroups] %>
+	<% end -%>
+}
+<% end -%>

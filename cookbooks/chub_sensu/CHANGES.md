@@ -1,3 +1,11 @@
+# 0.1.22
+
+Larry - Update pagerduty handler to support multi-tenantcy
+
+# 0.1.21
+
+Larry - Update admin_gui_url
+
 # 0.1.20
 
 Larry - Moving redis log into log instead of syslog.

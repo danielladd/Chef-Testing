@@ -1,5 +1,7 @@
 default[:chub_apartment][:app_url] = "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/apartment/%5BRELEASE%5D/apartment-%5BRELEASE%5D.jar"
-
+default[:chub_apartment][:java_heap_size] = "512M"
+default[:chub_apartment][:jmxremote_port] = 12000
+default[:chub_apartment][:properties_location] = "/etc/apartment/apartment.properties"
 ###
 # App Config Details
 #

@@ -1,3 +1,11 @@
+# 0.2.1
+
+* Fix tunnel arguments
+
+# 0.2.0
+
+* Update to support tunnel v3.1
+
 # 0.1.2
 
 * Cookbook now unpacks the binary file from browserstack, also upstart script is more stable

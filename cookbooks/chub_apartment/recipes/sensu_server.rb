@@ -7,27 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-handlerList = ["email"]
-
-## PagerDuty Handler
-if node[:apartment].attribute?(:pagerduty) and node[:apartment][:pagerduty].attribute?(:api_key)
-    remote_file "#{node[:chub_sensu][:root_handler_path]}/pagerduty.rb" do
-        source "https://raw2.github.com/sensu/sensu-community-plugins/master/handlers/notification/pagerduty.rb"
-        mode 0755
-    end
-
-    template "#{node[:chub_sensu][:root_handler_config_path]}/pagerduty.json" do
-        source "pagerduty.json.erb"
-        mode 0644
-        variables(:api_key => node[:apartment][:pagerduty][:api_key])
-    end
-
-    sensu_handler "pagerduty_apartment" do
-        type "pipe"
-        command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_handler_path]}/pagerduty.rb"
-    end
-	handlerList << "pagerduty_apartment"
-end
+handlerList = ["email", "pagerduty"]
 
 
 #TODO: Does this need to key off of other properties, more team specific properties
@@ -66,6 +46,7 @@ sensu_check "apartment_check_disk" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
+	additional(:pager_team => "apartment")
 end
 
 sensu_check "apartment_check_cpu" do
@@ -73,7 +54,7 @@ sensu_check "apartment_check_cpu" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "apartment")
 end
 
 sensu_check "apartment_check_ram" do
@@ -81,5 +62,5 @@ sensu_check "apartment_check_ram" do
     handlers ["apartment"]
     subscribers ["apartment"]
     interval 60
-    additional(:occurrences => 2)
+    additional(:occurrences => 2, :pager_team => "apartment")
 end

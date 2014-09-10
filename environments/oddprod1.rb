@@ -1,11 +1,5 @@
 name "oddprod1"
 description 'For the SLM PROD1 Nodes'
-cookbook_versions({
-  "chub_apartment"=>"= 0.1.0",
-  "chub_oddrest"=>"= 0.1.0",
-  "chub_rolodex"=>"= 0.1.1",
-  "chub_tattler"=>"= 0.3.0"
-})
 default_attributes(
   :slm => {
     :odd_service => {
@@ -78,6 +72,11 @@ default_attributes(
       :password => "slmprod-pass",
       :multicast_group => "224.2.3.6",
       :multicast_port => 54430
-    }
+    },
+	:activedirectory => {
+	  :server_url => "ldaps://ldap.commercehub.com:636",
+	  :domain => "commercehub.com",
+	  :requiredGroups => "[\"role_rolodex_all_prod\"]"
+	}
   }
 )

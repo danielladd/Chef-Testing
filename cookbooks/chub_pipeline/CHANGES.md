@@ -1,6 +1,10 @@
+# 0.1.5
+
+* Removed pagerduty handler, moved upstream. 
+
 # 0.1.4
 
-* Removed include of sensu_server recipes. 
+* Removed include of sensu_server recipes.
 
 # 0.1.2
 

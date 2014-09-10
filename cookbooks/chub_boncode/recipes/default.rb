@@ -41,8 +41,9 @@ template "#{node[:chub_boncode][:site_root]}/web.config" do
   	action :create
 end
 
-cookbook_file "#{node[:chub_boncode][:install_location]}/Unzip.ps1" do
-	source "Unzip.ps1"
+template "#{node[:chub_boncode][:install_location]}/Unzip.ps1" do
+	source "Unzip.ps1.erb"
+	action :create
 end
 
 cookbook_file "#{node[:chub_boncode][:install_location]}/BonCodeAjp13_#{node[:chub_boncode][:version]}.zip" do
@@ -51,7 +52,7 @@ end
 
 windows_batch "AJP Unzip" do
 	code <<-EOH
-	node[:chub_boncode][:install_location]\\Unzip.ps1 -InstallDir node[:chub_boncode][:install_location] -Version node[:chub_boncode][:version]
+	Powershell.exe -executionpolicy remotesigned -File #{node[:chub_boncode][:install_location]}\\Unzip.ps1 -InstallDir #{node[:chub_boncode][:install_location]} -Version #{node[:chub_boncode][:version]}
 	EOH
 end 
 
@@ -62,7 +63,6 @@ end
 
 windows_package "Install BonCode" do
   source "#{node[:chub_boncode][:install_location]}/Boncode/#{node[:chub_boncode][:version]}/Connector_Setup.exe"
-  installer_type :msi 
   options "/VERYSILENT /SUPPRESSMSGBOXES /LOG /SP- /NOCANCEL /NORESTART"
   action :install 
 end
