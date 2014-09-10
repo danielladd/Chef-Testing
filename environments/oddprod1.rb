@@ -72,6 +72,11 @@ default_attributes(
       :password => "slmprod-pass",
       :multicast_group => "224.2.3.6",
       :multicast_port => 54430
-    }
+    },
+	:activedirectory => {
+	  :server_url => "ldaps://ldap.commercehub.com:636",
+	  :domain => "commercehub.com",
+	  :requiredGroups => "[\"role_rolodex_all_prod\"]"
+	}
   }
 )
