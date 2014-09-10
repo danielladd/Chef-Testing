@@ -22,7 +22,6 @@ include_recipe "iis"
 iis_pool 'DefaultAppPool' do
 	pool_name "DefaultAppPool"
 	action :config
-	thirty_two_bit node[:chub_orderstream_iis][:default_app_pool_config][:enable_32_bit]
 	runtime_version node[:chub_orderstream_iis][:default_app_pool_config][:managed_runtime_version ]
 end
 
@@ -37,8 +36,11 @@ iis_site 'OrderStream' do
 	action :add
 	path node[:chub_orderstream_iis][:orderstream_site_root]
 	application_pool "DefaultAppPool"
+	bindings node[:chub_orderstream_iis][:orderstream_site_binding]
+	protocol node[:chub_orderstream_iis][:orderstream_site_protocol]
 end
 
-iis_config "/site.name:#{node[:chub_orderstream_iis][:orderstream_site_name]} /+bindings.[protocol='#{node[:chub_orderstream_iis][:orderstream_site_protocol]}',bindingInformation='#{node[:chub_orderstream_iis][:orderstream_site_ip_address]}:#{node[:chub_orderstream_iis][:orderstream_site_port}:']" do
-	action :config
-end	
+iis_pool 'DefaultAppPool' do
+	pool_name "DefaultAppPool"
+	action :start
+end
