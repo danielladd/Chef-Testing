@@ -6,11 +6,6 @@ default_attributes(
       "rabbitmq" => {
           "host" => "monmq.nexus.commercehub.com"
       }
-  },
-  "chub_pipeline" => {
-    "pagerduty" => {
-      "api_key" => "0e7c4f5662144f9991def44c23b41146"
-    }
   }
 )
 override_attributes(

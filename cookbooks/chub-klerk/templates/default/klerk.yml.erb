@@ -7,9 +7,11 @@ mongo:
   databaseName: <%= @klerk_database_name %>
 
 blobStore:
-  container: <%= @blobstore_database_name %>
-  provider: gridfs
-  uri: <%= @blobstore_mongo_uri %>
+  container: <%= @blobstore_container_name %>
+  context:
+    type: <%= @blobstore_context_type %>
+    accessKeyId: <%= @blobstore_aws_s3_access_key_id %>
+    secretKey: <%= @blobstore_aws_s3_secret_key %>
 
 hazelcast:
   groupName: <%= @hazelcast_group_name %>

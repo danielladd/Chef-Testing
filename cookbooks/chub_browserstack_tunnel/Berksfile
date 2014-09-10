@@ -1,7 +1,3 @@
-chef_api :config
-
-#site :opscode
-
+# TODO: use http://berksapi.nexus.commercehub.com when it's up
+source 'http://berks01.nexus.commercehub.com:26200'
 metadata
-
-cookbook "java", ">=1.21.2"

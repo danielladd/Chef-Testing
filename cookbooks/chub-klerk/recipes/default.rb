@@ -79,8 +79,10 @@ template "/etc/opt/klerk/klerk.yml" do
     variables({
         "mongo_uri" => node["chub-klerk"]["mongo_uri"],
         "klerk_database_name" => node["chub-klerk"]["klerk_database_name"],
-        "blobstore_database_name" => node["chub-klerk"]["blobstore_database_name"],
-        "blobstore_mongo_uri" => node["chub-klerk"]["blobstore_mongo_uri"],
+        "blobstore_container_name" => node["chub-klerk"]["blobstore_container_name"],
+        "blobstore_context_type" => node["chub-klerk"]["blobstore_context_type"],
+        "blobstore_aws_s3_access_key_id" => node["chub-klerk"]["blobstore_aws_s3_access_key_id"],
+        "blobstore_aws_s3_secret_key" => node["chub-klerk"]["blobstore_aws_s3_secret_key"],
         "hazelcast_group_name" => node["chub-klerk"]["hazelcast_group_name"],
         "hazelcast_group_password" => node["chub-klerk"]["hazelcast_group_password"],
         "antivirus_hosts" => node["chub-klerk"]["antivirus_hosts"],

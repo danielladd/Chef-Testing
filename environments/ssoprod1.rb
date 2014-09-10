@@ -9,11 +9,11 @@ cookbook_versions({
   "chef-client" => "= 3.0.6",
   "chef-kick" => "= 0.1.1",
   "chef_handler" => "= 1.1.5",
-  "chub_castle" => "= 0.1.27",
+  "chub_castle" => "= 0.2.0",
   "chub_census" => "= 0.2.0",
   "chub_java" => "= 0.1.1",
   "chub_openldap" => "= 1.12.21",
-  "chub_plaza" => "= 0.3.2",
+  "chub_plaza" => "= 0.4.0",
   "chub_sensu_sso" => "= 0.1.19",
   "chub_vault" => "= 0.6.0",
   "cron" => "= 1.2.6",
@@ -62,7 +62,8 @@ default_attributes(
       :vault => "https://ssoprod1-vault.commercehub.com:8443/ping",
       :census => "https://ssoprod1-census.commercehub.com:8443/ping",
       :castle => "https://apps.commercehub.com/account/ping",
-      :plaza => "https://apps.commercehub.com/user/ping"
+      :plaza => "https://apps.commercehub.com/user/ping",
+      :steward => "https://ssoprod1-steward.commercehub.com/ping"
     }
   },
   :openldap => {
@@ -74,6 +75,11 @@ default_attributes(
   },
   :chub_vault => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/vault-server/%5BRELEASE%5D/vault-server-%5BRELEASE%5D-shadow.jar;env.ssoprod1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => []
+      }
+    },
     :ldap => {
       :read => {
         :host => "ssoprod1-ldap-read.commercehub.com",
@@ -95,6 +101,11 @@ default_attributes(
   },
   :chub_census => {
     :app_url => "http://artifactory01.nexus.commercehub.com/artifactory/libs-release/com/commercehub/census-server/%5BRELEASE%5D/census-server-%5BRELEASE%5D-shadow.jar;env.ssoprod1.current+=true",
+    :authentication => {
+      :activedirectory => {
+        :required_groups => []
+      }
+    },
     :plaza_url => "https://apps.commercehub.com/user",
     :vault_url => "https://ssoprod1-vault.commercehub.com:8443",
     :profileUpdateNotificationUrls => ["https://ssoprod1-vault.nexus.commercehub.com:8443/person/receiveUpdate"],

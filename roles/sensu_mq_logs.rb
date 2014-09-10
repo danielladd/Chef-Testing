@@ -4,8 +4,6 @@ run_list *%w[
 ]
 default_attributes(
   "chub_log" => {
-    "endpoint" => "lsdev.nexus.commercehub.com",
-    "endpoint_port" => "2352",
     "logfiles" => {
       "rabbitmq_log_01" => {
         "path" => '/var/log/rabbitmq/rabbit@monmq01.log',
