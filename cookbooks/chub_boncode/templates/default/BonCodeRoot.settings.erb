@@ -1,4 +1,4 @@
 <Settings>
-    <Server><%= scope['boncode::params::host'] %></Server>
-    <Port><%= scope['boncode::params::port'] %></Port>
+    <Server><%= node[:chub_boncode][:settings][:hostname] %></Server>
+    <Port><%= node[:chub_boncode][:settings][:tomcatAjpPort] %></Port>
 </Settings>
