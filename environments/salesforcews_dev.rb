@@ -15,10 +15,17 @@ default_attributes(
 				"username" => "sfintegration@commercehub.com.IntPro1",
 				"password" => "c7ZX#ZfppEh7"
 			},
-		"swaggerConfiuguration" => {
-			"hostname" => "dmcsfws01"
+			"swaggerConfiguration" => {
+				"basePath" => "http://dmcsfws01:8080"
+										},
+     		"logging" => {
+        		"level" => "INFO",
+        		"loggers"=> {
+            		"crmLevel" => "DEBUG",
+             		"chubLevel" => "INFO"
+        					},
+						},
 		},
-								},
 		},
 	
 )
