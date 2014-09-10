@@ -1,5 +1,9 @@
 # 0.1.22
 
+Larry - Moved shared handlers into server distributed recipe, reconfigured some attribute checks to look for proper values
+
+# 0.1.22
+
 Larry - Update pagerduty handler to support multi-tenantcy
 
 # 0.1.21

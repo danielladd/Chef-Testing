@@ -73,9 +73,19 @@ if node[:chub_sensu].attribute?(:pagerduty)
           :keys => node[:chub_sensu][:pagerduty][:keys]
         )
     end
-
 end
 
+## Graphite Handler
+if node.attribute?(:graphite) and node[:graphite].attribute?(:host)
+    template "#{node[:chub_sensu][:root_handler_config_path]}/graphite_tcp.json" do
+        source 'graphite_tcp.json.erb'
+        mode 0644
+        variables(
+            :graphite_host => node[:graphite][:host],
+            :graphite_port => node[:graphite][:port]
+        )
+    end
+end
 
 sensu_handler "default" do
     type "set"
