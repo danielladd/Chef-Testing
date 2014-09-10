@@ -15,7 +15,6 @@ sensu_handler "pipeline_team" do
     handlers handlerList
 end
 
-# TODO: Fine tune these settings
 # Checks
 sensu_check "pipeline_check_disk" do
     command "/usr/bin/ruby1.9.3 #{node[:chub_sensu][:root_plugin_path]}/check-disk.rb"
