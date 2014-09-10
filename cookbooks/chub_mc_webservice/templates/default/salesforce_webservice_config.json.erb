@@ -8,13 +8,16 @@
   }
       , "swaggerConfiguration": {
         "version": "1.0.0",
-        "basePath": "http://<%= node[:chub_mc_webservice][:salesforce_config][:swaggerConfiguration][:hostname] %>:8080"
+        "basePath": "<%= node[:chub_mc_webservice][:salesforce_config][:swaggerConfiguration][:basePath] %>"
     }
+
     , "logging": {
-        "level": "INFO",
-        "loggers": {
-            "com.commercehub.crm.salesforce":"DEBUG"
+        "level": "<%= node[:chub_mc_webservice][:salesforce_config][:logging][:level] %>",
+                        "loggers": {
+                    "com.commercehub.crm.salesforce": "<%= node[:chub_mc_webservice][:salesforce_config][:logging][:loggers][:crmLevel] %>"
+            ,       "com.commercehub": "<%= node[:chub_mc_webservice][:salesforce_config][:logging][:loggers][:chubLevel] %>"
         },
+
     "appenders": [
         {
             "type": "file",
