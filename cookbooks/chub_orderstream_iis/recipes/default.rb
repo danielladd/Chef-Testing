@@ -36,7 +36,7 @@ iis_site 'OrderStream' do
 	action :add
 	path node[:chub_orderstream_iis][:orderstream_site_root]
 	application_pool "DefaultAppPool"
-	bindings node[:chub_orderstream_iis][:orderstream_site_binding]
+	port node[:chub_orderstream_iis][:orderstream_site_port]
 	protocol node[:chub_orderstream_iis][:orderstream_site_protocol]
 end
 
