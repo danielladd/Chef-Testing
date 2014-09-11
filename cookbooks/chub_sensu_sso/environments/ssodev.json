@@ -1,6 +1,0 @@
-{
-  "name": "ssodev1",
-  "description": "SSO development environment 1",
-  "json_class": "Chef::Environment",
-  "chef_type": "environment"
-}

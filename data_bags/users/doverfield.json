@@ -1,9 +1,0 @@
-{
-  "id": "doverfield",
-  "user": "doverfield",
-  "password": "",
-  "group":["adm","sudo","sambashare"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": ""
-}

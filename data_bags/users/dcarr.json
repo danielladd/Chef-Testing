@@ -1,9 +1,0 @@
-{
-  "id": "dcarr",
-  "user": "dcarr",
-  "password": "$1$rECq1fJ4$iO6tSOFUi7KAIpSpZlPLN.",
-  "group":["adm","sudo","sambashare","vault","census","castle","plaza"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUJlzmyw8tYdHD/D1JNNej+XCWovMr7OLZYoFhxiEItqNsnzTtIbQTokfKOPr7CBTmvCHMtx8aDB7A9T0i0+GOqwFVGagoRn+QtpBcKSmU3ZqqTB5hBTLwPk0NCwJSJVXH0ZKMB1095H6Rqmk7TKU55nYbtGKr1yPP79im9S949koGZg625iQAT5Dp/Mj4cLj3jpjuNgnm5/jG8dad2YREfAA83sW+U5H6mG6iDlSHHw1UV6vIV+IQqqtySg3scS3pSPHt0t2WBu6Oa/os0ybJ8koBN/F2BmUJd+FtKP8Cbza6ubGQ5sYXf6+DSUtRDxMYD4ROHeyLx5pXPEvktnXR david@buyspace.com"
-}

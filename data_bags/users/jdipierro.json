@@ -1,9 +1,0 @@
-{
-  "id": "jdipierro",
-  "user": "jdipierro",
-  "password": "$1$WQwskIOq$NMeoeTBJpU1vrn8tQ0MQZ0",
-  "group": ["adm", "sudo", "oddrest", "rolodex"],
-  "system": false,
-  "shell": "/bin/zsh",
-  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwgm+F3WfCSEvOv5v0Eq0jFKnIt3rkMgKR48Qlv2gcfb5qpbasV98rqVV++HDl56OgZ1jc9BMvZ7CHAbfIvCt2KrJ/HZiyBD3neMJQSJu80AfYvnIliP/O4Dkl5TdZjJq9vcDQ2r6gUDmDPZPim3yMnvGlSuScsxJslOOHRNZXjhO77/avkdfd0ZSmGyUMOSoqZb0rJ4VEKy0+KDHhholehRfKHlSU4KeeJ3y8AuR5LMHZOZhUKsdkf4yu+z79mmAMnCPNLFEk1cN+prA36X+pBTjB6pqCNWXPzy8E6Jhpj5KyXtJfOyZ63QlG6Dy3G9jHCLZsq1q5mqWxjAAc945iw== jdipierro@commercehub.com"
-}

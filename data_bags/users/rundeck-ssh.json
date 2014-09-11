@@ -1,9 +1,0 @@
-{
-  "id": "rundeck-ssh",
-  "user": "rundeck-ssh",
-  "password": "$1$83ZCpCC1$RqDOLK374Bvf4EVphVCfT/",
-  "group":["minions"],
-  "system":true,
-  "shell": "/bin/bash",
-  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7y2fTYfDpQFeQaESIYLz/96w96fRVCR1BYmQnXbwpzcngZ0OP9AikgAz+cLdMDXlBzgALnDVtU/U1GIhD6uJsex/uyStPwVIagSWBw1utPU+CB3lBH5RpLDnGYDptOaU4MNhH/wpc17VE4eVDvj26QZsO3E8wP5YxJOvDeNomg3FHLzm9jC/hMJiUNTq5PiKwLl7BNW1tiUUwUlLwTOya9Ye17OJVnogBmnoId4JKtd6Foj1H/stkY774JfvmPgOCY/rKx0Ou0TOeOSakTMUrfMiiiXV23Z/NkAn/u5IfHiRyxnIkLQS8YYAAwBJOm12YddXm5ALmy3v5fEVK4325 rundeck-ssh"
-}

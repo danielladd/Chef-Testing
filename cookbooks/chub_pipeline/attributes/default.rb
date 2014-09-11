@@ -1,1 +1,0 @@
-default[:chub_pipeline]

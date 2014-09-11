@@ -1,9 +1,0 @@
-{
-  "id": "ssodeployer",
-  "user": "ssodeployer",
-  "password": "$1$yi3N9OjQ$N6OeYoCmCmbOm6ryQEvX51",
-  "group":["vault","census","castle","plaza"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMHK6hTO/Ha8GwL0IY3u/9qC6CjCdtGa5WnE96HxvflcWR7eR2WfbGZZL18lVetyM//r9BkxVX66PmLaZ2d2Partr2f+UskSwBdZpnnpVzO1PMM/bMzU+huH4PnEsNdKtHxYFoFOEWarN0auKNfDxQvL8WxwNXVNcqPbOVLWXh064WJMDOhNdCMn1Ko4WIKvrvCLnHofJgMMcOIScRb1smBVZaJplSKhvG3FtiDNp7QqhSM+pHrA7BTV81ysKDZYT00lmDtuwm213UeMkcY+8qOzfEydi7p9GJ5CWSxjFVgzCGol/gUMFgq6jswF0C4JSPSWZsRo6eICJ+g8yiIOvt ssodeployer@commercehub.com"
-}

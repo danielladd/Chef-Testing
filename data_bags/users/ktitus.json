@@ -1,9 +1,0 @@
-{
-  "id": "ktitus",
-  "user": "ktitus",
-  "password": "",
-  "group":["adm","sudo","sambashare"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": ""
-}

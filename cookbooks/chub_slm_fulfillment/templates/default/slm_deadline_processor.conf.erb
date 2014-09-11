@@ -1,7 +1,0 @@
-setuid slm_fulfillment
-setgid slm_fulfillment
-chdir /var/slm_fulfillment
-exec java -server -d64 -Xms<%= node[:chub_slm_fulfillment][:java_heap_size] %> -Xmx<%= node[:chub_slm_fulfillment][:java_heap_size] %> -Dconfig.file=/etc/slm_fulfillment/slm_fulfillment.conf -jar /opt/slm_fulfillment/slm_fulfillment.jar -d
-respawn
-start on runlevel [2345]
-stop on runlevel [016]

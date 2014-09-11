@@ -1,5 +1,0 @@
-source 'https://api.berkshelf.com'
-metadata
-
-cookbook "chef-kick", git: "git@git.nexus.commercehub.com:chef/chef.git", rel: "cookbooks/chef-kick"
-cookbook "base", git: "git@git.nexus.commercehub.com:chef/chef.git", rel: "cookbooks/base"

@@ -1,8 +1,0 @@
-#The HornetQ home directory.
-hornetq.dir=<%= node["chub-hornetq"]["app_dir"] %>
-
-#The destinations groups to deploy. 
-#"ALL" (case insensitive) is a special value.
-#Otherwise this can be a comma-separated list (no spaces) of group names.
-#Group names are the subdirectory names under jms-config.
-groups=<%= node["chub-hornetq"]["destinations_to_deploy"] %>

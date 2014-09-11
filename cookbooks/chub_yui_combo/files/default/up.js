@@ -1,3 +1,0 @@
-(function(){
-	var up = true;
-})();

@@ -1,5 +1,4 @@
-.DS_Store
-
-# Vagrant Stuff
-/cookbooks/*/.vagrant
-.kitchen/
+.rake_test_cache
+.chef
+.vagrant
+.rvmrc

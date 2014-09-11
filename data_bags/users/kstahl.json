@@ -1,9 +1,0 @@
-{
-  "id": "kstahl",
-  "user": "kstahl",
-  "password": "$1$RTyfZPup$Bz8SckRNORYqutdEHtdpP.",
-  "group":["adm","sudo","sambashare"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAoCPYAiQyn1AhmoZl1cgX4MZObKh0MhCNJz65lVLTK5uY+XC2aJWZpInGu8hTx8UvEP1x/4oy+K6HgQTsoMT7f49wpYpu8h9buuODi1SmKHqHFnYaC27KpfNNQ1rDiMaBLPLOHn5VXuRQkwlFNoJYHJykg4Aq8OwjQtubOIyZs+zYJgR9osbWW3cErzr1NJhnCqMGUXMHeYscFPGrsF9nXaelivcgk34t+FeV2CGwZnG27/Yb5LaJ8sN1UEPDGXJvGGFPRjWCkleELlYCQVs8vansE80n7IE3mUL4yGjFFAjVfHaoiSXtxiV5q3l1tNegpzotTTJJvITlLzjow532NQ== kstahl@commercehub.com"
-}

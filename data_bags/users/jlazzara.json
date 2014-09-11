@@ -1,9 +1,0 @@
-{
-  "id": "jlazzara",
-  "user": "jlazzara",
-  "password": "",
-  "group":["adm","sudo","sambashare"],
-  "system":false,
-  "shell": "/bin/bash",
-  "ssh_keys": ""
-}
